@@ -141,7 +141,9 @@ class AWPCP_ImportListingsAdminPage {
                 $images_directory = $this->get_images_directory( $working_directory );
 
                 $zip = new PclZip( "$working_directory/images.zip" );
-                $zip_contents = $zip->extract();
+
+                // @phpstan-ignore-next-line - PclZip::extract() doesn't require a parameter but it looks for optional parameters.
+                $zip_contents = $zip->extract( PCLZIP_OPT_EXTRACT_AS_STRING );
 
                 if ( ! is_array( $zip_contents ) ) {
                     $form_errors['zip_file'] = __( 'Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin' );

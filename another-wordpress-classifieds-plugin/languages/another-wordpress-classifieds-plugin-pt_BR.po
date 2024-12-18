@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2024-06-25 22:51:48+00:00\n"
+"POT-Creation-Date: 2024-12-18 11:50:36+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/"
@@ -129,7 +129,7 @@ msgstr "O usuário especificado não existe."
 msgid "Manual Upgrade"
 msgstr "atualização manual"
 
-#: admin/admin-panel.php:78 admin/admin-panel.php:136 admin/admin-panel.php:791
+#: admin/admin-panel.php:78 admin/admin-panel.php:136 admin/admin-panel.php:800
 #: includes/models/class-custom-post-types.php:97
 #: includes/models/class-custom-post-types.php:99
 #: includes/settings/class-listings-settings.php:30
@@ -145,7 +145,7 @@ msgid "Dashboard"
 msgstr "Painel"
 
 #: admin/admin-panel.php:140 admin/admin-panel.php:141
-#: admin/admin-panel.php:492
+#: admin/admin-panel.php:501
 msgid "Settings"
 msgstr "Configurações"
 
@@ -200,12 +200,12 @@ msgid "Uninstall"
 msgstr "Desinstalação"
 
 #: admin/admin-panel.php:354 admin/admin-panel.php:355
-#: admin/admin-panel.php:818 frontend/templates/page-renew-ad.tpl.php:3
-#: includes/admin/class-admin-container-configuration.php:175
+#: admin/admin-panel.php:827 frontend/templates/page-renew-ad.tpl.php:3
+#: includes/admin/class-admin-container-configuration.php:179
 msgid "Renew Ad"
 msgstr "Renove Anúncio"
 
-#: admin/admin-panel.php:417
+#: admin/admin-panel.php:426
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
@@ -213,7 +213,7 @@ msgstr ""
 "Usar a coluna Saldo em Conta na tabela abaixo para gerenciar créditos para "
 "usuários."
 
-#: admin/admin-panel.php:436
+#: admin/admin-panel.php:445
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
@@ -221,7 +221,7 @@ msgstr ""
 "Funções AWPCP estão desativadas pois o plugin precisa que você faça um "
 "upgrade manual antes de continuar."
 
-#: admin/admin-panel.php:437
+#: admin/admin-panel.php:446
 msgid ""
 "The duration for this upgrade operation varies between several minutes and a "
 "few hours, depending on the size of your database, the current network "
@@ -238,7 +238,7 @@ msgstr ""
 #. translators: %1$s is the opening tag for the link to the page explaining how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
-#: admin/admin-panel.php:440
+#: admin/admin-panel.php:449
 msgid ""
 "If this is not a good time to go through the upgrade process, we recommend "
 "you to %1$sinstall the previous version again%2$s and plan to upgrade "
@@ -251,7 +251,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:446
+#: admin/admin-panel.php:455
 msgid ""
 "To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
 "button below."
@@ -261,7 +261,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:456
+#: admin/admin-panel.php:465
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing. Please %1$sgo to the Classifieds "
@@ -274,7 +274,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:471
+#: admin/admin-panel.php:480
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
@@ -287,7 +287,7 @@ msgstr ""
 "(atualização?) são executadas. Por favor %1$s vá para a seção de Admin "
 "Classificados para Upgrade %2$s ou clique no botão abaixo."
 
-#: admin/admin-panel.php:545
+#: admin/admin-panel.php:554
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -297,7 +297,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:553
+#: admin/admin-panel.php:562
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -313,39 +313,39 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:757 admin/class-categories-admin-page.php:60
+#: admin/admin-panel.php:766 admin/class-categories-admin-page.php:60
 #: admin/class-categories-admin-page.php:64
 msgid "Manage Category Icon"
 msgstr "Gerenciar Categoria Ícone"
 
-#: admin/admin-panel.php:762 admin/class-categories-admin-page.php:35
+#: admin/admin-panel.php:771 admin/class-categories-admin-page.php:35
 #: admin/class-categories-admin-page.php:39
 #: admin/class-categories-admin-page.php:133
 msgid "Edit Category"
 msgstr "Editar Categoria"
 
-#: admin/admin-panel.php:763 admin/class-categories-admin-page.php:46
+#: admin/admin-panel.php:772 admin/class-categories-admin-page.php:46
 #: admin/class-categories-admin-page.php:50
 msgid "Delete Category"
 msgstr "Excluir Categoria"
 
-#: admin/admin-panel.php:768
+#: admin/admin-panel.php:777
 msgid "Select {category_name}"
 msgstr "Selecione {category_name}"
 
-#: admin/admin-panel.php:806 frontend/page-reply-to-ad.php:11
+#: admin/admin-panel.php:815 frontend/page-reply-to-ad.php:11
 msgid "Reply to Ad"
 msgstr "Responder a este anúncio"
 
-#: admin/admin-panel.php:814 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:823 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Colocar anúncio"
 
-#: admin/admin-panel.php:822 frontend/page-browse-ads.php:9
+#: admin/admin-panel.php:831 frontend/page-browse-ads.php:9
 msgid "Browse Ads"
 msgstr "Consulte os anúncios"
 
-#: admin/admin-panel.php:826 admin/templates/admin-panel-listings.tpl.php:20
+#: admin/admin-panel.php:835 admin/templates/admin-panel-listings.tpl.php:20
 #: frontend/page-search-ads.php:9
 msgid "Search Ads"
 msgstr "Anúncios de pesquisa"
@@ -546,27 +546,27 @@ msgid "There was an error moving the uploaded ZIP file to a proper location."
 msgstr ""
 "Ocorreu um erro ao mover o arquivo ZIP enviado para um local apropriado."
 
-#: admin/class-import-listings-admin-page.php:147
+#: admin/class-import-listings-admin-page.php:149
 msgid "Incompatible ZIP Archive"
 msgstr "Incompatíveis ZIP Archive"
 
-#: admin/class-import-listings-admin-page.php:149
+#: admin/class-import-listings-admin-page.php:151
 msgid "Empty ZIP Archive"
 msgstr "Vazio ZIP Archive"
 
-#: admin/class-import-listings-admin-page.php:176
+#: admin/class-import-listings-admin-page.php:178
 msgid "Could not write temporary file %s"
 msgstr "Não foi possível gravar arquivo temporário %s"
 
-#: admin/class-import-listings-admin-page.php:186
+#: admin/class-import-listings-admin-page.php:188
 msgid "The specified directory is not a valid path."
 msgstr "O diretório especificado não é um caminho válido."
 
-#: admin/class-import-listings-admin-page.php:188
+#: admin/class-import-listings-admin-page.php:190
 msgid "The specified directory does not exists."
 msgstr "O diretório especificado não existe."
 
-#: admin/class-import-listings-admin-page.php:369
+#: admin/class-import-listings-admin-page.php:371
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
@@ -1507,11 +1507,11 @@ msgstr "Tarefas de Melhorias executaram enquanto o continua a trabalhar"
 msgid "Account Balance"
 msgstr "'Saldo de Conta';"
 
-#: awpcp.php:147
+#: awpcp.php:150
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
 msgstr "{product_name} foi desativado porque requer PHP 5.6 ou superior."
 
-#: awpcp.php:150
+#: awpcp.php:153
 msgid ""
 "Hi, we noticed that your site is running on an outdated version of PHP. New "
 "versions of PHP are faster, more secure and include the features our product "
@@ -1521,7 +1521,7 @@ msgstr ""
 "versões de PHP são mais rápidas, mais seguras e incluem as novas "
 "características do nosso produto."
 
-#: awpcp.php:153
+#: awpcp.php:156
 msgid ""
 "You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to "
 "also be considerable faster and even more secure, we recommend going up to "
@@ -1531,7 +1531,7 @@ msgstr ""
 "seu site seja considerado rápido e ainda mais seguro, nós recomendamos "
 "atualizar seu PHP para <strong>PHP 7.2</strong>."
 
-#: awpcp.php:156
+#: awpcp.php:159
 msgid ""
 "Please read <a href=\"https://wordpress.org/support/upgrade-php/\">Upgrading "
 "PHP</a> to understand more about PHP and how to upgrade."
@@ -1539,7 +1539,7 @@ msgstr ""
 "Por favor leia <a href=\"https://wordpress.org/support/upgrade-php/"
 "\">Atualizando o PHP</a>."
 
-#: awpcp.php:198
+#: awpcp.php:201
 #, fuzzy
 msgid ""
 "AWP Classifieds Plugin installation is incomplete. Please {support_link}"
@@ -2930,15 +2930,15 @@ msgstr "Suporta SSL: Não."
 msgid "OpenSSL version:"
 msgstr "OpenSSL versão:"
 
-#: includes/admin/class-admin.php:280
+#: includes/admin/class-admin.php:302
 msgid "Classified Information"
 msgstr "Informações do Classificado"
 
-#: includes/admin/class-admin.php:288
+#: includes/admin/class-admin.php:310
 msgid "Classified Owner"
 msgstr "Proprietário do Classificado"
 
-#: includes/admin/class-admin.php:296
+#: includes/admin/class-admin.php:318
 msgid "Classified Fields"
 msgstr "Campos do Classificado"
 
@@ -3004,6 +3004,10 @@ msgid ""
 msgstr ""
 "Um erro desconhecido ocorreu enquanto tentava apagar informação para o "
 "classificado {listing_id}."
+
+#: includes/admin/class-onboarding-wizard.php:186
+msgid "Onboarding Wizard"
+msgstr ""
 
 #: includes/admin/class-payment-personal-data-provider.php:57
 msgid "Classifieds Payment Information"
@@ -8973,23 +8977,23 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr "A instância do WP_Scripts não está pronta!"
 
-#: installer.php:145
+#: installer.php:153
 msgid "30 Day Listing"
 msgstr "Dia 30 Listing"
 
-#: installer.php:292
+#: installer.php:300
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Resposta ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:293
+#: installer.php:301
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Alguém tem respondido ao seu anúncio AWPCP Demonstração"
 
-#: installer.php:318
+#: installer.php:326
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique o endereço de e-mail utilizado para Ad $title"
 
-#: installer.php:319
+#: installer.php:327
 #, fuzzy
 msgid ""
 "Hello $author_name \n"
@@ -9038,6 +9042,11 @@ msgstr ""
 
 #: templates/admin/debug/environment-debug-section.tpl.php:32
 msgid "Test your SSL Client"
+msgstr "Teste seu cliente SSL"
+
+#: templates/admin/debug/environment-debug-section.tpl.php:39
+#, fuzzy
+msgid "Test SSL Client"
 msgstr "Teste seu cliente SSL"
 
 #: templates/admin/debug/plugin-pages-debug-section.tpl.php:20
@@ -9597,6 +9606,88 @@ msgstr ""
 "a página <payment-settings-link> Configurações de pagamento </payment-"
 "settings-link> para inserir o valor."
 
+#: templates/admin/onboarding-wizard/index.tpl.php:31
+msgid "Exit Onboarding"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:17
+msgid "Never miss an important update"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:20
+msgid ""
+"Get key updates, tips, and occasional offers to enhance your WordPress "
+"experience. Opt in and help us improve compatibility with your site!"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:26
+msgid "Skip"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:31
+#, fuzzy
+msgid "Allow & Continue"
+msgstr "Salvar & Continuar"
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:40
+#, fuzzy
+msgid "Allow AWP Classifieds Plugin to"
+msgstr "Another WordPress Classifieds Plugin"
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:50
+msgid "View Basic Profile Info"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:51
+msgid "Your WordPress user’s: first & last name and email address"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:59
+#, fuzzy
+msgid "View Basic Website Info"
+msgstr "Visite o site"
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:60
+msgid "Homepage URL & title, WP & PHP versions, site language"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:68
+#, fuzzy
+msgid "View Basic Plugin Info"
+msgstr "Informação do Plugin"
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:69
+msgid "Current plugin & SDK versions, and if active or uninstalled"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:77
+msgid "View Plugins & Themes List"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/consent-tracking-step.tpl.php:78
+msgid "Names, slugs, versions, and if active or not"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/success-step.tpl.php:17
+msgid "You're All Set!"
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/success-step.tpl.php:20
+msgid ""
+"Congratulations on completing the onboarding process! We hope you enjoy "
+"using AWP Classifieds Plugin."
+msgstr ""
+
+#: templates/admin/onboarding-wizard/steps/success-step.tpl.php:26
+#, fuzzy
+msgid "Create a Classified Ad"
+msgstr "Novo Anúncio Classificado"
+
+#: templates/admin/onboarding-wizard/steps/success-step.tpl.php:30
+#, fuzzy
+msgid "Go to Dashboard"
+msgstr "Painel"
+
 #: templates/admin/profile/contact-information-fields.tpl.php:1
 msgid "Classifieds Contact Information"
 msgstr "Classificados Informações de Contato"
@@ -10029,12 +10120,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Classificados"
 
-#: admin/admin-panel.php:802 includes/settings/class-listings-settings.php:469
+#: admin/admin-panel.php:811 includes/settings/class-listings-settings.php:469
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Mostrar anúncio"
 
-#: admin/admin-panel.php:810
+#: admin/admin-panel.php:819
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editar anúncio"
@@ -10204,19 +10295,19 @@ msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Valores"
 
-#: admin/class-import-listings-admin-page.php:370
+#: admin/class-import-listings-admin-page.php:372
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr "<message-type> em linha <message-line>"
 
-#: admin/class-import-listings-admin-page.php:381
+#: admin/class-import-listings-admin-page.php:383
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Importação de teste"
 
-#: admin/class-import-listings-admin-page.php:383
+#: admin/class-import-listings-admin-page.php:385
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Importar"
@@ -11572,12 +11663,12 @@ msgstr ""
 "{website_title}\n"
 "{website_url}"
 
-#: installer.php:303
+#: installer.php:311
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr "{__previous_subject__} a respeito de: {listing_title}"
 
-#: installer.php:304
+#: installer.php:312
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"

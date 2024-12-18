@@ -403,6 +403,15 @@ class AWPCP_AdminPanel {
         $show_quick_start_quide_notice = get_awpcp_option( 'show-quick-start-guide-notice' );
         $show_drip_autoresponder = get_awpcp_option( 'show-drip-autoresponder' );
 
+        /**
+         * Filters whether to show the quick start guide notice in the admin area.
+         *
+         * @since 4.3.5
+         *
+         * @param bool $show_quick_start_quide_notice Whether to show the quick start guide notice.
+         */
+        $show_quick_start_quide_notice = apply_filters( 'awpcp-show-quick-start-guide-notice', $show_quick_start_quide_notice );
+
         if ( $show_quick_start_quide_notice && is_awpcp_admin_page() && ! $show_drip_autoresponder ) {
             wp_enqueue_style( 'awpcp-admin-style' );
 

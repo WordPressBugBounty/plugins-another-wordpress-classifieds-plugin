@@ -36,4 +36,4 @@ awpcp_html_admin_second_level_heading( [
 
 <p><?php echo wp_kses( $message, $allowed_html ); ?></p>
 <p><textarea class="awpcp-test-ssl-client-results awpcp-hidden"></textarea></p>
-<a class="awpcp-test-ssl-client-button button button-primary" href="#"><?php echo esc_html( 'Test SSL Client' ); ?></a>
+<a class="awpcp-test-ssl-client-button button button-primary" href="#"><?php echo esc_html__( 'Test SSL Client', 'another-wordpress-classifieds-plugin' ); ?></a>

@@ -5,7 +5,7 @@
  * Plugin Name: AWP Classifieds Plugin
  * Plugin URI: https://awpcp.com/
  * Description: Run a free or paid classified ads service on your WordPress site.
- * Version: 4.3.4
+ * Version: 4.3.5
  * Author: AWP Classifieds Team
  * Author URI: https://awpcp.com/
  * License: GPLv2 or any later version
@@ -56,7 +56,7 @@ global $hascaticonsmodule;
 global $hasregionsmodule;
 global $hasextrafieldsmodule;
 
-$awpcp_db_version = '4.3.4';
+$awpcp_db_version = '4.3.5';
 
 $awpcp_imagesurl      = AWPCP_URL . '/resources/images';
 $hascaticonsmodule    = 0;
@@ -100,6 +100,9 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
     $hascaticonsmodule = 1;
 }
 /* End of legacy code. */
+
+// Load text domain in init to match the changes in WP 6.7.
+add_action( 'init', 'awpcp_load_plugin_textdomain' );
 
 /**
  * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.
@@ -238,3 +241,14 @@ function awpcp() {
 
     return $awpcp;
 }
+
+// TODO: Remove this code after resolving the plugin activation issue. It's duplicated in AWPCP_Installer->activate().
+register_activation_hook( __FILE__, function () {
+    if ( get_transient( AWPCP_OnboardingWizard::TRANSIENT_NAME ) !== 'no' ) {
+        set_transient(
+            AWPCP_OnboardingWizard::TRANSIENT_NAME,
+            AWPCP_OnboardingWizard::TRANSIENT_VALUE,
+            60
+        );
+    }
+} );

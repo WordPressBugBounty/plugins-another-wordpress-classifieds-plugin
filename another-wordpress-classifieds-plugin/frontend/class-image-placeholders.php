@@ -101,6 +101,9 @@ class AWPCP_Image_Placeholders {
                 $image_attributes = array(
                     'class' => 'awpcp-listing-primary-image-thumbnail',
                     'alt'   => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
+                    // This was added after WordPress 6.7
+                    // See: https://github.com/Strategy11/awpcp/issues/3178
+                    'style' => 'width: ' . $thumbnail_width . 'px;',
                 );
 
                 // TODO: Can we regeneate thumbnails every time the user changes

@@ -52,6 +52,10 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
+        $container['OnboardingWizard'] = $container->service( function( $container ) {
+            return new AWPCP_OnboardingWizard();
+        } );
+
         $container['ListingsTableViews'] = $container->service( function( $container ) {
             return new AWPCP_FilteredArray( 'awpcp_list_table_views_listings' );
         } );

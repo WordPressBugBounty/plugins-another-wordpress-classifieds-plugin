@@ -36,6 +36,7 @@ require_once AWPCP_DIR . '/includes/admin/class-personal-data-exporter.php';
 require_once AWPCP_DIR . '/includes/admin/class-personal-data-eraser.php';
 require_once AWPCP_DIR . '/includes/admin/class-privacy-policy-content.php';
 require_once AWPCP_DIR . '/includes/admin/class-user-personal-data-provider.php';
+require_once AWPCP_DIR . '/includes/admin/class-onboarding-wizard.php';
 
 require_once AWPCP_DIR . '/includes/interface-posts-meta-configuration.php';
 

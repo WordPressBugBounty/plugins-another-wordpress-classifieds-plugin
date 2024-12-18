@@ -52,6 +52,14 @@ class AWPCP_Installer {
         $this->install_or_upgrade();
 
         update_option( 'awpcp-activated', true );
+
+        if ( get_transient( AWPCP_OnboardingWizard::TRANSIENT_NAME ) !== 'no' ) {
+            set_transient(
+                AWPCP_OnboardingWizard::TRANSIENT_NAME,
+                AWPCP_OnboardingWizard::TRANSIENT_VALUE,
+                60
+            );
+        }
     }
 
     public function install_or_upgrade() {

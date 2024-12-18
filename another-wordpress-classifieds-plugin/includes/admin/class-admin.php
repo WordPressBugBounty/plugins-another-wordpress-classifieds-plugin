@@ -163,6 +163,28 @@ class AWPCP_Admin {
     }
 
     /**
+     * Determine if the current page is a specific AWP Classifieds admin page.
+     *
+     * @since 4.3.5
+     * @param string $page The name of the page to check.
+     * @return bool
+     */
+    public function is_admin_page( $page = 'awpcp.php' ) {
+        global $pagenow;
+        $get_page = awpcp_get_var( array( 'param' => 'page' ) );
+
+        if ( $pagenow ) {
+            // Allow this to be true during ajax load i.e. ajax form builder loading.
+            $is_page = ( $pagenow === 'admin.php' || $pagenow === 'admin-ajax.php' ) && $get_page === $page;
+            if ( $is_page ) {
+                return true;
+            }
+        }
+
+        return is_admin() && $get_page === $page;
+    }
+
+    /**
      * @since 4.0.0
      */
     public function filter_items_per_page_user_option( $items_per_page, $option, $user ) {

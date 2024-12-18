@@ -45,8 +45,6 @@ class AWPCP {
         $this->settings_manager = $this->container['SettingsManager'];
         $this->js = AWPCP_JavaScript::instance();
 
-        awpcp_load_plugin_textdomain( AWPCP_FILE );
-
         // TODO: Fix activation hook
         // awpcp_register_activation_hook( AWPCP_FILE, array( $this->installer, 'activate' ) );
     }
@@ -116,6 +114,8 @@ class AWPCP {
         }
 
         $this->register_settings_handlers();
+
+        $this->container['OnboardingWizard']->load_admin_hooks();
 
         // register rewrite rules when the plugin file is loaded.
         // generate_rewrite_rules or rewrite_rules_array hooks are
