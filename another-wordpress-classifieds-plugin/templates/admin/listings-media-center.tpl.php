@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <div class="postbox">
     <div class="inside">
         <ul class="awpcp-admin-manage-links">

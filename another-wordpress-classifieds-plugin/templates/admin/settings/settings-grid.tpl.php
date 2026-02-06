@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><table class="table-form">
     <thead>
     <?php foreach ( $columns as $column ) : ?>

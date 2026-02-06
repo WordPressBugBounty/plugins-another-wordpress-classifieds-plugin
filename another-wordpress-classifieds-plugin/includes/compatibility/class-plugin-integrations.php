@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_plugin_integrations() {
     return new AWPCP_Plugin_Integrations();

@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * During the upgrade to AWPCP 4.0.0, some posts were created with an ID equal to the ID
  * of one of the records on the custom ads table. In order to disambiguate those IDs,

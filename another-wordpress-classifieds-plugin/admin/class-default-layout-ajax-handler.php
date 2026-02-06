@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 4.1.0
  */
@@ -27,13 +31,15 @@ class AWPCP_Default_Layout_Ajax_Handler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
-        $displayadlyoutcode   = $this->settings_manager->get_setting( 'displayadlayoutcode' );
-        $awpcpshowtheadlayout = $this->settings_manager->get_setting( 'awpcpshowtheadlayout' );
-        $nonce                = $this->request->post( 'security' );
-        $id                   = $this->request->post( 'id' );
+        $nonce = $this->request->post( 'security' );
+
         if ( ! wp_verify_nonce( $nonce, 'reset-default' ) ) {
             return $this->error();
         }
+
+        $displayadlyoutcode   = $this->settings_manager->get_setting( 'displayadlayoutcode' );
+        $awpcpshowtheadlayout = $this->settings_manager->get_setting( 'awpcpshowtheadlayout' );
+        $id                   = $this->request->post( 'id' );
 
         if ( $id === 'displayadlayoutcode-default' ) {
             return $this->success( $displayadlyoutcode );

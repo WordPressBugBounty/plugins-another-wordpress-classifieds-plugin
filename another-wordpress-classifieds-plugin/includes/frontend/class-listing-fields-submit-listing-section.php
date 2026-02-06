@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Listing Fields submit listing section.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-manage-categories-category-form-container postbox-container">
     <div class="metabox-holder">
         <div class="metabox-sortables">

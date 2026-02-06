@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Interface classes handling the specifics of reCAPTCHA implementations.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Common functions for upgrade task handlers that migrate listings.
  */

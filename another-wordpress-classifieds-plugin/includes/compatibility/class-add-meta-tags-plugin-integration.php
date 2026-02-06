@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_add_meta_tags_plugin_integration() {
     return new AWPCP_AddMetaTagsPluginIntegration( awpcp_meta_tags_generator() );

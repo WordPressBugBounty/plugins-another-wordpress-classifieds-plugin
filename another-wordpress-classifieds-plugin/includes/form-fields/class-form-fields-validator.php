@@ -3,6 +3,10 @@
  * @package AWPCP\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class used to validate listing Form Fields data.
  */

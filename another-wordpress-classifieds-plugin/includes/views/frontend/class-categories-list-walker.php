@@ -3,6 +3,10 @@
  * @package AWPCP\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( ! class_exists( 'Walker' ) ) {
     require_once ABSPATH . '/wp-includes/class-wp-walker.php';
 }

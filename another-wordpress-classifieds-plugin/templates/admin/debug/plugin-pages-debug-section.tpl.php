@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 awpcp_html_admin_second_level_heading(
     array(
         'content' => esc_html__( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ),

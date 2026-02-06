@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Ajax handler for the action that saves information for new and existing listings.
  */

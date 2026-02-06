@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handles integration between plugin settings and WordPress Settings API.
  */

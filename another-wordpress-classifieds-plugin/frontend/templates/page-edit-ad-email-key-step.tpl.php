@@ -1,10 +1,17 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message);
     }
 
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error($error);
         }
     }
@@ -20,13 +27,13 @@
 
         <p class="awpcp-form-spacer">
             <label for="ad-email"><?php echo esc_html( __( 'Enter your email address', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-            <input class="awpcp-textfield inputbox" id="ad-email" type="text" size="50" name="ad_email" value="<?php echo awpcp_esc_attr($form['ad_email']) ?>" />
+            <input class="awpcp-textfield inputbox" id="ad-email" type="text" size="50" name="ad_email" value="<?php echo awpcp_esc_attr($form['ad_email']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" />
             <?php awpcp_show_form_error( 'ad_email', $errors ); ?>
         </p>
 
         <p class="awpcp-form-spacer">
             <label for="ad-key"><?php echo esc_html( __( 'Enter your Ad access key', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-            <input class="awpcp-textfield inputbox" id="ad-key" type="text" size="50" name="ad_key" value="<?php echo awpcp_esc_attr($form['ad_key']) ?>" />
+            <input class="awpcp-textfield inputbox" id="ad-key" type="text" size="50" name="ad_key" value="<?php echo awpcp_esc_attr($form['ad_key']); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" />
             <?php awpcp_show_form_error( 'ad_key', $errors ); ?>
             <br><a href="<?php echo esc_attr( $send_access_key_url ); ?>"><?php echo esc_html( __( 'Click here to have your Ad access keys sent to you.', 'another-wordpress-classifieds-plugin' ) ); ?></a>
         </p>

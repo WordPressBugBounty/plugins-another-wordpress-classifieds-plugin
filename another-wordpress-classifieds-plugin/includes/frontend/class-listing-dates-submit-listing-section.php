@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Renders the start date and end date form fields.
  */

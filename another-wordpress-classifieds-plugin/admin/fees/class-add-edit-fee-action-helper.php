@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_add_edit_fee_action_helper() {
     $page = awpcp_fees_admin_page();

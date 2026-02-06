@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_users_field() {
     if ( get_awpcp_option( 'user-field-widget' ) == 'dropdown' ) {

@@ -1,10 +1,14 @@
 <?php
-
 /**
  * Use awpcp_get_var().
  *
  * @deprecated 4.3
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_post_param($name, $default='') {
     // phpcs:ignore WordPress.Security.NonceVerification
     return awpcp_array_data($name, $default, $_POST);
@@ -16,6 +20,7 @@ function awpcp_post_param($name, $default='') {
  * @deprecated 4.3
  */
 function awpcp_request_param($name, $default='', $from=null) {
+    // phpcs:ignore WordPress.Security.NonceVerification
     return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
 }
 
@@ -64,6 +69,7 @@ function awpcp_ad_renewed_user_email( $ad ) {
  * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
  */
 function awpcp_ad_renewed_admin_email( $ad, $body ) {
+    // translators: %s is the listing title
     $subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
     $subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
 
@@ -156,6 +162,10 @@ function awpcp_general_settings() {
  */
 function awpcp_license_settings_update_handler() {
     _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Update_Handler()' );
+    if ( ! class_exists( 'AWPCP_License_Settings_Update_Handler' ) ) {
+        return null;
+    }
+
     return new AWPCP_License_Settings_Update_Handler();
 }
 
@@ -164,6 +174,10 @@ function awpcp_license_settings_update_handler() {
  */
 function awpcp_license_settings_actions_request_handler() {
     _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Actions_Request_Handler()' );
+    if ( ! class_exists( 'AWPCP_License_Settings_Actions_Request_Handler' ) ) {
+        return null;
+    }
+
     return new AWPCP_License_Settings_Actions_Request_Handler();
 }
 
@@ -237,7 +251,13 @@ function awpcp_get_plugin_pages_refs() {
  */
 function awpcp_modules_manager() {
     _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp()->modules_manager' );
-    return awpcp()->container['ModulesManager'];
+    $container = awpcp()->container;
+
+    if ( ! method_exists( $container, 'offsetExists' ) || ! $container->offsetExists( 'ModulesManager' ) ) {
+        return null;
+    }
+
+    return $container['ModulesManager'];
 }
 
 /**
@@ -347,7 +367,8 @@ function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
     _deprecated_function( __FUNCTION__, '4.0' );
     if (is_null($text)) {
-        $text = __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' );
+        // translators: %s is the new expiration date
+        $text = sprintf( __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' ), $ad->get_end_date() );
     }
 
     $return = '';
@@ -452,6 +473,7 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
     $name = $modules[ $module ][ 'name' ];
     $required_version = $modules[ $module ][ 'required' ];
 
+    // translators: %1$s is the module name, %2$s is the current AWPCP version, %3$s is the required AWPCP version
     $message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
     $message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
     $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
@@ -502,14 +524,17 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     $mime_type = $file[ 'type' ];
 
     if ( ! in_array( $mime_type, $constraints[ 'mime_types' ] ) ) {
+        // translators: %s is the file name
         $error = _x( 'The type of the uploaded file %s is not allowed.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
     }
 
     $paths = awpcp_get_uploads_directories();
+    $wp_filesystem = awpcp_get_wp_filesystem();
 
-    if ( ! file_exists( $tmpname ) ) {
+    if ( ! $wp_filesystem || ! $wp_filesystem->exists( $tmpname ) ) {
+        // translators: %s is the file name
         $error = _x( 'The specified file does not exists: %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
@@ -521,9 +546,10 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         return false;
     }
 
-    $file_size = filesize( $tmpname );
+    $file_size = $wp_filesystem->size( $tmpname );
 
     if ( empty( $file_size ) ) {
+        // translators: %s is the file name
         $error = _x( 'There was an error trying to find out the file size of the image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
@@ -531,12 +557,14 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
     if ( in_array( $mime_type, awpcp_get_image_mime_types() ) ) {
         if ( $file_size > $constraints['max_image_size'] ) {
-            $error = __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' );
+            // translators: %1$s is the file name, %2$s is the maximum allowed file size
+            $error = sprintf( __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' ), $filename, $constraints['max_image_size'] );
             $error = esc_html( sprintf( $error, $filename, $constraints['max_image_size'] ) );
             return false;
         }
 
         if ( $file_size < $constraints['min_image_size'] ) {
+            // translators: %1$s is the file name, %2$d is the minimum allowed file size
             $error = _x( 'The size of %1$s was too small. The file was not uploaded. File size must be greater than %2$d bytes.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>', $constraints['min_image_size'] );
             return false;
@@ -545,12 +573,14 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         $img_info = getimagesize( $tmpname );
 
         if ( ! isset( $img_info[ 0 ] ) && ! isset( $img_info[ 1 ] ) ) {
+            // translators: %s is the file name
             $error = _x( 'The file %s does not appear to be a valid image file.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
             return false;
         }
 
         if ( $img_info[ 0 ] < $constraints['min_image_width'] ) {
+            // translators: %1$s is the file name, %2$s is the minimum width
             $error = __( 'The image %1$s did not meet the minimum width of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
             $error = sprintf(
                 esc_html( $error ),
@@ -561,12 +591,14 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         }
 
         if ( $img_info[ 1 ] < $constraints['min_image_height'] ) {
-            $error = __( 'The image %1$s did not meet the minimum height of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+            // translators: %1$s is the file name, %2$s is the minimum height
+            $error = sprintf( __( 'The image %1$s did not meet the minimum height of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin'), $filename, $constraints['min_image_height'] );
             $error = esc_html( sprintf( $error, $filename, $constraints['min_image_height'] ) );
             return false;
         }
     } elseif ( $file_size > $constraints['max_attachment_size'] ) {
-        $error = __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' );
+        // translators: %1$s is the file name, %2$s is the maximum allowed file size
+        $error = sprintf( __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' ), $filename, $constraints['max_attachment_size'] );
         $error = esc_html( sprintf( $error, $filename, $constraints['max_attachment_size'] ) );
         return false;
     }
@@ -574,11 +606,13 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     $newname = awpcp_unique_filename( $tmpname, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
     $newpath = trailingslashit( $paths['files_dir'] ) . $newname;
 
-    if ( $action == 'upload' && ! @move_uploaded_file( $tmpname, $newpath ) ) {
+    if ( $action == 'upload' && ! $wp_filesystem->move( $tmpname, $newpath ) ) {
+        // translators: %s is the file name
         $error = _x( 'The file %s could not be moved to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
-    } else if ( $action == 'copy' && ! @copy( $tmpname, $newpath ) ) {
+    } else if ( $action == 'copy' && ! $wp_filesystem->copy( $tmpname, $newpath ) ) {
+        // translators: %s is the file name
         $error = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
@@ -586,16 +620,17 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
     if ( in_array( $mime_type, awpcp_get_image_mime_types() ) ) {
         if ( ! awpcp_create_image_versions( $newname, $paths['files_dir'] ) ) {
+            // translators: %s is the file name
             $error = _x( 'Could not create resized versions of image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
 
-            @unlink( $newpath );
+            $wp_filesystem->delete( $newpath );
 
             return false;
         }
     }
 
-    @chmod( $newpath, 0644 );
+    $wp_filesystem->chmod( $newpath, 0644 );
 
     return array(
         'original' => $filename,
@@ -685,43 +720,37 @@ function awpcp_get_uploads_directories() {
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $fileop = new fileop();
-        $owner = fileowner( WP_CONTENT_DIR );
+        $wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! is_dir( $upload_dir ) && is_writable( WP_CONTENT_DIR ) ) {
+        if ( ! $wp_filesystem ) {
+            return array(
+                'files_dir' => '',
+                'thumbnails_dir' => '',
+            );
+        }
+
+        if ( ! $wp_filesystem->is_dir( $upload_dir ) && $wp_filesystem->is_writable( WP_CONTENT_DIR ) ) {
             umask( 0 );
             wp_mkdir_p( $upload_dir );
-            chown( $upload_dir, $owner );
         }
 
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $upload_dir ) ) {
-            $fileop->set_permission( $upload_dir, $permissions );
-        }
+        $wp_filesystem->chmod( $upload_dir, $permissions );
 
         $files_dir = $upload_dir . 'awpcp/';
         $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
 
-        if ( ! is_dir( $files_dir ) && is_writable( $upload_dir ) ) {
+        if ( ! $wp_filesystem->is_dir( $files_dir ) && $wp_filesystem->is_writable( $upload_dir ) ) {
             umask( 0 );
             wp_mkdir_p( $files_dir );
-            @chown( $files_dir, $owner );
         }
 
-        if ( ! is_dir( $thumbs_dir ) && is_writable( $upload_dir ) ) {
+        if ( ! $wp_filesystem->is_dir( $thumbs_dir ) && $wp_filesystem->is_writable( $upload_dir ) ) {
             umask( 0 );
             wp_mkdir_p( $thumbs_dir );
-            @chown( $thumbs_dir, $owner );
         }
 
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $files_dir ) ) {
-            $fileop->set_permission( $files_dir, $permissions );
-        }
-
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $thumbs_dir ) ) {
-            $fileop->set_permission( $thumbs_dir, $permissions );
-        }
+        $wp_filesystem->chmod( $files_dir, $permissions );
+        $wp_filesystem->chmod( $thumbs_dir, $permissions );
 
         $uploads_directories = array(
             'files_dir' => $files_dir,
@@ -971,6 +1000,55 @@ function unix2dos($mystring) {
     $mystring=preg_replace("/\r/m",'',$mystring);
     $mystring=preg_replace("/\n/m","\r\n",$mystring);
     return $mystring;
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_payfast_verify_received_data_with_curl() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_payfast_verify_received_data_with_fsockopen() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_paypal_verify_received_data_with_curl() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_paypal_verify_received_data_with_fsockopen() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_paypal_verify_received_data_wp_remote() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_load_text_domain_with_file_prefix() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated 4.4
+ */
+function awpcp_load_plugin_textdomain() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**

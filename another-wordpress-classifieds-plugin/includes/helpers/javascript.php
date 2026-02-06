@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.0
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_JavaScript {
 
     private static $instance = null;

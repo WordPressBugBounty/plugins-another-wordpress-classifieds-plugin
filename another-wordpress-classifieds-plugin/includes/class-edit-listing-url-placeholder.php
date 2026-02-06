@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_edit_listing_url_placeholder() {
     return new AWPCP_EditListingURLPlaceholder();

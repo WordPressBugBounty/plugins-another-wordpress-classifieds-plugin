@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handler for the default search mode on the listings table: search by keyword.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Submit Listing Page.
  */
@@ -91,6 +95,8 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private function process_request() {
         if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
             $message = __( 'Users are not allowed to publish ads at this time.', 'another-wordpress-classifieds-plugin' );
+
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
 
@@ -280,6 +286,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             $message = __( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%1$s">%2$s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %3$s', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $page_url, $page_name, $transaction->id );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
 
@@ -292,6 +299,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             $message = awpcp_print_message( $message );
             $message = $message . $this->payments->render_transaction_errors( $transaction );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
     }
@@ -333,6 +341,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             $message = __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $transaction->id );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
 

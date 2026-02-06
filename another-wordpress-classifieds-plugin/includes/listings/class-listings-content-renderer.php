@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class that renders the information shown on individual lisitngs pages.
  */

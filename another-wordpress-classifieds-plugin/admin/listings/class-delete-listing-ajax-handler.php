@@ -5,6 +5,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_delete_listing_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(
         new AWPCP_DeleteListingAjaxHandler(

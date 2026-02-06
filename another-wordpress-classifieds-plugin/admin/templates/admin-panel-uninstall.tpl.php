@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <?php if ( 'confirm' === $action ) : ?>
 
@@ -18,6 +22,7 @@
     <li><?php esc_html_e( 'If you plan to use the data created by the plugin please export the data from your mysql database before clicking the uninstall link.', 'another-wordpress-classifieds-plugin' ); ?></li>
     <li><?php
     printf(
+        // translators: %s is the directory name
         esc_html__( 'If you want to keep your user uploaded images, please download %s to your local drive for later use or rename the folder to something else so the uninstaller can bypass it.', 'another-wordpress-classifieds-plugin' ),
         '<code>' . esc_html( $dirname ) . '</code>'
     );
@@ -25,7 +30,7 @@
 </ol>
 
 <p>
-    <a class="button button-primary" href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'uninstall' ), $url ), 'awpcp-uninstall' ); ?>">
+    <a class="button button-primary" href="<?php echo esc_attr( wp_nonce_url( add_query_arg( array( 'action' => 'uninstall' ), $url ), 'awpcp-uninstall' ) ); ?>">
         <?php esc_html_e( 'Proceed with Uninstalling AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?>
     </a>
 </p>

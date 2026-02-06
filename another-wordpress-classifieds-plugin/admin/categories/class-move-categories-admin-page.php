@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_Move_Categories_Admin_Page class.
  */
@@ -48,12 +52,15 @@ class AWPCP_Move_Categories_Admin_Page {
     }
 
     private function try_to_move_categories() {
-        $selected_categories = $this->request->post( 'category_to_delete_or_move' );
-        $target_category_id  = $this->request->post( 'moveadstocategory' );
-        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
+
         if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
             throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
+
+        $selected_categories = $this->request->post( 'category_to_delete_or_move' );
+        $target_category_id  = $this->request->post( 'moveadstocategory' );
+
         try {
             $target_category = $this->categories->get( $target_category_id );
         } catch ( AWPCP_Exception $e ) {

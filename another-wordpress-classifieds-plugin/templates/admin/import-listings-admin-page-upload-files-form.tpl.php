@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <?php $page_id = 'awpcp-admin-csv-importer'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
@@ -61,6 +65,7 @@
                                 <p class="awpcp-helptext">
                                     <?php
                                     printf(
+                                        // translators: %s is the uploads directory path
                                         esc_html__( 'The relative path to a directory inside %s.', 'another-wordpress-classifieds-plugin' ),
                                         '<code>' . esc_html( awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) ) . '</code>'
                                     );

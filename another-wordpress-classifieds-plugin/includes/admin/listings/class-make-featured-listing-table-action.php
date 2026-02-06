@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Action to mark a listing as featured.
  */

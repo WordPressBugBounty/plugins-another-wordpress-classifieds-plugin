@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="metabox-holder">
     <div class="awpcp-credit-system-settings-postbox postbox">
         <?php

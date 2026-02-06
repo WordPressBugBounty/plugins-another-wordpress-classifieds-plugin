@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * This upgrade routine goes through the records in the ads table converting
  * the phone numbers stored in the ad_contact_phone column into a string that

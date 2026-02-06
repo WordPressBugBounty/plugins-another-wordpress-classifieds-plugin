@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Listing table view for listings with images that are awaiting approval.
  */

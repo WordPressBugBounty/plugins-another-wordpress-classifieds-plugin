@@ -3,6 +3,10 @@
  * @package AWPCP\Settings\Renderers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Renders an email template setting.
  */

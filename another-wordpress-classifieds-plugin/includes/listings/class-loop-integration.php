@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Loop Integration adds filter handlers to overwrite
  * some of the attributes of the pages used by the plugin

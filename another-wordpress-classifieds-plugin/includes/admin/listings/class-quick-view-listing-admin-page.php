@@ -4,6 +4,10 @@
  * @deprecated 4.01
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handler for the Quick View Listing admin page.
  */

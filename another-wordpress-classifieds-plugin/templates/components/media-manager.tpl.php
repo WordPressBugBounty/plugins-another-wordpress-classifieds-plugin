@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><!-- Using template binding as workaround for conflict with imagesLoaded plugin
 from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
 <div class="awpcp-media-manager" data-bind="{ template: 'awpcp-media-manager-template' }"></div>

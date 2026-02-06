@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php if ( get_awpcp_option( 'freepay' ) == 1 ): ?>
 <h2><?php echo esc_html( _x( 'Select Category and Payment Term', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
 <?php else: ?>
@@ -16,11 +20,11 @@
 ?>
 
 <?php foreach ($messages as $message): ?>
-    <?php echo awpcp_print_message($message); ?>
+    <?php echo awpcp_print_message($message); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php foreach ($transaction_errors as $error): ?>
-    <?php echo awpcp_print_message($error, array('error')); ?>
+    <?php echo awpcp_print_message($error, array('error')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php awpcp_print_form_errors( $form_errors ); ?>

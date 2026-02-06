@@ -1,7 +1,12 @@
 <table class="awpcp-table awpcp-transaction-items-table">
     <thead>
         <tr>
-            <th class="item"><?php esc_html_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?></th>
+            <th class="item"><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?></th>
             <th class="amount"><?php esc_html_e( 'Amount', 'another-wordpress-classifieds-plugin' ); ?></th>
         </tr>
     </thead>

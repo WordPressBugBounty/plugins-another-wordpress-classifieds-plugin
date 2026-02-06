@@ -3,6 +3,10 @@
  * @package AWPCP\Widgets
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Search_Widget extends WP_Widget {
 
     public function __construct() {
@@ -148,8 +152,8 @@ class AWPCP_Search_Widget extends WP_Widget {
 
     public function update( $new_instance, $old_instance ) {
         $instance = $old_instance;
-        $instance['title'] = strip_tags( $new_instance['title'] );
-        $instance['subtitle'] = strip_tags( $new_instance['subtitle'] );
+        $instance['title'] = wp_strip_all_tags( $new_instance['title'] );
+        $instance['subtitle'] = wp_strip_all_tags( $new_instance['subtitle'] );
         $instance['show_keyword'] = absint( $new_instance['show_keyword'] );
         $instance['show_by'] = absint( $new_instance['show_by'] );
         $instance['show_category'] = absint( $new_instance['show_category'] );
@@ -159,8 +163,8 @@ class AWPCP_Search_Widget extends WP_Widget {
     public function form( $instance ) {
         $instance = wp_parse_args( (array) $instance, $this->defaults() );
 
-        $title         = strip_tags( $instance['title'] );
-        $subtitle      = strip_tags( $instance['subtitle'] );
+        $title         = wp_strip_all_tags( $instance['title'] );
+        $subtitle      = wp_strip_all_tags( $instance['subtitle'] );
         $show_keyword  = absint( $instance['show_keyword'] );
         $show_by       = absint( $instance['show_by'] );
         $show_category = absint( $instance['show_category'] );

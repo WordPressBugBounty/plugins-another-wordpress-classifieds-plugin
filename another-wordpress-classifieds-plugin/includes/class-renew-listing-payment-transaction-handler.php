@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_Renew_Listing_Payment_Transaction_Handler.
  */

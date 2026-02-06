@@ -3,6 +3,10 @@
  * @package AWPCP\Compatibility
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Configures available plugin integrations to improve compatibility.
  */

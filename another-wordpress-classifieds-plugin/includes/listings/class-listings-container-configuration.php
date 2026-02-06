@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register constructors for classes necessary to provide the Listing custom
  * post type.

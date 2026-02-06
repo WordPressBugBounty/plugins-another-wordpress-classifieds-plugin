@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Base class for the objects used to validate files added to listings as attachments.
  */

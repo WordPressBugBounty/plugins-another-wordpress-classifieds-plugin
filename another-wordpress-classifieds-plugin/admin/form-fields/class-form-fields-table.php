@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * WP_List_Table subclass used to show a list of available form fields.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Mark Listing as Paid table action.
  */

@@ -4,6 +4,10 @@
  * @deprecated 4.01
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Quick View row action for Listings.
  */

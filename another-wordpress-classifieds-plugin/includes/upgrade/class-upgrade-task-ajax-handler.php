@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
 
     /**

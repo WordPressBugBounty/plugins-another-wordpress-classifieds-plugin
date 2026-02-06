@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register settings for the Appearance group.
  */

@@ -79,3 +79,11 @@ var AWPCP = function() {
 };
 
 AWPCP = new AWPCP(window);
+
+AWPCP.define('jquery', [], function() {
+    if (typeof window.jQuery === 'undefined') {
+        throw new AWPCPError('jQuery was not loaded before AWPCP.');
+    }
+
+    return window.jQuery;
+});

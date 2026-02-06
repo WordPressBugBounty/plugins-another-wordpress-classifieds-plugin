@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Pages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_SettingsAdminPage
  */
@@ -143,7 +147,7 @@ class AWPCP_Classified_Pages_Settings {
         $nonce   = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
         $restore = awpcp_get_var( array( 'param' => 'restore-pages', 'default' => false ), 'post' );
 
-        return $restore && wp_verify_nonce( $nonce, 'awpcp-restore-pages' );
+        return wp_verify_nonce( $nonce, 'awpcp-restore-pages' ) && $restore;
     }
 }
 
@@ -162,13 +166,13 @@ class AWPCP_Facebook_Page_Settings {
     }
 
     public function maybe_redirect() {
-        if ( !isset( $_GET['g'] ) || $_GET['g'] != 'facebook-settings' || $this->get_current_action() != 'obtain_user_token' )
+        if ( !isset( $_GET['g'] ) || $_GET['g'] !== 'facebook-settings' || $this->get_current_action() !== 'obtain_user_token' ) // phpcs:ignore WordPress.Security.NonceVerification
             return;
 
-        if ( isset( $_GET[ 'error_code' ] ) ) {
+        if ( isset( $_GET[ 'error_code' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
             return $this->redirect_with_error(
-                sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ),
-                urlencode( awpcp_get_var( array( 'param' => 'error_message' ), 'get' ) )
+                sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ), // phpcs:ignore WordPress.Security.NonceVerification
+                rawurlencode( awpcp_get_var( array( 'param' => 'error_message' ), 'get' ) )
             );
         }
 
@@ -223,16 +227,17 @@ class AWPCP_Facebook_Page_Settings {
 
         $redirect_uri = add_query_arg( 'obtain_user_token', 1, admin_url( '/admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
 
-        if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
+        if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) { // phpcs:ignore WordPress.Security.NonceVerification
+            // translators: %s is the error message
             $error_message = __( 'We could not obtain a valid access token from Facebook. The API returned the following error: %s', 'another-wordpress-classifieds-plugin' );
-            $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) );
+            $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) ); // phpcs:ignore WordPress.Security.NonceVerification
 
             $errors[] = esc_html( $error_message );
-        } elseif ( isset( $_GET['code_error'] ) ) {
+        } elseif ( isset( $_GET['code_error'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
             $errors[] = esc_html( __( 'We could not obtain a valid access token from Facebook. Please try again.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( $this->get_current_action() == 'diagnostics' ) {
+        if ( $this->get_current_action() === 'diagnostics' ) {
             $diagnostics_errors = array();
             $fb->validate_config( $diagnostics_errors );
 

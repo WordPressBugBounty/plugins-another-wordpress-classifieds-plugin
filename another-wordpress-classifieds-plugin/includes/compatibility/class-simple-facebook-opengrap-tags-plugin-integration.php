@@ -3,6 +3,10 @@
  * @package AWPCP\Compatibility\PluginIntegrations
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_Simple_Facebook_OpenGraph_Tags_Plugin_Integration class.
  */

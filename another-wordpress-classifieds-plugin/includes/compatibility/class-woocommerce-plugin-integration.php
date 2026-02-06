@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_woocommerce_plugin_integration() {
     return new AWPCP_WooCommercePluginIntegration();

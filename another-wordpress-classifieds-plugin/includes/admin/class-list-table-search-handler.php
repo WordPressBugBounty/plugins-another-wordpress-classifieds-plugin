@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A class to handle different search mode on the classifieds table.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to force the ID of the next Post to be greater than the
  * maximum ID of ads stored in the custom table.

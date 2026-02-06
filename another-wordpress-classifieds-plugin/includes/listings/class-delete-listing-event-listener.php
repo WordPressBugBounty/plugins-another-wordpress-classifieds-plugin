@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * This class integrates with the events fired inside {@see wp_trash_post()}
  * and {@see wp_delete_post()} to allow the plugin and modules to react when

@@ -1,10 +1,13 @@
 <?php
-
 /**
  * Onboarding Wizard Controller class.
  *
  * @package AWPCP\Admin
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Handles the Onboarding Wizard page in the admin area.
@@ -122,7 +125,7 @@ class AWPCP_OnboardingWizard {
             return;
         }
 
-        if ( isset( $_GET['activate-multi'] ) ) {
+        if ( isset( $_GET['activate-multi'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
             /**
              * $_GET['activate-multi'] is set after activating multiple plugins.
              * In this case, change the transient value so we know for future checks.

@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register Email related settings.
  */
@@ -82,6 +86,7 @@ class AWPCP_EmailSettings {
 
         /* translators: %1$s=John Doe <john.doe@example.com>, %2$s=john.doe@example.com */
         $description = sprintf(
+            // translators: %1$s is the email address with the name of the recipient, %2$s is the email address without the name of the recipient
             __( 'If checked, whenever the name of the recipient is available, emails will be sent to %1$s instead of just %2$s. Some email servers, however, have problems handling email address that include the name of the recipient. If emails sent by the plugin are not being delivered properly, try unchecking this settting.', 'another-wordpress-classifieds-plugin' ),
             '<strong>' . esc_html( 'John Doe <john.doe@example.com>' ) . '</strong>',
             '<strong>john.doe@example.com</strong>'

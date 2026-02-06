@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_drip_autoresponder() {
     return new AWPCP_DripAutoresponder();

@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for Listing Attachment Creator.
  */

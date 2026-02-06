@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     $cron_jobs = array(
@@ -12,7 +16,6 @@ function awpcp_schedule_activation() {
         'awpcp-clean-up-payment-transactions' => 'daily',
         'awpcp-clean-up-non-verified-ads' => 'daily',
         'awpcp-task-queue-cron' => 'hourly',
-        'awpcp-check-license-status' => 'daily',
     );
 
     foreach ( $cron_jobs as $cron_job => $frequency ) {
@@ -26,27 +29,6 @@ function awpcp_schedule_activation() {
     add_action('awpcp_ad_renewal_email_hook', 'awpcp_ad_renewal_email');
     add_action('awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions');
     add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads_handler' );
-    add_action( 'awpcp-check-license-status', 'awpcp_check_license_status' );
-}
-
-/**
- * @since 3.6.6
- */
-function awpcp_check_license_status() {
-    $license_status_check = get_site_transient( 'awpcp-license-status-check' );
-
-    if ( ! empty( $license_status_check ) ) {
-        return;
-    }
-
-    $licenses_manager = awpcp_licenses_manager();
-    $modules_manager  = awpcp()->container['ModulesManager'];
-
-    foreach ( $modules_manager->get_modules() as $module ) {
-        $licenses_manager->check_license_status( $module->name, $module->slug );
-    }
-
-    set_site_transient( 'awpcp-license-status-check', current_time( 'mysql' ), WEEK_IN_SECONDS );
 }
 
 /*

@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Send to Facebook Page listing admin action.
  */

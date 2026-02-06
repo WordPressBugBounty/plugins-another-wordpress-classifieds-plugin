@@ -1,4 +1,9 @@
-<?php foreach ($messages as $message): ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ foreach ($messages as $message): ?>
 <?php echo wp_kses_post( $message ); ?>
 
 <?php endforeach; ?>

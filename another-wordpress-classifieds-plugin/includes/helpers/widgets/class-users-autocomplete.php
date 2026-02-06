@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_users_autocomplete() {
     return new AWPCP_UsersAutocomplete();

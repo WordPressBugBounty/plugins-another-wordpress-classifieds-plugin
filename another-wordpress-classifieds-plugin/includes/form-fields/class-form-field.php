@@ -3,6 +3,10 @@
  * @package AWPCP\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * TODO: improve the API to make the fields able to return the value that was posted.
  * TODO: define a get_posted_value, similiar to public abstract function get_posted_value( $request );

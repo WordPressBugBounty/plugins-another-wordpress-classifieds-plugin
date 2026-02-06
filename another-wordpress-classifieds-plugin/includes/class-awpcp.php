@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP {
 
     public $installer = null;
@@ -88,9 +92,8 @@ class AWPCP {
 
         $this->upgrade_tasks   = $this->container['UpgradeTasksManager'];
         $this->manual_upgrades = $this->container['ManualUpgradeTasks'];
-        $this->modules_manager = $this->container['ModulesManager'];
-        $this->modules_updater = awpcp_modules_updater();
-        $this->router = awpcp_router();
+
+        $this->router   = awpcp_router();
         $this->payments = awpcp_payments_api();
         $this->listings = awpcp_listings_api();
 
@@ -175,15 +178,10 @@ class AWPCP {
         add_action( 'init', array( $this, 'first_time_verifications' ), 5 );
 
         add_action('admin_notices', array($this, 'admin_notices'));
-        add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
         add_action('awpcp_register_settings', array($this, 'register_settings'));
         add_action( 'awpcp-register-payment-term-types', array( $this, 'register_payment_term_types' ) );
         add_action( 'awpcp-register-payment-methods', array( $this, 'register_payment_methods' ) );
-
-        add_filter( 'pre_set_site_transient_update_plugins', array( $this->modules_updater, 'filter_plugins_version_information' ) );
-        add_filter( 'plugins_api', array( $this->modules_updater, 'filter_detailed_plugin_information' ), 10, 3 );
-        add_filter( 'upgrader_pre_download', array( $this->modules_updater, 'setup_http_request_args_filter' ), 10, 3 );
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
@@ -222,7 +220,6 @@ class AWPCP {
 
             awpcp_schedule_activation();
 
-            $this->modules_manager->load_modules( $this->container );
         }
     }
 
@@ -278,7 +275,9 @@ class AWPCP {
         $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
         $renderers['choice']         = $this->container['ChoiceSettingsRenderer'];
         $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
-        $renderers['license']        = $this->container['LicenseSettingsRenderer'];
+        if ( method_exists( $this->container, 'offsetExists' ) && $this->container->offsetExists( 'LicenseSettingsRenderer' ) ) {
+            $renderers['license'] = $this->container['LicenseSettingsRenderer'];
+        }
         $renderers['wordpress-page'] = $this->container['WordPressPageSettingsRenderer'];
         $renderers['settings-grid']  = $this->container['SettingsGridRenderer'];
         $renderers['email-template'] = $this->container['EmailTemplateSettingsRenderer'];
@@ -436,11 +435,15 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
-                $handler = new AWPCP_License_Settings_Update_Handler();
-                add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
+                if ( class_exists( 'AWPCP_License_Settings_Update_Handler' ) ) {
+                    $handler = new AWPCP_License_Settings_Update_Handler();
+                    add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
+                }
 
-                $handler = new AWPCP_License_Settings_Actions_Request_Handler();
-                add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
+                if ( class_exists( 'AWPCP_License_Settings_Actions_Request_Handler' ) ) {
+                    $handler = new AWPCP_License_Settings_Actions_Request_Handler();
+                    add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
+                }
             }
         } else {
             // load resources required in frontend screens only.
@@ -465,6 +468,9 @@ class AWPCP {
             add_filter( 'pre_handle_404', [$this, 'redirect_deleted_ads'], 10, 2 );
             add_filter( 'pre_handle_404', [$this, 'expired_ads'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
+
+            // Remove shortcodes from listing content
+            add_filter( 'the_content', array( $listings_content, 'filter_content_with_shortcodes' ), 7 );
 
             add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
         }
@@ -747,6 +753,7 @@ class AWPCP {
 
     public function admin_notices() {
         foreach (awpcp_get_property($this, 'errors', array()) as $error) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error($error);
         }
 
@@ -771,6 +778,7 @@ class AWPCP {
     private function missing_gd_library_notice() {
         $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", 'another-wordpress-classifieds-plugin' );
         $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'another-wordpress-classifieds-plugin' ), $message );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 
@@ -1025,8 +1033,8 @@ class AWPCP {
 
         global $awpcp_db_version;
 
-        $js = AWPCP_URL . '/resources/js';
-        $css = AWPCP_URL . '/resources/css';
+        $js      = AWPCP_URL . '/resources/js';
+        $css     = AWPCP_URL . '/resources/css';
         $vendors = AWPCP_URL . '/resources/vendors';
 
         $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -1039,14 +1047,25 @@ class AWPCP {
             $ui_version = '1.9.2';
         }
 
-        wp_register_style('awpcp-jquery-ui', "//ajax.googleapis.com/ajax/libs/jqueryui/$ui_version/themes/smoothness/jquery-ui.css", array(), $ui_version);
+        wp_register_style(
+            'awpcp-jquery-ui',
+            "$vendors/jquery-ui.css",
+            array(),
+            $ui_version
+        );
 
         wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
-        wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js", array(), '3.5.0', true );
+        wp_register_script(
+            'awpcp-knockout',
+            "$vendors/knockout-min.js",
+            array(),
+            '3.5.0',
+            true
+        );
 
         wp_register_script(
             'awpcp-lightgallery',
-            "{$vendors}/lightgallery/js/lightgallery.min.js",
+            "$vendors/lightgallery/js/lightgallery.min.js",
             array( 'jquery' ),
             '1.2.22',
             true
@@ -1054,16 +1073,14 @@ class AWPCP {
 
         wp_register_style(
             'awpcp-lightgallery',
-            "{$vendors}/lightgallery/css/lightgallery.min.css",
+            "$vendors/lightgallery/css/lightgallery.min.css",
             array(),
             '1.2.22'
         );
 
-        // Please update the name of the enqueue-font-awesome-style setting everytime
-        // you change the registered version of the stylesheet below.
         wp_register_style(
             'awpcp-font-awesome',
-            'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
+            "$vendors/fontawesome/css/all.min.css",
             array(),
             '5.2.0'
         );
@@ -1115,29 +1132,17 @@ class AWPCP {
             );
         }
 
-        // TODO: If we ever have to load Moment.js on the frontend, we need to load
-        // only the required locale, using BP's logic to enqueue just the necessary files.
-        //
-        // https://plugins.svn.wordpress.org/buddypress/tags/3.1.0/bp-core/bp-core-cssjs.php
-        wp_register_script(
-            'awpcp-moment-with-locales',
-            $vendors . '/moment-2.22.2/moment-with-locales' . $min . '.js',
-            [],
-            '2.22.2',
-            true
-        );
-
         wp_register_script(
             'daterangepicker',
-            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.js',
-            [ 'jquery', 'awpcp-moment-with-locales' ],
+            "$vendors/daterangepicker/daterangepicker.min.js",
+            [ 'jquery', 'moment' ],
             '3.0.3',
             true
         );
 
         wp_register_style(
             'daterangepicker',
-            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.css',
+            "$vendors/daterangepicker.min.css",
             [],
             '3.0.3'
         );
@@ -1257,7 +1262,7 @@ class AWPCP {
             array(
                 'awpcp',
                 'awpcp-knockout-progress',
-                'awpcp-moment-with-locales',
+                'moment',
             ),
             $awpcp_db_version,
             true

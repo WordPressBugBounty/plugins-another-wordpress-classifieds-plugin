@@ -3,6 +3,10 @@
  * @package AWPCP\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handles formatting and other data manipulation for category objects.
  *

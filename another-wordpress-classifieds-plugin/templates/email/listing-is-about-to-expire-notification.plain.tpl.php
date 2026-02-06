@@ -1,4 +1,9 @@
-<?php echo wp_kses_post( $introduction ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo wp_kses_post( $introduction ); ?>
 
 <?php esc_html_e( 'Listing Details are below:', 'another-wordpress-classifieds-plugin' ); ?>
 

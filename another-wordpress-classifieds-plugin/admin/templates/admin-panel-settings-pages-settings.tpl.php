@@ -1,3 +1,8 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
             <div class="metabox-holder">
                 <div class="postbox">
                     <h3 class="hndle">
@@ -10,7 +15,7 @@
                     $message = __( 'The following pages were restored: <pages-list>.', 'another-wordpress-classifieds-plugin' );
                     $pages_names = array_map( 'awpcp_get_option', awpcp_get_properties( $restored_pages, 'page' ) );
                     $pages_list = '<strong>' . implode( '</strong>, <strong>', $pages_names ) . '</strong>';
-                    echo awpcp_print_message( str_replace( '<pages-list>', $pages_list, $message ) );
+                    echo awpcp_print_message( str_replace( '<pages-list>', $pages_list, $message ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                 }
             ?>
 
@@ -25,6 +30,7 @@
                     <li>
                         <?php
                         printf(
+                            // translators: %1$s is the page label, %2$s is the default name
                             esc_html__( '%1$s (Default name: %2$s).', 'another-wordpress-classifieds-plugin' ),
                             '<strong>' . esc_html( $page->label ) . '</strong>',
                             esc_html( $page->default_name )
@@ -82,6 +88,7 @@
 
                             $create_page_url = add_query_arg( 'post_type', 'page', admin_url( 'post-new.php' ) );
                             printf(
+                                // translators: %1$s is the page label, %2$s is the candidate pages, %3$s is the create new page URL, %4$s is the closing anchor link
                                 esc_html__( '%1$s You can select one of these pages that already include the necessary shortcode: %2$s or %3$screate a new one%4$s.', 'another-wordpress-classifieds-plugin' ),
                                 '<strong>' . esc_html( $page->label ) . '</strong> &mdash;',
                                 '<strong>' . esc_html( implode( ', ', $candidate_pages ) ) . '</strong>',
@@ -94,6 +101,7 @@
                         <li>
                             <?php
                             printf(
+                                // translators: %1$s is the page label, %2$s is the default name
                                 esc_html__( '%1$s (Default name: %2$s).', 'another-wordpress-classifieds-plugin' ),
                                 '<strong>' . esc_html( $page->label ) . '</strong>',
                                 esc_html( $page->default_name )

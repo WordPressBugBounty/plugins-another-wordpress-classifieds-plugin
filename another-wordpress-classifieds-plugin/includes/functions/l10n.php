@@ -3,6 +3,10 @@
  * @package AWPCP\Functions
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * This function can be improved to use a filter to allow Extra Fields and other
  * modules to define custom messages for the form fields they provide.

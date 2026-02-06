@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_add_edit_table_entry_rendering_helper( $page ) {
     return new AWPCP_Add_Edit_Table_Entry_Rendering_Helper(

@@ -1,9 +1,13 @@
 <?php
-
 /**
  * TODO: now that the handler is not defined in the task, this logic object
  * doesn't seem to be necessary anymore. We can work with plain PHP object.
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_TaskLogic {
 
     const TASK_STATUS_NEW = 'new';

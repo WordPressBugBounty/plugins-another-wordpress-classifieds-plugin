@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * This upgrade routine converts records from the categories table into terms
  * in the awpcp_listing_category taxonomy.

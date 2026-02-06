@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_SetTransactionStatusToCheckoutStepDecorator extends AWPCP_StepDecorator {
 

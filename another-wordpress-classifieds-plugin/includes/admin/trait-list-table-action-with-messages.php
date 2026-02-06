@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Common methods to generate action messages.
  */

@@ -5,6 +5,10 @@
  * @package Includes/Admin/CSV Exporter
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * CSV export.
  *
@@ -27,6 +31,7 @@ class AWPCP_CSVExporter {
     );
 
     private $settings_api;
+    private $wp_filesystem;
 
     private $workingdir = '';
 
@@ -38,8 +43,13 @@ class AWPCP_CSVExporter {
     private $images_archive;
 
     public function __construct( $settings, $settings_api, $workingdir = null, $listings = array() ) {
-        $this->settings     = array_merge( $this->settings, $settings );
-        $this->settings_api = $settings_api;
+        $this->settings      = array_merge( $this->settings, $settings );
+        $this->settings_api  = $settings_api;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
+
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
 
         $this->setup_columns();
         $this->setup_working_dir( $workingdir );
@@ -76,10 +86,10 @@ class AWPCP_CSVExporter {
 
             if ( ! $upload_dir['error'] ) {
                 $csvexportsdir = rtrim( $upload_dir['basedir'], DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR . 'awpcp-csv-exports';
-                if ( is_dir( $csvexportsdir ) || mkdir( $csvexportsdir ) ) {
+                if ( $this->wp_filesystem->is_dir( $csvexportsdir ) || $this->wp_filesystem->mkdir( $csvexportsdir, awpcp_get_dir_chmod() ) ) {
                     $this->workingdir = rtrim( $csvexportsdir . DIRECTORY_SEPARATOR . uniqid(), DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
 
-                    if ( ! mkdir( $this->workingdir, 0777 ) ) {
+                    if ( ! $this->wp_filesystem->mkdir( $this->workingdir, awpcp_get_dir_chmod() ) ) {
                         $direrror = _x( 'Could not create a temporary directory for handling this CSV export.', 'admin csv-export', 'another-wordpress-classifieds-plugin' );
                     }
                 } else {
@@ -92,6 +102,7 @@ class AWPCP_CSVExporter {
                 throw new Exception(
                     esc_html(
                         sprintf(
+                            // translators: %s is the error message
                             _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ),
                             $direrror
                         )
@@ -144,7 +155,7 @@ class AWPCP_CSVExporter {
             'workingdir' => $this->workingdir,
             'listings'   => $this->listings,
             'exported'   => $this->exported,
-            'filesize'   => file_exists( $this->get_file_path() ) ? filesize( $this->get_file_path() ) : 0,
+            'filesize'   => $this->wp_filesystem->exists( $this->get_file_path() ) ? $this->wp_filesystem->size( $this->get_file_path() ) : 0,
             'done'       => $this->is_done(),
         );
     }
@@ -152,14 +163,16 @@ class AWPCP_CSVExporter {
     public function cleanup() {
         $upload_dir = wp_upload_dir();
 
-        awpcp_rmdir( $this->workingdir );
+        if ( $this->wp_filesystem->is_dir( $this->workingdir ) ) {
+            $this->wp_filesystem->rmdir( $this->workingdir, true );
+        }
 
         if ( ! $upload_dir['error'] ) {
             $csvexportsdir = rtrim( $upload_dir['basedir'], DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR . 'awpcp-csv-exports';
-            $contents      = awpcp_scandir( $csvexportsdir );
+            $contents      = $this->wp_filesystem->dirlist( $csvexportsdir );
 
             if ( ! $contents ) {
-                awpcp_rmdir( $csvexportsdir );
+                $this->wp_filesystem->rmdir( $csvexportsdir );
             }
         }
     }
@@ -169,11 +182,17 @@ class AWPCP_CSVExporter {
             return;
         }
 
-        $csvfile = $this->get_csvfile( $this->workingdir . 'export.csv' );
+        $csv_file_path = $this->workingdir . 'export.csv';
+        $csv_content   = '';
+
+        // Read existing content if file exists
+        if ( $this->wp_filesystem->exists( $csv_file_path ) ) {
+            $csv_content = $this->wp_filesystem->get_contents( $csv_file_path );
+        }
 
         // Write header as first line.
         if ( $this->exported === 0 ) {
-            fwrite( $csvfile, $this->prepare_header( $this->header() ) );
+            $csv_content .= $this->prepare_header( $this->header() );
         }
 
         $nextlistings = array_slice( $this->listings, $this->exported, self::BATCH_SIZE );
@@ -182,17 +201,18 @@ class AWPCP_CSVExporter {
             $this->listing = get_post( $listing_id );
             $data          = $this->extract_data();
             if ( $data ) {
-                $content = implode( $this->settings['csv-file-separator'], $data );
-                fwrite( $csvfile, $this->prepare_content( $content ) );
+                $content      = implode( $this->settings['csv-file-separator'], $data );
+                $csv_content .= $this->prepare_content( $content );
             }
 
             ++$this->exported;
         }
 
-        fclose( $csvfile );
+        // Write all content to file
+        $this->wp_filesystem->put_contents( $csv_file_path, $csv_content, awpcp_get_file_chmod() );
 
         if ( $this->is_done() ) {
-            if ( file_exists( $this->workingdir . 'images.zip' ) ) {
+            if ( $this->wp_filesystem->exists( $this->workingdir . 'images.zip' ) ) {
                 $zip = $this->get_pclzip_instance( $this->workingdir . 'export.zip' );
 
                 $files   = array();
@@ -201,15 +221,12 @@ class AWPCP_CSVExporter {
 
                 $zip->create( implode( ',', $files ), PCLZIP_OPT_REMOVE_ALL_PATH );
 
-                unlink( $this->workingdir . 'export.csv' );
-                unlink( $this->workingdir . 'images.zip' );
+                $this->wp_filesystem->delete( $this->workingdir . 'export.csv' );
+                $this->wp_filesystem->delete( $this->workingdir . 'images.zip' );
             }
         }
     }
 
-    protected function get_csvfile( $path ) {
-        return fopen( $path, 'a' );
-    }
 
     protected function get_pclzip_instance( $path ) {
         if ( ! class_exists( 'PclZip' ) ) {
@@ -240,7 +257,7 @@ class AWPCP_CSVExporter {
     }
 
     public function get_file_path() {
-        if ( file_exists( $this->workingdir . 'export.zip' ) ) {
+        if ( $this->wp_filesystem->exists( $this->workingdir . 'export.zip' ) ) {
             return $this->workingdir . 'export.zip';
         }
 
@@ -251,7 +268,7 @@ class AWPCP_CSVExporter {
         $uploaddir = wp_upload_dir();
         $urldir    = trailingslashit( untrailingslashit( $uploaddir['baseurl'] ) . '/' . ltrim( str_replace( DIRECTORY_SEPARATOR, '/', str_replace( $uploaddir['basedir'], '', $this->workingdir ) ), '/' ) );
 
-        if ( file_exists( $this->workingdir . 'export.zip' ) ) {
+        if ( $this->wp_filesystem->exists( $this->workingdir . 'export.zip' ) ) {
             return $urldir . 'export.zip';
         }
 
@@ -297,7 +314,7 @@ class AWPCP_CSVExporter {
 
                 $img_path = realpath( $upload_dir['basedir'] . DIRECTORY_SEPARATOR . $img_meta['file'] );
 
-                if ( ! is_readable( $img_path ) ) {
+                if ( ! $this->wp_filesystem->is_readable( $img_path ) ) {
                     continue;
                 }
 
@@ -332,9 +349,9 @@ class AWPCP_CSVExporter {
         $value = get_post_meta( $this->listing->ID, $column['name'], true );
 
         if ( $column['name'] === '_awpcp_start_date' || $column['name'] === '_awpcp_end_date' ) {
-            $value = date_create( $value );
+            $value  = date_create( $value );
             $format = apply_filters( 'awpcp_export_date_format', 'Y-m-d H:i:s' );
-            $value = date_format( $value, $format );
+            $value  = date_format( $value, $format );
         }
 
         if ( $column['name'] === '_awpcp_sequence_id' ) {

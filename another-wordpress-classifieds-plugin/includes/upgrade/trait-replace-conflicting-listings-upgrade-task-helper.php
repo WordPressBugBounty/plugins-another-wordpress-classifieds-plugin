@@ -3,6 +3,10 @@
  * @package AWPCP/Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Common code for upgrade routines that update references to the ID
  * of conflicting AWPCP post object in custom tables or options.

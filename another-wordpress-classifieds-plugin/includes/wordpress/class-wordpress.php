@@ -3,6 +3,10 @@
  * @package AWPCP\WordPress
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_wordpress() {
     return new AWPCP_WordPress();
 }

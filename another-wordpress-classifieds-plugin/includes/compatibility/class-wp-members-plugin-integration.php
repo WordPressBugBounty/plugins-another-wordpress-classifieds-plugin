@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_wp_members_plugin_integration() {
     return new AWPCP_WP_Members_Plugin_Integration();

@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Fess
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @return AWPCP_Fee_Details_Form
  */

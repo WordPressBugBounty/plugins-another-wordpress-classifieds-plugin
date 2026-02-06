@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Exporter and eraser for Payment personal data.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><tr class="inline-edit-row quick-edit-row alternate inline-editor delete" id="delete-1">
     <td class="colspanchange" colspan="<?php echo esc_attr( $columns ); ?>">
         <form class="awpcp-delete-form" action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post">

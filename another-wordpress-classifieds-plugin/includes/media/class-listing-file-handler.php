@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Validates, process and associates an uploaded file with a listing.
  */

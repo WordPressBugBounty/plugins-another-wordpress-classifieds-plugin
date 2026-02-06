@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Clases used to handle custom row actions for WP List Table.
  */
@@ -43,14 +47,13 @@ class AWPCP_ListTableActionsHandler {
             $placead          = esc_url( url_placead() );
             $post_type_object = get_post_type_object( AWPCP_LISTING_POST_TYPE );
             $add_new_label    = esc_html( $post_type_object->labels->add_new );
-            $script           = <<<script
-        <script type="text/javascript">
+            $script           = "
+        <script type=\"text/javascript\">
             jQuery(document).ready( function($)
             {
-                jQuery(".wp-heading-inline").after(" <a href='{$placead}' class='page-title-action'>{$add_new_label}</a>");
+                jQuery(\".wp-heading-inline\").after(\" <a href='{$placead}' class='page-title-action'>{$add_new_label}</a>\");
             });
-        </script>
-script;
+        </script>";
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $script;
         }

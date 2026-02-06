@@ -3,6 +3,10 @@
  * @package AWPCP\Tests
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handler for the tablenav section of the listings table.
  */

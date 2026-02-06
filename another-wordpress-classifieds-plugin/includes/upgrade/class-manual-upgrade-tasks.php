@@ -3,6 +3,10 @@
  * @package AWPCP/Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for Manual Upgrade Tasks class.
  */

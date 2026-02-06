@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_TableEntryActionAjaxHandler extends AWPCP_AjaxHandler {
 

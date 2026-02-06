@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register constructors for classes in the AWPCP\Media package.
  *

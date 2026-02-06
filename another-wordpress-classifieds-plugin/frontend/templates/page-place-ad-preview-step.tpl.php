@@ -1,5 +1,10 @@
-<?php foreach ( (array) $messages as $message ): ?>
-    <?php echo awpcp_print_message( $message ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ foreach ( (array) $messages as $message ): ?>
+    <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 
 <form class="awpcp-preview-ad-form" action="<?php echo esc_attr( $page->url() ); ?>" method="post">

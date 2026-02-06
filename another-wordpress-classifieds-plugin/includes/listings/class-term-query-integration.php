@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class that integrates with WP_Term_Query to provide special orderby
  * cabailities for Listing Categories taxonomy.

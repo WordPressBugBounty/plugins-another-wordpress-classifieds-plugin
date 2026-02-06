@@ -3,6 +3,10 @@
  * @package AWPCP\UI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_classifieds_bar() {
     return new AWPCP_Classifieds_Bar(
         awpcp_classifieds_search_bar_component(),

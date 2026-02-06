@@ -1,3 +1,14 @@
+<?php
+/**
+ * Admin panel header template.
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+?>
+
 <div id="<?php echo esc_attr( $page_id ); ?>" class="<?php echo esc_attr( isset( $page_class ) ? $page_class : $page_id ); ?> wrap">
     <div class="page-content">
         <?php if ( version_compare( get_bloginfo('version'), '4.2.4', '<=' ) ): ?>

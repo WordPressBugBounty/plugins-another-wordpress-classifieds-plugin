@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_file_uploader() {
     return new AWPCP_FileUploader(
@@ -15,12 +20,18 @@ class AWPCP_FileUploader {
     private $config;
     private $request;
     private $settings;
+    private $wp_filesystem;
 
     public function __construct( $config, $mime_types, $request, $settings ) {
-        $this->config = $config;
-        $this->mime_types = $mime_types;
-        $this->request = $request;
-        $this->settings = $settings;
+        $this->config        = $config;
+        $this->mime_types    = $mime_types;
+        $this->request       = $request;
+        $this->settings      = $settings;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
+
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
     }
 
     public function get_uploaded_file() {
@@ -30,8 +41,8 @@ class AWPCP_FileUploader {
     private function get_posted_data() {
         return array(
             'filename' => stripslashes( $this->get_uploaded_file_name() ),
-            'chunk' => absint( $this->request->post( 'chunk' ) ),
-            'chunks' => absint( $this->request->post( 'chunks' ) ),
+            'chunk'    => absint( $this->request->post( 'chunk' ) ),
+            'chunks'   => absint( $this->request->post( 'chunks' ) ),
         );
     }
 
@@ -85,16 +96,16 @@ class AWPCP_FileUploader {
 
     private function is_filename_extension_allowed( $filename ) {
         $extensions = $this->config->get_allowed_file_extensions();
-        return in_array( awpcp_get_file_extension( $filename ), $extensions );
+        return in_array( awpcp_get_file_extension( $filename ), $extensions, true );
     }
 
     private function write_uploaded_chunk( $posted_data ) {
-        $file_path = $this->get_temporary_file_path( $posted_data['filename'] );
+        $file_path  = $this->get_temporary_file_path( $posted_data['filename'] );
         $chunk_path = "$file_path.part{$posted_data['chunk']}";
 
         $this->write_uploaded_data_to_file( $chunk_path );
 
-        if ( $posted_data['chunk'] == $posted_data['chunks'] - 1 ) {
+        if ( $posted_data['chunk'] === $posted_data['chunks'] - 1 ) {
             $this->write_uploaded_chunks_to_file( $posted_data['chunks'], $file_path );
             return $this->get_uploaded_file_info( $posted_data['filename'], $file_path, 'complete' );
         } else {
@@ -103,12 +114,12 @@ class AWPCP_FileUploader {
     }
 
     private function get_temporary_file_path( $filename ) {
-        $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
-        $tempory_dir_path = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'tmp' ) );
+        $uploads_dir        = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $tempory_dir_path   = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'tmp' ) );
 
         $pathinfo = awpcp_utf8_pathinfo( $filename );
 
-        $new_name = wp_hash( $pathinfo['basename'] ) . '.' . $pathinfo['extension'];
+        $new_name       = wp_hash( $pathinfo['basename'] ) . '.' . $pathinfo['extension'];
         $unique_filename = wp_unique_filename( $tempory_dir_path, $new_name );
 
         return $tempory_dir_path . DIRECTORY_SEPARATOR . $unique_filename;
@@ -117,7 +128,7 @@ class AWPCP_FileUploader {
     private function write_uploaded_data_to_file( $file_path ) {
         $base_dir = dirname( $file_path );
 
-        if ( ! file_exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
+        if ( ! $this->wp_filesystem->exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
             throw new AWPCP_Exception( esc_html__( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -136,24 +147,18 @@ class AWPCP_FileUploader {
                 throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            move_uploaded_file( $file_name, $file_path );
+            if ( ! $this->wp_filesystem->move( $file_name, $file_path ) ) {
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
+            }
         } else {
-            $input = fopen( 'php://input', 'rb' );
-            if ( ! $input ) {
-                throw new AWPCP_Exception( esc_html__( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
+            $content = file_get_contents( 'php://input' );
+            if ( false === $content ) {
+                throw new AWPCP_Exception( esc_html__( "There was an error trying to read PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
             }
 
-            $output = fopen( $file_path, 'wb' );
-            if ( ! $output ) {
+            if ( ! $this->wp_filesystem->put_contents( $file_path, $content ) ) {
                 throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
             }
-
-            while ( $buffer = fread( $input, 4096 ) ) {
-                fwrite( $output, $buffer );
-            }
-
-            fclose( $output );
-            fclose( $input );
         }
     }
 
@@ -170,46 +175,40 @@ class AWPCP_FileUploader {
     }
 
     private function write_uploaded_chunks_to_file( $chunks_count, $file_path ) {
-        $output = fopen( $file_path, 'wb' );
-        if ( ! $output ) {
-            throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
-        }
-
+        $content = '';
         for ( $i = 0; $i < $chunks_count; ++$i ) {
             $chunk_path = "$file_path.part$i";
 
-            if ( ! file_exists( $chunk_path ) ) {
+            if ( ! $this->wp_filesystem->exists( $chunk_path ) ) {
                 throw new AWPCP_Exception( esc_html__( 'Missing chunk.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            $input = fopen( $chunk_path, 'rb' );
-            if ( ! $input ) {
-                throw new AWPCP_Exception( esc_html__( 'There was an error trying to open the input stream.', 'another-wordpress-classifieds-plugin' ) );
+            $chunk_content = $this->wp_filesystem->get_contents( $chunk_path );
+            if ( false === $chunk_content ) {
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to read the chunk file.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            while ( $buffer = fread( $input, 4096 ) ) {
-                fwrite( $output, $buffer );
-            }
-
-            fclose( $input );
-            unlink( $chunk_path );
+            $content .= $chunk_content;
+            $this->wp_filesystem->delete( $chunk_path );
         }
 
-        fclose( $output );
+        if ( ! $this->wp_filesystem->put_contents( $file_path, $content ) ) {
+            throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
+        }
     }
 
     private function get_uploaded_file_info( $realname, $file_path, $progress='incomplete' ) {
         $mime_type = $this->mime_types->get_file_mime_type( $file_path );
-        $pathinfo = awpcp_utf8_pathinfo( $file_path );
+        $pathinfo  = awpcp_utf8_pathinfo( $file_path );
 
         return (object) array(
-            'path' => $file_path,
-            'realname' => strtolower( $realname ),
-            'name' => $pathinfo['basename'],
-            'dirname' => $pathinfo['dirname'],
-            'filename' => $pathinfo['filename'],
-            'extension' => $pathinfo['extension'],
-            'mime_type' => $mime_type,
+            'path'       => $file_path,
+            'realname'   => strtolower( $realname ),
+            'name'       => $pathinfo['basename'],
+            'dirname'    => $pathinfo['dirname'],
+            'filename'   => $pathinfo['filename'],
+            'extension'  => $pathinfo['extension'],
+            'mime_type'  => $mime_type,
             'is_complete' => $progress === 'complete' ? true : false,
         );
     }

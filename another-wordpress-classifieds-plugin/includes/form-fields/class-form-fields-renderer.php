@@ -3,6 +3,10 @@
  * @package AWPCP\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A renderer for instances of Form Field.
  */

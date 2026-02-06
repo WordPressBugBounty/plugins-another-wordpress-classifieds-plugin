@@ -3,6 +3,10 @@
  * @package AWPCP\UI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A user dropdown powered by Select2.
  */

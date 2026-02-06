@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
 

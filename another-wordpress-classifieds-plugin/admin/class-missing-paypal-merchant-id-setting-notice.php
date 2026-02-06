@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_missing_paypal_merchant_id_setting_notice() {
     return new AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice(

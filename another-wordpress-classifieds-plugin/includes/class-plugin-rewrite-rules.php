@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.6
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_plugin_rewrite_rules() {
     return new AWPCP_Plugin_Rewrite_Rules(
         awpcp_rewrite_rules_helper(),

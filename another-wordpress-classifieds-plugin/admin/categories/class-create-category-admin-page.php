@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for AWPCP_Create_Category_Admin_Page.
  */
@@ -28,16 +32,19 @@ class AWPCP_Create_Category_Admin_Page {
     }
 
     public function dispatch() {
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
+
+        if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $category_order = awpcp_get_var( array( 'param' => 'category_order', 'sanitize' => 'absint' ) );
-        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
         $category_data  = array(
             'name'        => awpcp_get_var( array( 'param' => 'category_name' ) ),
             'description' => awpcp_get_var( array( 'param' => 'category_description', 'sanitize' => 'sanitize_textarea_field' ) ),
             'parent'      => awpcp_get_var( array( 'param' => 'category_parent_id', 'sanitize' => 'intval' ) ),
         );
-        if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
-            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
-        }
+
         try {
             $this->categories_data_mapper->create_category( $category_data, $category_order );
             awpcp_flash( esc_html__( 'The new category was successfully added.', 'another-wordpress-classifieds-plugin' ) );

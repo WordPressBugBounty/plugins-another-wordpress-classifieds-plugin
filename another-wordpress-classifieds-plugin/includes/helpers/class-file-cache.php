@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_file_cache() {
     return new AWPCP_FileCache( WP_CONTENT_DIR . '/uploads/awpcp/cache/' );
@@ -7,24 +12,28 @@ function awpcp_file_cache() {
 class AWPCP_FileCache {
 
     private $location;
+    private $wp_filesystem;
 
     public function __construct( $location ) {
-        $this->location = $location;
+        $this->location      = $location;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! is_dir( $this->location ) ) {
-            wp_mkdir_p( $this->location );
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        if ( ! $this->wp_filesystem->is_dir( $this->location ) ) {
+            if ( ! $this->wp_filesystem->mkdir( $this->location, awpcp_get_dir_chmod() ) ) {
+                throw new AWPCP_IOError( esc_html( sprintf( "Can't create cache directory: %s", $this->location ) ) );
+            }
         }
     }
 
     public function set( $name, $value ) {
         $filename = $this->path( $name );
-        $file     = @fopen( $filename, 'w' );
 
-        if ( $file ) {
-            fwrite( $file, $value );
-            fclose( $file );
-        } else {
-            throw new AWPCP_IOError( esc_html( sprintf( "Can't open file %s to write cache entry for '%s'.", $filename, $name ) ) );
+        if ( ! $this->wp_filesystem->put_contents( $filename, $value, awpcp_get_file_chmod() ) ) {
+            throw new AWPCP_IOError( esc_html( sprintf( "Can't write to file %s for cache entry '%s'.", $filename, $name ) ) );
         }
     }
 
@@ -35,12 +44,14 @@ class AWPCP_FileCache {
     public function get( $name ) {
         $filename = $this->path( $name );
 
-        if ( file_exists( $filename ) && is_readable( $filename ) ) {
-            $file = fopen( $filename, 'r' );
-            $content = fread( $file, filesize( $filename ) );
-            fclose( $file );
-        } else {
+        if ( ! $this->wp_filesystem->exists( $filename ) ) {
             throw new AWPCP_Exception( esc_html( sprintf( "No cache entry found with name '%s'.", $name ) ) );
+        }
+
+        $content = $this->wp_filesystem->get_contents( $filename );
+
+        if ( false === $content ) {
+            throw new AWPCP_IOError( esc_html( sprintf( "Can't read cache entry '%s' from file %s.", $name, $filename ) ) );
         }
 
         return $content;
@@ -53,7 +64,7 @@ class AWPCP_FileCache {
     public function remove( $name ) {
         $filename = $this->path( $name );
 
-        if ( file_exists( $filename ) && ! @unlink( $filename ) ) {
+        if ( $this->wp_filesystem->exists( $filename ) && ! $this->wp_filesystem->delete( $filename ) ) {
             throw new AWPCP_IOError( esc_html( sprintf( "Can't remove %s associated with entry '%s'.", $filename, $name ) ) );
         }
     }

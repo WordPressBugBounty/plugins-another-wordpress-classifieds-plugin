@@ -3,6 +3,10 @@
  * @package AWPCP\Settings\Renderers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Renders a grid of settings.
  */

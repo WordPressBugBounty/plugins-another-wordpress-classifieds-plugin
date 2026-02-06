@@ -1,11 +1,11 @@
-=== WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds ===
-Plugin Name: WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds
+=== AWP Classifieds ===
+Plugin Name: AWP Classifieds
 Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
-Requires at least: 6.2.0
+Requires at least: 6.2
 Requires PHP: 5.6
-Tested up to: 6.7.1
-Stable tag: 4.3.5
+Tested up to: 6.8
+Stable tag: 4.4.3
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -126,6 +126,48 @@ You need to check your database to make sure old data does not exist. Delete all
 4. Create some categories and sub categories for your ads.
 5. Set up your payment fees if you are going to be running in pay mode.
 
+== External Services and Domains ==
+
+This plugin connects to the following external services to provide its functionality:
+
+**Google reCAPTCHA (www.google.com)**
+* Used for spam protection and form validation
+* Domains: www.google.com/recaptcha/api.js, www.google.com/recaptcha/api/siteverify, www.google.com/recaptcha/admin
+* Data transmitted: reCAPTCHA responses and site verification tokens
+* Required for: Anti-spam protection features
+
+**PayPal (paypal.com)**
+* Used for payment processing and IPN (Instant Payment Notification) verification
+* Domains: ipnpb.paypal.com, ipnpb.sandbox.paypal.com
+* Data transmitted: Payment verification data, transaction details
+* Required for: PayPal payment gateway functionality
+
+**Facebook (facebook.com)**
+* Used for posting ads to Facebook and cache management
+* Domains: graph.facebook.com
+* Data transmitted: Ad content, user access tokens (if Facebook integration is enabled)
+* Required for: Facebook posting features (optional)
+
+**Strategy11 (strategy11.com)**
+* Used for collecting anonymous onboarding feedback and usage analytics
+* Domains: feedback.strategy11.com
+* Data transmitted: User email, name, and plugin usage information
+* Required for: Onboarding wizard feedback collection (optional)
+
+**HTTPBin (httpbin.org)**
+* Used for determining the server's external IP address
+* Domains: httpbin.org
+* Data transmitted: Server IP address detection requests
+* Required for: Server IP address identification functionality
+
+**Additional Payment Gateways**
+* **Authorize.Net (authorize.net)** - Payment processing gateway
+* **Stripe (stripe.com)** - Payment processing and subscription management
+* **2Checkout (2checkout.com)** - International payment processing
+* Domains: www.authorize.net, stripe.com, www2.2checkout.com
+* Data transmitted: Payment information, transaction details, customer data
+* Required for: Premium payment gateway modules (optional)
+
 == Screenshots ==
 
 [Visit the main site for screenshots]( https://awpcp.com/features/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
@@ -166,6 +208,25 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.3 =
+* Fix: jQuery loading issue
+
+= 4.4.2 =
+* Fix: Error when running WP CRON for certain events
+
+= 4.4.1 =
+* Fix: Activation issue
+
+= 4.4 =
+* Enhancement: Improved security
+* Enhancement: Changed some external assets to local files
+* Enhancement: Refactored old default PHP functions to newer WordPress alternatives
+* Enhancement: Moved add-on licensing and update management to AWP Module Updater
+* Fix: PHP 8.2 notices
+
+= 4.3.6 =
+* Fix: Minor security vulnerability
+
 = 4.3.5 =
 * New: Added an onboarding wizard
 * Fix: Updated one of the dependencies to fix an NPM vulnerability
@@ -212,22 +273,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Deleting an ad wasn't decreasing category ad count.
 * Fix: The "Clear form" button wasn't allowing the category to be set again.
 * A lot of code cleanup.
-
-= 4.1.7 =
-* Set listings to expired more frequently. Instead of only doing this on the cron, do it when we check if the listing is expired.
-* Fix: Allow ads to expire more than once.
-* Fix: EU dates were showing the wrong expiration dates in emails.
-* Fix: When used with featured ads, they weren't always showing at the top on the main page.
-
-= 4.1.6 =
-* New: Simplify importing dates. It's smarter now with fewer settings.
-* New: Use a more global date format in the CSV export. This can be changed with the new awpcp_export_date_format hook.
-* Fix: Some servers were looking for the privacy policy file in the wrong location.
-* Fix: When ad content was clickable, it was adding p tags to the link.
-* Fix: The ad exporter was missing column headings.
-* Fix: The option to mark as spam was showing in the bulk options when Akismet was disabled.
-
-= 4.1.5 =
-* New: Allow more field placeholders based on the slug (like ad_contact_email and more)
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

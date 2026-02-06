@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register moderation settings for listings.
  */

@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_maybe_add_http_to_url( $url ) {
     if ( empty( $url ) || preg_match( '#^(https?|s?ftp)://#', $url ) ) {
         return $url;

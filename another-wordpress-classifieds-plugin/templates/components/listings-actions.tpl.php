@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-listing-actions-component">
 <?php
 foreach ( $actions as $action ) :

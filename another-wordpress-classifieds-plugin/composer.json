@@ -39,6 +39,7 @@
     "scripts": {
         "format": "phpcbf . --standard=phpcs.xml --extensions=php --report-summary --report-source -d memory_limit=512M",
         "phpcs": "phpcs -p -s -v -n . --standard=phpcs.xml --extensions=php",
-        "phpstan": "vendor/bin/phpstan analyze ./ --memory-limit=2G"
+        "phpstan": "vendor/bin/phpstan analyze ./ --memory-limit=2G",
+        "phpunit": "vendor/phpunit/phpunit/phpunit --configuration phpunit.xml"
     }
 }

@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Importer
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 4.1.0
  */

@@ -5,6 +5,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * The default type of payment term used to pay for ads.
  */

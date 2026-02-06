@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-listing-fields-metabox awpcp-master-detail-tabs">
     <input type="hidden" name="awpcp_listing_fields_nonce" value="<?php echo esc_attr( $nonce ); ?>" />
 
@@ -19,7 +23,7 @@
     <div id="awpcp-listing-fields--form-fields" class="awpcp-tab-panel awpcp-tab-panel-active">
         <?php foreach ( $errors as $index => $error_message ) : ?>
             <?php if ( is_numeric( $index ) ) : ?>
-                <?php echo awpcp_render_error_message( $error_message ); ?>
+                <?php echo awpcp_render_error_message( $error_message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <?php endif; ?>
         <?php endforeach; ?>
 

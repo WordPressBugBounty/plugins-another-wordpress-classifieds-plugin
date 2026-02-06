@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for Update Category Admin Page.
  */
@@ -45,11 +49,14 @@ class AWPCP_Update_Category_Admin_Page {
     }
 
     private function try_to_update_category() {
-        $category_id = awpcp_get_var( array( 'param' => 'category_id' ) );
-        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
+
         if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
             throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
+
+        $category_id = awpcp_get_var( array( 'param' => 'category_id' ) );
+
         try {
             $category = $this->categories->get( $category_id );
         } catch ( AWPCP_Exception $e ) {

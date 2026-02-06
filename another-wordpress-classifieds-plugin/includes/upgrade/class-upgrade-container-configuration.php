@@ -5,6 +5,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Container configuration object responsible for registering classes used
  * in manual upgrade routines.

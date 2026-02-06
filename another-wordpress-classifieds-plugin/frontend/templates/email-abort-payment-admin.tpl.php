@@ -1,4 +1,9 @@
-<?php // emails are sent in plain text, trailing whitespace are required for proper formatting ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ // emails are sent in plain text, trailing whitespace are required for proper formatting ?>
 <?php esc_html_e( 'Dear Administrator', 'another-wordpress-classifieds-plugin' ); ?>,
 
 <?php esc_html_e( "There was a problem during a customer's attempt to submit payment. Transaction details are shown below", 'another-wordpress-classifieds-plugin' ); ?>

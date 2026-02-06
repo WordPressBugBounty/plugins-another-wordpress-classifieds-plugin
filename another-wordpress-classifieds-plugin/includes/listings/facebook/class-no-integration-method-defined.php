@@ -3,6 +3,10 @@
  * @package AWPCP\Listings\Facebook
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * An exception used when some tries to send a listing to a Facebook Page
  * or Group but no Facebook Integration method has been selected on the

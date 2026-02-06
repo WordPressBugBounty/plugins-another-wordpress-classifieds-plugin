@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_listing_payment_transaction_handler() {
     return new AWPCP_ListingPaymentTransactionHandler(
         awpcp_listing_renderer(),

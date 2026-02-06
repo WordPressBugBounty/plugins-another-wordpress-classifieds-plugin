@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // Include all plugin functions.
 require_once AWPCP_DIR . '/debug.php';
 require_once AWPCP_DIR . '/cron.php';
@@ -70,11 +74,6 @@ require_once AWPCP_DIR . '/includes/form-fields/class-listing-regions-form-field
 require_once AWPCP_DIR . '/includes/form-fields/class-listing-title-form-field.php';
 require_once AWPCP_DIR . '/includes/form-fields/class-listing-website-form-field.php';
 
-require_once AWPCP_DIR . '/includes/helpers/class-easy-digital-downloads.php';
-require_once AWPCP_DIR . '/includes/helpers/class-licenses-manager.php';
-require_once AWPCP_DIR . '/includes/helpers/class-module.php';
-require_once AWPCP_DIR . '/includes/helpers/class-modules-manager.php';
-require_once AWPCP_DIR . '/includes/helpers/class-modules-updater.php';
 
 require_once AWPCP_DIR . '/includes/helpers/class-admin-page-links-builder.php';
 require_once AWPCP_DIR . '/includes/helpers/class-akismet-wrapper-base.php';
@@ -215,8 +214,6 @@ require_once AWPCP_DIR . '/includes/media/class-uploaded-file-logic.php';
 require_once AWPCP_DIR . '/includes/media/class-upload-listing-media-ajax-handler.php';
 require_once AWPCP_DIR . '/includes/media/class-upload-generated-thumbnail-ajax-handler.php';
 
-require_once AWPCP_DIR . '/includes/modules/class-license-settings-update-handler.php';
-require_once AWPCP_DIR . '/includes/modules/class-license-settings-actions-request-handler.php';
 
 require_once AWPCP_DIR . '/includes/placeholders/class-placeholders-installation-verifier.php';
 

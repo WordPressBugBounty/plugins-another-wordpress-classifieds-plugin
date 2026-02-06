@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to add the `_awpcp_is_paid` meta to ads that don't have it.
  */

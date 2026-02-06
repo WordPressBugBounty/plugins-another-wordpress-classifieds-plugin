@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Provides access to translation arrays for pre-4.0.0 categories that were
  * converted into listing category taxonomy terms and terms that had to be

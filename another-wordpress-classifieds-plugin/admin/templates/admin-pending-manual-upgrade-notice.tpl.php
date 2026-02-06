@@ -6,6 +6,10 @@
  * @package AWPCP\Templates\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="update-nag awpcp-update-nag clearfix">
     <div>
         <span class="awpcp-update-nag-title">

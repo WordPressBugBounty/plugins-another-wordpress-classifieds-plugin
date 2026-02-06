@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div id="awpcp-media-uploader" class="awpcp-media-uploader">
     <div class="awpcp-hide-if-js">
         <?php echo esc_html( __( "Your browser doesn't have Flash, Silverlight or HTML5 support.", 'another-wordpress-classifieds-plugin' ) ); ?>

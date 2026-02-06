@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_users_autocomplete_ajax_handler() {
     return new AWPCP_UsersAutocompleteAjaxHandler( awpcp_users_collection(), '', awpcp_ajax_response() );

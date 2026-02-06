@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_search_listings_page() {
     return new AWPCP_SearchAdsPage(
         'awpcp-search-ads',
@@ -214,11 +218,11 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     public function build_return_link() {
-        $params = $_REQUEST; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        $params = $_REQUEST; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
         awpcp_sanitize_value( 'sanitize_text_field', $params );
 
         $params = array_merge( $params, array( 'awpcp-step' => 'searchads' ) );
-        $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
+        $href   = add_query_arg(urlencode_deep($params), awpcp_current_url());
 
         $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="<link-url>"><link-text></a></div>';
         $return_link = str_replace( '<link-url>', esc_url( $href ), $return_link );

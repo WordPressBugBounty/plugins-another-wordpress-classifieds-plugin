@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <div class="awpcp-admin-sidebar awpcp-postbox-container postbox-container" style="<?php echo esc_attr( $float ); ?>">
     <div class="metabox-holder">
@@ -20,7 +24,7 @@
                 <div class="inside">
                     <ul>
                         <li class="li_link">
-                            <a href="https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin/reviews/?filter=5#new-post">
+                            <a href="https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin/reviews/#new-post">
                                 <?php esc_html_e( 'Give a 5 star rating on WordPress.org.', 'another-wordpress-classifieds-plugin' ); ?>
                             </a>
                         </li>
@@ -77,6 +81,7 @@
                             <?php
                             /* translators: %1$s: open anchor link, %2$s close anchor link */
                             printf(
+                                // translators: %1$s is the Quick Start Guide URL, %2$s is the closing anchor link
                                 esc_html__( 'Browse the %1$sQuick Start Guide%2$s', 'another-wordpress-classifieds-plugin' ),
                                 '<a href="https://awpcp.com/knowledge-base/quick-start-guide/" target="_blank">',
                                 '</a>'
@@ -85,8 +90,8 @@
                         </li>
                         <li>
                             <?php
-                            /* translators: %1$s: open anchor link, %2$s close anchor link */
                             printf(
+                                /* translators: %1$s: open anchor link, %2$s close anchor link */
                                 esc_html__( 'Read the full %1$sDocumentation%2$s.', 'another-wordpress-classifieds-plugin' ),
                                 '<a href="https://awpcp.com/knowledge-base/" target="_blank">',
                                 '</a>'

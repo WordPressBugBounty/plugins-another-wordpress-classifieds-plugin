@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_authentication_redirection_handler() {
     return new AWPCP_Authentication_Redirection_Handler(

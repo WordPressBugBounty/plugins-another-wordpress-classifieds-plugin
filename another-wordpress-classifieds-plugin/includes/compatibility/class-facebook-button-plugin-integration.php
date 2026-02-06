@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_facebook_button_plugin_integration() {
     return new AWPCP_Facebook_Button_Plugin_Integration( awpcp_query() );

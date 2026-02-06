@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once AWPCP_DIR . '/frontend/page-place-ad.php';
 
 function awpcp_renew_listing_page() {
@@ -84,6 +88,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
             $page_name = awpcp_get_page_name('renew-ad-page-name');
             $page_url = awpcp_get_renew_ad_url( $ad->ID );
             $message = sprintf(
+                // translators: %1$s is the page name, %2$s is the transaction ID
                 esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' ),
                 '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
                 esc_html( $transaction->id )
@@ -93,7 +98,8 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
         if (!is_null($transaction) && $transaction->is_payment_completed()) {
             if ( ! ( $transaction->was_payment_successful() || $transaction->payment_is_not_verified() ) ) {
-                $message = __( 'You can\'t renew your Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
+                // translators: %s is the transaction ID
+                $message = sprintf( __( 'You can\'t renew your Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin'), esc_html( $transaction->id ) );
                 $message = awpcp_print_message($message);
                 $message = $message . $this->payments->render_transaction_errors( $transaction );
                 return $this->render('content', $message);
@@ -160,6 +166,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
     public function render_finish_step($ad) {
         $response = sprintf(
+            // translators: %s is the new expiration date
             __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' ),
             $this->listing_renderer->get_end_date( $ad )
         );
@@ -341,7 +348,8 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         if ( !$transaction->is_doing_checkout() && !$transaction->is_processing_payment() ) {
-            $message = __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            // translators: %s is the transaction ID
+            $message = sprintf( __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin'), esc_html( $transaction->id ) );
             $message = sprintf($message, $transaction->id);
             return $this->page->render('content', awpcp_print_error($message));
         }

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_dismiss_notice_ajax_handler() {
     return new AWPCP_Dismiss_Notice_Ajax_Handler(

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_tasks_collection() {
     return new AWPCP_TasksCollection( awpcp_task_logic_factory(), $GLOBALS['wpdb'] );
@@ -40,6 +45,7 @@ class AWPCP_TasksCollection {
         }
 
         if ( is_null( $result ) ) {
+            // translators: %d is the task ID
             $message = __( 'There is no task with ID %d.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( esc_html( sprintf( $message, $task_id ) ) );
         }

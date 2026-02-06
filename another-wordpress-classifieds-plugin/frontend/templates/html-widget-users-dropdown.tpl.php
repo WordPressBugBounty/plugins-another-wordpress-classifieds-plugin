@@ -1,4 +1,9 @@
-<?php if ( $args['label'] ): ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ if ( $args['label'] ): ?>
 <label for="<?php echo esc_attr( $args['id'] ); ?>"><?php
     echo esc_attr( $args['label'] );
     if ( $args['required'] ):

@@ -3,17 +3,23 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message($error, array('error'));
         } else {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message($error, array('error', 'ghost'));
         }
     }
 ?>
 <form class="awpcp-search-ads-form" method="get" action="<?php echo esc_url( $action_url ); ?>"name="myform">
-    <?php echo awpcp_html_hidden_fields( $hidden ); ?>
+    <?php echo awpcp_html_hidden_fields( $hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
     <p class="awpcp-form-field awpcp-form-spacer">
         <label for="query"><?php esc_html_e( 'Search for ads containing this word or phrase', 'another-wordpress-classifieds-plugin' ); ?>:</label>

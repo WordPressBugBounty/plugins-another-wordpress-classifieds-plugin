@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php if ( $label ) : ?>
 <?php // phpcs:ignore Squiz.ControlStructures.ControlSignature.NewlineAfterOpenBrace ?>
 <label <?php if ( $label_class ) : ?>class="<?php echo esc_attr( $label_class ); ?>" <?php endif; ?>for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?><?php if ( $required ) : ?><span class="required">*</span><?php endif; ?></label>

@@ -3,6 +3,10 @@
  * @package AWPCP\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class used to retrieve data posted through listing's form fields.
  */

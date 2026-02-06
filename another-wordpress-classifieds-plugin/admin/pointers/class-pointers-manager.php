@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_pointers_manager() {
     return new AWPCP_PointersManager();
 }

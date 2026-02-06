@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
@@ -678,6 +682,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             // Process with multiple.
         case 'Select Multiple':
             // value can be any combination of items from options list
+            // translators: %s is the extra field name
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
             $value = explode( ';', $value );
@@ -688,6 +693,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             $values_list = is_array( $values_list ) ? $values_list : array( $value );
 
             if ( ! isset( $msg ) ) {
+                // translators: %s is the extra field name
                 $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             }
 

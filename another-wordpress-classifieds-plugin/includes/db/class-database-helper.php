@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_database_helper() {
     return new AWPCP_Database_Helper( $GLOBALS['wpdb'] );

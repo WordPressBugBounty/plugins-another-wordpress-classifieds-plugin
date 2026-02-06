@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 2.1.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_AdminUsers {
 
     const USERS_SCREEN = 'users';

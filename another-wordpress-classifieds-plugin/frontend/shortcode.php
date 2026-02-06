@@ -6,6 +6,10 @@
  * @package AWPCP/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // TODO: Do we really need to requires these files here?
 require_once AWPCP_DIR . '/frontend/shortcode-raw.php';
 

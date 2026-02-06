@@ -1,4 +1,9 @@
-<?php echo esc_html( str_replace( '<contact-name>', $contact_name, _x( 'Hi <contact-name>,', 'edit link email', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo esc_html( str_replace( '<contact-name>', $contact_name, _x( 'Hi <contact-name>,', 'edit link email', 'another-wordpress-classifieds-plugin' ) ) ); ?>
 
 <?php echo esc_html( str_replace( '<listing-title>', $listing_title, _x( 'The access key and edit link for the listing <listing-title> are shown below:', 'edit link email', 'another-wordpress-classifieds-plugin' ) ) ); ?>
 

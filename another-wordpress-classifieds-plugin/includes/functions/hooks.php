@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_remove_filter( $filter, $class ) {
     global $wp_filter;
 

@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to replace listing terms that have an ID matching the ID
  * from one of the pre-4.0.0 listings, causing that listing to be inaccessible

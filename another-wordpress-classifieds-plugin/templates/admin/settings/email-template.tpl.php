@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-email-template-setting">
     <p>
         <label for="<?php echo esc_attr( $setting_id ); ?>-subject"><?php esc_html_e( 'Subject', 'another-wordpress-classifieds-plugin' ); ?></label>

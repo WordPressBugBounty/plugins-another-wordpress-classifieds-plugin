@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_html_admin_form_radio_buttons_renderer() {
     return new AWPCP_HTML_Admin_Form_Radio_Buttons_Renderer();

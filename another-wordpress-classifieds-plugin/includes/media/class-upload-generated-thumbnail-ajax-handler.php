@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_upload_generated_thumbnail_ajax_handler() {
     return new AWPCP_UploadGeneratedThumbnailAjaxHandler(
@@ -66,7 +71,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
     private function process_uploaded_thumbnail( $listing, $media ) {
         $temporary_thumbnail_file = $this->get_uploaded_thumbnail_path();
         $was_thumbnail_created = $this->image_resizer->create_thumbnail_for_media( $media, $temporary_thumbnail_file );
-        unlink( $temporary_thumbnail_file );
+        wp_delete_file( $temporary_thumbnail_file );
 
         if ( $was_thumbnail_created ) {
             return $this->success( array( 'thumbnailUrl' => $media->get_thumbnail_url() ) );

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_register_allowed_extensions_setting( $settings, $section, $setting ) {
     $config = array(

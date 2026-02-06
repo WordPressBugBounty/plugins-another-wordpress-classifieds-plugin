@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_AccountBalancePage extends AWPCP_BuyCreditsPage {
 
     protected $template = 'admin/templates/admin-page.tpl.php';

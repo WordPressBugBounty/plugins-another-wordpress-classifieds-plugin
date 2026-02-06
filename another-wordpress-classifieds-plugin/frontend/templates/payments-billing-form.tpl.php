@@ -1,4 +1,9 @@
-<p><?php esc_html_e( 'Please fill in the billing information in the form below to place your payment.', 'another-wordpress-classifieds-plugin' ); ?></p>
+<p><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e( 'Please fill in the billing information in the form below to place your payment.', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 <form class="awpcp-billing-form" method="post">
     <fieldset>

@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Pages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><h2 class="nav-tab-wrapper">
     <?php $import_settings_url = add_query_arg( 'awpcp-view', 'import-settings' ); ?>
     <a href="<?php echo esc_url( $import_settings_url ); ?>" class="nav-tab">Import Settings</a>

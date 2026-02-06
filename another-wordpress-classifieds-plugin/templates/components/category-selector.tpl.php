@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php if ( $label ) : ?>
 <label class="awpcp-category-dropdown-label" for="awpcp-category-dropdown-<?php echo esc_attr( $hash ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?></label>
 <?php endif; ?>
@@ -27,7 +31,7 @@
     <?php
     endif;
 
-    echo awpcp_render_categories_dropdown_options( $categories_hierarchy['root'], $categories_hierarchy, $selected );
+    echo awpcp_render_categories_dropdown_options( $categories_hierarchy['root'], $categories_hierarchy, $selected ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     ?>
 </select>
 

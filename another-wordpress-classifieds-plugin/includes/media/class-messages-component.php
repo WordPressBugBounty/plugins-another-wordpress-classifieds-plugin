@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_messages_component() {
     return new AWPCP_MessagesComponent( awpcp()->js );

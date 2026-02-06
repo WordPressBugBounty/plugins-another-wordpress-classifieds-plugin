@@ -3,6 +3,10 @@
  * @package AWPCP\Functions
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Takes an array of rules with script or styles IDs as keys and setting
  * IDs as values. If the value of the setting evaluates to true, then the

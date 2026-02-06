@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Returns the current name of the AWPCP main page.
  */
@@ -180,11 +184,11 @@ function is_awpcp_admin_page() {
         return false;
     }
 
-    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ), 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ), 'awpcp' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
         return true;
     }
 
-    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), 'awpcp' ) ) { // phpcs:ignore WordPress.Security.NonceVerification
         return true;
     }
 

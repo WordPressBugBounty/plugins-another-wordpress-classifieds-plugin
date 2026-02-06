@@ -1,5 +1,10 @@
 <form action="https://www2.2checkout.com/2co/buyer/purchase" method="post">
-    <?php if ($is_recurring): ?>
+    <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ if ($is_recurring): ?>
     <input type='hidden' name="sid" value="<?php echo esc_attr( $x_login ); ?>" />
     <input type='hidden' name="quantity" value=1 />
     <input type='hidden' name="product_id" value="<?php echo esc_attr( $item->id ); ?>" />

@@ -3,6 +3,10 @@
  * @package AWPCP\Placeholders
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Base class for objects that verify that a particular placeholder was added to
  * listings templates.

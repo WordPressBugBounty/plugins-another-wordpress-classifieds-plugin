@@ -3,6 +3,10 @@
  * @package AWPCP\Helpers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A helper class used to clear ads information from Facebook cache so that
  * the social snippets show up to date content when the URLs are shared.

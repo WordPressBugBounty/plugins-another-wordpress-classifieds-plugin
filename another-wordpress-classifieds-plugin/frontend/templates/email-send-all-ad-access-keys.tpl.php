@@ -3,6 +3,10 @@
  * emails are sent in plain text, all blank lines in templates are required
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 echo wp_kses_post( $introduction );
 ?>:
 

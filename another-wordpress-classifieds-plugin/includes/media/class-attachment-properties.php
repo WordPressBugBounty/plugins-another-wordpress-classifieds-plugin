@@ -3,6 +3,10 @@
  * @package AWPCP\Attachments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Helper class used to get properties from Attachments objects (WP_Post).
  */

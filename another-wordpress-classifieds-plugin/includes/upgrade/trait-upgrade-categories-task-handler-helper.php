@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A collection of common methods used on upgrade routines created to
  * convert pre-4.0.0 categories into custom taxonomy terms.

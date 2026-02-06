@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
     protected $transaction = null;

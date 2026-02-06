@@ -3,6 +3,10 @@
  * @package AWPCP\Settings\Renderers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Allows user to select WordPress pages as the value for plugin settings.
  */

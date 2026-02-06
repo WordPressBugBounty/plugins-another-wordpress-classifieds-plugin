@@ -3,6 +3,10 @@
  * @package AWPCP\UI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for Listings Media Uploader Component.
  */

@@ -3,6 +3,10 @@
  * @package AWPCP\UI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_payment_terms_list() {
     return new AWPCP_Payment_Terms_List(
         awpcp_payments_api(),

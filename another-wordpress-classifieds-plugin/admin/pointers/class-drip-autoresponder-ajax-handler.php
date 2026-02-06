@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_drip_autoresponder_ajax_handler() {
     return new AWPCP_DripAutoresponderAjaxHandler( awpcp()->settings, awpcp_request(), awpcp_ajax_response() );

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_delete_fee_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(

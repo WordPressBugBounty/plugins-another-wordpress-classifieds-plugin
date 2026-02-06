@@ -1,4 +1,9 @@
-<form id="awpcp-payment-completed-form" method="post" action=<?php echo esc_attr($action) ?>>
+<form id="awpcp-payment-completed-form" method="post" action=<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo esc_attr($action) ?>>
     <h3><?php esc_html_e( 'Transaction Details', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
     <?php $this->show_transaction_items( $transaction ); ?>

@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Takes an array of Submit Listing Section instances and generates a data
  * representation that can be converted into JSON.

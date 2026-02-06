@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <div class="awpcp-submit-listing-section-container">
     <?php if ( $show_preview_section ) : ?>

@@ -3,6 +3,10 @@
  * @package AWPCP\Admim\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Metabox to collect additional deatils for an ad.
  */

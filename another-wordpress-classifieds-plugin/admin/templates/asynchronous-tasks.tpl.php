@@ -1,3 +1,9 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
+
 <div class="awpcp-asynchronous-tasks-container">
     <!--<div data-bind="if: message, css: { 'awpcp-updated': message, updated: message }"><p data-bind="html: message"></p></div>-->
     <!--<div data-bind="if: error, css: { 'awpcp-updated': error, updated: error, error: error }"><p data-bind="html: error"></p></div>-->

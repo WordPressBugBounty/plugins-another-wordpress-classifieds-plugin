@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_image_file_validator() {
     return new AWPCP_Image_File_Validator( awpcp_listing_upload_limits(), awpcp_file_validation_errors() );
@@ -24,6 +29,7 @@ class AWPCP_Image_File_Validator extends AWPCP_ListingFileValidator {
         }
 
         if ( $img_info[ 0 ] < $image_upload_limits['min_image_width'] ) {
+            // translators: %1$s is the file name, %2$s is the minimum width
             $message = __( 'The image %1$s did not meet the minimum width of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
             $message = sprintf(
                 $message,
@@ -34,6 +40,7 @@ class AWPCP_Image_File_Validator extends AWPCP_ListingFileValidator {
         }
 
         if ( $img_info[ 1 ] < $image_upload_limits['min_image_height'] ) {
+            // translators: %1$s is the file name, %2$s is the minimum height
             $message = __( 'The image %1$s did not meet the minimum height of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
             $message = sprintf(
                 $message,

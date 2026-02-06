@@ -1,16 +1,20 @@
 <?php
-
 /**
  * Helper class used to handle API calls & configuration for Facebook integration.
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Facebook {
 
     const GRAPH_API_VERSION = 'v2.12';
 
-    private static $instance = null;
-    private $access_token = '';
-    private $last_error = null;
+    private static $instance    = null;
+    private $access_token       = '';
+    private $last_error         = null;
 
     /**
      * @var AWPCP_Settings_API
@@ -107,7 +111,7 @@ class AWPCP_Facebook {
         $permissions = array();
 
         foreach ( $response->data as $entry ) {
-            if ( $entry->status == 'granted' ) {
+            if ( $entry->status === 'granted' ) {
                 $permissions[] = $entry->permission;
             }
         }
@@ -124,11 +128,11 @@ class AWPCP_Facebook {
     public function set_access_token( $key_or_token = '' ) {
         $token = $key_or_token;
 
-        if ( $key_or_token == 'page_token' ) {
+        if ( $key_or_token === 'page_token' ) {
             $token = $this->settings->get_option( 'facebook-page-access-token' );
         }
 
-        if ( $key_or_token == 'user_token' ) {
+        if ( $key_or_token === 'user_token' ) {
             $token = $this->settings->get_option( 'facebook-user-access-token' );
         }
 
@@ -238,8 +242,8 @@ class AWPCP_Facebook {
         return sprintf(
             'https://www.facebook.com/' . self::GRAPH_API_VERSION . '/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
             $app_id,
-            urlencode( $redirect_uri ),
-            urlencode( $scope )
+            rawurlencode( $redirect_uri ),
+            rawurlencode( $scope )
         );
     }
 
@@ -274,7 +278,7 @@ class AWPCP_Facebook {
 
         $app_secret = $this->settings->get_option( 'facebook-app-secret' );
 
-        $url = 'https://graph.facebook.com/' . self::GRAPH_API_VERSION . '/' . ltrim( $path, '/' );
+        $url  = 'https://graph.facebook.com/' . self::GRAPH_API_VERSION . '/' . ltrim( $path, '/' );
         $url .= '?client_id=' . $this->settings->get_option( 'facebook-app-id' );
         $url .= '&client_secret=' . $app_secret;
 
@@ -283,46 +287,60 @@ class AWPCP_Facebook {
             $url .= '&appsecret_proof=' . hash_hmac( 'sha256', $this->access_token, $app_secret );
         }
 
-        if ( $method == 'GET' && $args ) {
+        if ( $method === 'GET' && $args ) {
             foreach ( $args as $k => $v ) {
-                if ( in_array( $k, array( 'client_id', 'client_secret', 'access_token' ) ) )
+                if ( in_array( $k, array( 'client_id', 'client_secret', 'access_token' ), true ) )
                     continue;
 
-                $url .= '&' . $k . '=' . urlencode( $v );
+                $url .= '&' . $k . '=' . rawurlencode( $v );
             }
         }
 
-        $c = curl_init();
-        curl_setopt( $c, CURLOPT_URL, $url );
-        curl_setopt( $c, CURLOPT_HEADER, 0 );
-        curl_setopt( $c, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt( $c, CURLOPT_SSL_VERIFYPEER, 1 );
-        curl_setopt( $c, CURLOPT_CAINFO, AWPCP_DIR . '/cacert.pem' );
+        $http_args = array(
+            'timeout'     => 30,
+            'redirection' => 5,
+            'httpversion' => '1.1',
+            'user-agent'  => 'WordPress/' . get_bloginfo( 'version' ) . '; ' . home_url(),
+            'sslverify'   => true,
+            'headers'     => array(
+                'Accept' => 'application/json',
+            ),
+        );
 
-        if ( $method == 'POST' ) {
-            curl_setopt( $c, CURLOPT_POST, 1 );
-            curl_setopt( $c, CURLOPT_POSTFIELDS, $args );
+        if ( $method === 'POST' ) {
+            $http_args['method'] = 'POST';
+            $http_args['body']   = $args;
         }
 
-        $res = curl_exec( $c );
-        $curl_error_number = curl_errno( $c );
-        $curl_error_message = curl_error( $c );
-        curl_close( $c );
+        $response = wp_remote_request( $url, $http_args );
 
-        if ( $curl_error_number === 0 ) {
-            $res = $json_decode ? json_decode( $res ) : $res;
-
-            if ( isset( $res->error ) )
-                $this->last_error = $res->error;
-
-            $response = !$res || isset( $res->error ) ? false : $res;
-        } else {
-            $this->last_error = new stdClass();
-            $this->last_error->message = $curl_error_message;
-            $response = false;
+        // Check for WordPress HTTP errors
+        if ( is_wp_error( $response ) ) {
+            $this->last_error          = new stdClass();
+            $this->last_error->message = $response->get_error_message();
+            return false;
         }
 
-        return $response;
+        // Get response body
+        $res = wp_remote_retrieve_body( $response );
+
+        // Check if response is valid
+        if ( empty( $res ) ) {
+            $this->last_error          = new stdClass();
+            $this->last_error->message = __( 'Empty response from Facebook API', 'another-wordpress-classifieds-plugin' );
+            return false;
+        }
+
+        if ( $json_decode ) {
+            $res = json_decode( $res );
+        }
+
+        if ( $json_decode && isset( $res->error ) ) {
+            $this->last_error = $res->error;
+            return false;
+        }
+
+        return $res;
     }
 
     /**

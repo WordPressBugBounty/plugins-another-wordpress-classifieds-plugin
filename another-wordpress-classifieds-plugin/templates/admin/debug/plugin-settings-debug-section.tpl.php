@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><table class="widefat striped">
     <thead>
         <tr>

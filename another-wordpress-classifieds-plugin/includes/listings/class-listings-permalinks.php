@@ -3,6 +3,10 @@
  * @package AWPCP/Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Clases used to define permalink structure and create listings permalinks.
  */

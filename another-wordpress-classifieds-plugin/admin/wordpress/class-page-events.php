@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\WordPress
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Handlers for several Page events triggered on the Admin Dashboard.
  */

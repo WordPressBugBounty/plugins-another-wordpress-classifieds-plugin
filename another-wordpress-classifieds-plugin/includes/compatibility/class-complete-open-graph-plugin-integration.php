@@ -3,6 +3,10 @@
  * @package AWPCP\Compatibility
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 3.8.6
  */

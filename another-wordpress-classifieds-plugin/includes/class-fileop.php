@@ -6,14 +6,23 @@
  * @author Dan Caragea
  * http://datemill.com
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class fileop {
 
     public $op_mode = 'disk'; // 'disk' or 'ftp'
 
     public $ftp_id = null;
 
+    private $wp_filesystem;
+
     public function __construct() {
-        $ftp_error=false;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
+
+        $ftp_error = false;
         if (defined('_FILEOP_MODE_') && _FILEOP_MODE_=='ftp' && defined('_FTPHOST_') && defined('_FTPUSER_') && defined('_FTPPASS_') && function_exists('ftp_connect')) {
             $this->ftp_id=ftp_connect(_FTPHOST_);
             if ($this->ftp_id) {
@@ -40,7 +49,7 @@ class fileop {
     public function set_permission( $file, $mode ) {
         $myreturn='';
         if ($this->op_mode=='disk') {
-            $myreturn=@chmod($file,$mode);
+            $myreturn = $this->wp_filesystem->chmod( $file, $mode );
         } elseif ($this->op_mode=='ftp') {
             $file   = str_replace( _BASEPATH_ . '/', _FTPPATH_, $file );
             //$old_de = defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY : 0;
@@ -60,7 +69,8 @@ class fileop {
         if ($this->op_mode=='disk') {
             $myreturn=$this->_disk_delete($source);
         } elseif ($this->op_mode=='ftp') {
-            if (is_dir($source) && substr($source,-1)!='/') {
+            $is_dir = $this->wp_filesystem ? $this->wp_filesystem->is_dir($source) : is_dir($source);
+            if ($is_dir && substr($source,-1)!='/') {
                 $source.='/';
             }
             $source = str_replace( _BASEPATH_ . '/', _FTPPATH_, $source );
@@ -75,19 +85,22 @@ class fileop {
     // internal function, do not call from outside. Call fileop->delete() instead
     // $source should have a full basepath
     protected function _disk_delete( $source ) {
-        $myreturn=false;
-        if (is_dir($source)) {
-            $d=dir($source);
-            while ($file=$d->read()) {
-                if ($file!='.' && $file!='..') {
-                    $myreturn = $this->_disk_delete( $source . '/' . $file );
+        $myreturn = false;
+
+        if ($this->wp_filesystem->is_dir($source)) {
+            $files = $this->wp_filesystem->dirlist($source);
+            if ( $files ) {
+                foreach ( $files as $file => $fileinfo ) {
+                    if ($file!='.' && $file!='..') {
+                        $myreturn = $this->_disk_delete( $source . '/' . $file );
+                    }
                 }
             }
-            $d->close();
-            $myreturn=@rmdir($source);
-        } elseif (is_file($source)) {
-            $myreturn=@unlink($source);
+            $myreturn = $this->wp_filesystem->rmdir($source);
+        } elseif ($this->wp_filesystem->is_file($source)) {
+            $myreturn = $this->wp_filesystem->delete($source);
         }
+
         return $myreturn;
     }
 

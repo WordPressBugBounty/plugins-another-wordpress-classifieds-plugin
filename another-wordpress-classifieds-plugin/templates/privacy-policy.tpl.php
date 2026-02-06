@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="wp-suggested-text">
 
     <h3><?php esc_html_e( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?></h3>
@@ -15,6 +19,7 @@
 
     <p><?php
         printf(
+            // translators: %1$s is the opening link tag, %2$s is the closing link tag
             esc_html__( 'Contact name, email address, website URL and content of submitted classified listings may be checked through Akismet\'s spam detection service. The Akismet service privacy policy is available %1$shere%2$s.', 'another-wordpress-classifieds-plugin' ),
             '<a href="https://automattic.com/privacy/">',
             '</a>'
@@ -25,6 +30,7 @@
 
     <p><?php
         printf(
+            // translators: %s is the website URL
             esc_html__( 'If you pay to post a classified listing entering your credit card and billing information directly on %s, the credit card information won\'t be stored but it will be shared through a secure connection with the following payment gateways to process the payment:', 'another-wordpress-classifieds-plugin' ),
             '<a href="' . esc_url( home_url() ) . '">' . esc_url( home_url() ) . '</a>'
         );
@@ -33,18 +39,21 @@
     <ul>
         <li><?php
             printf(
+                // translators: %1$s is the PayPal privacy policy link
                 esc_html__( 'PayPal - %1$s', 'another-wordpress-classifieds-plugin' ),
                 '<a href="https://www.paypal.com/webapps/mpp/ua/privacy-full">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>'
             );
         ?></li>
         <li><?php
             printf(
+                // translators: %s is the Authorize.Net privacy policy link
                 esc_html__( 'Authorize.Net - %s', 'another-wordpress-classifieds-plugin' ),
                 '<a href="https://www.authorize.net/company/privacy/">https://www.authorize.net/company/privacy/</a>'
             );
         ?></li>
         <li><?php
             printf(
+                // translators: %s is the Stripe privacy policy link
                 esc_html__( 'Stripe - %s', 'another-wordpress-classifieds-plugin' ),
                 '<a href="https://stripe.com/us/privacy/">https://stripe.com/us/privacy/</a>'
             );
@@ -61,6 +70,7 @@
 
     <p><?php
     printf(
+        // translators: %1$s is the opening link tag, %2$s is the closing link tag
         esc_html__( 'Visitor comments may be checked through Akismet\'s spam detection service. The Akismet service privacy policy is available %1$shere%2$s.', 'another-wordpress-classifieds-plugin' ),
         '<a href="https://automattic.com/privacy/">',
         '</a>'

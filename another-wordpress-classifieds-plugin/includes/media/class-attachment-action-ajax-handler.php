@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_attachment_action_ajax_handler( $attachment_action ) {
     return new AWPCP_Attachment_Action_Ajax_Handler(
@@ -54,6 +59,7 @@ class AWPCP_Attachment_Action_Ajax_Handler extends AWPCP_AjaxHandler {
         }
 
         if ( $file->post_parent != $listing->ID ) {
+            // translators: %d is the listing ID
             $message = __( "The specified file is not associated with Listing with ID %d.", 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( esc_html( sprintf( $message, $listing->ID ) ) );
         }

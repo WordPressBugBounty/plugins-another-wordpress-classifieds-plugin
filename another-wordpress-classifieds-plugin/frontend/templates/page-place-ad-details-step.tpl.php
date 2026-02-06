@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // TODO: Remove this file.
 
 ?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
@@ -13,6 +17,7 @@ if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps'
 }
 
 foreach ( $messages as $message ) {
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo awpcp_print_message( $message );
 }
 
@@ -29,7 +34,7 @@ endif;
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
     <form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
-        <?php echo awpcp_html_hidden_fields( $hidden ); ?>
+        <?php echo awpcp_html_hidden_fields( $hidden ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
         <?php if ($ui['user-dropdown']): ?>
 
@@ -62,7 +67,7 @@ endif;
         <p class="awpcp-form-spacer">
             <label for="start-date"><?php echo esc_html( _x( 'Start Date', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['start-date'] ? '*' : ''; ?></label>
             <?php $date = awpcp_datetime( 'awpcp-date', $form['start_date'] ); ?>
-            <input class="awpcp-textfield inputbox" id="start-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
+            <input class="awpcp-textfield inputbox" id="start-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" />
             <input type="hidden" name="start_date" value="<?php echo esc_attr( awpcp_datetime( 'Y/m/d', $form['start_date'] ) ); ?>" />
             <?php awpcp_show_form_error( 'start_date', $errors ); ?>
         </p>
@@ -72,7 +77,7 @@ endif;
         <p class="awpcp-form-spacer">
             <label for="end-date"><?php echo esc_html( _x( 'End Date', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['end-date'] ? '*' : ''; ?></label>
             <?php $date = awpcp_datetime( 'awpcp-date', $form['end_date'] ); ?>
-            <input class="awpcp-textfield inputbox" id="end-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); ?>" />
+            <input class="awpcp-textfield inputbox" id="end-date" type="text" size="50" datepicker-placeholder value="<?php echo awpcp_esc_attr($date); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>" />
             <input type="hidden" name="end_date" value="<?php echo esc_attr( awpcp_datetime( 'Y/m/d', $form['end_date'] ) ); ?>" />
             <?php awpcp_show_form_error( 'end_date', $errors ); ?>
         </p>

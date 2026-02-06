@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 awpcp_html_admin_second_level_heading( [
     'content' => esc_html__( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
     'echo'    => true,

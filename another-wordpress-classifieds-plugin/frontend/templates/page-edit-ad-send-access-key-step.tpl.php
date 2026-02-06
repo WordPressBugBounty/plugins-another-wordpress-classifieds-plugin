@@ -1,10 +1,17 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message);
     }
 
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error($error);
         }
     }
@@ -20,6 +27,7 @@
 
         <p class="awpcp-form-spacer">
             <label for="ad-email"><?php echo esc_html( __( 'Enter your email address', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+            <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
             <input class="awpcp-textfield inputbox" id="ad-email" type="text" size="50" name="ad_email" value="<?php echo awpcp_esc_attr( $form['ad_email'] ); ?>" />
             <?php awpcp_show_form_error( 'ad_email', $errors ); ?>
         </p>

@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_UploadsManager {
 
     private $settings;
@@ -23,8 +27,13 @@ class AWPCP_UploadsManager {
 
     public function move_file_to( $file, $relative_path, $related_directories = array() ) {
         $destination_dir = $this->get_path_for_relative_path( $relative_path );
+        $wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! file_exists( $destination_dir ) && ! mkdir( $destination_dir, awpcp_directory_permissions(), true ) ) {
+        if ( ! $wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        if ( ! is_dir( $destination_dir ) && ! wp_mkdir_p( $destination_dir ) ) {
             throw new AWPCP_Exception( esc_html__( "Destination directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -32,8 +41,8 @@ class AWPCP_UploadsManager {
         $unique_filename    = awpcp_unique_filename( $file->get_path(), $file->get_real_name(), $target_directories );
         $destination_path   = implode( DIRECTORY_SEPARATOR, array( $destination_dir, $unique_filename ) );
 
-        if ( ! rename( $file->get_path(), $destination_path ) ) {
-            unlink( $file->get_path() );
+        if ( ! $wp_filesystem->move( $file->get_path(), $destination_path ) ) {
+            $wp_filesystem->delete( $file->get_path() );
 
             /* translators: %s is the name of the uploaded file. */
             $message = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
@@ -43,7 +52,7 @@ class AWPCP_UploadsManager {
         }
 
         $file->set_path( $destination_path );
-        chmod( $destination_path, 0644 );
+        $wp_filesystem->chmod( $destination_path, 0644 );
 
         return $file;
     }

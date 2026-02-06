@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend\Widgets
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Widget used to display one random ad.
  */

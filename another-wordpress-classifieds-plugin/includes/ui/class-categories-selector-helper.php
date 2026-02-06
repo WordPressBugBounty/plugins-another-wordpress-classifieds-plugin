@@ -3,6 +3,10 @@
  * @package AWPCP\UI
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_categories_selector_helper() {
     return new AWPCP_Categories_Selector_Helper();
 }

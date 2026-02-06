@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_ajax_request_handler( $routes ) {
     return new AWPCP_Ajax_Request_Handler( $routes );

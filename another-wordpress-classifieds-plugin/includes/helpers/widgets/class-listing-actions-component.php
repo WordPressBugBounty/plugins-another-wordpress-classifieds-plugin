@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_listing_actions_component() {
     return new AWPCP_ListingActionsComponent();
 }

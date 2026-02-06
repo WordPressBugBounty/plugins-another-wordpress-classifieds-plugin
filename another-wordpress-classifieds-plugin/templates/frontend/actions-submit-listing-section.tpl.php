@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-actions-submit-listing-section awpcp-submit-listing-section">
     <h2 class="awpcp-submit-listing-section-title js-handler"><?php echo esc_html_x( 'Actions', 'actions submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span></span></h2>
 

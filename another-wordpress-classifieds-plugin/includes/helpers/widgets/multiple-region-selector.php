@@ -3,6 +3,10 @@
  * @package AWPCP\Helpers\Widgets
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_MultipleRegionSelector class.
  */

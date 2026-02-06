@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 $allowed_html = [
     'strong' => [],
     'a'      => [

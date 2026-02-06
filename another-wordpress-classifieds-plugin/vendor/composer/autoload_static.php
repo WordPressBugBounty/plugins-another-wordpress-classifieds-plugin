@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
+class ComposerStaticInitebd79730c252be27bae0e242590bfa46
 {
     public static $classMap = array (
         'AWPCP' => __DIR__ . '/../..' . '/includes/class-awpcp.php',
@@ -139,7 +139,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_DisplaySettings' => __DIR__ . '/../..' . '/includes/settings/class-display-settings.php',
         'AWPCP_DripAutoresponder' => __DIR__ . '/../..' . '/admin/pointers/class-drip-autoresponder.php',
         'AWPCP_DripAutoresponderAjaxHandler' => __DIR__ . '/../..' . '/admin/pointers/class-drip-autoresponder-ajax-handler.php',
-        'AWPCP_EasyDigitalDownloads' => __DIR__ . '/../..' . '/includes/helpers/class-easy-digital-downloads.php',
         'AWPCP_Easy_Digital_Downloads_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_EditListingLinkPlaceholder' => __DIR__ . '/../..' . '/includes/class-edit-listing-link-placeholder.php',
         'AWPCP_EditListingPage' => __DIR__ . '/../..' . '/includes/frontend/class-edit-listing-page.php',
@@ -237,12 +236,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_KeywordListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-keyword-listings-table-search-mode.php',
         'AWPCP_LatestAdsWidget' => __DIR__ . '/../..' . '/frontend/widget-latest-ads.php',
         'AWPCP_Legacy_Listings_Metadata' => __DIR__ . '/../..' . '/includes/class-legacy-listings-metadata.php',
-        'AWPCP_LicenseSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-license-settings-renderer.php',
         'AWPCP_License_Request_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
-        'AWPCP_License_Settings_Actions_Request_Handler' => __DIR__ . '/../..' . '/includes/modules/class-license-settings-actions-request-handler.php',
-        'AWPCP_License_Settings_Update_Handler' => __DIR__ . '/../..' . '/includes/modules/class-license-settings-update-handler.php',
-        'AWPCP_LicensesManager' => __DIR__ . '/../..' . '/includes/helpers/class-licenses-manager.php',
-        'AWPCP_LicensesSettings' => __DIR__ . '/../..' . '/includes/settings/class-licenses-settings.php',
         'AWPCP_ListTableActionInterface' => __DIR__ . '/../..' . '/includes/admin/interface-list-table-action.php',
         'AWPCP_ListTableActionWithMessages' => __DIR__ . '/../..' . '/includes/admin/trait-list-table-action-with-messages.php',
         'AWPCP_ListTableActionsHandler' => __DIR__ . '/../..' . '/includes/admin/class-list-table-actions-handler.php',
@@ -336,10 +330,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice' => __DIR__ . '/../..' . '/admin/class-missing-paypal-merchant-id-setting-notice.php',
         'AWPCP_ModeratorListTableActionTrait' => __DIR__ . '/../..' . '/includes/admin/trait-moderator-list-table-action.php',
         'AWPCP_ModeratorRenewListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-moderator-renew-listing-table-action.php',
-        'AWPCP_Module' => __DIR__ . '/../..' . '/includes/helpers/class-module.php',
-        'AWPCP_ModuleInstaller' => __DIR__ . '/../..' . '/includes/helpers/trait-module-installer.php',
-        'AWPCP_ModulesManager' => __DIR__ . '/../..' . '/includes/helpers/class-modules-manager.php',
-        'AWPCP_ModulesUpdater' => __DIR__ . '/../..' . '/includes/helpers/class-modules-updater.php',
         'AWPCP_Move_Categories_Admin_Page' => __DIR__ . '/../..' . '/admin/categories/class-move-categories-admin-page.php',
         'AWPCP_MultipleRegionSelector' => __DIR__ . '/../..' . '/includes/helpers/widgets/multiple-region-selector.php',
         'AWPCP_NavXTPluginIntegration' => __DIR__ . '/../..' . '/includes/compatibility/class-navxt-plugin-integration.php',
@@ -347,6 +337,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_NoFacebookObjectSelectedException' => __DIR__ . '/../..' . '/includes/listings/facebook/class-no-facebook-object-selected-exception.php',
         'AWPCP_NoIntegrationMethodDefined' => __DIR__ . '/../..' . '/includes/listings/facebook/class-no-integration-method-defined.php',
         'AWPCP_No_Activations_Left_License_Request_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
+        'AWPCP_OnboardingWizard' => __DIR__ . '/../..' . '/includes/admin/class-onboarding-wizard.php',
         'AWPCP_OrderSubmitListingSection' => __DIR__ . '/../..' . '/includes/frontend/class-order-submit-listing-section.php',
         'AWPCP_Page' => __DIR__ . '/../..' . '/includes/helpers/page.php',
         'AWPCP_PageTitleBuilder' => __DIR__ . '/../..' . '/includes/helpers/class-page-title-builder.php',
@@ -539,7 +530,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->classMap = ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d::$classMap;
+            $loader->classMap = ComposerStaticInitebd79730c252be27bae0e242590bfa46::$classMap;
 
         }, null, ClassLoader::class);
     }

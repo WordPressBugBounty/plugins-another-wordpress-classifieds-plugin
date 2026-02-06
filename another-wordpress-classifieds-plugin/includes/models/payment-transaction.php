@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Payment_Transaction {
 
     // public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
@@ -257,8 +261,10 @@ class AWPCP_Payment_Transaction {
             $plan = $payments->get_credit_plan($this->get('credit-plan'));
 
             if (is_null($plan)) {
+                // translators: %d is the number of extra credits needed
                 $message = __( 'The amount of credit in your account is not enough to pay for the selected items. Please choose one of the available Credit Plans in addition to the other items you are about to buy or add credit to your account from your Profile Page.<br>You need %d extra credit.', 'another-wordpress-classifieds-plugin');
             } else {
+                // translators: %d is the number of extra credits needed
                 $message = __( 'The selected Credit Plan is not enough to pay for the selected items. Please choose a bigger Credit Plan or add credit to your account from your Profile Page.<br>You need %d extra credit.', 'another-wordpress-classifieds-plugin');
             }
 

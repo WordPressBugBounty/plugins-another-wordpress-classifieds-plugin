@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_user_profile_contact_information_controller() {
     return new AWPCP_UserProfileContactInformationController( awpcp_request() );

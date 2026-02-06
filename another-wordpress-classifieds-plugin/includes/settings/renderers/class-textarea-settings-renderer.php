@@ -3,6 +3,10 @@
  * @package AWPCP\Settings\Renderers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 4.0.0
  */

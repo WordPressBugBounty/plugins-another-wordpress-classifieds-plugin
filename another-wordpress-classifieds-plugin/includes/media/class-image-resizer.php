@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_image_resizer() {
     return new AWPCP_ImageResizer( awpcp_filesystem(), awpcp()->settings );
@@ -8,18 +13,24 @@ class AWPCP_ImageResizer {
 
     private $filesystem;
     private $settings;
+    private $wp_filesystem;
 
     public function __construct( $filesystem, $settings ) {
-        $this->filesystem = $filesystem;
-        $this->settings = $settings;
+        $this->filesystem    = $filesystem;
+        $this->settings      = $settings;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
+
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
     }
 
     public function create_thumbnail( $source, $filename ) {
         $thumbnails_dir = $this->get_thumbnails_dir();
 
-        $width = $this->settings->get_option( 'imgthumbwidth' );
+        $width  = $this->settings->get_option( 'imgthumbwidth' );
         $height = $this->settings->get_option( 'imgthumbheight' );
-        $crop = $this->settings->get_option( 'crop-thumbnails' );
+        $crop   = $this->settings->get_option( 'crop-thumbnails' );
 
         return $this->make_intermediate_image_size( $source, $filename, $thumbnails_dir, $width, $height, $crop );
     }
@@ -31,8 +42,8 @@ class AWPCP_ImageResizer {
     private function make_intermediate_image_size( $source, $filename, $dest_dir, $width, $height, $crop = false, $suffix='' ) {
         $pathinfo = awpcp_utf8_pathinfo( $source );
 
-        $safe_suffix = empty( $suffix ) ? '.' : "-$suffix.";
-        $extension = $pathinfo['extension'];
+        $safe_suffix      = empty( $suffix ) ? '.' : "-$suffix.";
+        $extension        = $pathinfo['extension'];
         $parent_directory = $pathinfo['dirname'];
 
         $generated_image_name = $filename . $safe_suffix . $extension;
@@ -42,14 +53,14 @@ class AWPCP_ImageResizer {
 
         if ( is_array( $generated_image ) ) {
             $temporary_image_path = implode( DIRECTORY_SEPARATOR, array( $parent_directory, $generated_image['file'] ) );
-            $result = rename( $temporary_image_path, $generated_image_path );
+            $result               = $this->wp_filesystem->move( $temporary_image_path, $generated_image_path );
         }
 
         if ( ! isset( $result ) || $result === false ) {
-            $result = copy( $source, $generated_image_path );
+            $result = $this->wp_filesystem->copy( $source, $generated_image_path );
         }
 
-        chmod( $generated_image_path, 0644 );
+        $this->wp_filesystem->chmod( $generated_image_path, awpcp_get_file_chmod() );
 
         return $result;
     }

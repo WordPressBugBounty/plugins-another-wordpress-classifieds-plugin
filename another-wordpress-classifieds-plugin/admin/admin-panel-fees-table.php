@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_FeesTable extends WP_List_Table {
 
     private $page;
@@ -197,6 +201,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         $duration = str_replace( '<duration-interval>', $payment_term->get_duration_interval(), $duration );
 
         return sprintf(
+            // translators: %s is the duration
             esc_html__( 'Duration: %s', 'another-wordpress-classifieds-plugin' ),
             '<strong>' . esc_html( $duration ) . '</strong>'
         );
@@ -207,6 +212,7 @@ class AWPCP_FeesTable extends WP_List_Table {
      */
     private function get_number_of_images( $payment_term ) {
         return sprintf(
+            // translators: %s is the number of images
             esc_html__( '# of images: %s', 'another-wordpress-classifieds-plugin' ),
             '<strong>' . esc_html( $payment_term->images ) . '</strong>'
         );
@@ -223,6 +229,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         }
 
         return sprintf(
+            // translators: %s is the characters limit
             esc_html__( 'Chars in title: %s', 'another-wordpress-classifieds-plugin' ),
             '<strong>' . esc_html( $characters_limit ) . '</strong>'
         );
@@ -239,6 +246,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         }
 
         return sprintf(
+            // translators: %s is the characters limit
             esc_html__( 'Chars in description: %s', 'another-wordpress-classifieds-plugin' ),
             '<strong>' . esc_html( $characters_limit ) . '</strong>'
         );

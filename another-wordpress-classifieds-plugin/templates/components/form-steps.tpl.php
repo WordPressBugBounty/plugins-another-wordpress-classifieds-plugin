@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-form-steps">
     <ul class="m-awpcp-form-steps__list">
     <?php foreach ( $form_steps as $step ) : ?>

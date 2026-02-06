@@ -3,6 +3,10 @@
  * @package AWPCP/Compatibility
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Plugin integration for SEO Framework plugin.
  *

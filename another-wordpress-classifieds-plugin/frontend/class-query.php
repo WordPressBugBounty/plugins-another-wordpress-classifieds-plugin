@@ -3,6 +3,10 @@
  * @package AWPCP/Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 3.6
  */

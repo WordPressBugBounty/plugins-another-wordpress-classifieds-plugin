@@ -4,6 +4,10 @@
  *
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 function awpcp_place_listing_page() {
@@ -166,6 +170,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $page_name = awpcp_get_page_name('place-ad-page-name');
             $page_url = awpcp_get_page_url('place-ad-page-name');
             $message = sprintf(
+                // translators: %1$s is the page name, %2$s is the transaction ID
                 esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin'),
                 '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
                 esc_html( $transaction->id )
@@ -514,7 +519,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if ( !$transaction->is_doing_checkout() && !$transaction->is_processing_payment() ) {
-            $message = __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            // translators: %s is the transaction ID
+            $message = sprintf( __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin'), esc_html( $transaction->id ) );
             $message = sprintf($message, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }
@@ -1065,7 +1071,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ( ! awpcp_is_valid_email_address( $data['ad_contact_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
         } elseif ( ! awpcp_is_email_address_allowed( $data['ad_contact_email'] ) ) {
-            $message = __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'another-wordpress-classifieds-plugin' );
+            $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
+            // translators: %s is a comma separated list of domain names.
+            $message = sprintf( __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'another-wordpress-classifieds-plugin'), implode( ', ', $domains_whitelist ) );
             $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
             $domains_list = '<strong>' . implode( '</strong>, <strong>', $domains_whitelist ) . '</strong>';
             $errors['ad_contact_email'] = sprintf( $message, $domains_list );

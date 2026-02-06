@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 function awpcp_html_admin_form_Select_renderer() {

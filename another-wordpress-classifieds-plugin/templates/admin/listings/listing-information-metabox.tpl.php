@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <div class="awpcp-listing-information-metabox awpcp-metabox-tabs">
     <ul class="awpcp-tabs">

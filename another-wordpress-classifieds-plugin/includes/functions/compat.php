@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 if ( ! function_exists( 'wp_get_attachment_image_url' ) ) {
     /**

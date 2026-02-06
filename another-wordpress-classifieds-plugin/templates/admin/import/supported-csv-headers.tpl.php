@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <?php $page_id    = 'awpcp-import-supported-csv-headers'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings: Supported CSV Headers', 'another-wordpress-classifieds-plugin' ) ); ?>

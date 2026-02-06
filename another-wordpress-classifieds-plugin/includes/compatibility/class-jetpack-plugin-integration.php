@@ -1,10 +1,14 @@
 <?php
-
 /**
  * Constructor function for Jetpack Plugin Integration class.
  *
  * @since 3.8.3
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_jetpack_plugin_integration() {
     return new AWPCP_Jetpack_Plugin_Integration( awpcp_query() );
 }

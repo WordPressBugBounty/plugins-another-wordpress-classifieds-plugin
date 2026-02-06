@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_html_admin_form_checkbox_textfield_renderer() {
     return new AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer();

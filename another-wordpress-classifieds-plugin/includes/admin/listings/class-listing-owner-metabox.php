@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A replacement for the Author metabox that uses {@see AWPCP_UserSelector} to
  * render a users dropdown or autocomplete field.

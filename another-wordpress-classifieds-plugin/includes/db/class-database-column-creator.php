@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_database_column_creator() {
     return new AWPCP_DatabaseColumnCreator( $GLOBALS['wpdb'] );

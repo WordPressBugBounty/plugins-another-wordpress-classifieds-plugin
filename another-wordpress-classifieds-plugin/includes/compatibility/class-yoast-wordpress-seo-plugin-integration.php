@@ -3,6 +3,10 @@
  * @package AWPCP/Compatibility
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for Yoast WordPress SEO Plugin Integration.
  */

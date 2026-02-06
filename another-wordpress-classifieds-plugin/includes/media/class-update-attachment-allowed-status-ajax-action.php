@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_update_attachment_allowed_status_ajax_handler() {
     $attachment_action = new AWPCP_Update_Attachment_Allowed_Status_Ajax_Action(
         awpcp_attachments_logic(),

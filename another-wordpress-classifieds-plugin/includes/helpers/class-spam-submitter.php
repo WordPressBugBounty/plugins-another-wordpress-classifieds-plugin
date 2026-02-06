@@ -3,6 +3,10 @@
  * @package AWPCP\Helpers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class used to submit spam reports to Akismet.
  */

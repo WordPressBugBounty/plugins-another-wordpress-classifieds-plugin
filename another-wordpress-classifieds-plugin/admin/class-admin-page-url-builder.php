@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_admin_page_url_builder() {
     return new AWPCP_Admin_Page_URL_Builder();

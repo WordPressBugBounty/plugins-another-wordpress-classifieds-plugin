@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once AWPCP_DIR . '/admin/admin-panel-users.php';
 
 function awpcp_admin_panel() {
@@ -368,7 +372,7 @@ class AWPCP_AdminPanel {
      * @since 4.01
      */
     private function maybe_redirect_quick_page() {
-        $listing_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0;
+        $listing_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification
         if ( $listing_id ) {
             wp_safe_redirect( get_permalink( $listing_id ) );
             exit();
@@ -378,7 +382,7 @@ class AWPCP_AdminPanel {
     private function configure_regular_routes( $parent_menu, $router ) {
         $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );
 
-        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
+        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'awpcp-admin-upgrade' ) { // phpcs:ignore WordPress.Security.NonceVerification
             $this->configure_route_for_manual_upgrade_admin_page( $parent_page, $router );
         }
 
@@ -425,6 +429,7 @@ class AWPCP_AdminPanel {
         if ( awpcp_get_var( array( 'param' => 'action' ) ) === 'awpcp-manage-credits' ) {
             $message = __( 'Use the Account Balance column on the table below to manage credit balance for users.', 'another-wordpress-classifieds-plugin' );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_render_info_message( $message );
         }
 
@@ -551,6 +556,7 @@ class AWPCP_AdminPanel {
             $view_categories_label = awpcp()->settings->get_option_label( $view_categories_option );
             $view_categories_label = sprintf( '<strong>%s</strong>', ucwords( $view_categories_label ) );
 
+            // translators: %1$s is the page name, %2$s is the view categories page name
             $first_line = _n(
                 'Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s is going to be unreachable until this changes.',
                 'Pages %1$s have the same URL as the %2$s from AWPCP. The WordPress pages %1$s is going to be unreachable until this changes.',
@@ -559,6 +565,7 @@ class AWPCP_AdminPanel {
             );
             $first_line = sprintf( $first_line, $duplicated_pages, $view_categories_label );
 
+            // translators: %1$s is the page name
             $second_line = _n(
                 'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress page was created to show the default list of AWPCP categories, you can delete it and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
                 'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress pages were created to show the default list of AWPCP categories, you can delete them and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
@@ -567,6 +574,7 @@ class AWPCP_AdminPanel {
             );
             $second_line = sprintf( $second_line, $view_categories_label );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error( $first_line . '<br/><br/>' . $second_line );
         }
     }

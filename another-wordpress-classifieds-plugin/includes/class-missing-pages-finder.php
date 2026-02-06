@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_missing_pages_finder() {
     return new AWPCP_Missing_Pages_Finder(

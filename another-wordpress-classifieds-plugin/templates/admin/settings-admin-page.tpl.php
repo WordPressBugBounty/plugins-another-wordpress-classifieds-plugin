@@ -5,6 +5,10 @@
  * @package AWPCP\Admin\Pages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 settings_errors();
 ?>
 

@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.2.1
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_AllInOneSEOPackPluginIntegration {
 
     private $metadata;

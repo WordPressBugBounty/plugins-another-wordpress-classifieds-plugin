@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><form method="post" action="<?php echo esc_attr( $page->url( array( 'action' => false ) ) ); ?>">
     <p><?php esc_html_e( 'The table below shows all the form fields that users may need to fill to create a listing. Use the six-dots icons at the end of each row to drag the form fields around and modify the order in which those fields appear in the Ad Details form.', 'another-wordpress-classifieds-plugin' ); ?></p>
     <p>

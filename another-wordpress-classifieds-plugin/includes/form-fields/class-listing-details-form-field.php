@@ -3,6 +3,10 @@
  * @package AWPCP\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_listing_details_form_field( $slug ) {
     return new AWPCP_ListingDetailsFormField(
         $slug,

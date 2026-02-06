@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_credit_plans_notices() {
     return new AWPCP_CreditPlansNotices( awpcp()->settings, awpcp_payments_api() );
@@ -31,6 +36,7 @@ class AWPCP_CreditPlansNotices {
             '<a href="' . esc_url( awpcp_get_admin_credit_plans_url() ) . '">',
             '</a>'
         );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 }

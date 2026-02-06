@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 if ( defined( 'CRYPTX_BASENAME' ) ) {
     add_action( 'init', 'awpcp_cryptx_compatibility' );

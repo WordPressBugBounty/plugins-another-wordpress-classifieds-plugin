@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_media_uploaded_notification() {
     return new AWPCP_Media_Uploaded_Notification(

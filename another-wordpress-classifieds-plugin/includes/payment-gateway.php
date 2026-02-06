@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class AWPCP_PaymentGateway
  */

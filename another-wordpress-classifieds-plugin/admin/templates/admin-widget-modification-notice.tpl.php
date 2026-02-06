@@ -1,3 +1,9 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
+
 <div id="widget-modification-notice" class="update-nag clearfix awpcp-sticky-notice">
     <p><?php esc_html_e( 'Thank you for using AWP Classifieds Plugin.', 'another-wordpress-classifieds-plugin' ); ?>
     <p><?php esc_html_e( 'AWPCP 3.0 includes several modifications to the Search Ads, Featured Ads and Latest Ads widgets. For example, the Latest Ads widget can now be used in multiple sidebars. Also, there is a new Widget to show Random Ads.', 'another-wordpress-classifieds-plugin'); ?></p>

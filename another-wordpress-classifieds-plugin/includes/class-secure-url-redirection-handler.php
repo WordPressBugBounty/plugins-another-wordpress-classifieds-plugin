@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_secure_url_redirection_handler() {
     return new AWPCP_SecureURLRedirectionHandler( awpcp_query() );

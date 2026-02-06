@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_html_select_renderer() {
     return new AWPCP_HTML_Select_Renderer();

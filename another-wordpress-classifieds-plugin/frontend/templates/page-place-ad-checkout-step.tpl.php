@@ -1,4 +1,9 @@
-<h2><?php esc_html_e( 'Complete Payment', 'another-wordpress-classifieds-plugin' ); ?></h2>
+<h2><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e( 'Complete Payment', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
@@ -11,7 +16,7 @@
 ?>
 
 <?php foreach ($messages as $message): ?>
-    <?php echo awpcp_print_message($message) ?>
+    <?php echo awpcp_print_message($message); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php $payments->show_checkout_page( $transaction, $hidden ); ?>

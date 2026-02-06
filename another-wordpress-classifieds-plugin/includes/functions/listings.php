@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_display_listings( $query_vars, $context, $options ) {
     $options = wp_parse_args( $options, array(
         'page' => false,
@@ -290,17 +294,18 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
         'flag-error-message'        => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' ),
     ) );
 
-    $preview = $preview === true || 'preview' == awpcp_array_data('adstatus', '', $_GET);
+    // phpcs:ignore WordPress.Security.NonceVerification
+    $preview      = $preview === true || 'preview' === awpcp_array_data('adstatus', '', $_GET);
     $is_moderator = awpcp_current_user_is_moderator();
-    $messages = array();
+    $messages     = array();
 
     $permastruc = get_option('permalink_structure');
     if (!isset($adid) || empty($adid)) {
-        if (isset($_REQUEST['adid']) && !empty($_REQUEST['adid'])) {
+        if (isset($_REQUEST['adid']) && !empty($_REQUEST['adid'])) { // phpcs:ignore WordPress.Security.NonceVerification
             $adid = awpcp_get_var( array( 'param' => 'adid' ) );
-        } elseif (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
+        } elseif (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) { // phpcs:ignore WordPress.Security.NonceVerification
             $adid = awpcp_get_var( array( 'param' => 'id' ) );
-        } else if (isset($permastruc) && !empty($permastruc)) {
+        } elseif (isset($permastruc) && !empty($permastruc)) {
             $adid = get_query_var( 'id' );
         } else {
             $adid = 0;

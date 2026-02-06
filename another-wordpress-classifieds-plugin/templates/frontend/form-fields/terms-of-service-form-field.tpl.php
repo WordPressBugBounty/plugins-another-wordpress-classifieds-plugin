@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><p class="awpcp-form-spacer">
     <?php if ( $show_checkbox ) : ?>
         <?php if ( $show_link ) : ?>

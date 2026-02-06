@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_update_file_enabled_status_ajax_handler() {
     $attachment_action = new AWPCP_Update_Attachment_Enabled_Status_Ajax_Action(

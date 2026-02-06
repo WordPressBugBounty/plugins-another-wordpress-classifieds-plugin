@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_image_placeholders() {
     $container = awpcp()->container;
 
@@ -187,8 +191,8 @@ class AWPCP_Image_Placeholders {
             $image_attributes = array(
                 'attributes' => array(
                     'class' => 'awpcp-listing-primary-image-thumbnail awpcp-noimage-placeholder',
-                    'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
-                    'src' => esc_attr( $thumbnail ),
+                    'alt'   => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
+                    'src'   => esc_attr( $thumbnail ),
                     'width' => esc_attr( $thumbnail_width ),
                 ),
             );

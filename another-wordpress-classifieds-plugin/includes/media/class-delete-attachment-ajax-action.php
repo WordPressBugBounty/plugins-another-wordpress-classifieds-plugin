@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_delete_attachment_ajax_handler() {
     $attachment_action = new AWPCP_Delete_Attachment_Ajax_Action(

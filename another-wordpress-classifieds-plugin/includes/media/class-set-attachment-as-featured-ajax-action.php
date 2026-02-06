@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_set_attachment_as_featured_ajax_handler() {
     $attachment_action = new AWPCP_Set_Attachment_As_Featured_Ajax_Action(

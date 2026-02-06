@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provides an [raw] shortoce that attempts to fix a theme conflict with
  * themes based on ThemeForest framework.
@@ -8,6 +7,11 @@
  * http://theandystratton.com/2011/shortcode-autoformatting-html-with-paragraphs-and-line-breaks
  * https://github.com/drodenbaugh/awpcp/issues/312#issuecomment-9582286
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_RawShortcode {
 
     private $raw = array();

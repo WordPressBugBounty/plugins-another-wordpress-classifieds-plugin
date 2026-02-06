@@ -1,9 +1,14 @@
-<?php foreach ( $messages as $message ): ?>
-    <?php echo awpcp_print_message( $message ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ foreach ( $messages as $message ): ?>
+    <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 
 <?php foreach ( $errors as $error ): ?>
-    <?php echo awpcp_print_error( $error ); ?>
+    <?php echo awpcp_print_error( $error ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 
 <?php $payments->show_account_balance(); ?>

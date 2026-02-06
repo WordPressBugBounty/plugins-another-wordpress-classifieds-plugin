@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_task_logic_factory() {
     return new AWPCP_TaskLogicFactory();

@@ -1,3 +1,9 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
+
 <tr style="" class="inline-edit-row quick-edit-row alternate inline-editor" id="edit-1">
     <td class="colspanchange" colspan="5">
         <?php $id = awpcp_get_property( $entry, 'id', false ); ?>

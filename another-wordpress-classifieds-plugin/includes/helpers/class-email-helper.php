@@ -3,6 +3,10 @@
  * @package AWPCP\Helpers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Prepares Email instances loading content from email-template setting.
  */

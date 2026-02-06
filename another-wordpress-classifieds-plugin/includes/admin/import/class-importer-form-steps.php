@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Defines the list of form steps shown on the Import Listings admin screens.
  */

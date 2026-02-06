@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 function awpcp_reply_to_listing_page() {

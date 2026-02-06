@@ -3,6 +3,10 @@
  * @package AWPCP\HTML
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for HTML Admin Form Textarea Renderer class.
  */

@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.5.3
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_pages_creator() {
     return new AWPCP_Pages_Creator();
 }

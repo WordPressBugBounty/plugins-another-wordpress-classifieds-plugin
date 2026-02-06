@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_main_classifieds_admin_page() {
     return new AWPCP_MainClassifiedsAdminPage();

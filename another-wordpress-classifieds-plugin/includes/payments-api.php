@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_PaymentsAPI {
 
     private $request = null;
@@ -512,6 +516,7 @@ class AWPCP_PaymentsAPI {
 
             /* translators: %s link HTML */
             $messages[] = sprintf(
+                // translators: %s is the home page URL
                 esc_html__( 'Return to %shome page', 'another-wordpress-classifieds-plugin' ),
                 '<a href="' . esc_url( home_url() ) . '">'
             ) . '</a>';
@@ -696,6 +701,7 @@ class AWPCP_PaymentsAPI {
         }
 
         $message = sprintf(
+            // translators: %1$s is the current credit balance, %2$s is the credit balance after the transaction is completed
             __( 'You currently have %1$s credits in your account. The balance after this transaction is completed successfully will be %2$s.', 'another-wordpress-classifieds-plugin' ),
             $this->format_account_balance( $transaction->user_id ),
             $credits_after
@@ -725,11 +731,12 @@ class AWPCP_PaymentsAPI {
         $text = sprintf( __( 'You currently have %s credits in your account.', 'another-wordpress-classifieds-plugin' ), $balance );
 
         if ( $this->echo ) {
-            echo awpcp_print_message( esc_html( $text ) );
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo awpcp_print_message( $text );
             return;
         }
 
-        return awpcp_print_message( esc_html( $text ) );
+        return awpcp_print_message( $text );
     }
 
     /**

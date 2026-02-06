@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_mashshare_plugin_integration() {
     return new AWPCP_MashShare_Plugin_Integration( awpcp_query() );

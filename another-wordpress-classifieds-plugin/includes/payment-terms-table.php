@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_PaymentTermsTable {
 
@@ -99,6 +104,7 @@ class AWPCP_PaymentTermsTable {
         );
 
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_html_attributes( $attrs );
             return;
         }

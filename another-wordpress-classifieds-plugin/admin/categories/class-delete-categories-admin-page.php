@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_Delete_Categories_Admin_Page.
  */
@@ -48,20 +52,24 @@ class AWPCP_Delete_Categories_Admin_Page {
     }
 
     public function try_to_delete_categories() {
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
+
+        if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $selected_categories  = $this->request->post( 'category_to_delete_or_move' );
         $target_category_id   = $this->request->post( 'moveadstocategory', 1 );
         $should_move_listings = $this->request->post( 'movedeleteads', 1 ) === 1;
         $target_category      = null;
-        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
-        if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
-            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
-        }
+
         if ( $should_move_listings ) {
             try {
                 $target_category = $this->categories->get( $target_category_id );
             } catch ( AWPCP_Exception $e ) {
                 $message = sprintf(
-                    __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selected to become the new category associated to affected ads. %s", 'another-wordpress-classifieds-plugin' ),
+                    // translators: %s is the error message
+                    __( "The categories couldn't be deleted because there was an error trying to load the category that you selected to become the new category associated to affected ads. %s", 'another-wordpress-classifieds-plugin' ),
                     $e->getMessage()
                 );
 

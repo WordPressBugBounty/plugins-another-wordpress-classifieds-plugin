@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-upload-media-submit-listing-section awpcp-submit-listing-section">
     <h2 class="awpcp-submit-listing-section-title js-handler"><?php echo esc_html_x( 'Images and attachments', 'upload media submit listing section', 'another-wordpress-classifieds-plugin' ); ?><span></span></h2>
 
@@ -15,7 +19,7 @@
             <?php else : ?>
 
                 <?php foreach ( $messages as $message ) : ?>
-                    <?php echo awpcp_print_message( $message ); ?>
+                    <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 <?php endforeach; ?>
 
                 <?php include AWPCP_DIR . '/templates/components/media-center.tpl.php'; ?>

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <?php $page_id = 'awpcp-tools'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Tools', 'another-wordpress-classifieds-plugin' ) ); ?>

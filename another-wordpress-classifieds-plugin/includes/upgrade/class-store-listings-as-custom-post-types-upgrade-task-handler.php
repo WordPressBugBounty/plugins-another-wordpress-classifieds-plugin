@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * This upgrade routine converts records from the ads table into posts with the
  * awpcp_listing post type.

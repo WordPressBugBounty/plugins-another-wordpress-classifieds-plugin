@@ -1,3 +1,9 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+?>
+
 <h3><?php echo esc_html( __( 'Classifieds Contact Information', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
 <table class="form-table">

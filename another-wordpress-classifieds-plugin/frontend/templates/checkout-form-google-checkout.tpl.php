@@ -1,4 +1,9 @@
-<form action="<?php echo esc_attr( $google_checkout_url ); ?>" method="post">
+<form action="<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo esc_attr( $google_checkout_url ); ?>" method="post">
     <input type="hidden" name="item_name_1" value="<?php echo esc_attr( $item->name ); ?>" />
     <input type="hidden" name="item_description_1" value="<?php echo esc_attr( $item->name ); ?>" />
     <input type="hidden" name="item_price_1" value="<?php echo esc_attr( $amount ); ?>" />

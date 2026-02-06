@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-media-center">
     <?php $media_uploader = awpcp_listings_media_uploader_component(); ?>
     <?php $media_uploader->show( $media_uploader_configuration ); ?>

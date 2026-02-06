@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_CategoriesWidget extends WP_Widget {
 
@@ -48,7 +53,7 @@ class AWPCP_CategoriesWidget extends WP_Widget {
     }
 
     public function update($new_instance, $old_instance) {
-        $instance['title'] = strip_tags( $new_instance['title'] );
+        $instance['title'] = wp_strip_all_tags( $new_instance['title'] );
         $instance['hide-empty'] = intval( $new_instance['hide-empty'] );
         $instance['show-parents-only'] = intval( $new_instance['show-parents-only'] );
         $instance['show-ad-count'] = intval( $new_instance['show-ad-count'] );

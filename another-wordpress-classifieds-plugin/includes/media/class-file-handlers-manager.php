@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Allows the plugin and premium modules to register File Handlers for the types
  * of files currently supported and provide methods to retrieve the appropriate

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_classifieds_search_bar_component() {
     return new AWPCP_Classifieds_Search_Bar_Component();

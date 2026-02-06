@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 $columns = $this->get_columns();
 $group   = '';
 ?>

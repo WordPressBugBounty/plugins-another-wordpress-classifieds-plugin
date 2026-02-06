@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Class used to send email notifiations when a listing is renewed.
  */
@@ -47,10 +51,9 @@ class AWPCP_ListingRenewedEmailNotifications {
             $this->listing_renderer->get_contact_name( $listing )
         );
 
-        $mail->subject = sprintf(
-            $this->settings->get_option( 'ad-renewed-email-subject' ),
-            $this->listing_renderer->get_listing_title( $listing )
-        );
+        $subject_template = $this->settings->get_option( 'ad-renewed-email-subject' );
+        $listing_title    = $this->listing_renderer->get_listing_title( $listing );
+        $mail->subject    = $subject_template ? $subject_template : $listing_title;
 
         $mail->body = $this->get_user_notification_body( $listing );
 

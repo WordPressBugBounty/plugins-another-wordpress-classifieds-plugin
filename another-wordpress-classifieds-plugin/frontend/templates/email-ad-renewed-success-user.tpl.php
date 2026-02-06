@@ -1,4 +1,9 @@
-<?php // emails are sent in plain text, blank lines in templates are required ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ // emails are sent in plain text, blank lines in templates are required ?>
 <?php echo wp_kses_post( $introduction ); ?>
 
 
@@ -16,9 +21,8 @@
 
 <?php esc_html_e( 'Listing End Date', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $end_date ); ?>
 
-
-
 <?php
+    // translators: %s is the admin email
     $text = __( 'If you have questions about your listing, please contact %s.', 'another-wordpress-classifieds-plugin' );
     echo esc_html( sprintf( $text, awpcp_admin_recipient_email_address() ) );
 ?>

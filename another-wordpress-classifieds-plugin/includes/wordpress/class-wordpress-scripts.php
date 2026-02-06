@@ -3,6 +3,10 @@
  * @package AWPCP/WordPress
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 3.6
  */

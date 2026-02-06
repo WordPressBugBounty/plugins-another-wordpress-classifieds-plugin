@@ -1,3 +1,9 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
+
 <tr style="" class="inline-edit-row quick-edit-row alternate inline-editor" id="edit-1">
     <td class="colspanchange" colspan="<?php echo esc_attr( $columns ); ?>">
         <form action="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" method="post">

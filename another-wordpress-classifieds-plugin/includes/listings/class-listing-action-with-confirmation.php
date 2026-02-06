@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 abstract class AWPCP_ListingActionWithConfirmation extends AWPCP_ListingAction {
 

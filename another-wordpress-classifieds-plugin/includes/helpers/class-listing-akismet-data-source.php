@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_listing_spam_filter() {
     return new AWPCP_SpamFilter( awpcp_akismet_wrapper_factory()->get_akismet_wrapper(), awpcp_listing_akismet_data_source() );

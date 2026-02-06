@@ -1,4 +1,9 @@
-<?php awpcp_print_messages() ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ awpcp_print_messages() ?>
 
 <div class="<?php echo esc_attr( $page->page ); ?> awpcp-page" id="classiwrapper">
 

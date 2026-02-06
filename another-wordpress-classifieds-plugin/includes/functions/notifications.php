@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_send_listing_posted_notification_to_user( $listing, $transaction, $message ) {
     if ( get_awpcp_option( 'send-user-ad-posted-notification' ) ) {

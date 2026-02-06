@@ -3,14 +3,18 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><h2><?php esc_html_e( 'Select Payment Term', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php foreach ($messages as $message): ?>
-    <?php echo awpcp_print_message($message) ?>
+    <?php echo awpcp_print_message($message); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php foreach ($transaction_errors as $error): ?>
-    <?php echo awpcp_print_message($error, array('error')) ?>
+    <?php echo awpcp_print_message($error, array('error')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php if (!awpcp_current_user_is_admin()): ?>

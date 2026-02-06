@@ -1,5 +1,11 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message);
     }
 ?>
@@ -7,6 +13,7 @@
 <p>
     <?php
     printf(
+        // translators: %s is the ad link
         esc_html__( 'You are responding to Ad: %s.', 'another-wordpress-classifieds-plugin'),
         wp_kses_post( $ad_link )
     );

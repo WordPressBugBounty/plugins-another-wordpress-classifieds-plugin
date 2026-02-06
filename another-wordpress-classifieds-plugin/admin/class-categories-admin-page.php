@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_categories_admin_page() {
     return new AWPCP_CategoriesAdminPage(
         awpcp()->container['listing_category_taxonomy'],

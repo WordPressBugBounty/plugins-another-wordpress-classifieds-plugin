@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to store media records as attachments.
  */
@@ -136,8 +140,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         remove_filter( 'intermediate_image_sizes_advanced', '__return_empty_array', 20181224 );
 
         if ( file_exists( $tmp_name ) ) {
-            // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
-            @unlink( $tmp_name );
+            wp_delete_file( $tmp_name );
         }
 
         // If error storing permanently, unlink.

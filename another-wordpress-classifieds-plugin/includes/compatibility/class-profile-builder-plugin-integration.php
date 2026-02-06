@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_profile_builder_plugin_integration() {
     _deprecated_function( __FUNCTION__, '4.2' );

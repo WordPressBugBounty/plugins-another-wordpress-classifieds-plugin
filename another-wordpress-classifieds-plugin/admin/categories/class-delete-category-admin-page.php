@@ -5,6 +5,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for Delete_Category_Admin_Page.
  */
@@ -61,13 +65,15 @@ class AWPCP_Delete_Category_Admin_Page {
     }
 
     private function try_to_delete_category( $category ) {
-        $target_category_id   = awpcp_get_var( array( 'param' => 'target_category_id' ), 'post' );
-        $should_move_listings = ads_exist_cat( $category->term_id );
-        $nonce                = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
             throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
+
+        $target_category_id   = awpcp_get_var( array( 'param' => 'target_category_id' ), 'post' );
+        $should_move_listings = ads_exist_cat( $category->term_id );
+
         try {
             $target_category = $this->categories->get( $target_category_id );
         } catch ( AWPCP_Exception $e ) {

@@ -1,4 +1,9 @@
-<?php if ( ! $download ) : ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+if ( ! $download ) : ?>
     <?php $page_id = 'awpcp-admin-debug'; ?>
     <?php $page_title = awpcp_admin_page_title( __( 'Debug', 'another-wordpress-classifieds-plugin' ) ); ?>
 

@@ -1,10 +1,14 @@
 <?php
-
 /**
  * TODO: Use in BuyCreditsPage.
  * TODO: test.
  * @since 3.2.1
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
 
     private $controller;

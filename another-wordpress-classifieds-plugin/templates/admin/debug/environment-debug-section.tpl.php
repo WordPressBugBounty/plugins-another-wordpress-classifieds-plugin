@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><table class="awpcp-debug-environment-properties widefat striped">
     <tbody>
     <?php foreach ( $properties as $property ) : ?>

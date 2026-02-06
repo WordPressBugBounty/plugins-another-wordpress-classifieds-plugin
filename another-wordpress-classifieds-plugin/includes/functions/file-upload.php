@@ -1,10 +1,31 @@
 <?php
+/**
+ * Initialize WordPress file system.
+ *
+ * @since 4.4
+ * @return WP_Filesystem_Base|false WP_Filesystem instance or false on failure
+ */
+function awpcp_get_wp_filesystem() {
+    global $wp_filesystem;
+
+    if ( empty( $wp_filesystem ) ) {
+        require_once ABSPATH . '/wp-admin/includes/file.php';
+        WP_Filesystem();
+    }
+
+    return $wp_filesystem;
+}
 
 /**
  * Return mime types associated with image files.
  *
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_get_image_mime_types() {
     return array(
         'image/png',
@@ -17,18 +38,23 @@ function awpcp_get_image_mime_types() {
  * @param $file A $_FILES item
  */
 function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $max_size, $min_width, $min_height, $uploaded=true) {
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
+        return __( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' );
+    }
+
     $filename = sanitize_file_name($filename);
     $newname = wp_unique_filename($directory, $filename);
     $newpath = trailingslashit($directory) . $newname;
 
-    if ( !file_exists( $tmpname ) ) {
+    if ( ! $wp_filesystem->exists( $tmpname ) ) {
         /* translators: %s the file name */
         return sprintf( __( 'The specified image file does not exists: %s.', 'another-wordpress-classifieds-plugin' ), $tmpname );
     }
 
     $ext = strtolower( awpcp_get_file_extension( $filename ) );
     $imginfo = getimagesize($tmpname);
-    $size = filesize($tmpname);
+    $size = $wp_filesystem->size($tmpname);
 
     $allowed_extensions = array('gif', 'jpg', 'jpeg', 'png');
 
@@ -46,7 +72,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
         return sprintf( $message, $filename );
     }
 
-    if (!(in_array($ext, $allowed_extensions))) {
+    if (!(in_array($ext, $allowed_extensions, true))) {
         /* translators: %s the file name */
         return sprintf( __( 'The file %s has an invalid extension and was rejected.', 'another-wordpress-classifieds-plugin'), $filename );
 
@@ -75,12 +101,12 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
         return sprintf( $message, $filename, $min_height );
     }
 
-    if ($uploaded && !@move_uploaded_file($tmpname, $newpath)) {
+    if ($uploaded && !$wp_filesystem->move($tmpname, $newpath)) {
         /* translators: %s the file name */
         $message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
         return sprintf($message, $filename);
 
-    } elseif (!$uploaded && !@copy($tmpname, $newpath)) {
+    } elseif (!$uploaded && !$wp_filesystem->copy($tmpname, $newpath)) {
         /* translators: %s the file name */
         $message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
         return sprintf($message, $filename);
@@ -89,16 +115,21 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
     if (!awpcp_create_image_versions($newname, $directory)) {
         /* translators: %s the file name */
         $message = __( 'Could not create resized versions of image %s.', 'another-wordpress-classifieds-plugin');
-        @unlink($newpath);
+        $wp_filesystem->delete($newpath);
         return sprintf($message, $filename);
     }
 
-    @chmod($newpath, 0644);
+    $wp_filesystem->chmod($newpath, 0644);
 
     return array('original' => $filename, 'filename' => $newname);
 }
 
 function awpcp_setup_uploads_dir() {
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
+        return false;
+    }
+
     // TODO: Remove directory permissions setting when this code is finally removed.
     $permissions = awpcp_directory_permissions();
 
@@ -109,43 +140,29 @@ function awpcp_setup_uploads_dir() {
     require_once( AWPCP_DIR . '/includes/class-fileop.php' );
 
     $fileop = new fileop();
-    $owner = fileowner(WP_CONTENT_DIR);
 
-    if (!is_dir($upload_dir) && is_writable(WP_CONTENT_DIR)) {
+    if (!$wp_filesystem->is_dir($upload_dir) && $wp_filesystem->is_writable(WP_CONTENT_DIR)) {
         umask(0);
         wp_mkdir_p( $upload_dir );
-        chown($upload_dir, $owner);
     }
 
-    // TODO: It is a waste of resources to check this on every request.
-    if ( ! is_writable( $upload_dir ) ) {
-        $fileop->set_permission( $upload_dir, $permissions );
-    }
+    $wp_filesystem->chmod( $upload_dir, $permissions );
 
     $images_dir = $upload_dir . 'awpcp/';
     $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
 
-    if (!is_dir($images_dir) && is_writable($upload_dir)) {
+    if (!$wp_filesystem->is_dir($images_dir) && $wp_filesystem->is_writable($upload_dir)) {
         umask(0);
         wp_mkdir_p( $images_dir );
-        @chown($images_dir, $owner);
     }
 
-    if (!is_dir($thumbs_dir) && is_writable($upload_dir)) {
+    if (!$wp_filesystem->is_dir($thumbs_dir) && $wp_filesystem->is_writable($upload_dir)) {
         umask(0);
         wp_mkdir_p( $thumbs_dir );
-        @chown($thumbs_dir, $owner);
     }
 
-    // TODO: It is a waste of resources to check this on every request.
-    if ( ! is_writable( $images_dir ) ) {
-        $fileop->set_permission( $images_dir, $permissions );
-    }
-
-    // TODO: It is a waste of resources to check this on every request.
-    if ( ! is_writable( $thumbs_dir ) ) {
-        $fileop->set_permission( $thumbs_dir, $permissions );
-    }
+    $wp_filesystem->chmod( $images_dir, $permissions );
+    $wp_filesystem->chmod( $thumbs_dir, $permissions );
 
     return array($images_dir, $thumbs_dir);
 }
@@ -206,11 +223,11 @@ function awpcp_fix_image_rotation( $filepath ) {
     $mime_type = isset( $exif_data['MimeType'] ) ? $exif_data['MimeType'] : '';
 
     $rotation_angle = 0;
-    if ( 6 == $orientation ) {
+    if ( 6 === $orientation ) {
         $rotation_angle = 90;
-    } elseif ( 3 == $orientation ) {
+    } elseif ( 3 === $orientation ) {
         $rotation_angle = 180;
-    } elseif ( 8 == $orientation ) {
+    } elseif ( 8 === $orientation ) {
         $rotation_angle = 270;
     }
 
@@ -275,6 +292,11 @@ function awpcp_rotate_image_with_gd( $filepath, $mime_type, $angle ) {
  * XXX: Moved to ImageFileProcessor class.
  */
 function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=false, $suffix='') {
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
+        return false;
+    }
+
     $path_info = awpcp_utf8_pathinfo( $file );
     $filename = preg_replace("/\.{$path_info['extension']}/", '', $path_info['basename']);
     $suffix = empty($suffix) ? '.' : "-$suffix.";
@@ -283,17 +305,17 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
 
     $image = image_make_intermediate_size($file, $width, $height, $crop);
 
-    if (!is_writable($directory)) {
-        @chmod( $directory, awpcp_directory_permissions() );
+    if (!$wp_filesystem->is_writable($directory)) {
+        $wp_filesystem->chmod( $directory, awpcp_directory_permissions() );
     }
 
     if (is_array($image) && !empty($image)) {
         $tmppath = trailingslashit($path_info['dirname']) . $image['file'];
-        $result = rename($tmppath, $newpath);
+        $result = $wp_filesystem->move($tmppath, $newpath);
     } else {
-        $result = copy($file, $newpath);
+        $result = $wp_filesystem->copy($file, $newpath);
     }
-    @chmod($newpath, 0644);
+    $wp_filesystem->chmod($newpath, 0644);
 
     return $result;
 }
@@ -306,9 +328,20 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
  * @since 3.6
  */
 function awpcp_scandir( $path, $args = array() ) {
-    if ( ! is_dir( $path ) ) {
+    // $args parameter is kept for backward compatibility but not currently used
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
         return array();
     }
 
-    return array_diff( scandir( $path ), array( '.', '..' ) );
+    if ( ! $wp_filesystem->is_dir( $path ) ) {
+        return array();
+    }
+
+    $files = $wp_filesystem->dirlist( $path );
+    if ( ! $files ) {
+        return array();
+    }
+
+    return array_keys( $files );
 }

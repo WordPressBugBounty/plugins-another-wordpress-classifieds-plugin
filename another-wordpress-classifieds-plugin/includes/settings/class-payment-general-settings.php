@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 4.0.0
  */
@@ -51,6 +55,7 @@ class AWPCP_PaymentSettings {
         $settings_manager->add_section( 'general-payment-settings', __( 'Payment Settings', 'another-wordpress-classifieds-plugin' ), 'general-payment-settings', 10, array( $settings_manager, 'section' ) );
 
         $link = sprintf( '<a href="%s">', esc_attr( awpcp_get_admin_fees_url() ) );
+        // translators: %s is the fees admin page URL
         $helptext = __( 'When this is turned on, people will use <manage-fees-link>fee plans</a> to pay for your classifieds. Leave it off if you never want to charge for any ads.', 'another-wordpress-classifieds-plugin' );
         $helptext = str_replace( '<manage-fees-link>', $link, $helptext );
 
@@ -167,6 +172,7 @@ class AWPCP_PaymentSettings {
             'type'        => 'textfield',
             'default'     => '',
             'description' => sprintf(
+                // translators: %s is the PayPal settings URL
                 esc_html__( 'Merchant ID associated with the PayPal account that will receive the payments. Go to %s to obtain your Merchant ID.', 'another-wordpress-classifieds-plugin' ),
                 '<a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a>'
             ),

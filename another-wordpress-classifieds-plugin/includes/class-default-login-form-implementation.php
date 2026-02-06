@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_default_login_form_implementation() {
     return new AWPCP_Default_Login_Form_Implementation( awpcp()->settings );

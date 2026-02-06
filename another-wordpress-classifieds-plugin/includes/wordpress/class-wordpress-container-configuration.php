@@ -3,6 +3,10 @@
  * @package AWPCP\WordPress
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register constructor for classes that wrap or extend WordPress classes and
  * functions.

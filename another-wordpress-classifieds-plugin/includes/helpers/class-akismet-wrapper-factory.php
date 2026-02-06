@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_akismet_wrapper_factory() {
     return new AWPCP_AkismetWrapperFactory();

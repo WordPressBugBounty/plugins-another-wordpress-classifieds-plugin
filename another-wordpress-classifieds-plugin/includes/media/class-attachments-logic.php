@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Provides methods to moderate, set as featured, delete or otherwise manage
  * attachments as required by the core plugin and premium modules.

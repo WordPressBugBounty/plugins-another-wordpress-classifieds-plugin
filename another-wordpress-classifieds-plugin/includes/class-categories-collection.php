@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_categories_collection() {
     return new AWPCP_Categories_Collection(
         'awpcp_listing_category',

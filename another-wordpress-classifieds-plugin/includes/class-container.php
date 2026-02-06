@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * A container class greatly inspired by https://carlalexander.ca/dependency-injection-wordpress/
  *

@@ -1,4 +1,9 @@
-<?php if ( ! empty( $title ) ): ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ if ( ! empty( $title ) ): ?>
 <h2><?php echo esc_html( $title ); ?></h2>
 <?php else: ?>
 <h2><?php esc_html_e( 'Your Ad has been renewed', 'another-wordpress-classifieds-plugin' ); ?></h2>

@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Responsible for creating and using an individual Upgrade Task Handler
  * configured to run a specific upgrade task.

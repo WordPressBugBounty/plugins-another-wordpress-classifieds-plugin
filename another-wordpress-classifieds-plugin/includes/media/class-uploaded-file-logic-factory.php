@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_uploaded_file_logic_factory() {
     return new AWPCP_UploadedFileLogicFactory( awpcp()->settings );

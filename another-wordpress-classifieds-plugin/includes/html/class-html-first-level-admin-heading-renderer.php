@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_html_first_level_admin_heading_renderer() {
     return new AWPCP_HTML_First_Level_Admin_Heading_Renderer();

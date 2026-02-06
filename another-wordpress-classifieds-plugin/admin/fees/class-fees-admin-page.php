@@ -5,6 +5,10 @@
  * @package AWPCP\Admin\Fees
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_AdminFees class.
  */
@@ -88,70 +92,12 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         switch ( $action ) {
             case 'delete':
                 return $this->delete();
-            case 'transfer':
-                return $this->transfer();
             case 'index':
                 return $this->index();
             default:
                 awpcp_flash( "Unknown action: $action", 'error' );
                 return $this->index();
         }
-    }
-
-    /**
-     * There is no UI to initiate this action anymore since version 4.0.0, but
-     * the implementation may be useful in the future. Now fees cannot be
-     * deleted if there are ads still associated with them.
-     *
-     * Please test thoroughly before enabling this feature again,
-     * to make sure it works with recent modifications.
-     */
-    public function transfer() {
-        $id  = awpcp_get_var( array( 'param' => 'id', 'default' => 0 ) );
-        $fee = AWPCP_Fee::find_by_id( $id );
-        if ( is_null( $fee ) ) {
-            awpcp_flash( __( "The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
-            return $this->index();
-        }
-
-        $recipient = awpcp_get_var( array( 'param' => 'payment_term', 'default' => 0 ) );
-        $recipient = AWPCP_Fee::find_by_id( $recipient );
-        if ( is_null( $recipient ) ) {
-            awpcp_flash( __( "The selected Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
-            return $this->index();
-        }
-
-        $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
-        if ( isset( $_POST['transfer'] ) && wp_verify_nonce( $nonce, 'awpcp-fee-transfer' ) ) {
-            $errors = array();
-            if ( $fee->transfer_ads_to( $recipient->id, $errors ) ) {
-                /* translators: %1$s is the name of the original Fee and %2$s is the name of the fee that is associated with the ads now. */
-                $message = __( 'All Ads associated to Fee %1$s have been associated with Fee %2$s.', 'another-wordpress-classifieds-plugin' );
-                $message = sprintf( $message, '<strong>' . $fee->name . '</strong>', '<strong>' . $recipient->name . '</strong>' );
-                awpcp_flash( $message );
-                /** @phpstan-ignore-next-line */
-            } elseif ( ! empty( $errors ) ) {
-                foreach ( $errors as $error ) {
-                    awpcp_flash( $error, 'error' );
-                }
-            }
-            return $this->index();
-        }
-
-        $cancel = awpcp_get_var( array( 'param' => 'cancel' ), 'post' );
-        if ( $cancel ) {
-            return $this->index();
-        }
-
-        $params = array(
-            'fee'  => $fee,
-            'fees' => AWPCP_Fee::query(),
-        );
-
-        $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $this->render( $template, $params );
     }
 
     public function delete() {
@@ -188,16 +134,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                     $message = __( "The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. You need to switch the Ads to a different Fee before you can delete the plan.", 'another-wordpress-classifieds-plugin' );
                     awpcp_flash( $message, 'error' );
 
-                    $params = array(
-                        'fee'  => $fee,
-                        'fees' => $fees,
-                    );
-
-                    $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
-
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo $this->render( $template, $params );
-
                     return;
                 }
 
@@ -221,5 +157,12 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         $template = AWPCP_DIR . '/admin/templates/admin-panel-fees.tpl.php';
 
         return awpcp_render_template( $template, $params );
+    }
+
+    /**
+     * @deprecated 4.0.0
+     */
+    public function transfer() {
+        _deprecated_function( __FUNCTION__, '4.0.0' );
     }
 }

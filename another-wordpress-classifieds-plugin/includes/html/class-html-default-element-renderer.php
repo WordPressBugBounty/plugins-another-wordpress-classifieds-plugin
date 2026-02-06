@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_html_default_element_renderer() {
     return new AWPCP_HTML_Default_Element_Renderer();

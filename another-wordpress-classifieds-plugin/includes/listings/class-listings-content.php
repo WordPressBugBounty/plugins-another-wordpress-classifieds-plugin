@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Integrates with WordPress to render full listings.
  */
@@ -44,18 +48,54 @@ class AWPCP_ListingsContent {
     public function filter_content( $content ) {
         $post = $this->wordpress->get_post();
 
-        if ( ! $post ) {
-            return $content;
-        }
-
-        if ( $this->post_type !== $post->post_type ) {
-            return $content;
-        }
-
-        if ( ! is_singular( $this->post_type ) ) {
+        if ( ! $this->is_on_single_listing_page( $post ) ) {
             return $content;
         }
 
         return $this->content_renderer->render( $content, $post );
+    }
+
+    /**
+     * Remove shortcodes from listings content.
+     *
+     * @since 4.3.6
+     *
+     * @param string $content The content of the current post.
+     *
+     * @return string
+     */
+    public function filter_content_with_shortcodes( $content ) {
+        $post = $this->wordpress->get_post();
+
+        if ( ! $this->is_on_single_listing_page( $post ) ) {
+            return $content;
+        }
+
+        return strip_shortcodes($content);
+    }
+
+    /**
+     * Check if the current post is a single listing page.
+     *
+     * @since 4.3.6
+     *
+     * @param WP_Post|boolean $post An instance of WP_Post or false.
+     *
+     * @return boolean
+     */
+    private function is_on_single_listing_page( $post ) {
+        if ( ! $post ) {
+            return false;
+        }
+
+        if ( $this->post_type !== $post->post_type ) {
+            return false;
+        }
+
+        if ( ! is_singular( $this->post_type ) ) {
+            return false;
+        }
+
+        return true;
     }
 }

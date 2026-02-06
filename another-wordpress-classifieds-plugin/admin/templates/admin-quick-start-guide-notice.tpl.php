@@ -1,3 +1,9 @@
+<?php
+    if ( ! defined( 'ABSPATH' ) ) {
+        exit;
+    }
+?>
+
 <div id="quick-start-guide-notice" class="update-nag awpcp-update-nag awpcp-sticky-notice clearfix">
     <p class="align-center"><?php esc_html_e( 'Hello and welcome to AWP Classifieds. This plugin is super easy to use AND highly configurable.', 'another-wordpress-classifieds-plugin' ); ?></p>
     <p class="align-center"><?php esc_html_e( 'Would you like some help getting started?', 'another-wordpress-classifieds-plugin' ); ?></p>
