@@ -1,15 +1,15 @@
-# Copyright (C) 2025 AWP Classifieds Team
+# Copyright (C) 2026 AWP Classifieds Team
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: AWP Classifieds 4.4.3\n"
+"Project-Id-Version: AWP Classifieds 4.4.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2025-11-24 08:18:29+00:00\n"
+"POT-Creation-Date: 2026-02-10 07:13:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2025-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 1.0.4\n"
@@ -567,6 +567,8 @@ msgstr ""
 #: functions.php:535
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:108
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:62
+#: includes/frontend/class-generate-listing-preview-ajax-handler.php:73
+#: includes/frontend/class-generate-listing-preview-ajax-handler.php:77
 #: includes/frontend/class-save-listing-information-ajax-handler.php:114
 #: includes/frontend/class-update-listing-order-ajax-handler.php:73
 msgid "You are not authorized to perform this action."
@@ -1586,22 +1588,22 @@ msgstr ""
 msgid "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 
-#: frontend/page-place-ad.php:1378
+#: frontend/page-place-ad.php:1381
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
 msgstr ""
 
-#: frontend/page-place-ad.php:1385
+#: frontend/page-place-ad.php:1388
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr ""
 
-#: frontend/page-place-ad.php:1465 frontend/page-place-ad.php:1527
+#: frontend/page-place-ad.php:1468 frontend/page-place-ad.php:1530
 #: includes/frontend/class-submit-listing-page.php:402
 msgid "We were unable to find a Payment Transaction assigned to this operation."
 msgstr ""
 
-#: frontend/page-place-ad.php:1472 frontend/page-place-ad.php:1534
+#: frontend/page-place-ad.php:1475 frontend/page-place-ad.php:1537
 #: frontend/page-renew-ad.php:413
 #: includes/frontend/class-submit-listing-page.php:409
 msgid "The Ad associated with this transaction doesn't exists."
@@ -2347,75 +2349,75 @@ msgstr ""
 msgid "Show Category field?"
 msgstr ""
 
-#: frontend/widget-categories.php:11
-msgid "Displays a list of Ad categories."
-msgstr ""
-
-#: frontend/widget-categories.php:12
+#: frontend/widget-categories.php:32
 msgid "AWPCP Categories"
 msgstr ""
 
-#: frontend/widget-categories.php:17
+#: frontend/widget-categories.php:33
+msgid "Displays a list of Ad categories."
+msgstr ""
+
+#: frontend/widget-categories.php:38
 msgid "Ad Categories"
 msgstr ""
 
-#: frontend/widget-latest-ads.php:21
+#: frontend/widget-latest-ads.php:49
 msgid "AWPCP Latest Ads"
 msgstr ""
 
-#: frontend/widget-latest-ads.php:22
+#: frontend/widget-latest-ads.php:50
 msgid "Displays a list of latest Ads"
 msgstr ""
 
-#: frontend/widget-latest-ads.php:38
+#: frontend/widget-latest-ads.php:61
 msgid "Latest Ads"
 msgstr ""
 
-#: frontend/widget-latest-ads.php:81
+#: frontend/widget-latest-ads.php:104
 msgid "There are currently no ads to show."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:123
+#: frontend/widget-latest-ads.php:146
 msgid "Read more"
 msgstr ""
 
-#: frontend/widget-random-ad.php:18
+#: frontend/widget-random-ad.php:38
 msgid "AWPCP Random Ads"
 msgstr ""
 
-#: frontend/widget-random-ad.php:19
+#: frontend/widget-random-ad.php:39
 msgid "Displays a list of random Ads"
 msgstr ""
 
-#: frontend/widget-random-ad.php:26
+#: frontend/widget-random-ad.php:45
 msgid "Random Ads"
 msgstr ""
 
-#: frontend/widget-search.php:13
+#: frontend/widget-search.php:34
 msgid "AWPCP Search Ads"
 msgstr ""
 
-#: frontend/widget-search.php:46
+#: frontend/widget-search.php:67
 msgid "Find ads by Contact Name"
 msgstr ""
 
-#: frontend/widget-search.php:49
+#: frontend/widget-search.php:70
 msgid "All Contact Names"
 msgstr ""
 
-#: frontend/widget-search.php:60
+#: frontend/widget-search.php:81
 msgid "Select Option"
 msgstr ""
 
-#: frontend/widget-search.php:110
+#: frontend/widget-search.php:131
 msgid "Search by keyword"
 msgstr ""
 
-#: frontend/widget-search.php:125
+#: frontend/widget-search.php:146
 msgid "Search by Category"
 msgstr ""
 
-#: frontend/widget-search.php:145
+#: frontend/widget-search.php:166
 msgid "Search"
 msgstr ""
 
@@ -2469,54 +2471,54 @@ msgstr ""
 msgid "Free"
 msgstr ""
 
-#: functions.php:2223
+#: functions.php:2225
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2224
+#: functions.php:2226
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2225
+#: functions.php:2227
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2226
+#: functions.php:2228
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2227
+#: functions.php:2229
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2228
+#: functions.php:2230
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2229
+#: functions.php:2231
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2230
+#: functions.php:2232
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2482
+#: functions.php:2484
 #. translators: %s is the listing title
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2506
+#: functions.php:2508
 #. translators: %s is the listing title
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2531
+#: functions.php:2533
 #. translators: %s is the listing title
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2535 includes/functions/notifications.php:154
+#: functions.php:2537 includes/functions/notifications.php:154
 #. translators: %1$s is the listing title, %2$s is the URL to manage images
 #. translators: %1$s is the listing title. %2$s is the URL for managing listing
 #. images.
@@ -2526,12 +2528,12 @@ msgid ""
 "button below each image. Click here to continue: %2$s."
 msgstr ""
 
-#: functions.php:2541
+#: functions.php:2543
 #. translators: %s is the listing title
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2544 includes/functions/notifications.php:161
+#: functions.php:2546 includes/functions/notifications.php:161
 #. translators: %1$s is the listing title, %2$s is the URL for managing listing
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
@@ -2541,7 +2543,7 @@ msgid ""
 "continue: %2$s."
 msgstr ""
 
-#: functions.php:2553 includes/functions/notifications.php:169
+#: functions.php:2555 includes/functions/notifications.php:169
 #. translators: %s is the URL to manage images
 #. translators: %s is the URL for managing listing images.
 msgid ""
@@ -2550,29 +2552,29 @@ msgid ""
 "to continue: %s."
 msgstr ""
 
-#: functions.php:3010
+#: functions.php:3012
 #. translators: %s is the formatted date and time
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:3142
+#: functions.php:3144
 #. translators: %1$s is WordPress version, %2$s is plugin version
 msgid "Not Installed"
 msgstr ""
 
-#: functions.php:3146
+#: functions.php:3148
 msgid "Installed"
 msgstr ""
 
-#: functions.php:3154
+#: functions.php:3156
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3156
+#: functions.php:3158
 msgid "SSL Support: No."
 msgstr ""
 
-#: functions.php:3159
+#: functions.php:3161
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -3253,11 +3255,11 @@ msgstr ""
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: includes/class-awpcp.php:1452
+#: includes/class-awpcp.php:1460
 msgid "This field is required."
 msgstr ""
 
-#: includes/class-awpcp.php:1453
+#: includes/class-awpcp.php:1461
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:277
 #: includes/frontend/class-edit-listing-page.php:354
@@ -3265,37 +3267,37 @@ msgstr ""
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: includes/class-awpcp.php:1454 includes/class-awpcp.php:1455
+#: includes/class-awpcp.php:1462 includes/class-awpcp.php:1463
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: includes/class-awpcp.php:1456
+#: includes/class-awpcp.php:1464
 msgid "Please enter a valid number."
 msgstr ""
 
-#: includes/class-awpcp.php:1457
+#: includes/class-awpcp.php:1465
 msgid "Please enter a valid amount."
 msgstr ""
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1466
 msgid "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1477
+#: includes/class-awpcp.php:1485
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1478
+#: includes/class-awpcp.php:1486
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1479
+#: includes/class-awpcp.php:1487
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
-#: includes/class-awpcp.php:1548 includes/class-awpcp.php:1556
-#: includes/class-awpcp.php:1564 includes/class-awpcp.php:1639
-#: includes/class-awpcp.php:1647 includes/class-awpcp.php:1655
+#: includes/class-awpcp.php:1556 includes/class-awpcp.php:1564
+#: includes/class-awpcp.php:1572 includes/class-awpcp.php:1647
+#: includes/class-awpcp.php:1655 includes/class-awpcp.php:1663
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:11
 #: templates/privacy-policy.tpl.php:12
 msgid "AWP Classifieds Plugin"
@@ -3983,7 +3985,7 @@ msgstr ""
 msgid "Listing <listing-title> was flagged"
 msgstr ""
 
-#: includes/functions/payments.php:123
+#: includes/functions/payments.php:212
 msgid "Customer attempt to pay has failed"
 msgstr ""
 
@@ -4448,14 +4450,14 @@ msgid ""
 msgstr ""
 
 #: includes/payment-gateway-2checkout.php:106
-#: includes/payment-gateway-paypal-standard.php:150
+#: includes/payment-gateway-paypal-standard.php:156
 msgid ""
 "The amount you have paid does not match the required amount for this "
 "transaction. Please contact us to clarify the problem."
 msgstr ""
 
 #: includes/payment-gateway-2checkout.php:114
-#: includes/payment-gateway-paypal-standard.php:158
+#: includes/payment-gateway-paypal-standard.php:164
 msgid ""
 "There was an error processing your transaction. If funds have been deducted "
 "from your account, they have not been processed to our account. You will "
@@ -4463,39 +4465,31 @@ msgid ""
 msgstr ""
 
 #: includes/payment-gateway-2checkout.php:124
-#: includes/payment-gateway-paypal-standard.php:168
+#: includes/payment-gateway-paypal-standard.php:174
 msgid ""
 "It appears this transaction has already been processed. If you do not see "
 "your ad in the system please contact the site adminstrator for assistance."
 msgstr ""
 
 #: includes/payment-gateway-paypal-standard.php:67
-#. translators: %s link url.
+#. translators: %1$s and %2$s are the current URL.
 msgid ""
 "We haven't received your payment information from PayPal yet and we are "
 "unable to verify your transaction. Please reload this page or visit <a "
 "href=\"%1$s\">%2$s</a> in 30 seconds to continue placing your Ad."
 msgstr ""
 
-#: includes/payment-gateway-paypal-standard.php:71
-#. translators: %s status %d variables count.
+#: includes/payment-gateway-paypal-standard.php:80
 msgid ""
-"PayPal returned the following status from your payment: %1$s. %2$d payment "
-"variables were posted."
+"There was an error verifying your payment with PayPal. Please wait a moment "
+"and refresh this page."
 msgstr ""
 
-#: includes/payment-gateway-paypal-standard.php:73
-msgid ""
-"If this status is not COMPLETED or VERIFIED, then you may need to wait a "
-"bit before your payment is approved, or contact PayPal directly as to the "
-"reason the payment is having a problem."
-msgstr ""
-
-#: includes/payment-gateway-paypal-standard.php:76
+#: includes/payment-gateway-paypal-standard.php:81
 msgid "If you have any further questions, please contact this site administrator."
 msgstr ""
 
-#: includes/payment-gateway-paypal-standard.php:193
+#: includes/payment-gateway-paypal-standard.php:199
 msgid ""
 "We couldn't determine the payment status for your transaction. Please "
 "contact customer service if you are viewing this message after having made "
@@ -4504,7 +4498,7 @@ msgid ""
 "disregarded."
 msgstr ""
 
-#: includes/payment-gateway-paypal-standard.php:299
+#: includes/payment-gateway-paypal-standard.php:334
 msgid "The payment transaction was canceled by the user."
 msgstr ""
 
@@ -4650,74 +4644,84 @@ msgstr ""
 msgid "You currently have %s credits in your account."
 msgstr ""
 
-#: includes/payments-api.php:934 includes/payments-api.php:998
+#: includes/payments-api.php:937 includes/payments-api.php:1013
+msgid "Verifying Your Payment"
+msgstr ""
+
+#: includes/payments-api.php:938
+msgid ""
+"Your payment is being verified with PayPal. This usually takes just a few "
+"seconds. The page will refresh automatically."
+msgstr ""
+
+#: includes/payments-api.php:944 includes/payments-api.php:1015
 msgid "Payment Completed"
 msgstr ""
 
-#: includes/payments-api.php:937
+#: includes/payments-api.php:947
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:939
+#: includes/payments-api.php:949
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
 "continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:944
+#: includes/payments-api.php:957
 msgid "Payment Not Required"
 msgstr ""
 
-#: includes/payments-api.php:945
+#: includes/payments-api.php:958
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:950 includes/payments-api.php:1004
+#: includes/payments-api.php:963 includes/payments-api.php:1021
 msgid "Payment Failed"
 msgstr ""
 
-#: includes/payments-api.php:951
+#: includes/payments-api.php:964
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
 "Please contact the website administrator to solve this issue."
 msgstr ""
 
-#: includes/payments-api.php:954 includes/payments-api.php:1000
+#: includes/payments-api.php:967 includes/payments-api.php:1017
 msgid "Payment Canceled"
 msgstr ""
 
-#: includes/payments-api.php:955
+#: includes/payments-api.php:968
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr ""
 
-#: includes/payments-api.php:958
+#: includes/payments-api.php:971
 msgid "Waiting on Confirmation"
 msgstr ""
 
-#: includes/payments-api.php:959
+#: includes/payments-api.php:972
 msgid ""
 "The payment gateway is taking a bit longer than expected to confirm your "
 "payment. Please wait a few seconds while we verify the transaction. The "
 "page will reload automatically."
 msgstr ""
 
-#: includes/payments-api.php:961
+#: includes/payments-api.php:974
 msgid "Payment Error"
 msgstr ""
 
-#: includes/payments-api.php:962
+#: includes/payments-api.php:975
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
 msgstr ""
 
-#: includes/payments-api.php:1002
+#: includes/payments-api.php:1019
 msgid "Payment Not Verified"
 msgstr ""
 
@@ -9085,17 +9089,17 @@ msgctxt "404 HTTP status description"
 msgid "Listing not found"
 msgstr ""
 
-#: frontend/page-place-ad.php:1442
+#: frontend/page-place-ad.php:1445
 msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1444
+#: frontend/page-place-ad.php:1447
 msgctxt "upload listing images form"
 msgid "Place Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1446
+#: frontend/page-place-ad.php:1449
 msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr ""
@@ -9688,17 +9692,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr ""
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1473
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1474
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1480
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""

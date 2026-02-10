@@ -7,9 +7,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AWPCP_CategoriesWidget extends WP_Widget {
 
+    private static $translated = false;
     public function __construct() {
-        $description = __( 'Displays a list of Ad categories.', 'another-wordpress-classifieds-plugin');
-        parent::__construct( 'awpcp-categories', __( 'AWPCP Categories', 'another-wordpress-classifieds-plugin' ), array('description' => $description));
+        parent::__construct(
+            'awpcp-categories',
+            'AWPCP Categories',
+            array( 'description' => 'Displays a list of Ad categories.' )
+        );
+
+        if ( ! self::$translated ) {
+            add_action( 'admin_init', [ $this, 'set_translated_strings' ] );
+            self::$translated = true;
+        }
+    }
+
+    /**
+     * Sets translated widget name and description after translations are loaded.
+     *
+     * @since 4.4.4
+     *
+     * @return void
+     */
+    public function set_translated_strings() {
+        $this->name                          = __( 'AWPCP Categories', 'another-wordpress-classifieds-plugin' );
+        $this->widget_options['description'] = __( 'Displays a list of Ad categories.', 'another-wordpress-classifieds-plugin' );
     }
 
     protected function defaults() {

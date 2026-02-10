@@ -12,12 +12,31 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
 
+    private static $random_translated = false;
+
     public function __construct() {
         parent::__construct(
             'awpcp-random-ads',
-            __( 'AWPCP Random Ads', 'another-wordpress-classifieds-plugin' ),
-            __( 'Displays a list of random Ads', 'another-wordpress-classifieds-plugin' )
+            'AWPCP Random Ads',
+            'Displays a list of random Ads'
         );
+
+        if ( ! self::$random_translated ) {
+            add_action( 'admin_init', [ $this, 'set_random_translated_strings' ] );
+            self::$random_translated = true;
+        }
+    }
+
+    /**
+     * Sets translated widget name and description after translations are loaded.
+     *
+     * @since 4.4.4
+     *
+     * @return void
+     */
+    public function set_random_translated_strings() {
+        $this->name                          = __( 'AWPCP Random Ads', 'another-wordpress-classifieds-plugin' );
+        $this->widget_options['description'] = __( 'Displays a list of random Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     protected function defaults() {

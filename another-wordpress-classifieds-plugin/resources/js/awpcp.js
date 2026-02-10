@@ -87,3 +87,11 @@ AWPCP.define('jquery', [], function() {
 
     return window.jQuery;
 });
+
+AWPCP.define('moment', [], function() {
+    if (typeof window.moment === 'undefined') {
+        throw new AWPCPError('moment was not loaded before AWPCP.');
+    }
+
+    return window.moment;
+});

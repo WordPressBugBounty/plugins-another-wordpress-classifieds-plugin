@@ -1201,6 +1201,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected function prepare_ad_details($details, $characters) {
         $allow_html = (bool) get_awpcp_option('allowhtmlinadtext');
 
+        // Strip shortcodes to prevent execution of [embed] and other shortcodes in user-submitted content (SSRF prevention).
+        $details = strip_shortcodes( $details );
+
         if (!$allow_html) {
             $details = wp_strip_all_tags( $details );
         } else {

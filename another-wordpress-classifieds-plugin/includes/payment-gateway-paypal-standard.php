@@ -52,8 +52,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $verified = $transaction->get( 'verified', false );
         // phpcs:ignore WordPress.Security.NonceVerification
         if ( ! empty( $_POST ) ) {
-            // phpcs:ignore WordPress.Security.NonceVerification
-            $response = awpcp_paypal_verify_received_data( $_POST, $errors );
+            // Verification reads raw body from php://input for byte-for-byte accuracy.
+            $response = awpcp_paypal_verify_received_data( array(), $errors );
             $verified = strcasecmp( $response, 'VERIFIED' ) === 0;
         }
 
@@ -63,27 +63,33 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             $url       = awpcp_current_url();
 
             if ( $variables <= 0 ) {
-                /* translators: %s link url. */
+                /* translators: %1$s and %2$s are the current URL. */
                 $message  = __( "We haven't received your payment information from PayPal yet and we are unable to verify your transaction. Please reload this page or visit <a href=\"%1\$s\">%2\$s</a> in 30 seconds to continue placing your Ad.", 'another-wordpress-classifieds-plugin' );
                 $errors[] = sprintf( $message, $url, $url );
-            } else {
-                /* translators: %s status %d variables count. */
-                $message  = __( 'PayPal returned the following status from your payment: %1$s. %2$d payment variables were posted.', 'another-wordpress-classifieds-plugin' );
-                $errors[] = sprintf( $message, $response, $variables );
-                $errors[] = __( 'If this status is not COMPLETED or VERIFIED, then you may need to wait a bit before your payment is approved, or contact PayPal directly as to the reason the payment is having a problem.', 'another-wordpress-classifieds-plugin' );
-            }
 
-            $errors[] = __( 'If you have any further questions, please contact this site administrator.', 'another-wordpress-classifieds-plugin' );
-
-            if ( $variables <= 0 ) {
                 $transaction->errors['verification-get'] = $errors;
-            } else {
+            } elseif ( 'INVALID' === $response ) {
+                // INVALID on user return is likely a timing issue. Show pending message.
+                $transaction->set( 'pending_verification', true );
+
+                // Don't set errors - we'll show a pending notice instead.
+                unset( $transaction->errors['verification-get'] );
+                unset( $transaction->errors['verification-post'] );
+            } elseif ( 'ERROR' === $response ) {
+                // ERROR means something went wrong with the verification request itself.
+                $errors[] = __( 'There was an error verifying your payment with PayPal. Please wait a moment and refresh this page.', 'another-wordpress-classifieds-plugin' );
+                $errors[] = __( 'If you have any further questions, please contact this site administrator.', 'another-wordpress-classifieds-plugin' );
+
                 $transaction->errors['verification-post'] = $errors;
+
+                // Clear pending verification flag to avoid stale state.
+                $transaction->set( 'pending_verification', false );
             }
         } else {
-            // clean up previous errors.
+            // Clean up previous errors and pending state.
             unset( $transaction->errors['verification-get'] );
             unset( $transaction->errors['verification-post'] );
+            $transaction->set( 'pending_verification', false );
         }
 
         $txn_id = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
@@ -273,6 +279,22 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     }
 
     public function process_payment_completed( $transaction ) {
+        $this->do_process_payment( $transaction, false );
+    }
+
+    public function process_payment_notification( $transaction ) {
+        $this->do_process_payment( $transaction, true );
+    }
+
+    /**
+     * Process the payment verification.
+     *
+     * @since 4.4.4
+     *
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     * @param bool                      $is_ipn      Whether this is an IPN notification.
+     */
+    private function do_process_payment( $transaction, $is_ipn ) {
         if ( $transaction->get( 'verified', false ) ) {
             return;
         }
@@ -284,15 +306,28 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
         $response                    = $this->verify_transaction( $transaction );
         $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_UNKNOWN;
+
         if ( 'VERIFIED' === $response ) {
             $this->validate_transaction( $transaction );
-        } elseif ( 'INVALID' === $response ) {
-            $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
+            return;
         }
-    }
 
-    public function process_payment_notification( $transaction ) {
-        $this->process_payment_completed( $transaction );
+        if ( 'INVALID' === $response ) {
+            if ( $is_ipn ) {
+                // IPN returning INVALID is a real failure from PayPal.
+                $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
+            } else {
+                // User return with INVALID is likely a timing issue. Set to PENDING and wait for IPN.
+                $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+                $transaction->set( 'pending_verification', true );
+            }
+        } elseif ( 'ERROR' === $response ) {
+            // ERROR means the verification request itself failed (network, server issue, etc.).
+            // Clear pending verification to avoid showing stale pending UI.
+            $transaction->set( 'pending_verification', false );
+
+            // Keep status as UNKNOWN - user can retry by refreshing.
+        }
     }
 
     public function process_payment_canceled( $transaction ) {

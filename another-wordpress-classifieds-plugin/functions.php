@@ -1589,6 +1589,8 @@ function awpcp_get_currency_symbol() {
  * @access private
  */
 function awpcp_get_formmatted_amount( $value, $template ) {
+    $value = (float) $value;
+
     if ( $value < 0 ) {
         return '(' . str_replace( '<amount>', awpcp_format_number( $value ), $template ) . ')';
     } else {

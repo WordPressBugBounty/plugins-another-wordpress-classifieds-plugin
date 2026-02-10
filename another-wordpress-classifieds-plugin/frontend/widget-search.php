@@ -9,8 +9,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AWPCP_Search_Widget extends WP_Widget {
 
+    private static $translated = false;
     public function __construct() {
-        parent::__construct(false, __( 'AWPCP Search Ads', 'another-wordpress-classifieds-plugin'));
+        parent::__construct(
+            false,
+            'AWPCP Search Ads',
+            []
+        );
+
+        if ( ! self::$translated ) {
+            add_action( 'admin_init', [ $this, 'set_translated_strings' ] );
+            self::$translated = true;
+        }
+    }
+
+    /**
+     * Sets translated widget name and description after translations are loaded.
+     *
+     * @since 4.4.4
+     *
+     * @return void
+     */
+    public function set_translated_strings() {
+        $this->name = __( 'AWPCP Search Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     /**

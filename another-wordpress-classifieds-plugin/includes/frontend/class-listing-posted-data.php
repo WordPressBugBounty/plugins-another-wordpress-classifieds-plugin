@@ -178,6 +178,9 @@ class AWPCP_ListingPostedData {
     private function prepare_content( $content, $characters_allowed ) {
         $allow_html = (bool) get_awpcp_option( 'allowhtmlinadtext' );
 
+        // Strip shortcodes to prevent execution of [embed] and other shortcodes in user-submitted content (SSRF prevention).
+        $content = strip_shortcodes( $content );
+
         if ( $allow_html ) {
             $content = wp_kses_post( $content );
         } else {

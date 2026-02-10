@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <input type="hidden" value="<?php echo esc_attr($value) ?>" name="<?php echo esc_attr($name) ?>">
     <?php endforeach ?>
 
-    <?php if ($success): ?>
+    <?php if ( $success && empty( $pending_verification ) ) : ?>
     <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php esc_attr_e( 'Continue', 'another-wordpress-classifieds-plugin' ); ?>" id="submit" name="submit">
     </p>

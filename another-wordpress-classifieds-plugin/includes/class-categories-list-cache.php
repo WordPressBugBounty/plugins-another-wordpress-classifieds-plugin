@@ -32,6 +32,7 @@ class AWPCP_CategoriesListCache {
      */
     public function clear() {
         $transient_keys = get_option( 'awpcp-categories-list-cache-keys', array() );
+        $transient_keys = is_array( $transient_keys ) ? $transient_keys : array();
 
         foreach ( $transient_keys as $transient_key ) {
             delete_transient( $transient_key );

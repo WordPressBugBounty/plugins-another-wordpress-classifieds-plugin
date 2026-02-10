@@ -12,19 +12,42 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AWPCP_LatestAdsWidget extends WP_Widget {
 
+    private static $translated = false;
     protected $listing_renderer;
     protected $attachment_properties;
     protected $attachments;
 
-    public function __construct($id=null, $name=null, $description=null) {
-        $id = is_null($id) ? 'awpcp-latest-ads': $id;
-        $name = is_null($name) ? __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
-        $description = is_null($description) ? __( 'Displays a list of latest Ads', 'another-wordpress-classifieds-plugin') : $description;
-        parent::__construct($id, $name, array('description' => $description));
+    public function __construct( $id = null, $name = null, $description = null ) {
+        $id          = is_null( $id ) ? 'awpcp-latest-ads' : $id;
+        $name        = is_null( $name ) ? 'AWPCP Latest Ads' : $name;
+        $description = is_null( $description ) ? 'Displays a list of latest Ads' : $description;
 
-        $this->listing_renderer = awpcp_listing_renderer();
+        parent::__construct(
+            $id,
+            $name,
+            array( 'description' => $description )
+        );
+
+        if ( ! self::$translated ) {
+            add_action( 'admin_init', [ $this, 'set_translated_strings' ] );
+            self::$translated = true;
+        }
+
+        $this->listing_renderer      = awpcp_listing_renderer();
         $this->attachment_properties = awpcp_attachment_properties();
-        $this->attachments = awpcp_attachments_collection();
+        $this->attachments           = awpcp_attachments_collection();
+    }
+
+    /**
+     * Sets translated widget name and description after translations are loaded.
+     *
+     * @since 4.4.4
+     *
+     * @return void
+     */
+    public function set_translated_strings() {
+        $this->name                            = __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin' );
+        $this->widget_options['description']   = __( 'Displays a list of latest Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     protected function defaults() {

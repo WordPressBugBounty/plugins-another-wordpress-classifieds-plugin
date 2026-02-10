@@ -190,6 +190,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             return new AWPCP_GenerateListingPreviewAjaxHandler(
                 $container['ListingsContentRenderer'],
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 awpcp_ajax_response(),
                 $container['Request']
             );

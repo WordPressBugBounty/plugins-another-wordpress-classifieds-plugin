@@ -225,6 +225,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
 
             data = {
                 action: 'awpcp_generate_listing_preview',
+                nonce:  $.AWPCP.get( 'save_listing_information_nonce' ),
                 ad_id:  self.store.getListingId()
             };
 
