@@ -288,6 +288,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
 
             data.action         = 'awpcp_update_listing_order'
             data.nonce          = $.AWPCP.get( 'update_listing_order_nonce' );
+            data.edit_nonce     = $.AWPCP.get( 'edit_listing_nonce' );
             data.listing_id     = self.store.getListingId();
             data.transaction_id = self.store.getTransactionId();
 

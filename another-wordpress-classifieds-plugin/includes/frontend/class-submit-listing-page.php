@@ -249,7 +249,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $params = [
             'current_step' => $current_step,
             'transaction'  => $transaction,
-            'page_data' => [
+            'page_data'    => [
                 'sections'         => $this->sections_generator->get_sections( [], 'create', $listing, $transaction ),
                 'mode'             => 'create',
                 'payments_enabled' => get_awpcp_option('freepay'),

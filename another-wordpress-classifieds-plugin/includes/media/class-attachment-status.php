@@ -8,6 +8,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 final class AWPCP_Attachment_Status {
 
     const STATUS_AWAITING_APPROVAL = 'Awaiting-Approval';
-    const STATUS_APPROVED = 'Approved';
-    const STATUS_REJECTED = 'Rejected';
+    const STATUS_APPROVED          = 'Approved';
+    const STATUS_REJECTED          = 'Rejected';
 }

@@ -33,7 +33,7 @@ function get_awpcp_setting($column, $option) {
     $tableexists     = awpcp_table_exists( $tbl_ad_settings );
 
     if ( $tableexists ) {
-        $res = $wpdb->get_var(
+        $res      = $wpdb->get_var(
             $wpdb->prepare(
                 "SELECT %i FROM %i WHERE config_option=%s",
                 $column,
@@ -99,7 +99,7 @@ function countcategories() {
 }
 
 function countcategoriesparents() {
-    $all_categories_count = countcategories();
+    $all_categories_count       = countcategories();
     $childless_categories_count = countcategorieschildren();
 
     if ( $all_categories_count == $childless_categories_count ) {
@@ -163,9 +163,9 @@ function get_adtitle($adid) {
 
 function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array() ) {
     $parent_categories = awpcp_categories_collection()->find_categories( array(
-        'fields' => 'id=>name',
-        'parent' => 0,
-        'exclude' => $exclude,
+        'fields'     => 'id=>name',
+        'parent'     => 0,
+        'exclude'    => $exclude,
         'hide_empty' => false,
     ) );
 
@@ -216,8 +216,8 @@ function ads_exist_cat( $catid ) {
     $listings = awpcp_listings_collection()->find_listings(array(
         'tax_query' => array(
             array(
-                'taxonomy' => AWPCP_CATEGORY_TAXONOMY,
-                'terms' => (int) $catid,
+                'taxonomy'         => AWPCP_CATEGORY_TAXONOMY,
+                'terms'            => (int) $catid,
                 'include_children' => true,
             ),
         ),
@@ -270,11 +270,11 @@ function smart_table( $array, $table_cols, $opentable, $closetable ) {
 }
 
 function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable ) {
-    $myreturn="$opentable\n";
-    $row=0;
-    $total_vals=count($array);
-    $i=1;
-    $awpcpdisplayaditemclass='';
+    $myreturn                ="$opentable\n";
+    $row                     =0;
+    $total_vals              =count($array);
+    $i                       =1;
+    $awpcpdisplayaditemclass ='';
 
     foreach ($array as $v) {
 
@@ -284,43 +284,43 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
             $awpcpdisplayaditemclass = 'displayaditemseven';
         }
 
-        $v=str_replace("\$awpcpdisplayaditems",$awpcpdisplayaditemclass,$v);
+        $v =str_replace("\$awpcpdisplayaditems",$awpcpdisplayaditemclass,$v);
 
         if ((($i-1)%$table_cols)==0)
         {
             if($usingtable)
             {
-                $myreturn.="<tr>\n";
+                $myreturn .="<tr>\n";
             }
 
-            $row++;
+            ++$row;
         }
         if($usingtable)
         {
-            $myreturn.="\t<td valign=\"top\">";
+            $myreturn .="\t<td valign=\"top\">";
         }
-        $myreturn.="$v";
+        $myreturn .="$v";
         if($usingtable)
         {
-            $myreturn.="</td>\n";
+            $myreturn .="</td>\n";
         }
         if ($i%$table_cols==0)
         {
             if($usingtable)
             {
-                $myreturn.="</tr>\n";
+                $myreturn .="</tr>\n";
             }
         }
-        $i++;
+        ++$i;
     }
-    $rest=($i-1)%$table_cols;
+    $rest =($i-1)%$table_cols;
     if ($rest!=0) {
-        $colspan=$table_cols-$rest;
+        $colspan =$table_cols-$rest;
 
         $myreturn .= "\t<td" . ( $colspan == 1 ? '' : ' colspan="' . esc_attr( $colspan ) . '"' ) . "></td>\n</tr>\n";
     }
     //}
-    $myreturn.="$closetable\n";
+    $myreturn .="$closetable\n";
     return $myreturn;
 }
 

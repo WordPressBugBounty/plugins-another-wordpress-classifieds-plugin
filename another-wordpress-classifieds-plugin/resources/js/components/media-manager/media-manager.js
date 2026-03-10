@@ -81,6 +81,7 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-set-file-as-primary',
                 listing_id: file.listingId,
                 file_id: file.id
@@ -126,6 +127,7 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-update-file-enabled-status',
                 listing_id: file.listingId,
                 file_id: file.id,
@@ -144,6 +146,7 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-delete-file',
                 listing_id: file.listingId,
                 file_id: file.id
@@ -165,6 +168,7 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-approve-file',
                 listing_id: file.listingId,
                 file_id: file.id
@@ -181,6 +185,7 @@ function( $, ko, FileViewModel, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: options.nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-reject-file',
                 listing_id: file.listingId,
                 file_id: file.id

@@ -22,7 +22,7 @@ class AWPCP_ListTableViewsHandler {
      * @since 4.0.0
      */
     public function __construct( $views ) {
-        $this->views   = $views;
+        $this->views = $views;
     }
 
     /**

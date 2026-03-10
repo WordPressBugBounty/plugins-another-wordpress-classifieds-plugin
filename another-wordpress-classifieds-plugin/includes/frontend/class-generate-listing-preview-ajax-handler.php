@@ -73,7 +73,7 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( ! $this->is_current_user_allowed_to_preview_listing( $listing ) ) {
+        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
             throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -81,22 +81,5 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
         $preview = $this->listings_content_renderer->render_content_without_notices( $content, $listing );
 
         return $this->success( [ 'preview' => $preview ] );
-    }
-
-    /**
-     * Checks whether the current user is allowed to preview the listing.
-     *
-     * @since 4.4.4
-     *
-     * @param WP_Post $listing The listing post object.
-     *
-     * @return bool
-     */
-    private function is_current_user_allowed_to_preview_listing( $listing ) {
-        if ( is_user_logged_in() ) {
-            return $this->authorization->is_current_user_allowed_to_edit_listing( $listing );
-        }
-
-        return 'auto-draft' === $listing->post_status;
     }
 }

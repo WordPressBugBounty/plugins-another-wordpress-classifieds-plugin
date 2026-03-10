@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php $page_id = 'awpcp-admin-csv-importer' ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings', 'another-wordpress-classifieds-plugin' ) ); ?>
 
-<?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
+<?php require( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 
             <?php echo wp_kses_post( $form_steps ); ?>
 
@@ -157,14 +157,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                                 <?php
                                 awpcp()->container['UserSelector']->render(
                                     array(
-                                        'selected'                      => empty( $form_data['default_user'] ) ? null : $form_data['default_user'],
-                                        'label'                         => false,
-                                        'default'                       => false,
-                                        'id'                            => 'awpcp-importer-user',
-                                        'name'                          => 'default_user',
-                                        'class'                         => array( 'awpcp-user-selector' ),
+                                        'selected' => empty( $form_data['default_user'] ) ? null : $form_data['default_user'],
+                                        'label'    => false,
+                                        'default'  => false,
+                                        'id'       => 'awpcp-importer-user',
+                                        'name'     => 'default_user',
+                                        'class'    => array( 'awpcp-user-selector' ),
                                         'include_full_user_information' => false,
-                                        'echo'                          => true,
+                                        'echo'     => true,
                                     )
                                 );
                                 ?>

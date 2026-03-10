@@ -44,17 +44,17 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
     }
 
     $filename = sanitize_file_name($filename);
-    $newname = wp_unique_filename($directory, $filename);
-    $newpath = trailingslashit($directory) . $newname;
+    $newname  = wp_unique_filename($directory, $filename);
+    $newpath  = trailingslashit($directory) . $newname;
 
     if ( ! $wp_filesystem->exists( $tmpname ) ) {
         /* translators: %s the file name */
         return sprintf( __( 'The specified image file does not exists: %s.', 'another-wordpress-classifieds-plugin' ), $tmpname );
     }
 
-    $ext = strtolower( awpcp_get_file_extension( $filename ) );
+    $ext     = strtolower( awpcp_get_file_extension( $filename ) );
     $imginfo = getimagesize($tmpname);
-    $size = $wp_filesystem->size($tmpname);
+    $size    = $wp_filesystem->size($tmpname);
 
     $allowed_extensions = array('gif', 'jpg', 'jpeg', 'png');
 
@@ -134,7 +134,7 @@ function awpcp_setup_uploads_dir() {
     $permissions = awpcp_directory_permissions();
 
     $upload_dir_name = get_awpcp_option('uploadfoldername', 'uploads');
-    $upload_dir = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
+    $upload_dir      = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
 
     // Required to set permission on main upload directory
     require_once( AWPCP_DIR . '/includes/class-fileop.php' );
@@ -168,10 +168,10 @@ function awpcp_setup_uploads_dir() {
 }
 
 function awpcp_get_image_constraints() {
-    $min_width = get_awpcp_option('imgminwidth');
+    $min_width  = get_awpcp_option('imgminwidth');
     $min_height = get_awpcp_option('imgminheight');
-    $min_size = get_awpcp_option('minimagesize');
-    $max_size = get_awpcp_option('maximagesize');
+    $min_size   = get_awpcp_option('minimagesize');
+    $max_size   = get_awpcp_option('maximagesize');
     return array($min_width, $min_height, $min_size, $max_size);
 }
 
@@ -181,7 +181,7 @@ function awpcp_get_image_constraints() {
  * XXX: Moved to ImageFileProcessor class.
  */
 function awpcp_create_image_versions($filename, $directory) {
-    $directory = trailingslashit($directory);
+    $directory  = trailingslashit($directory);
     $thumbnails = $directory . 'thumbs/';
 
     $filepath = $directory . $filename;
@@ -189,20 +189,20 @@ function awpcp_create_image_versions($filename, $directory) {
     awpcp_fix_image_rotation( $filepath );
 
     // create thumbnail
-    $width = get_awpcp_option('imgthumbwidth');
-    $height = get_awpcp_option('imgthumbheight');
-    $crop = get_awpcp_option('crop-thumbnails');
+    $width     = get_awpcp_option('imgthumbwidth');
+    $height    = get_awpcp_option('imgthumbheight');
+    $crop      = get_awpcp_option('crop-thumbnails');
     $thumbnail = awpcp_make_intermediate_size($filepath, $thumbnails, $width, $height, $crop);
 
     // create primary image thumbnail
-    $width = get_awpcp_option('primary-image-thumbnail-width');
-    $height = get_awpcp_option('primary-image-thumbnail-height');
-    $crop = get_awpcp_option('crop-primary-image-thumbnails');
+    $width   = get_awpcp_option('primary-image-thumbnail-width');
+    $height  = get_awpcp_option('primary-image-thumbnail-height');
+    $crop    = get_awpcp_option('crop-primary-image-thumbnails');
     $primary = awpcp_make_intermediate_size($filepath, $thumbnails, $width, $height, $crop, 'primary');
 
     // resize original image to match restrictions
-    $width = get_awpcp_option('imgmaxwidth');
-    $height = get_awpcp_option('imgmaxheight');
+    $width   = get_awpcp_option('imgmaxwidth');
+    $height  = get_awpcp_option('imgmaxheight');
     $resized = awpcp_make_intermediate_size($filepath, $directory, $width, $height, false, 'large');
 
     return $resized && $thumbnail && $primary;
@@ -220,7 +220,7 @@ function awpcp_fix_image_rotation( $filepath ) {
     $exif_data = @exif_read_data( $filepath );
 
     $orientation = isset( $exif_data['Orientation'] ) ? $exif_data['Orientation'] : 0;
-    $mime_type = isset( $exif_data['MimeType'] ) ? $exif_data['MimeType'] : '';
+    $mime_type   = isset( $exif_data['MimeType'] ) ? $exif_data['MimeType'] : '';
 
     $rotation_angle = 0;
     if ( 6 === $orientation ) {
@@ -298,8 +298,8 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
     }
 
     $path_info = awpcp_utf8_pathinfo( $file );
-    $filename = preg_replace("/\.{$path_info['extension']}/", '', $path_info['basename']);
-    $suffix = empty($suffix) ? '.' : "-$suffix.";
+    $filename  = preg_replace("/\.{$path_info['extension']}/", '', $path_info['basename']);
+    $suffix    = empty($suffix) ? '.' : "-$suffix.";
 
     $newpath = trailingslashit($directory) . $filename . $suffix . $path_info['extension'];
 
@@ -311,7 +311,7 @@ function awpcp_make_intermediate_size($file, $directory, $width, $height, $crop=
 
     if (is_array($image) && !empty($image)) {
         $tmppath = trailingslashit($path_info['dirname']) . $image['file'];
-        $result = $wp_filesystem->move($tmppath, $newpath);
+        $result  = $wp_filesystem->move($tmppath, $newpath);
     } else {
         $result = $wp_filesystem->copy($file, $newpath);
     }

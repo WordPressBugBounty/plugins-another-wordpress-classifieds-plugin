@@ -17,9 +17,9 @@ class AWPCP_BuyCreditsPageFinalStep {
         $controller->messages[] = __( 'Congratulations. You have successfully added credit to your account.', 'another-wordpress-classifieds-plugin' );
 
         $action_url = remove_query_arg( array( 'step', 'transaction_id' ), $controller->url() );
-        $params = array(
-            'payments' => $this->payments,
-            'messages' => $controller->messages,
+        $params     = array(
+            'payments'   => $this->payments,
+            'messages'   => $controller->messages,
             'action_url' => $action_url,
         );
 

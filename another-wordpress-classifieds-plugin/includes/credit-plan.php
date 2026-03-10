@@ -25,12 +25,12 @@ class AWPCP_CreditPlan {
     public function __construct($data=array()) {
         if (!is_array(self::$defaults)) {
             self::$defaults = array(
-                'id' => null,
-                'name' => null,
+                'id'          => null,
+                'name'        => null,
                 'description' => null,
-                'credits' => null,
-                'price' => null,
-                'created' => null,
+                'credits'     => null,
+                'price'       => null,
+                'created'     => null,
                 'updated'     => null,
             );
         }
@@ -68,7 +68,7 @@ class AWPCP_CreditPlan {
         $query .= ' ORDER BY ' . $orderby . ' ' . strtoupper( $order );
 
         if ( $limit > 0 ) {
-            $query.= ' LIMIT %d, %d';
+            $query       .= ' LIMIT %d, %d';
             $query_vars[] = $offset;
             $query_vars[] = $limit;
         }
@@ -79,7 +79,7 @@ class AWPCP_CreditPlan {
         }
 
         // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-        $items = $wpdb->get_results( $wpdb->prepare( $query, $query_vars ) );
+        $items   = $wpdb->get_results( $wpdb->prepare( $query, $query_vars ) );
         $results = array();
 
         foreach($items as $item) {
@@ -110,7 +110,7 @@ class AWPCP_CreditPlan {
 
     private function sanitize($data) {
         $data['credits'] = (int) $data['credits'];
-        $data['price'] = (float) $data['price'];
+        $data['price']   = (float) $data['price'];
         return $data;
     }
 
@@ -130,7 +130,7 @@ class AWPCP_CreditPlan {
     public function save(&$errors=array()) {
         global $wpdb;
 
-        $now = current_time('mysql');
+        $now           = current_time('mysql');
         $this->created = $this->created ? $this->created : $now;
         $this->updated = $now;
 
@@ -145,7 +145,7 @@ class AWPCP_CreditPlan {
             if ($this->id) {
                 $result = $wpdb->update(AWPCP_TABLE_CREDIT_PLANS, $data, array('id' => $this->id));
             } else {
-                $result = $wpdb->insert(AWPCP_TABLE_CREDIT_PLANS, $data);
+                $result   = $wpdb->insert(AWPCP_TABLE_CREDIT_PLANS, $data);
                 $this->id = $wpdb->insert_id;
             }
         } else {

@@ -36,10 +36,10 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
         }
 
         $cursor = get_option( 'awpcp-migrate-media-information-cursor', 0 );
-        $total = $this->count_pending_images( $cursor );
+        $total  = $this->count_pending_images( $cursor );
 
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
-        $sql.= 'WHERE ad_id > %d ORDER BY key_id LIMIT 0, 100';
+        $sql  = 'SELECT * FROM ' . AWPCP_TABLE_ADPHOTOS . ' ';
+        $sql .= 'WHERE ad_id > %d ORDER BY key_id LIMIT 0, 100';
 
         $results = $this->db->get_results( $this->db->prepare( $sql, $cursor ) );
 
@@ -59,13 +59,13 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
             $mime_type = $mime_types->get_file_mime_type( $uploads_dir . $relative_path );
 
             $entry = array(
-                'ad_id' => $image->ad_id,
-                'path' => $relative_path,
-                'name' => $image->image_name,
-                'mime_type' => strtolower( $mime_type ),
-                'enabled' => ! $image->disabled,
+                'ad_id'      => $image->ad_id,
+                'path'       => $relative_path,
+                'name'       => $image->image_name,
+                'mime_type'  => strtolower( $mime_type ),
+                'enabled'    => ! $image->disabled,
                 'is_primary' => $image->is_primary,
-                'created' => awpcp_datetime(),
+                'created'    => awpcp_datetime(),
             );
 
             $this->db->insert( AWPCP_TABLE_MEDIA, $entry );
@@ -82,8 +82,8 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
     }
 
     private function count_pending_images($cursor) {
-        $sql = 'SELECT count(key_id) FROM ' . AWPCP_TABLE_ADPHOTOS . '  ';
-        $sql.= 'WHERE ad_id > %d ORDER BY key_id LIMIT 0, 100';
+        $sql  = 'SELECT count(key_id) FROM ' . AWPCP_TABLE_ADPHOTOS . '  ';
+        $sql .= 'WHERE ad_id > %d ORDER BY key_id LIMIT 0, 100';
 
         return intval( $this->db->get_var( $this->db->prepare( $sql, $cursor ) ) );
     }

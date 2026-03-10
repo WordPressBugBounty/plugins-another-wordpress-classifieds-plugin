@@ -12,8 +12,8 @@ abstract class AWPCP_PaymentTermType {
     public $description;
 
     public function __construct($name, $slug, $description) {
-        $this->name = $name;
-        $this->slug = $slug;
+        $this->name        = $name;
+        $this->slug        = $slug;
         $this->description = $description;
     }
 

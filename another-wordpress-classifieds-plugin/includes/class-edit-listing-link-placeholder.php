@@ -19,7 +19,7 @@ class AWPCP_EditListingLinkPlaceholder {
 
     public function __construct( $listing_renderer, $authorization ) {
         $this->listing_renderer = $listing_renderer;
-        $this->authorization = $authorization;
+        $this->authorization    = $authorization;
     }
 
     public function do_placeholder( $listing, $placeholder, $context ) {

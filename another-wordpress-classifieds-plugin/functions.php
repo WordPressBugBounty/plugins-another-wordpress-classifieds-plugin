@@ -144,7 +144,7 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
     global $wp_query;
 
     $awpcp_rewrite = false;
-    $ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
+    $ids           = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
 
     // do not redirect requests to AWPCP pages with rewrite rules
     if ( is_page() && in_array( awpcp_get_var( array( 'param' => 'page_id', 'default' => 0 ) ), $ids ) ) {
@@ -248,12 +248,12 @@ function awpcp_strptime_replacement( $date, $format ) {
     }
 
     $ret = array(
-        'tm_sec' => (int) awpcp_array_data( 'S', 0, $out),
-        'tm_min' => (int) awpcp_array_data( 'M', 0, $out),
-        'tm_hour' => (int) awpcp_array_data( 'H', 0, $out),
-        'tm_mday' => (int) awpcp_array_data( 'd', 0, $out),
-        'tm_mon' => awpcp_array_data( 'm', 0, $out) ? awpcp_array_data( 'm', 0, $out) - 1 : 0,
-        'tm_year' => awpcp_array_data( 'Y', 0, $out) > 1900 ? awpcp_array_data( 'Y', 0, $out) - 1900 : 0,
+        'tm_sec'   => (int) awpcp_array_data( 'S', 0, $out),
+        'tm_min'   => (int) awpcp_array_data( 'M', 0, $out),
+        'tm_hour'  => (int) awpcp_array_data( 'H', 0, $out),
+        'tm_mday'  => (int) awpcp_array_data( 'd', 0, $out),
+        'tm_mon'   => awpcp_array_data( 'm', 0, $out) ? awpcp_array_data( 'm', 0, $out) - 1 : 0,
+        'tm_year'  => awpcp_array_data( 'Y', 0, $out) > 1900 ? awpcp_array_data( 'Y', 0, $out) - 1900 : 0,
         'unparsed' => $unparsed,
     );
 
@@ -339,7 +339,7 @@ function _awpcp_replace_format($format, $translations) {
     $processed = array();
     foreach ( $matches[0] as $match ) {
         if ( ! isset( $processed[ $match ] ) ) {
-            $format = str_replace( $match, $translations[ $match ], $format );
+            $format              = str_replace( $match, $translations[ $match ], $format );
             $processed[ $match ] = true;
         }
     }
@@ -389,7 +389,7 @@ function awpcp_get_datetime_formats() {
             'time'   => 'H:i:s',
             'format' => '<date> <time>',
         ),
-        'custom' => array(
+        'custom'   => array(
             'date'   => 'l F j, Y',
             'time'   => 'g:i a T',
             'format' => '<date> at <time>',
@@ -441,9 +441,9 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 }
 
 function awpcp_set_datetime_date( $datetime, $date ) {
-    $base_timestamp = strtotime( $datetime ? $datetime : '' );
+    $base_timestamp                = strtotime( $datetime ? $datetime : '' );
     $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ? $datetime : '' ) ) );
-    $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
+    $time_of_the_day_in_seconds    = $base_timestamp - $base_year_month_day_timestamp;
 
     $target_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $date ) ) );
 
@@ -453,9 +453,9 @@ function awpcp_set_datetime_date( $datetime, $date ) {
 }
 
 function awpcp_extend_date_to_end_of_the_day( $datetime ) {
-    $next_day = strtotime( '+ 1 days', $datetime );
+    $next_day            = strtotime( '+ 1 days', $datetime );
     $zero_hours_next_day = strtotime( gmdate( 'Y-m-d', $next_day ) );
-    $end_of_the_day = $zero_hours_next_day - 1;
+    $end_of_the_day      = $zero_hours_next_day - 1;
 
     return $end_of_the_day;
 }
@@ -612,15 +612,15 @@ function awpcp_pagination($config, $url) {
         $config
     ));
 
-    $items = array();
+    $items  = array();
     $radius = 2;
 
     if ( $results > 0 ) {
         $pages = ceil($total / $results);
-        $page = floor($offset / $results) + 1;
+        $page  = floor($offset / $results) + 1;
     } else {
         $pages = 1;
-        $page = 1;
+        $page  = 1;
     }
 
     $summary = __( 'Page {current_page_number} of {number_of_pages}', 'another-wordpress-classifieds-plugin' );
@@ -657,7 +657,7 @@ function awpcp_pagination($config, $url) {
 
     $unique_id  = str_replace( [ ' ', '.' ], '-', microtime() );
     $pagination = implode( '', $items );
-    $options = awpcp_pagination_options( $results );
+    $options    = awpcp_pagination_options( $results );
 
     ob_start();
         include(AWPCP_DIR . '/frontend/templates/listings-pagination.tpl.php');
@@ -671,7 +671,7 @@ function awpcp_render_pagination_item( $label, $page, $results_per_page, $params
     $params = array_merge(
         $params,
         array(
-            'offset' => ( $page - 1 ) * $results_per_page,
+            'offset'  => ( $page - 1 ) * $results_per_page,
             'results' => $results_per_page,
         )
     );
@@ -747,7 +747,7 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
     if ( $count > $threshold ) {
         // translators: %1$s is a comma-separated list of items, %2$d is the number of additional items
         $message = _x( '%1$s and %2$d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
-        $items = array_splice( $items, 0, $threshold - 1 );
+        $items   = array_splice( $items, 0, $threshold - 1 );
         return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
     } elseif ( $count > 0 ) {
         return sprintf( '%s.', join( ', ', $items ) );
@@ -773,9 +773,9 @@ function awpcp_get_enabled_region_fields( $context = null ) {
 
     return array(
         'country' => get_awpcp_option( 'displaycountryfield' ),
-        'state' => get_awpcp_option( 'displaystatefield' ),
-        'city' => get_awpcp_option( 'displaycityfield' ),
-        'county' => get_awpcp_option( 'displaycountyvillagefield' ),
+        'state'   => get_awpcp_option( 'displaystatefield' ),
+        'city'    => get_awpcp_option( 'displaycityfield' ),
+        'county'  => get_awpcp_option( 'displaycountyvillagefield' ),
     );
 }
 
@@ -783,50 +783,50 @@ function awpcp_get_enabled_region_fields( $context = null ) {
  * @since 3.0.2
  */
 function awpcp_default_region_fields( $context='details', $enabled_fields = null ) {
-    $enabled_fields = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
+    $enabled_fields                      = is_null( $enabled_fields ) ? awpcp_get_enabled_region_fields() : $enabled_fields;
     $show_city_field_before_county_field = get_awpcp_option( 'show-city-field-before-county-field' );
 
-    $always_shown = in_array( $context, array( 'details', 'search', 'user-profile' ), true );
+    $always_shown    = in_array( $context, array( 'details', 'search', 'user-profile' ), true );
     $can_be_required = $context !== 'search';
-    $_fields = array();
+    $_fields         = array();
 
     if ( $enabled_fields['country'] ) {
-        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
+        $required           = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
         $_fields['country'] = array(
-            'type' => 'country',
-            'label' => __( 'Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __( 'separate countries by commas', 'another-wordpress-classifieds-plugin'),
-            'required' => $required,
+            'type'        => 'country',
+            'label'       => __( 'Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help'        => __( 'separate countries by commas', 'another-wordpress-classifieds-plugin'),
+            'required'    => $required,
             'alwaysShown' => $always_shown,
         );
     }
     if ( $enabled_fields['state'] ) {
-        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
+        $required         = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
         $_fields['state'] = array(
-            'type' => 'state',
-            'label' => __( 'State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __( 'separate states by commas', 'another-wordpress-classifieds-plugin'),
-            'required' => $required,
+            'type'        => 'state',
+            'label'       => __( 'State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help'        => __( 'separate states by commas', 'another-wordpress-classifieds-plugin'),
+            'required'    => $required,
             'alwaysShown' => $always_shown,
         );
     }
     if ( $enabled_fields['city'] ) {
-        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
+        $required        = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
         $_fields['city'] = array(
-            'type' => 'city',
-            'label' => __( 'City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __( 'separate cities by commas', 'another-wordpress-classifieds-plugin'),
-            'required' => $required,
+            'type'        => 'city',
+            'label'       => __( 'City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help'        => __( 'separate cities by commas', 'another-wordpress-classifieds-plugin'),
+            'required'    => $required,
             'alwaysShown' => $always_shown,
         );
     }
     if ( $enabled_fields['county'] ) {
-        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
+        $required          = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
         $_fields['county'] = array(
-            'type' => 'county',
-            'label' => __( 'County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __( 'separate counties by commas', 'another-wordpress-classifieds-plugin'),
-            'required' => $required,
+            'type'        => 'county',
+            'label'       => __( 'County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help'        => __( 'separate counties by commas', 'another-wordpress-classifieds-plugin'),
+            'required'    => $required,
             'alwaysShown' => $always_shown,
         );
     }
@@ -1075,9 +1075,9 @@ function awpcp_country_list_options( $value = '', $use_names = true, $show = fal
  */
 
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
-    $all = array_merge($array, array($key => $item));
+    $all  = array_merge($array, array($key => $item));
     $keys = array_keys($array);
-    $p = array_search( $index, $keys, true );
+    $p    = array_search( $index, $keys, true );
 
     if ( $p !== false ) {
         if ($where === 'before')
@@ -1110,7 +1110,7 @@ function awpcp_array_insert_after($array, $index, $key, $item) {
  * @since 3.7.6
  */
 function awpcp_array_insert_first( $array, $item_key, $item ) {
-    $all_keys = array_keys( $array );
+    $all_keys  = array_keys( $array );
     $first_key = array_shift( $all_keys );
 
     return awpcp_array_insert( $array, $first_key, $item_key, $item, 'before' );
@@ -1151,7 +1151,7 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
     foreach ($items as $k => $item) {
         // insert after Fees
         if (strcmp($item[2], $after) === 0)
-            $to = $k;
+            $to   = $k;
         if (strcmp($item[2], $slug) === 0)
             $from = $k;
     }
@@ -1494,22 +1494,22 @@ function awpcp_get_currency_code() {
  */
 function awpcp_currency_symbols() {
     return array(
-        '$' => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD', 'MXN' ),
-        '¥' => array( 'JPY' ),
-        '€' => array( 'EUR' ),
-        '£' => array( 'GBP' ),
-        '₽;' => array( 'RUB' ),
-        'R$' => array( 'BRL' ),
-        'Kč' => array( 'CZK' ),
+        '$'   => array( 'CAD', 'AUD', 'NZD', 'SGD', 'HKD', 'USD', 'MXN' ),
+        '¥'   => array( 'JPY' ),
+        '€'   => array( 'EUR' ),
+        '£'   => array( 'GBP' ),
+        '₽;'  => array( 'RUB' ),
+        'R$'  => array( 'BRL' ),
+        'Kč'  => array( 'CZK' ),
         'kr.' => array( 'DKK' ),
-        '₪' => array( 'ILS' ),
-        'RM' => array( 'MYR' ),
-        'kr' => array( 'NOK', 'SEK' ),
-        '₱' => array( 'PHP' ),
+        '₪'   => array( 'ILS' ),
+        'RM'  => array( 'MYR' ),
+        'kr'  => array( 'NOK', 'SEK' ),
+        '₱'   => array( 'PHP' ),
         'CHF' => array( 'CHF' ),
         'NT$' => array( 'TWD' ),
-        '฿' => array( 'THB' ),
-        '₺' => array( 'TRY' ),
+        '฿'   => array( 'THB' ),
+        '₺'   => array( 'TRY' ),
     );
 }
 
@@ -1607,7 +1607,7 @@ function awpcp_format_number( $value, $decimals = null ) {
  */
 function awpcp_get_formatted_number( $value, $decimals = 0 ) {
     $thousands_separator = get_awpcp_option( 'thousands-separator' );
-    $decimal_separator = get_awpcp_option( 'decimal-separator' );
+    $decimal_separator   = get_awpcp_option( 'decimal-separator' );
 
     $formatted = number_format( abs( $value ), $decimals, '~', '^' );
     $formatted = str_replace( '~', $decimal_separator, $formatted );
@@ -1641,13 +1641,13 @@ function awpcp_parse_number( $value, $decimal_separator = false, $thousands_sepa
     if ( strlen( $value ) === 0 ) return false;
 
     $thousands_separator = $thousands_separator ? $thousands_separator : get_awpcp_option('thousands-separator');
-    $decimal_separator = $decimal_separator ? $decimal_separator : get_awpcp_option('decimal-separator');
+    $decimal_separator   = $decimal_separator ? $decimal_separator : get_awpcp_option('decimal-separator');
 
     $pattern = '/^-?(?:\d+|\d{1,3}(?:' . preg_quote( $thousands_separator ) . '\\d{3})+)?(?:' . preg_quote( $decimal_separator ) . '\\d+)?$/';
 
     if ( preg_match( $pattern, $value ) ) {
-        $value = str_replace($thousands_separator, '', $value);
-        $value = str_replace($decimal_separator, '.', $value);
+        $value  = str_replace($thousands_separator, '', $value);
+        $value  = str_replace($decimal_separator, '.', $value);
         $number = floatval($value);
     } else {
         $number = false;
@@ -1745,7 +1745,7 @@ function awpcp_print_messages() {
     // cache the messages during the request. That's why we use a static $messages
     // variable.
     static $messages = null;
-    $messages = is_null($messages) ? awpcp_get_flash_messages() : $messages;
+    $messages        = is_null($messages) ? awpcp_get_flash_messages() : $messages;
 
     foreach ($messages as $message) {
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -1861,9 +1861,9 @@ function awpcp_form_help_text( $field_id, $help_text ) {
     }
 
     $params = array(
-        'text' => $help_text,
+        'text'       => $help_text,
         'attributes' => array(
-            'for' => $field_id,
+            'for'   => $field_id,
             'class' => array( 'helptext', 'awpcp-form-helptext' ),
         ),
     );
@@ -1908,17 +1908,17 @@ function awpcp_html_hidden_fields( $fields ) {
 function awpcp_html_image( $params ) {
     $params = wp_parse_args( $params, array(
         'attributes' => array(
-            'alt' => null,
-            'title' => null,
-            'src' => null,
-            'width' => null,
+            'alt'    => null,
+            'title'  => null,
+            'src'    => null,
+            'width'  => null,
             'height' => null,
-            'style' => null,
+            'style'  => null,
         ),
     ) );
 
     $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
-    $element = str_replace( '<attributes>', $attributes, '<img<attributes>/>' );
+    $element    = str_replace( '<attributes>', $attributes, '<img<attributes>/>' );
 
     return $element;
 }
@@ -1928,7 +1928,7 @@ function awpcp_html_image( $params ) {
  */
 function awpcp_html_label( $params ) {
     $params = wp_parse_args( $params, array(
-        'text' => null,
+        'text'       => null,
         'attributes' => array(
             'for' => null,
         ),
@@ -1969,7 +1969,7 @@ function awpcp_html_text_field( $params ) {
  */
 function awpcp_html_input( $params ) {
     $attributes = rtrim( ' ' . awpcp_html_attributes( $params['attributes'] ) );
-    $element = str_replace( '<attributes>', $attributes, '<input <attributes>/>' );
+    $element    = str_replace( '<attributes>', $attributes, '<input <attributes>/>' );
     return $element;
 }
 
@@ -1981,7 +1981,7 @@ function awpcp_html_radio( $params ) {
         $params,
         array(
             'current-value' => null,
-            'disabled' => null,
+            'disabled'      => null,
         ),
         array(
             'value' => null,
@@ -2022,7 +2022,7 @@ function awpcp_html_select( $params ) {
 function awpcp_html_options( $params ) {
     $params = wp_parse_args( $params, array(
         'current-value' => null,
-        'options' => array(),
+        'options'       => array(),
     ) );
 
     $options = '';
@@ -2052,7 +2052,7 @@ function awpcp_parse_html_params( $params, $default_params = array(), $default_a
         wp_parse_args(
             $default_params,
             array(
-                'required' => null,
+                'required'   => null,
                 'attributes' => array(),
             )
         )
@@ -2091,16 +2091,16 @@ function awpcp_parse_html_attributes( $attributes, $default_attributes = array()
 function awpcp_html_postbox_handle( $params ) {
     $default_params = array(
         'heading_attributes' => array(),
-        'span_attributes' => array(),
-        'heading_class' => 'hndle',
-        'heading_tag' => null,
-        'content' => '',
+        'span_attributes'    => array(),
+        'heading_class'      => 'hndle',
+        'heading_tag'        => null,
+        'content'            => '',
         'echo'               => false,
     );
 
-    $params = wp_parse_args( $params, $default_params );
+    $params                       = wp_parse_args( $params, $default_params );
     $params['heading_attributes'] = awpcp_parse_html_attributes( $params['heading_attributes'] );
-    $params['span_attributes'] = awpcp_parse_html_attributes( $params['span_attributes'] );
+    $params['span_attributes']    = awpcp_parse_html_attributes( $params['span_attributes'] );
 
     if ( ! in_array( $params['heading_class'], $params['heading_attributes']['class'], true ) ) {
         $params['heading_attributes']['class'][] = $params['heading_class'];
@@ -2204,7 +2204,7 @@ function awpcp_html_heading( $params ) {
         'echo'       => false,
     );
 
-    $params = wp_parse_args( $params, $default_params );
+    $params               = wp_parse_args( $params, $default_params );
     $params['attributes'] = awpcp_parse_html_attributes( $params['attributes'] );
 
     $element = '<<heading-tag> <heading-attributes>><content></<heading-tag>>';
@@ -2222,16 +2222,16 @@ function awpcp_html_heading( $params ) {
 
 function awpcp_uploaded_file_error($file) {
     $upload_errors = array(
-        UPLOAD_ERR_OK           => __("No errors.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_INI_SIZE     => __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_PARTIAL      => __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
-        UPLOAD_ERR_EXTENSION    => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
+        UPLOAD_ERR_OK         => __("No errors.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_INI_SIZE   => __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_FORM_SIZE  => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_PARTIAL    => __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_NO_FILE    => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_NO_TMP_DIR => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_CANT_WRITE => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_EXTENSION  => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
     );
-    $error = sanitize_text_field( wp_unslash( $file['error'] ) );
+    $error         = sanitize_text_field( wp_unslash( $file['error'] ) );
     return array( $error, $upload_errors[ $error ] );
 }
 
@@ -2308,7 +2308,7 @@ function awpcp_check_if_column_exists( $table, $column ) {
     global $wpdb;
 
     $suppress_errors = $wpdb->suppress_errors();
-    $result = $wpdb->query(
+    $result          = $wpdb->query(
         $wpdb->prepare( "SELECT %i FROM %i", $column, $table )
     );
     $wpdb->suppress_errors( $suppress_errors );
@@ -2436,7 +2436,7 @@ function awpcp_admin_sender_name() {
  */
 function awpcp_admin_email_from() {
     $email_address = awpcp_admin_sender_email_address();
-    $sender_name = awpcp_admin_sender_name();
+    $sender_name   = awpcp_admin_sender_name();
 
     return awpcp_format_email_address( $email_address, $sender_name );
 }
@@ -2474,11 +2474,11 @@ function awpcp_ad_enabled_email( $listing ) {
     $listing_renderer = awpcp_listing_renderer();
 
     $listing_title = $listing_renderer->get_listing_title( $listing );
-    $contact_name = $listing_renderer->get_contact_name( $listing );
+    $contact_name  = $listing_renderer->get_contact_name( $listing );
     $contact_email = $listing_renderer->get_contact_email( $listing );
 
     // user email
-    $mail = new AWPCP_Email();
+    $mail       = new AWPCP_Email();
     $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
     /* translators: %s is the listing title */
     $mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
@@ -2498,11 +2498,11 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
     $listing_renderer = awpcp_listing_renderer();
 
     $listing_title = $listing_renderer->get_listing_title( $ad );
-    $access_key = $listing_renderer->get_access_key( $ad );
-    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $access_key    = $listing_renderer->get_access_key( $ad );
+    $contact_name  = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
-    $mail = new AWPCP_Email();
+    $mail       = new AWPCP_Email();
     $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
     // translators: %s is the listing title
     $mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
@@ -2523,7 +2523,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
     $listing_renderer = awpcp_listing_renderer();
 
     // admin email
-    $params = array( 'action' => 'edit', 'post' => $ad->ID );
+    $params            = array( 'action' => 'edit', 'post' => $ad->ID );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
     $messages = array();
@@ -2558,8 +2558,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
         }
     }
 
-    $mail = new AWPCP_Email();
-    $mail->to[] = awpcp_admin_email_to();
+    $mail          = new AWPCP_Email();
+    $mail->to[]    = awpcp_admin_email_to();
     $mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
 
     $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
@@ -2718,8 +2718,8 @@ function awpcp_mb_detect_encoding( $string, $encodings ) {
  */
 function awpcp_utf8_pathinfo( $path, $path_parts_types = null ) {
     $modified_path = awpcp_add_path_prefix( $path );
-    $path_parts = is_null( $path_parts_types ) ? pathinfo( $modified_path ) : pathinfo( $modified_path, $path_parts_types );
-    $path_parts = awpcp_remove_path_prefix( $path_parts, $path_parts_types );
+    $path_parts    = is_null( $path_parts_types ) ? pathinfo( $modified_path ) : pathinfo( $modified_path, $path_parts_types );
+    $path_parts    = awpcp_remove_path_prefix( $path_parts, $path_parts_types );
 
     return $path_parts;
 }
@@ -2748,7 +2748,7 @@ function awpcp_remove_path_prefix( $path_parts, $path_part_type, $prefix = '_629
 
 function awpcp_utf8_basename( $path, $suffix = null ) {
     $modified_path = awpcp_add_path_prefix( $path );
-    $basename = basename( $modified_path );
+    $basename      = basename( $modified_path );
     return awpcp_remove_path_prefix( $basename, PATHINFO_BASENAME );
 }
 
@@ -2765,16 +2765,16 @@ function awpcp_utf8_basename( $path, $suffix = null ) {
 function awpcp_unique_filename( $path, $filename, $directories ) {
     $pathinfo = awpcp_utf8_pathinfo( $filename );
 
-    $name = awpcp_sanitize_file_name( $pathinfo['filename'] );
-    $extension = $pathinfo['extension'];
+    $name          = awpcp_sanitize_file_name( $pathinfo['filename'] );
+    $extension     = $pathinfo['extension'];
     $wp_filesystem = awpcp_get_wp_filesystem();
-    $file_size = ( $wp_filesystem && $wp_filesystem->exists( $path ) ) ? $wp_filesystem->size( $path ) : 0;
-    $timestamp = microtime();
-    $salt = wp_salt();
-    $counter = 0;
+    $file_size     = ( $wp_filesystem && $wp_filesystem->exists( $path ) ) ? $wp_filesystem->size( $path ) : 0;
+    $timestamp     = microtime();
+    $salt          = wp_salt();
+    $counter       = 0;
 
     do {
-        $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$salt-$counter" );
+        $hash         = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$salt-$counter" );
         $new_filename = "$name-$hash.$extension";
         ++$counter;
     } while ( awpcp_is_filename_already_used( $new_filename, $directories ) );
@@ -2910,7 +2910,7 @@ function awpcp_is_valid_email_address($email) {
  */
 function awpcp_is_email_address_allowed( $email_address ) {
     $wildcard = 'BCCsyfxU6HMXyyasic6t';
-    $pattern = '[a-zA-Z0-9-]*';
+    $pattern  = '[a-zA-Z0-9-]*';
 
     $domains_whitelist = str_replace( '*', $wildcard, get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
     $domains_whitelist = preg_quote( $domains_whitelist );
@@ -2978,7 +2978,7 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     $enabled = get_awpcp_option('usesmtp');
     if ( !$enabled || 0 == $enabled ) return;
     $hostname = get_awpcp_option('smtphost');
-    $port = get_awpcp_option('smtpport');
+    $port     = get_awpcp_option('smtpport');
     $username = get_awpcp_option('smtpusername');
     $password = get_awpcp_option('smtppassword');
     // host and port not set? gotta have both.

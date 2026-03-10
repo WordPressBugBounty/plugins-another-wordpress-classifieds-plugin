@@ -31,12 +31,12 @@ class AWPCP_Template_Renderer {
         }
 
         $params = array(
-            'page' => $page,
-            'page_slug' => $page->page,
-            'page_title' => $page->title(),
+            'page'              => $page,
+            'page_slug'         => $page->page,
+            'page_title'        => $page->title(),
             'should_show_title' => $should_show_title,
-            'show_sidebar' => $show_sidebar,
-            'content' => $content,
+            'show_sidebar'      => $show_sidebar,
+            'content'           => $content,
         );
 
         return $this->render_template( $page_template, $params );

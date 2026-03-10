@@ -64,7 +64,7 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
 
     public function url($params=array(), $base=false) {
         $blacklist = $this->params_blacklist();
-        $params = array_filter(
+        $params    = array_filter(
             array_merge( $this->params, $params )
         );
 

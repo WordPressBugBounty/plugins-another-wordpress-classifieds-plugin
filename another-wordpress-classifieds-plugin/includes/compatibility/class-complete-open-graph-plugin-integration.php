@@ -57,7 +57,7 @@ class AWPCP_CompleteOpenGraphPluginIntegration {
         $metadata = $this->meta->get_listing_metadata();
 
         $groups = array(
-            'og' => array(
+            'og'      => array(
                 'url',
                 'description',
                 'title',

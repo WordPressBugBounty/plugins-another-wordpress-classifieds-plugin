@@ -46,26 +46,26 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
      * @return void
      */
     public function set_translated_strings() {
-        $this->name                            = __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin' );
-        $this->widget_options['description']   = __( 'Displays a list of latest Ads', 'another-wordpress-classifieds-plugin' );
+        $this->name                          = __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin' );
+        $this->widget_options['description'] = __( 'Displays a list of latest Ads', 'another-wordpress-classifieds-plugin' );
     }
 
     protected function defaults() {
         $translations = array(
-            'hlimit' => 'limit',
+            'hlimit'     => 'limit',
             'showimages' => 'show-images',
-            'showblank' => 'show-blank',
+            'showblank'  => 'show-blank',
         );
 
         $defaults = array(
-            'title' => __( 'Latest Ads', 'another-wordpress-classifieds-plugin'),
-            'show-title' => 1,
-            'show-excerpt' => 1,
-            'show-images' => 1,
-            'show-blank' => 1,
+            'title'                         => __( 'Latest Ads', 'another-wordpress-classifieds-plugin'),
+            'show-title'                    => 1,
+            'show-excerpt'                  => 1,
+            'show-images'                   => 1,
+            'show-blank'                    => 1,
             'thumbnail-position-in-desktop' => 'left',
-            'thumbnail-position-in-mobile' => 'above',
-            'limit' => 10,
+            'thumbnail-position-in-mobile'  => 'above',
+            'limit'                         => 10,
         );
 
         // TODO: get rid of the widget_awpcplatestads option in 3.1 or 3.0.1
@@ -130,8 +130,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     private function render_item( $item, $instance, $html_class ) {
         $listing_title = $this->listing_renderer->get_listing_title( $item );
-        $item_url = $this->listing_renderer->get_view_listing_url( $item );
-        $item_title = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
+        $item_url      = $this->listing_renderer->get_view_listing_url( $item );
+        $item_title    = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
 
         $html_title   = '';
         $html_excerpt = '';
@@ -142,8 +142,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         }
 
         if ($instance['show-excerpt']) {
-            $excerpt = awpcp_do_placeholder_excerpt( $item, 'excerpt' );
-            $read_more = sprintf( '<p class="awpcp-widget-read-more-container"><a class="awpcp-widget-read-more" href="%s">[%s]</a></p>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
+            $excerpt      = awpcp_do_placeholder_excerpt( $item, 'excerpt' );
+            $read_more    = sprintf( '<p class="awpcp-widget-read-more-container"><a class="awpcp-widget-read-more" href="%s">[%s]</a></p>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
             $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s</div>', $excerpt );
         }
 
@@ -167,8 +167,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         $image = $this->attachments->get_featured_image( $item->ID );
 
-        $image_url  = '';
-        $html_image = '';
+        $image_url     = '';
+        $html_image    = '';
         $listing_title = esc_attr( $this->listing_renderer->get_listing_title( $item ) );
 
         if ( ! is_null( $image ) && $show_images ) {
@@ -238,14 +238,14 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     public function update($new_instance, $old_instance) {
-        $instance['title'] = sanitize_text_field( $new_instance['title'] );
-        $instance['limit'] = sanitize_text_field( $new_instance['limit'] );
-        $instance['show-title'] = absint($new_instance['show-title']);
-        $instance['show-excerpt'] = absint($new_instance['show-excerpt']);
-        $instance['show-images'] = absint($new_instance['show-images']);
-        $instance['show-blank'] = absint($new_instance['show-blank']);
+        $instance['title']                         = sanitize_text_field( $new_instance['title'] );
+        $instance['limit']                         = sanitize_text_field( $new_instance['limit'] );
+        $instance['show-title']                    = absint($new_instance['show-title']);
+        $instance['show-excerpt']                  = absint($new_instance['show-excerpt']);
+        $instance['show-images']                   = absint($new_instance['show-images']);
+        $instance['show-blank']                    = absint($new_instance['show-blank']);
         $instance['thumbnail-position-in-desktop'] = sanitize_text_field( $new_instance['thumbnail-position-in-desktop'] );
-        $instance['thumbnail-position-in-mobile'] = sanitize_text_field( $new_instance['thumbnail-position-in-mobile'] );
+        $instance['thumbnail-position-in-mobile']  = sanitize_text_field( $new_instance['thumbnail-position-in-mobile'] );
 
         return $instance;
     }

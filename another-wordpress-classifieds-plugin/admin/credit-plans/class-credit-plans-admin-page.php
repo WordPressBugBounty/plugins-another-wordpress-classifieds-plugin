@@ -23,8 +23,8 @@ class AWPCP_CreditPlansAdminPage extends AWPCP_AdminPageWithTable {
     }
 
     public function actions($plan, $filter=false) {
-        $actions = array();
-        $actions['edit'] = array(__( 'Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $plan->id)));
+        $actions          = array();
+        $actions['edit']  = array(__( 'Edit', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'edit', 'id' => $plan->id)));
         $actions['trash'] = array(__( 'Delete', 'another-wordpress-classifieds-plugin' ), $this->url(array('action' => 'delete', 'id' => $plan->id)));
 
         if (is_array($filter))
@@ -55,8 +55,8 @@ class AWPCP_CreditPlansAdminPage extends AWPCP_AdminPageWithTable {
         $this->get_table()->prepare_items();
 
         $params = array(
-            'page' => $this,
-            'table' => $this->get_table(),
+            'page'   => $this,
+            'table'  => $this->get_table(),
             'option' => $awpcp->settings->setting_name,
         );
 

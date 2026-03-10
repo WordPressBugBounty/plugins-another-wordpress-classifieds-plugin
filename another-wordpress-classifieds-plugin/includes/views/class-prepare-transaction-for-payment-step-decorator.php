@@ -21,11 +21,11 @@ class AWPCP_PrepareTransactionForPaymentStepDecorator extends AWPCP_StepDecorato
         $this->payments = $payments;
 
         $this->payment_completed_step = $payment_completed_step;
-        $this->checkout_step = $checkout_step;
+        $this->checkout_step          = $checkout_step;
     }
 
     public function after_post( $controller ) {
-        $this->controller = $controller;
+        $this->controller  = $controller;
         $this->transaction = $this->controller->get_transaction();
         $this->prepare_transaction_for_payment();
     }

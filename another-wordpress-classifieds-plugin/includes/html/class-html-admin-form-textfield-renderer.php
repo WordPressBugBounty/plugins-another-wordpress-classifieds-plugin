@@ -15,21 +15,21 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
         $form_field_id = "awpcp-admin-form-textfield-{$element_definition['#name']}";
 
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
-            '#content' => array(
+            '#content'    => array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'for' => $form_field_id ),
-                    '#content' => $element_definition['#label'],
+                    '#content'    => $element_definition['#label'],
                 ),
                 array(
-                    '#type' => 'input',
+                    '#type'       => 'input',
                     '#attributes' => array(
-                        'id' => $form_field_id,
-                        'type' => 'text',
+                        'id'    => $form_field_id,
+                        'type'  => 'text',
                         'value' => $element_definition['#value'],
-                        'name' => $element_definition['#name'],
+                        'name'  => $element_definition['#name'],
                     ),
                 ),
             ),

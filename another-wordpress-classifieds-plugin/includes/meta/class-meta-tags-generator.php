@@ -25,13 +25,13 @@ class AWPCP_MetaTagsGenerator {
     }
 
     public function generate_opengraph_meta_tags( $metadata ) {
-        $meta_tags['og:type'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:type', 'content' => $metadata['http://ogp.me/ns#type'] ) );
-        $meta_tags['og:url'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:url', 'content' => $metadata['http://ogp.me/ns#url'] ) );
-        $meta_tags['og:title'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:title', 'content' => $metadata['http://ogp.me/ns#title'] ) );
+        $meta_tags['og:type']        = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:type', 'content' => $metadata['http://ogp.me/ns#type'] ) );
+        $meta_tags['og:url']         = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:url', 'content' => $metadata['http://ogp.me/ns#url'] ) );
+        $meta_tags['og:title']       = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:title', 'content' => $metadata['http://ogp.me/ns#title'] ) );
         $meta_tags['og:description'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:description', 'content' => $metadata['http://ogp.me/ns#description'] ) );
 
         $meta_tags['article:published_time'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'article:published_time', 'content' => $metadata['http://ogp.me/ns/article#published_time'] ) );
-        $meta_tags['article:modified_time'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'article:modified_time', 'content' => $metadata['http://ogp.me/ns/article#modified_time'] ) );
+        $meta_tags['article:modified_time']  = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'article:modified_time', 'content' => $metadata['http://ogp.me/ns/article#modified_time'] ) );
 
         if ( isset( $metadata['http://ogp.me/ns#image'] ) ) {
             $meta_tags['og:image'] = $this->tag_renderer->render_tag( 'meta', array( 'property' => 'og:image', 'content' => $metadata['http://ogp.me/ns#image'] ) );
@@ -48,7 +48,7 @@ class AWPCP_MetaTagsGenerator {
     public function generate_basic_meta_tags( $metadata ) {
         $meta_tags = array();
 
-        $meta_tags['title'] = $this->tag_renderer->render_tag( 'meta', array( 'name' => 'title', 'content' => $metadata['http://ogp.me/ns#title'] ) );
+        $meta_tags['title']       = $this->tag_renderer->render_tag( 'meta', array( 'name' => 'title', 'content' => $metadata['http://ogp.me/ns#title'] ) );
         $meta_tags['description'] = $this->tag_renderer->render_tag( 'meta', array( 'name' => 'description', 'content' => $metadata['http://ogp.me/ns#description'] ) );
 
         return $meta_tags;

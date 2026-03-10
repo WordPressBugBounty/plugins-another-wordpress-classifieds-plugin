@@ -12,7 +12,7 @@ class AWPCP_UploadedFileLogic {
     private $settings;
 
     public function __construct( $file, $settings ) {
-        $this->file = $file;
+        $this->file     = $file;
         $this->settings = $settings;
     }
 
@@ -25,7 +25,7 @@ class AWPCP_UploadedFileLogic {
     }
 
     public function get_relative_path() {
-        $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $uploads_dir   = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
         $relative_path = ltrim( str_replace( $uploads_dir, '', $this->get_path() ), DIRECTORY_SEPARATOR );
         return $relative_path;
     }
@@ -33,10 +33,10 @@ class AWPCP_UploadedFileLogic {
     public function set_path( $new_path ) {
         $pathinfo = awpcp_utf8_pathinfo( $new_path );
 
-        $this->file->path = $new_path;
-        $this->file->name = $pathinfo['basename'];
-        $this->file->dirname = $pathinfo['dirname'];
-        $this->file->filename = $pathinfo['filename'];
+        $this->file->path      = $new_path;
+        $this->file->name      = $pathinfo['basename'];
+        $this->file->dirname   = $pathinfo['dirname'];
+        $this->file->filename  = $pathinfo['filename'];
         $this->file->extension = $pathinfo['extension'];
     }
 

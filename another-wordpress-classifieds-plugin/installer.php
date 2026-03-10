@@ -153,13 +153,13 @@ class AWPCP_Installer {
         );
         if ( empty( $fee ) ) {
             $data = array(
-                'adterm_id' => 1,
-                'adterm_name' => __( '30 Day Listing', 'another-wordpress-classifieds-plugin' ),
-                'amount' => 9.99,
-                'recurring' => 1,
-                'rec_period' => 30,
+                'adterm_id'     => 1,
+                'adterm_name'   => __( '30 Day Listing', 'another-wordpress-classifieds-plugin' ),
+                'amount'        => 9.99,
+                'recurring'     => 1,
+                'rec_period'    => 30,
                 'rec_increment' => 'D',
-                'buys' => 0,
+                'buys'          => 0,
                 'imagesallowed' => 6,
             );
 
@@ -209,7 +209,7 @@ class AWPCP_Installer {
     private function get_upgrade_routines() {
         // You have to use at least major.minor.patch version numbers.
         return array(
-            '4.0.0beta1' => array(
+            '4.0.0beta1'  => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
                 'migrate_reply_to_ad_email_template',
@@ -219,19 +219,19 @@ class AWPCP_Installer {
                 'enable_upgrade_routine_to_migrate_listing_categories',
                 'enable_upgrade_routine_to_migrate_listings',
             ),
-            '4.0.0beta2' => array(
+            '4.0.0beta2'  => array(
                 'enable_routine_to_fix_id_collision_for_listing_categories',
             ),
-            '4.0.0beta4' => [
+            '4.0.0beta4'  => [
                 'enable_routine_to_store_categories_order_as_term_meta',
             ],
-            '4.0.0beta5' => [
+            '4.0.0beta5'  => [
                 'rename_translation_files_using_outdated_textdomain',
             ],
-            '4.0.0beta6' => [
+            '4.0.0beta6'  => [
                 'enable_routine_to_fix_id_collision_for_listings',
             ],
-            '4.0.0beta8' => [
+            '4.0.0beta8'  => [
                 'enable_routine_to_force_post_id',
             ],
             '4.0.0beta13' => [
@@ -239,24 +239,24 @@ class AWPCP_Installer {
                 'maybe_enable_routine_to_update_categories_term_count',
                 'maybe_enable_upgrade_routines_to_migrate_media',
             ],
-            '4.0.0' => [
+            '4.0.0'       => [
                 'enable_routine_to_add_missing_is_paid_meta',
                 'enable_routine_to_add_missing_views_meta',
                 'delete_settings_table',
             ],
-            '4.0.2' => [
+            '4.0.2'       => [
                 'remove_invalid_admin_editor_metadata',
             ],
-            '4.0.5' => [
+            '4.0.5'       => [
                 'enable_routine_to_update_most_recent_date',
             ],
-            '4.0.6' => [
+            '4.0.6'       => [
                 'enable_routine_to_add_default_awpcp_order',
             ],
-            '4.0.7' => [
+            '4.0.7'       => [
                 'enable_routine_to_add_awpcp_contact_phone_number_digits',
             ],
-            '4.0.14' => [
+            '4.0.14'      => [
                 'increase_adfee_table_amount_field_max_value',
             ],
         );
@@ -338,9 +338,9 @@ class AWPCP_Installer {
         }
 
         $template = [
-            'subject'  => $previous_subject,
-            'body'     => $previous_body,
-            'version'  => '4.0.0',
+            'subject' => $previous_subject,
+            'body'    => $previous_body,
+            'version' => '4.0.0',
         ];
 
         $template['subject'] = str_replace( '$title', '{listing_title}', $template['subject'] );
@@ -360,7 +360,7 @@ class AWPCP_Installer {
     private function keep_legacy_url_structure() {
         $this->settings->set_or_update_option( 'display-listings-as-single-posts', false );
 
-        $main_plugin_page = awpcp_get_page_by_ref( 'main-page-name' );
+        $main_plugin_page  = awpcp_get_page_by_ref( 'main-page-name' );
         $show_listing_page = awpcp_get_page_by_ref( 'show-ads-page-name' );
 
         if ( $main_plugin_page && $show_listing_page && $show_listing_page->post_parent == $main_plugin_page->ID ) {
@@ -699,19 +699,19 @@ function awpcp_fix_table_charset_and_collate($tables) {
         foreach ($columns as $col) {
             foreach ($types as $type) {
                 if (strpos($col[1], $type) !== false) {
-                    $definition = 'CHANGE %i %i %i ';
+                    $definition   = 'CHANGE %i %i %i ';
                     $query_vars[] = $col[0];
                     $query_vars[] = $col[0];
                     $query_vars[] = $col[1];
-                    $definition.= "CHARACTER SET utf8 COLLATE utf8_general_ci ";
-                    $definition.= strcasecmp($col[2], 'NO') === 0 ? 'NOT NULL ' : '';
+                    $definition  .= "CHARACTER SET utf8 COLLATE utf8_general_ci ";
+                    $definition  .= strcasecmp($col[2], 'NO') === 0 ? 'NOT NULL ' : '';
 
                     // TEXT columns can't have a default value in Strict mode.
                     if ( $type !== 'text' ) {
                         if ( strcasecmp( $col[4], 'NULL' ) === 0 ) {
                             $definition .= 'DEFAULT NULL';
                         } else {
-                            $definition .= 'DEFAULT %s';
+                            $definition  .= 'DEFAULT %s';
                             $query_vars[] = $col[4];
                         }
                     }

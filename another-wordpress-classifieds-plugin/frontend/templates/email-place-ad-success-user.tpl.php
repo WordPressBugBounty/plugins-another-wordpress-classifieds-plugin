@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
+echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
 
@@ -22,17 +22,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php printf( esc_html__( '%s Transaction', 'another-wordpress-classifieds-plugin' ), esc_html( $blog_name ) ); ?>: <?php echo esc_html( $transaction->id ); ?>
 
 <?php   if ($transaction->get('txn-id')): ?>
-<?php esc_html_e( 'Payment Transaction', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $transaction->get( 'txn-id' ) ); ?>
+                                                                <?php esc_html_e( 'Payment Transaction', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $transaction->get( 'txn-id' ) ); ?>
 
-<?php   endif ?>
+                                                                <?php   endif ?>
 <?php   if ( $show_total_amount ): ?>
-<?php echo esc_html( __( 'Order Total', 'another-wordpress-classifieds-plugin' ) ); ?> (<?php echo esc_html( $currency_code ); ?>): <?php echo esc_html( awpcp_format_money( $total_amount ) ); ?>
+                                                                <?php echo esc_html( __( 'Order Total', 'another-wordpress-classifieds-plugin' ) ); ?> (<?php echo esc_html( $currency_code ); ?>): <?php echo esc_html( awpcp_format_money( $total_amount ) ); ?>
 
-<?php   endif; ?>
+                                                                <?php   endif; ?>
 <?php   if ( $show_total_credits ): ?>
-<?php echo esc_html( __( 'Order Total (credits)', 'another-wordpress-classifieds-plugin' ) ); ?>: <?php echo esc_html( $total_credits ); ?>
+                                                                <?php echo esc_html( __( 'Order Total (credits)', 'another-wordpress-classifieds-plugin' ) ); ?>: <?php echo esc_html( $total_credits ); ?>
 
-<?php   endif; ?>
+                                                                <?php   endif; ?>
 
 <?php endif ?>
 <?php if ( $include_edit_listing_url ): ?>

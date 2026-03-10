@@ -12,7 +12,7 @@ class AWPCP_Upgrade_Sessions {
 
     public function __construct( $tasks_manager, $wordpress ) {
         $this->tasks_manager = $tasks_manager;
-        $this->wordpress = $wordpress;
+        $this->wordpress     = $wordpress;
     }
 
     public function get_or_create_session( $context ) {
@@ -27,9 +27,9 @@ class AWPCP_Upgrade_Sessions {
 
     private function get_default_session_data( $context ) {
         return array(
-            'context' => $context,
-            'tasks' => array(),
-            'completed' => false,
+            'context'      => $context,
+            'tasks'        => array(),
+            'completed'    => false,
             'last_updated' => null,
         );
     }

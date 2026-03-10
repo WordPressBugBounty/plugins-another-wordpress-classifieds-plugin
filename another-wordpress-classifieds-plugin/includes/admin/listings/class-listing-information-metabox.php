@@ -52,13 +52,13 @@ class AWPCP_ListingInfromationMetabox {
      * @since 4.0.0
      */
     public function render( $post ) {
-        $params = [
+        $params               = [
             'echo'                         => true,
             'user_can_change_payment_term' => awpcp_current_user_is_moderator(),
             'renewed_date'                 => $this->listing_renderer->get_renewed_date_formatted( $post ),
         ];
-        $params['end_date']     = $this->listing_renderer->get_end_date_formatted( $post );
-        $params['access_key']   = $this->listing_renderer->get_access_key( $post );
+        $params['end_date']   = $this->listing_renderer->get_end_date_formatted( $post );
+        $params['access_key'] = $this->listing_renderer->get_access_key( $post );
 
         $payment_term = $this->listing_renderer->get_payment_term( $post );
 

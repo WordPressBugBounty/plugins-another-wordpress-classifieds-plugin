@@ -45,19 +45,19 @@ function url_showad( $ad_id ) {
 function awpcp_ad_renewed_user_email( $ad ) {
     $listing_renderer = awpcp_listing_renderer();
 
-    $introduction = get_awpcp_option( 'ad-renewed-email-body' );
+    $introduction  = get_awpcp_option( 'ad-renewed-email-body' );
     $listing_title = $listing_renderer->get_listing_title( $ad );
-    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $contact_name  = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
-    $access_key = $listing_renderer->get_access_key( $ad );
-    $end_date = $listing_renderer->get_end_date( $ad );
+    $access_key    = $listing_renderer->get_access_key( $ad );
+    $end_date      = $listing_renderer->get_end_date( $ad );
 
-    $mail = new AWPCP_Email();
-    $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    $mail          = new AWPCP_Email();
+    $mail->to[]    = awpcp_format_recipient_address( $contact_email, $contact_name );
     $mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
 
     $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
-    $params = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
+    $params   = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
 
     $mail->prepare( $template, $params );
 
@@ -73,8 +73,8 @@ function awpcp_ad_renewed_admin_email( $ad, $body ) {
     $subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
     $subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
 
-    $mail = new AWPCP_Email();
-    $mail->to[] = awpcp_admin_email_to();
+    $mail          = new AWPCP_Email();
+    $mail->to[]    = awpcp_admin_email_to();
     $mail->subject = $subject;
 
     $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';
@@ -412,22 +412,22 @@ function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
     _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp_create_page()' );
     $post_date      = gmdate( 'Y-m-d' );
     $parent_page_id = intval( $parent_page_id );
-    $post_name = sanitize_title( $page_name );
-    $page_name = add_slashes_recursive( $page_name );
+    $post_name      = sanitize_title( $page_name );
+    $page_name      = add_slashes_recursive( $page_name );
 
     $page_id = wp_insert_post( array(
-        'post_date' => $post_date,
-        'post_date_gmt' => $post_date,
-        'post_title' => $page_name,
-        'post_content' => $short_code,
-        'post_status' => 'publish',
-        'comment_status' => 'closed',
-        'post_name' => $post_name,
-        'post_modified' => $post_date,
-        'post_modified_gmt' => $post_date,
+        'post_date'             => $post_date,
+        'post_date_gmt'         => $post_date,
+        'post_title'            => $page_name,
+        'post_content'          => $short_code,
+        'post_status'           => 'publish',
+        'comment_status'        => 'closed',
+        'post_name'             => $post_name,
+        'post_modified'         => $post_date,
+        'post_modified_gmt'     => $post_date,
         'post_content_filtered' => $short_code,
-        'post_parent' => $parent_page_id,
-        'post_type' => 'page',
+        'post_parent'           => $parent_page_id,
+        'post_type'             => 'page',
     ) );
 
     return $page_id;
@@ -470,7 +470,7 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
 
     $modules = awpcp()->get_premium_modules_information();
 
-    $name = $modules[ $module ][ 'name' ];
+    $name             = $modules[ $module ][ 'name' ];
     $required_version = $modules[ $module ][ 'required' ];
 
     // translators: %1$s is the module name, %2$s is the current AWPCP version, %3$s is the required AWPCP version
@@ -493,7 +493,7 @@ function awpcp_render_attributes( $attrs ) {
     $attributes = array();
     foreach ($attrs as $name => $value) {
         if (is_array($value))
-            $value = join(' ', array_filter($value, 'strlen'));
+            $value    = join(' ', array_filter($value, 'strlen'));
         $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
     }
     return join(' ', $attributes);
@@ -519,7 +519,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     _deprecated_function( __FUNCTION__, '3.4' );
 
     $filename = sanitize_file_name( strtolower( $file['name'] ) );
-    $tmpname = $file['tmp_name'];
+    $tmpname  = $file['tmp_name'];
 
     $mime_type = $file[ 'type' ];
 
@@ -530,7 +530,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         return false;
     }
 
-    $paths = awpcp_get_uploads_directories();
+    $paths         = awpcp_get_uploads_directories();
     $wp_filesystem = awpcp_get_wp_filesystem();
 
     if ( ! $wp_filesystem || ! $wp_filesystem->exists( $tmpname ) ) {
@@ -611,7 +611,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         $error = _x( 'The file %s could not be moved to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
-    } else if ( $action == 'copy' && ! $wp_filesystem->copy( $tmpname, $newpath ) ) {
+    } elseif ( $action == 'copy' && ! $wp_filesystem->copy( $tmpname, $newpath ) ) {
         // translators: %s is the file name
         $error = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
@@ -633,9 +633,9 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     $wp_filesystem->chmod( $newpath, 0644 );
 
     return array(
-        'original' => $filename,
-        'filename' => awpcp_utf8_basename( $newpath ),
-        'path' => str_replace( $paths['files_dir'], '', $newpath ),
+        'original'  => $filename,
+        'filename'  => awpcp_utf8_basename( $newpath ),
+        'path'      => str_replace( $paths['files_dir'], '', $newpath ),
         'mime_type' => $mime_type,
     );
 }
@@ -662,12 +662,12 @@ function awpcp_get_upload_file_constraints( ) {
     _deprecated_function( __FUNCTION__, '3.4' );
 
     return apply_filters( 'awpcp-upload-file-constraints', array(
-        'mime_types' => awpcp_get_image_mime_types(),
+        'mime_types'       => awpcp_get_image_mime_types(),
 
-        'max_image_size' => get_awpcp_option( 'maximagesize' ),
-        'min_image_size' => get_awpcp_option( 'minimagesize' ),
+        'max_image_size'   => get_awpcp_option( 'maximagesize' ),
+        'min_image_size'   => get_awpcp_option( 'minimagesize' ),
         'min_image_height' => get_awpcp_option( 'imgminheight' ),
-        'min_image_width' => get_awpcp_option( 'imgminwidth' ),
+        'min_image_width'  => get_awpcp_option( 'imgminwidth' ),
     ) );
 }
 
@@ -684,15 +684,15 @@ function awpcp_get_ad_uploaded_files_stats( $ad ) {
 
     $payment_term = awpcp_payments_api()->get_ad_payment_term( $ad );
 
-    $images_allowed = get_awpcp_option( 'imagesallowedfree', 0 );
-    $images_allowed = awpcp_get_property( $payment_term, 'images', $images_allowed );
+    $images_allowed  = get_awpcp_option( 'imagesallowedfree', 0 );
+    $images_allowed  = awpcp_get_property( $payment_term, 'images', $images_allowed );
     $images_uploaded = $ad->count_image_files();
-    $images_left = max( $images_allowed - $images_uploaded, 0 );
+    $images_left     = max( $images_allowed - $images_uploaded, 0 );
 
     return apply_filters( 'awpcp-ad-uploaded-files-stats', array(
-        'images_allowed' => $images_allowed,
+        'images_allowed'  => $images_allowed,
         'images_uploaded' => $images_uploaded,
-        'images_left' => $images_left,
+        'images_left'     => $images_left,
     ), $ad );
 }
 
@@ -714,17 +714,17 @@ function awpcp_get_uploads_directories() {
         $permissions = awpcp_directory_permissions();
 
         $upload_dir_name = get_awpcp_option( 'uploadfoldername', 'uploads' );
-        $upload_dir = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
+        $upload_dir      = WP_CONTENT_DIR . '/' . $upload_dir_name . '/';
 
         // Required to set permission on main upload directory
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
-        $fileop = new fileop();
+        $fileop        = new fileop();
         $wp_filesystem = awpcp_get_wp_filesystem();
 
         if ( ! $wp_filesystem ) {
             return array(
-                'files_dir' => '',
+                'files_dir'      => '',
                 'thumbnails_dir' => '',
             );
         }
@@ -736,7 +736,7 @@ function awpcp_get_uploads_directories() {
 
         $wp_filesystem->chmod( $upload_dir, $permissions );
 
-        $files_dir = $upload_dir . 'awpcp/';
+        $files_dir  = $upload_dir . 'awpcp/';
         $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
 
         if ( ! $wp_filesystem->is_dir( $files_dir ) && $wp_filesystem->is_writable( $upload_dir ) ) {
@@ -753,7 +753,7 @@ function awpcp_get_uploads_directories() {
         $wp_filesystem->chmod( $thumbs_dir, $permissions );
 
         $uploads_directories = array(
-            'files_dir' => $files_dir,
+            'files_dir'      => $files_dir,
             'thumbnails_dir' => $thumbs_dir,
         );
     }
@@ -773,7 +773,7 @@ function awpcp_get_uploads_directories() {
 function awpcp_resizer($filename, $dir) {
     _deprecated_function( __FUNCTION__, '3.4' );
 
-    $maxwidth = get_awpcp_option('imgmaxwidth');
+    $maxwidth  = get_awpcp_option('imgmaxwidth');
     $maxheight = get_awpcp_option('imgmaxheight');
 
     if ( '' == trim( $maxheight ) || '' == trim( $maxwidth ) ) {
@@ -784,7 +784,7 @@ function awpcp_resizer($filename, $dir) {
 
     if( 'jpg' == $parts['extension'] || 'jpeg' == $parts['extension'] ) {
         $src = imagecreatefromjpeg( $dir . $filename );
-    } else if ( 'png' == $parts['extension'] ) {
+    } elseif ( 'png' == $parts['extension'] ) {
         $src = imagecreatefrompng( $dir . $filename );
     } else {
         $src = imagecreatefromgif( $dir . $filename );
@@ -796,16 +796,16 @@ function awpcp_resizer($filename, $dir) {
         return true;
     }
 
-    $newwidth = '';
+    $newwidth  = '';
     $newheight = '';
 
     $aspect_ratio = (float) $height / $width;
 
     $newheight = $maxheight;
-    $newwidth = round($newheight / $aspect_ratio);
+    $newwidth  = round($newheight / $aspect_ratio);
 
     if ($newwidth > $maxwidth) {
-        $newwidth = $maxwidth;
+        $newwidth  = $maxwidth;
         $newheight = round( $newwidth * $aspect_ratio );
     }
 
@@ -843,7 +843,7 @@ function get_categorynameidall($cat_id = 0) {
 
     global $wpdb;
 
-    $optionitem='';
+    $optionitem ='';
 
     // Start with the main categories
 
@@ -895,7 +895,7 @@ function get_categorynameidall($cat_id = 0) {
                 $subcatoptionitem = "<option value='$subcat_id'>- $subcat_name</option>";
             }
 
-            $optionitem.="$subcatoptionitem";
+            $optionitem .="$subcatoptionitem";
         }
     }
 
@@ -976,18 +976,18 @@ function awpcp_region_fields( $context='details', $enabled_fields = null ) {
 function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
     _deprecated_function( __FUNCTION__, '4.0.0' );
 
-    $myreturn='';
+    $myreturn ='';
 
-   foreach ( $show_vector as $k => $v ) {
-       if (!in_array($k,$exclusion_vector)) {
-           $myreturn .= '<option value="' . esc_attr( $k ) . '"';
-           if ($k==$selected_map_val) {
-               $myreturn .= " selected='selected'";
-           }
-           $myreturn .= '>' . esc_html( $v ) . "</option>\n";
-       }
-   }
-   return $myreturn;
+    foreach ( $show_vector as $k => $v ) {
+        if (!in_array($k,$exclusion_vector)) {
+            $myreturn .= '<option value="' . esc_attr( $k ) . '"';
+            if ($k==$selected_map_val) {
+                $myreturn .= " selected='selected'";
+            }
+            $myreturn .= '>' . esc_html( $v ) . "</option>\n";
+        }
+    }
+    return $myreturn;
 }
 
 /**
@@ -997,8 +997,8 @@ function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()
 function unix2dos($mystring) {
     _deprecated_function( __FUNCTION__, '4.0.0' );
 
-    $mystring=preg_replace("/\r/m",'',$mystring);
-    $mystring=preg_replace("/\n/m","\r\n",$mystring);
+    $mystring =preg_replace("/\r/m",'',$mystring);
+    $mystring =preg_replace("/\n/m","\r\n",$mystring);
     return $mystring;
 }
 

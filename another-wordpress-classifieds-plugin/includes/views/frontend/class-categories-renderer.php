@@ -16,7 +16,7 @@ class AWPCP_CategoriesRenderer {
 
     public function __construct( $data_provider, $walker ) {
         $this->data_provider = $data_provider;
-        $this->walker = $walker;
+        $this->walker        = $walker;
     }
 
     public function render( $params = array() ) {
@@ -39,19 +39,19 @@ class AWPCP_CategoriesRenderer {
 
     private function merge_params( $params ) {
         return wp_parse_args( $params, array(
-            'category_id' => null,
-            'parent_category_id' => null,
-            'show_empty_categories' => true,
+            'category_id'              => null,
+            'parent_category_id'       => null,
+            'show_empty_categories'    => true,
             'show_children_categories' => true,
-            'show_listings_count' => true,
-            'ignore_cache' => false,
+            'show_listings_count'      => true,
+            'ignore_cache'             => false,
         ) );
     }
 
     private function generate_transient_key( $params ) {
-        $params = array_merge( $params, array( 'walker' => get_class( $this->walker ) ) );
+        $params               = array_merge( $params, array( 'walker' => get_class( $this->walker ) ) );
         $transient_key_params = apply_filters( 'awpcp-categories-list-transient-key-params', $params );
-        $transient_key = 'awpcp-categories-list-cache-' . hash( 'crc32b', maybe_serialize( $transient_key_params ) );
+        $transient_key        = 'awpcp-categories-list-cache-' . hash( 'crc32b', maybe_serialize( $transient_key_params ) );
 
         return $transient_key;
     }

@@ -28,6 +28,11 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
     private $listings;
 
     /**
+     * @var AWPCP_ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @var AWPCP_ListingsPaymentTransactions
      */
     private $listings_transactions;
@@ -40,12 +45,13 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * @since 4.0.0
      */
-    public function __construct( $listings_logic, $payment_information_validator, $listings, $listings_transactions, $posted_data, $response ) {
+    public function __construct( $listings_logic, $payment_information_validator, $listings, $authorization, $listings_transactions, $posted_data, $response ) {
         parent::__construct( $response );
 
         $this->listings_logic                = $listings_logic;
         $this->payment_information_validator = $payment_information_validator;
         $this->listings                      = $listings;
+        $this->authorization                 = $authorization;
         $this->listings_transactions         = $listings_transactions;
         $this->posted_data                   = $posted_data;
     }
@@ -75,6 +81,10 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
 
         $listing_id = awpcp_get_var( array( 'param' => 'listing_id' ) );
         $listing    = $this->listings->get( $listing_id );
+
+        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
 
         if ( ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
             throw new AWPCP_Exception( esc_html__( 'The payment information for the specified ad cannot be modified at this time.', 'another-wordpress-classifieds-plugin' ) );

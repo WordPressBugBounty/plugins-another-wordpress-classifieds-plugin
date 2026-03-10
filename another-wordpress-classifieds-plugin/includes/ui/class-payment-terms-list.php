@@ -27,7 +27,7 @@ class AWPCP_Payment_Terms_List {
     private $echo = false;
 
     public function __construct( $payments, $template_renderer ) {
-        $this->payments = $payments;
+        $this->payments          = $payments;
         $this->template_renderer = $template_renderer;
     }
 
@@ -74,9 +74,9 @@ class AWPCP_Payment_Terms_List {
         }
 
         $params = array(
-            'payment_terms' => $this->get_payment_terms_definitions( $options['payment_terms'], $options['transaction'] ),
-            'show_payment_terms' => $this->should_show_payment_terms( $options['payment_terms'] ),
-            'selected_payment_option' => $this->from_model_to_view( $model_data ),
+            'payment_terms'                => $this->get_payment_terms_definitions( $options['payment_terms'], $options['transaction'] ),
+            'show_payment_terms'           => $this->should_show_payment_terms( $options['payment_terms'] ),
+            'selected_payment_option'      => $this->from_model_to_view( $model_data ),
             'show_currency_payment_option' => $this->payments->is_currency_accepted(),
             'show_credits_payment_option'  => $this->payments->is_credit_accepted(),
             'echo'                         => $this->echo,
@@ -115,17 +115,17 @@ class AWPCP_Payment_Terms_List {
         $summary_credits = str_replace( '{payment-term-price}', awpcp_format_integer( $payment_term_credits ), $summary_credits );
 
         return array(
-            'id'                => $payment_term->id,
-            'type'              => $payment_term->type,
-            'attributes' => $this->get_payment_term_attributes( $payment_term ),
-            'name' => $payment_term->name,
-            'description' => $payment_term->description,
-            'duration'          => $payment_term_duration,
-            'features' => $this->get_payment_term_features_definition( $payment_term ),
-            'price' => $this->get_payment_term_price_definition( $payment_term, $payment_term_price, $payment_term_credits ),
-            'extra' => array(),
-            'summary-currency'  => $summary_currency,
-            'summary-credits'   => $summary_credits,
+            'id'               => $payment_term->id,
+            'type'             => $payment_term->type,
+            'attributes'       => $this->get_payment_term_attributes( $payment_term ),
+            'name'             => $payment_term->name,
+            'description'      => $payment_term->description,
+            'duration'         => $payment_term_duration,
+            'features'         => $this->get_payment_term_features_definition( $payment_term ),
+            'price'            => $this->get_payment_term_price_definition( $payment_term, $payment_term_price, $payment_term_credits ),
+            'extra'            => array(),
+            'summary-currency' => $summary_currency,
+            'summary-credits'  => $summary_credits,
         );
     }
 
@@ -150,9 +150,9 @@ class AWPCP_Payment_Terms_List {
         }
 
         $attributes = array(
-            'data-id' => "{$payment_term->type}-{$payment_term->id}",
+            'data-id'                           => "{$payment_term->type}-{$payment_term->id}",
             'data-number-of-categories-allowed' => esc_attr( absint( $number_of_categories_allowed ) ),
-            'data-categories' => esc_attr( wp_json_encode( array_map( 'absint', $payment_term->categories ) ) ),
+            'data-categories'                   => esc_attr( wp_json_encode( array_map( 'absint', $payment_term->categories ) ) ),
         );
 
         return apply_filters( 'awpcp-payment-terms-list-payment-term-attributes', $attributes, $payment_term );
@@ -160,11 +160,11 @@ class AWPCP_Payment_Terms_List {
 
     private function get_payment_term_features_definition( $payment_term ) {
         $payment_term_features = array(
-            'listings' => $this->get_number_of_listings_allowed_feature_description( $payment_term ),
-            'images' => $this->get_number_of_images_allowed_feature_description( $payment_term ),
-            'characters-in-title' => $this->get_number_of_characters_allowed_in_title_feature_description( $payment_term ),
+            'listings'              => $this->get_number_of_listings_allowed_feature_description( $payment_term ),
+            'images'                => $this->get_number_of_images_allowed_feature_description( $payment_term ),
+            'characters-in-title'   => $this->get_number_of_characters_allowed_in_title_feature_description( $payment_term ),
             'characters-in-content' => $this->get_number_of_characters_allowed_in_content_feature_description( $payment_term ),
-            'categories' => $this->get_number_of_categories_allowed_feature_description( $payment_term ),
+            'categories'            => $this->get_number_of_categories_allowed_feature_description( $payment_term ),
         );
         return apply_filters( 'awpcp-payment-terms-list-payment-term-features', $payment_term_features, $payment_term );
     }
@@ -197,7 +197,7 @@ class AWPCP_Payment_Terms_List {
     }
 
     private function get_number_of_categories_allowed_feature_description( $payment_term ) {
-        $attrs = $this->get_payment_term_attributes($payment_term);
+        $attrs       = $this->get_payment_term_attributes($payment_term);
         $description = __( 'Up to <categories-count> categories allowed.', 'another-wordpress-classifieds-plugin' );
 
         return str_replace( '<categories-count>', '<strong>' . $attrs['data-number-of-categories-allowed'] . '</strong>', $description );
@@ -215,7 +215,7 @@ class AWPCP_Payment_Terms_List {
 
     private function get_payment_term_price_definition( $payment_term, $payment_term_price, $payment_term_credits ) {
         $currency_button_label = __( 'Purchase this plan', 'another-wordpress-classifieds-plugin' );
-        $credits_button_label = __( 'Pay for this plan with credits', 'another-wordpress-classifieds-plugin' );
+        $credits_button_label  = __( 'Pay for this plan with credits', 'another-wordpress-classifieds-plugin' );
 
         if ( $payment_term->price == 0 ) {
             $currency_button_label = __( 'Use this plan for free!', 'another-wordpress-classifieds-plugin' );

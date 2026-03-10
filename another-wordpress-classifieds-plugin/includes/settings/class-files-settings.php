@@ -116,8 +116,8 @@ class AWPCP_FilesSettings {
 
         $settings_manager->add_setting( $key, 'imagesallowedfree', __( 'Number of images allowed if payments are disabled (Free Mode)', 'another-wordpress-classifieds-plugin' ), 'textfield', 4, __( 'If images are allowed and payments are disabled, users will be allowed upload this amount of images.', 'another-wordpress-classifieds-plugin' ) );
 
-        $default_image_extenstions   = array();
-        $image_extensions            = $this->file_types->get_file_extensions_in_group( 'image' );
+        $default_image_extenstions = array();
+        $image_extensions          = $this->file_types->get_file_extensions_in_group( 'image' );
 
         if ( $this->settings->get_option( 'imagesallowdisallow', true ) ) {
             $default_image_extenstions = $image_extensions;
@@ -127,8 +127,8 @@ class AWPCP_FilesSettings {
             $settings_manager,
             $key,
             array(
-                'name' => 'allowed-image-extensions',
-                'label' => __( 'Allowed image extensions', 'another-wordpress-classifieds-plugin' ),
+                'name'    => 'allowed-image-extensions',
+                'label'   => __( 'Allowed image extensions', 'another-wordpress-classifieds-plugin' ),
                 'choices' => $image_extensions,
                 'default' => $default_image_extenstions,
             )
@@ -215,14 +215,14 @@ class AWPCP_FilesSettings {
         $settings_manager->add_setting( $key, 'hide-noimage-placeholder', __( 'Hide No Image placeholder', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
 
         $settings_manager->add_setting( [
-            'id' => 'override-noimage-placeholder',
-            'name' => __( 'Override the No Image placeholder image with my own', 'another-wordpress-classifieds-plugin' ),
-            'type' => 'checkbox',
-            'default' => 0,
+            'id'       => 'override-noimage-placeholder',
+            'name'     => __( 'Override the No Image placeholder image with my own', 'another-wordpress-classifieds-plugin' ),
+            'type'     => 'checkbox',
+            'default'  => 0,
             'behavior' => [
                 'shownUnless' => 'hide-noimage-placeholder',
             ],
-            'section' => $key,
+            'section'  => $key,
         ] );
 
         $settings_manager->add_setting( [
@@ -231,7 +231,7 @@ class AWPCP_FilesSettings {
             'type'        => 'textfield',
             'default'     => sprintf( '%s/adhasnoimage.png', $awpcp_imagesurl ),
             'description' => __( 'Put the URL of an existing image on your site to use.  The size of this image should match the thumbnail size settings on this tab', 'another-wordpress-classifieds-plugin' ),
-            'behavior'   => [
+            'behavior'    => [
                 'shownUnless' => 'hide-noimage-placeholder',
                 'enabledIf'   => 'override-noimage-placeholder',
             ],
@@ -290,7 +290,7 @@ class AWPCP_FilesSettings {
 
         $settings_manager->add_settings_section(
             [
-                'id' => 'primary-image',
+                'id'       => 'primary-image',
                 'name'     => __( 'Primary Image (Single ad page)', 'another-wordpress-classifieds-plugin'),
                 'subgroup' => 'moderation-media-settings',
                 'callback' => [ $this, 'primary_image_section_header' ],
@@ -310,7 +310,7 @@ class AWPCP_FilesSettings {
      */
     private function register_thumbnails_image_settings( $settings_manager ) {
         $group = 'moderation-media-settings';
-        $key = 'thumbnails';
+        $key   = 'thumbnails';
 
         $settings_manager->add_section( $group, __( 'Thumbnails', 'another-wordpress-classifieds-plugin' ), 'thumbnails', 50, array( $this, 'thumbnails_section_header' ) );
 

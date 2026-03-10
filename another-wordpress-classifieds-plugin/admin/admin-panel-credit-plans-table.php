@@ -17,11 +17,11 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
 
     private function parse_query() {
         $user = wp_get_current_user();
-        $ipp = (int) get_user_meta($user->ID, 'credit-plans-items-per-page', true);
+        $ipp  = (int) get_user_meta($user->ID, 'credit-plans-items-per-page', true);
 
         $this->items_per_page = awpcp_get_var(
             array(
-                'param' => 'items-per-page',
+                'param'   => 'items-per-page',
                 'default' => $ipp === 0 ? 10 : $ipp,
             )
         );
@@ -52,16 +52,16 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
 
         return array(
             'orderby' => $orderby,
-            'order' => $params['order'],
-            'offset' => $this->items_per_page * ( absint( $params['paged'] ) - 1),
+            'order'   => $params['order'],
+            'offset'  => $this->items_per_page * ( absint( $params['paged'] ) - 1),
             'limit'   => $this->items_per_page,
         );
     }
 
     public function prepare_items() {
-        $query = $this->parse_query();
+        $query             = $this->parse_query();
         $this->total_items = AWPCP_CreditPlan::query(array_merge(array('fields' => 'count'), $query));
-        $this->items = AWPCP_CreditPlan::query(array_merge(array('fields' => '*'), $query));
+        $this->items       = AWPCP_CreditPlan::query(array_merge(array('fields' => '*'), $query));
 
         $this->set_pagination_args(array(
             'total_items' => $this->total_items,
@@ -78,20 +78,20 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
     public function get_columns() {
         $columns = array();
 
-        $columns['cb'] = '<input type="checkbox" />';
-        $columns['name'] = __( 'Name', 'another-wordpress-classifieds-plugin');
+        $columns['cb']          = '<input type="checkbox" />';
+        $columns['name']        = __( 'Name', 'another-wordpress-classifieds-plugin');
         $columns['description'] = __( 'Description', 'another-wordpress-classifieds-plugin');
-        $columns['credits'] = __( 'Credits', 'another-wordpress-classifieds-plugin');
-        $columns['price'] = __( 'Price', 'another-wordpress-classifieds-plugin');
+        $columns['credits']     = __( 'Credits', 'another-wordpress-classifieds-plugin');
+        $columns['price']       = __( 'Price', 'another-wordpress-classifieds-plugin');
 
         return $columns;
     }
 
     public function get_sortable_columns() {
         return array(
-            'name' => array('name', true),
+            'name'    => array('name', true),
             'credits' => array('credits', true),
-            'price' => array('price', true),
+            'price'   => array('price', true),
         );
     }
 
@@ -132,7 +132,7 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
      */
     public function single_row($item) {
         static $row_class = '';
-        $row_class = $row_class === '' ? 'alternate' : '';
+        $row_class        = $row_class === '' ? 'alternate' : '';
 
         echo '<tr id="credit-plan-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"';
         echo ' class="' . esc_attr( $row_class ) . '"';

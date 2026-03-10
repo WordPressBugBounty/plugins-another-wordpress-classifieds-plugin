@@ -21,7 +21,7 @@ class AWPCP_Set_Attachment_As_Featured_Ajax_Action implements AWPCP_Attachment_A
 
     public function __construct( $attachments_properties, $attachments_logic ) {
         $this->attachments_properties = $attachments_properties;
-        $this->attachments_logic = $attachments_logic;
+        $this->attachments_logic      = $attachments_logic;
     }
 
     public function do_action( $ajax_handler, $attachment, $listing ) {

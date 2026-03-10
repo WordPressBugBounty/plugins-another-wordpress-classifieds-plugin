@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- if ( awpcp_get_var( array( 'param' => 'register' ) ) ): ?>
+if ( awpcp_get_var( array( 'param' => 'register' ) ) ): ?>
     <?php echo awpcp_print_message( __( 'Please check your email for the password and then return to log in.', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php elseif ( awpcp_get_var( array( 'param' => 'reset' ) ) ): ?>
     <?php echo awpcp_print_message( __( 'Please check your email to reset your password.', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

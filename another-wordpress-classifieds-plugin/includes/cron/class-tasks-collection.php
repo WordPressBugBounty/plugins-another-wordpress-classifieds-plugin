@@ -16,15 +16,15 @@ class AWPCP_TasksCollection {
 
     public function __construct( $task_logic_factory, $db ) {
         $this->task_logic_factory = $task_logic_factory;
-        $this->db = $db;
+        $this->db                 = $db;
     }
 
     public function create_task( $name, $metadata = array() ) {
         $result = $this->db->insert( AWPCP_TABLE_TASKS, array(
-            'name' => $name,
+            'name'          => $name,
             'execute_after' => current_time( 'mysql' ),
-            'metadata' => maybe_serialize( $metadata ),
-            'created_at' => current_time( 'mysql' ),
+            'metadata'      => maybe_serialize( $metadata ),
+            'created_at'    => current_time( 'mysql' ),
         ) );
 
         if ( $result === false ) {
@@ -159,11 +159,11 @@ class AWPCP_TasksCollection {
     }
 
     public function update_task( $task ) {
-        $data = array(
-            'priority' => $task->get_priority(),
-            'status' => $task->get_status(),
+        $data       = array(
+            'priority'      => $task->get_priority(),
+            'status'        => $task->get_status(),
             'execute_after' => $task->get_execute_after_date(),
-            'metadata' => maybe_serialize( $task->get_all_metadata() ),
+            'metadata'      => maybe_serialize( $task->get_all_metadata() ),
         );
         $conditions = array( 'id' => $task->get_id() );
 

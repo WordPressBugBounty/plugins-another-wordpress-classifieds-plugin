@@ -32,10 +32,10 @@ class AWPCP_ListingPaymentTransactionHandler {
 
     public function __construct( $listing_renderer, $listings, $listings_logic, $settings, $wordpress ) {
         $this->listing_renderer = $listing_renderer;
-        $this->listings = $listings;
-        $this->listings_logic = $listings_logic;
+        $this->listings         = $listings;
+        $this->listings_logic   = $listings_logic;
         $this->settings         = $settings;
-        $this->wordpress = $wordpress;
+        $this->wordpress        = $wordpress;
     }
 
     public function transaction_status_updated( $transaction ) {
@@ -92,8 +92,8 @@ class AWPCP_ListingPaymentTransactionHandler {
     private function consolidate_transaction( $listing, $transaction ) {
         $previous_listing_payment_status     = $transaction->get( 'previous-ad-payment-status' );
         $listing_had_accepted_payment_status = $this->is_accepted_payment_status( $previous_listing_payment_status );
-        $is_transaction_consolidated = (bool) $transaction->get( 'ad-consolidated-at' );
-        $should_trigger_actions = $is_transaction_consolidated;
+        $is_transaction_consolidated         = (bool) $transaction->get( 'ad-consolidated-at' );
+        $should_trigger_actions              = $is_transaction_consolidated;
 
         if ( $transaction->was_payment_successful() ) {
             if ( ! $listing_had_accepted_payment_status ) {

@@ -19,7 +19,7 @@ class AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice {
 
     public function __construct( $settings, $request ) {
         $this->settings = $settings;
-        $this->request = $request;
+        $this->request  = $request;
     }
 
     public function maybe_show_notice() {

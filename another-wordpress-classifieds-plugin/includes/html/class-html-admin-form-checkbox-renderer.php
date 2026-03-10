@@ -21,32 +21,32 @@ class AWPCP_HTML_Admin_Form_Checkbox_Renderer implements AWPCP_HTML_Element_Rend
         }
 
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
-            '#content' => array(
+            '#content'    => array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'for' => $form_field_id ),
-                    '#content' => array(
+                    '#content'    => array(
                         array(
-                            '#type' => 'input',
+                            '#type'       => 'input',
                             '#attributes' => array(
-                                'type' => 'hidden',
+                                'type'  => 'hidden',
                                 'value' => false,
-                                'name' => "{$element_definition['#name']}",
+                                'name'  => "{$element_definition['#name']}",
                             ),
                         ),
                         array(
-                            '#type' => 'input',
+                            '#type'       => 'input',
                             '#attributes' => array_merge( $checbox_attributes, array(
-                                'id' => $form_field_id,
-                                'type' => 'checkbox',
+                                'id'    => $form_field_id,
+                                'type'  => 'checkbox',
                                 'value' => true,
-                                'name' => "{$element_definition['#name']}",
+                                'name'  => "{$element_definition['#name']}",
                             ) ),
                         ),
                         array(
-                            '#type' => 'text',
+                            '#type'    => 'text',
                             '#content' => $element_definition['#label'],
                         ),
                     ),
@@ -56,7 +56,7 @@ class AWPCP_HTML_Admin_Form_Checkbox_Renderer implements AWPCP_HTML_Element_Rend
 
         if ( isset( $element_definition['#description'] ) ) {
             $form_field_definition['#content'][] = array(
-                '#type' => 'span',
+                '#type'    => 'span',
                 '#content' => $element_definition['#description'],
             );
         }

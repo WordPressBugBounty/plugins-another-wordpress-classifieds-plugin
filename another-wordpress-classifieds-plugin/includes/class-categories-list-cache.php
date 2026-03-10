@@ -24,7 +24,7 @@ class AWPCP_CategoriesListCache {
      */
     public function __construct( $listing_category_taxonomy, $categories ) {
         $this->listing_category_taxonomy = $listing_category_taxonomy;
-        $this->categories = $categories;
+        $this->categories                = $categories;
     }
 
     /**

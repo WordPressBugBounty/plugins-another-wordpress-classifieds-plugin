@@ -31,8 +31,8 @@ class AWPCP_MarkReviewedListingTableAction implements
      * @param object $wordpress         An instance of WordPress.
      */
     public function __construct( $roles, $wordpress ) {
-        $this->roles            = $roles;
-        $this->wordpress        = $wordpress;
+        $this->roles     = $roles;
+        $this->wordpress = $wordpress;
     }
 
     /**

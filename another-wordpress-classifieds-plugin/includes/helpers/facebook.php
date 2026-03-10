@@ -12,9 +12,9 @@ class AWPCP_Facebook {
 
     const GRAPH_API_VERSION = 'v2.12';
 
-    private static $instance    = null;
-    private $access_token       = '';
-    private $last_error         = null;
+    private static $instance = null;
+    private $access_token    = '';
+    private $last_error      = null;
 
     /**
      * @var AWPCP_Settings_API

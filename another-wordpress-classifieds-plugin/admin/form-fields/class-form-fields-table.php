@@ -62,7 +62,7 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
      */
     public function single_row( $item ) {
         static $row_class = '';
-        $row_class = $row_class === '' ? 'alternate' : '';
+        $row_class        = $row_class === '' ? 'alternate' : '';
 
         // the 'field-' part in the id attribute is important. The jQuery UI Sortable plugin relies on that
         // to build a serialized string with the current order of fields.

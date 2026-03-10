@@ -22,7 +22,7 @@ class AWPCP_UsersDropdown extends AWPCP_UserField {
     public function render( $args = array() ) {
         $args = wp_parse_args( $args, array(
             'include-full-user-information' => true,
-            'selected' => null,
+            'selected'                      => null,
         ) );
 
         $args['selected'] = $this->find_selected_user( $args );
@@ -34,7 +34,7 @@ class AWPCP_UsersDropdown extends AWPCP_UserField {
         }
 
         $template = AWPCP_DIR . '/frontend/templates/html-widget-users-dropdown.tpl.php';
-        $args = array_merge( $args, array( 'users' => $users ) );
+        $args     = array_merge( $args, array( 'users' => $users ) );
 
         return $this->render_template( $template, $args );
     }

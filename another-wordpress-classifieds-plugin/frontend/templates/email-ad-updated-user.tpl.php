@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- esc_html_e( 'Your Ad has been successfully updated. Ad information is shown below.', 'another-wordpress-classifieds-plugin') ?>
+esc_html_e( 'Your Ad has been successfully updated. Ad information is shown below.', 'another-wordpress-classifieds-plugin') ?>
 
 <?php if (!empty($message)): ?>
 <?php echo wp_kses_post( $message ); ?>

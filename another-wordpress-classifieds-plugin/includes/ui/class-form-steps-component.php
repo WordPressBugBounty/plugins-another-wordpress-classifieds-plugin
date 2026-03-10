@@ -58,7 +58,7 @@ class AWPCP_FormStepsComponent {
         $form_steps = array();
 
         $previous_steps = array();
-        $steps_count = 0;
+        $steps_count    = 0;
 
         foreach ( $steps as $step => $name ) {
             ++$steps_count;

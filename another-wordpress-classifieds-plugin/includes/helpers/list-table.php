@@ -20,7 +20,7 @@ class AWPCP_List_Table extends WP_List_Table {
         if ( is_string( $screen ) )
             $screen = convert_to_screen( $screen );
 
-        $this->_screen = $screen;
+        $this->_screen   = $screen;
         $this->_sortable = $sortable;
 
         if ( !empty( $columns ) ) {
@@ -30,11 +30,11 @@ class AWPCP_List_Table extends WP_List_Table {
     }
 
     protected function get_column_info() {
-        $columns = get_column_headers( $this->_screen );
-        $hidden = get_hidden_columns( $this->_screen );
+        $columns  = get_column_headers( $this->_screen );
+        $hidden   = get_hidden_columns( $this->_screen );
         $sortable = $this->_sortable;
 
-        $column_slugs = array_keys( $columns );
+        $column_slugs   = array_keys( $columns );
         $primary_column = $column_slugs[1];
 
         return array( $columns, $hidden, $sortable, $primary_column );

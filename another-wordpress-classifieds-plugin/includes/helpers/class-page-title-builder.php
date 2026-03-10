@@ -25,7 +25,7 @@ class AWPCP_PageTitleBuilder {
 
     public function __construct( $listing_renderer, $categories ) {
         $this->listing_renderer = $listing_renderer;
-        $this->categories = $categories;
+        $this->categories       = $categories;
     }
 
     /**
@@ -69,10 +69,10 @@ class AWPCP_PageTitleBuilder {
         // is one of those characters.
         $regex = '(\s' . $this->build_separator_regex( $separator ) . '\s*)';
         if (preg_match('/^' . $regex . '/', $title, $matches)) {
-            $title = preg_replace('/^' . $regex . '/', '', $title);
+            $title    = preg_replace('/^' . $regex . '/', '', $title);
             $appendix = ($matches[0]);
         } elseif (preg_match('/' . $regex . '$/', $title, $matches)) {
-            $title = preg_replace('/' . $regex . '$/', '', $title);
+            $title    = preg_replace('/' . $regex . '$/', '', $title);
             $appendix = ($matches[0]);
         } else {
             $appendix = '';
@@ -86,8 +86,8 @@ class AWPCP_PageTitleBuilder {
         if (empty($seplocation)) {
             $result = $this->find_seplocation( $title, $sep );
 
-            $title = $result['page_title'];
-            $name = $result['blog_name'];
+            $title       = $result['page_title'];
+            $name        = $result['blog_name'];
             $seplocation = $result['seplocation'];
         } else {
             $name = '';
@@ -162,11 +162,11 @@ class AWPCP_PageTitleBuilder {
         }
 
         $page_title = preg_replace( $result['regex'], '', $title );
-        $blog_name = $result['matches'][0];
+        $blog_name  = $result['matches'][0];
 
         return array(
-            'page_title' => $page_title,
-            'blog_name' => $blog_name,
+            'page_title'  => $page_title,
+            'blog_name'   => $blog_name,
             'seplocation' => $result['name_position'],
         );
     }
@@ -174,18 +174,18 @@ class AWPCP_PageTitleBuilder {
     private function find_name_position_in_title( $title, $name, $sep ) {
         $separator_regex = $this->build_separator_regex( trim( $sep ) );
 
-        $left = '/^' . preg_quote($name, '/') . '\s*' . $separator_regex . '\s*/';
+        $left  = '/^' . preg_quote($name, '/') . '\s*' . $separator_regex . '\s*/';
         $right = '/\s*' . $separator_regex . '\s*' . preg_quote( $name, '/' ) . '/';
 
         if (preg_match($left, $title, $matches)) {
             $name_position = 'left';
-            $regex = $left;
+            $regex         = $left;
         } elseif (preg_match($right, $title, $matches)) {
             $name_position = 'right';
-            $regex = $right;
+            $regex         = $right;
         } else {
             $name_position = false;
-            $regex = false;
+            $regex         = false;
         }
 
         return compact( 'name_position', 'regex', 'matches' );
@@ -201,8 +201,8 @@ class AWPCP_PageTitleBuilder {
         }
 
         return array(
-            'page_title' => $title,
-            'blog_name' => '',
+            'page_title'  => $title,
+            'blog_name'   => '',
             'seplocation' => $result['name_position'] === 'left' ? 'right' : 'left',
         );
     }
@@ -268,7 +268,7 @@ class AWPCP_PageTitleBuilder {
     }
 
     private function title_already_includes_page_title( $original_title, $page_title ) {
-        $texturized_title = wptexturize( $page_title );
+        $texturized_title         = wptexturize( $page_title );
         $escaped_texturized_title = esc_html( $texturized_title );
 
         if ( strpos( $original_title, $page_title ) !== false ) {

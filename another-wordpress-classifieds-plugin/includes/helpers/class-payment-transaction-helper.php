@@ -29,7 +29,7 @@ class AWPCP_PaymentTransactionHelper {
 
     private function get_transaction_with_finder_function( $finder ) {
         if ( ! isset( $this->transaction ) ) {
-            $id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
+            $id                = awpcp_get_var( array( 'param' => 'transaction_id' ) );
             $this->transaction = call_user_func_array( $finder, array( $id ) );
             $this->transaction = $this->set_transaction_attributes_if_transaction_is_new( $this->transaction );
         }

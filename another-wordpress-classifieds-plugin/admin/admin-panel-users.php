@@ -54,10 +54,10 @@ class AWPCP_AdminUsers {
                 $actions = array();
 
                 if (awpcp_current_user_is_admin()) {
-                    $url = add_query_arg('action', 'credit', awpcp_current_url());
+                    $url               = add_query_arg('action', 'credit', awpcp_current_url());
                     $actions['credit'] = "<a class='credit' href='" . esc_url( $url ) . "'>" . __( 'Add Credit', 'another-wordpress-classifieds-plugin') . '</a>';
 
-                    $url = add_query_arg('action', 'debit', awpcp_current_url());
+                    $url              = add_query_arg('action', 'debit', awpcp_current_url());
                     $actions['debit'] = "<a class='debit' href='" . esc_url( $url ) . "'>" . __( 'Remove Credit', 'another-wordpress-classifieds-plugin') . "</a>";
                 }
 
@@ -72,7 +72,7 @@ class AWPCP_AdminUsers {
         $user = get_user_by('id', $user_id);
 
         if ( ! $user ) {
-            $message = __("The specified User doesn't exists.", 'another-wordpress-classifieds-plugin');
+            $message  = __("The specified User doesn't exists.", 'another-wordpress-classifieds-plugin');
             $response = array('status' => 'error', 'message' => $message);
         }
 
@@ -80,7 +80,7 @@ class AWPCP_AdminUsers {
         // phpcs:ignore WordPress.Security.NonceVerification
         if (isset($_POST['save'])) {
             $payments = awpcp_payments_api();
-            $amount = (int) awpcp_get_var( array( 'param' => 'amount', 'default' => 0 ), 'post' );
+            $amount   = (int) awpcp_get_var( array( 'param' => 'amount', 'default' => 0 ), 'post' );
 
             if ($action == 'debit')
                 $payments->remove_credit($user->ID, $amount);
@@ -93,7 +93,7 @@ class AWPCP_AdminUsers {
         } else {
             // load the table so the get_columns methods is properly called
             // when attempt to find out the number of columns in the table
-            $table = $this->get_table();
+            $table   = $this->get_table();
             $columns = absint( awpcp_get_var( array( 'param' => 'columns' ), 'post' ) );
 
             ob_start();

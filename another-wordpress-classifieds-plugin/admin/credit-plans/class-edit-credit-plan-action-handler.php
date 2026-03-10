@@ -22,7 +22,7 @@ class AWPCP_Edit_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_
 
     public function __construct( $rendering_helper, $request ) {
         $this->rendering_helper = $rendering_helper;
-        $this->request = $request;
+        $this->request          = $request;
     }
 
     public function process_entry_action( $ajax_handler ) {
@@ -44,10 +44,10 @@ class AWPCP_Edit_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_
     private function save_existing_credit_plan( $plan, $ajax_handler ) {
         $errors = array();
 
-        $plan->name = $this->request->post( 'name' );
+        $plan->name        = $this->request->post( 'name' );
         $plan->description = $this->request->post( 'description', '', 'sanitize_textarea_field' );
-        $plan->credits = $this->request->post( 'credits' );
-        $plan->price = $this->request->post( 'price' );
+        $plan->credits     = $this->request->post( 'credits' );
+        $plan->price       = $this->request->post( 'price' );
 
         if ( $plan->save( $errors ) === false ) {
             return $ajax_handler->error( array(

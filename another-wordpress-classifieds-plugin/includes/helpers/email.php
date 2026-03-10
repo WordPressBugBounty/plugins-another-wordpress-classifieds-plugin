@@ -29,13 +29,13 @@ class AWPCP_Email {
         $this->headers = array();
 
         $this->subject = '';
-        $this->from = null;
-        $this->to = array();
-        $this->cc = array();
+        $this->from    = null;
+        $this->to      = array();
+        $this->cc      = array();
 
-        $this->body = '';
+        $this->body  = '';
         $this->plain = '';
-        $this->html = '';
+        $this->html  = '';
     }
 
     public function prepare($template, $params=array()) {
@@ -64,8 +64,8 @@ class AWPCP_Email {
 
         $headers = array_merge(array(
             'Content-Type' => $content_type,
-            'From' => $this->from,
-            'Reply-To' => awpcp_admin_email_to(),
+            'From'         => $this->from,
+            'Reply-To'     => awpcp_admin_email_to(),
         ), $this->headers);
 
         $sanitized_headers = array();
@@ -83,9 +83,9 @@ class AWPCP_Email {
      * @return boolean true on success, false otherwise
      */
     public function send($format='plain') {
-        $headers = $this->get_headers($format);
+        $headers   = $this->get_headers($format);
         $sent_date = awpcp_format_email_sent_datetime();
-        $body = sprintf( "%s\n\n%s", $this->body, $sent_date );
+        $body      = sprintf( "%s\n\n%s", $this->body, $sent_date );
 
         return $this->send_email( $this->to, $this->subject, $body, $headers );
     }

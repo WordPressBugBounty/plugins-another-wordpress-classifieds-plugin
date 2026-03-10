@@ -18,7 +18,7 @@ class AWPCP_UsersAutocomplete extends AWPCP_UserField {
         if ( $void ) {
             _deprecated_argument( 'AWPCP_UsersAutocomplete', '4.2.1', 'The second parameter is no longer used.' );
         }
-        $this->users = $users ? $users : awpcp_users_collection();
+        $this->users      = $users ? $users : awpcp_users_collection();
         $this->javascript = $javascript ? $javascript : awpcp()->js;
     }
 

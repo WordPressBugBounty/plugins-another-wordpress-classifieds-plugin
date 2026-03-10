@@ -16,30 +16,30 @@ class AWPCP_HTML_Admin_Form_Autocomplete_Renderer implements AWPCP_HTML_Element_
         $form_field_id = "awpcp-admin-form-autocomplete-{$element_definition['#name']}";
 
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
-            '#content' => array(
+            '#content'    => array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'for' => $form_field_id ),
-                    '#content' => $element_definition['#label'],
+                    '#content'    => $element_definition['#label'],
                 ),
                 array(
-                    '#type' => 'input',
+                    '#type'       => 'input',
                     '#attributes' => array(
-                        'id' => $form_field_id,
-                        'type' => 'text',
-                        'name' => $element_definition['#name'] . '_label',
+                        'id'    => $form_field_id,
+                        'type'  => 'text',
+                        'name'  => $element_definition['#name'] . '_label',
                         'value' => $element_definition['#value_label'],
                     ),
                 ),
                 array(
-                    '#type' => 'input',
+                    '#type'       => 'input',
                     '#attributes' => array(
-                        'type' => 'hidden',
-                        'name' => $element_definition['#name'],
+                        'type'                        => 'hidden',
+                        'name'                        => $element_definition['#name'],
                         'autocomplete-selected-value' => true,
-                        'value' => $element_definition['#value'],
+                        'value'                       => $element_definition['#value'],
                     ),
                 ),
             ),

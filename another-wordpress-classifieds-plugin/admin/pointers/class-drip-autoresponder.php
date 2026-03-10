@@ -15,39 +15,39 @@ class AWPCP_DripAutoresponder {
         $nonce = wp_create_nonce( 'drip-autoresponder' );
 
         $pointers['drip-autoresponder'] = array(
-            'content' => $this->render_content(),
-            'buttons' => array(
+            'content'  => $this->render_content(),
+            'buttons'  => array(
                 array(
-                    'label' => _x( "Yes, I'd like my course, please", 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
-                    'event' => 'awpcp-autoresponder-user-subscribed',
-                    'data' => array( $nonce ),
+                    'label'        => _x( "Yes, I'd like my course, please", 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
+                    'event'        => 'awpcp-autoresponder-user-subscribed',
+                    'data'         => array( $nonce ),
                     'elementClass' => 'button-primary',
-                    'elementCSS' => array(
+                    'elementCSS'   => array(
                         'marginLeft' => '10px',
                     ),
                 ),
                 array(
-                    'label' => _x( 'No, thanks', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
-                    'event' => 'awpcp-autoresponder-dismissed',
-                    'data' => array( $nonce ),
+                    'label'        => _x( 'No, thanks', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
+                    'event'        => 'awpcp-autoresponder-dismissed',
+                    'data'         => array( $nonce ),
                     'elementClass' => 'button',
-                    'elementCSS' => array(
+                    'elementCSS'   => array(
                         'marginLeft' => '5px',
                     ),
                 ),
                 array(
-                    'label' => '',
-                    'event' => 'nothing',
-                    'data' => array(),
+                    'label'        => '',
+                    'event'        => 'nothing',
+                    'data'         => array(),
                     'elementClass' => 'spinner awpcp-spinner is-hidden',
-                    'elementCSS' => array(
-                        'display' => 'none',
+                    'elementCSS'   => array(
+                        'display'   => 'none',
                         'marginTop' => '4px',
                     ),
                 ),
             ),
             'position' => array(
-                'edge' => 'top',
+                'edge'  => 'top',
                 'align' => 'center',
             ),
         );

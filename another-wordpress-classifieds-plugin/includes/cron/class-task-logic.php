@@ -10,10 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AWPCP_TaskLogic {
 
-    const TASK_STATUS_NEW = 'new';
-    const TASK_STATUS_DELAYED = 'delayed';
-    const TASK_STATUS_FAILING = 'failing';
-    const TASK_STATUS_FAILED = 'failed';
+    const TASK_STATUS_NEW      = 'new';
+    const TASK_STATUS_DELAYED  = 'delayed';
+    const TASK_STATUS_FAILING  = 'failing';
+    const TASK_STATUS_FAILED   = 'failed';
     const TASK_STATUS_COMPLETE = 'complete';
 
     private $task;
@@ -81,7 +81,7 @@ class AWPCP_TaskLogic {
     public function delay( $seconds ) {
         $this->set_metadata( 'delay_time', $seconds );
 
-        $this->task->status = self::TASK_STATUS_DELAYED;
+        $this->task->status        = self::TASK_STATUS_DELAYED;
         $this->task->execute_after = awpcp_datetime( 'mysql', current_time( 'timestamp' ) + $seconds );
     }
 
@@ -89,18 +89,18 @@ class AWPCP_TaskLogic {
         $five_minutes_in_seconds = 5 * 60;
 
         $previous_delay = $this->get_metadata( 'delay_time', $five_minutes_in_seconds );
-        $next_delay = max( $previous_delay / 2, $five_minutes_in_seconds );
+        $next_delay     = max( $previous_delay / 2, $five_minutes_in_seconds );
 
         $this->delay( $next_delay );
     }
 
     public function retry() {
-        $this->task->status = self::TASK_STATUS_FAILING;
+        $this->task->status   = self::TASK_STATUS_FAILING;
         $this->task->priority = $this->task->priority + 1;
     }
 
     public function fail() {
-        $this->task->status = self::TASK_STATUS_FAILED;
+        $this->task->status   = self::TASK_STATUS_FAILED;
         $this->task->priority = $this->task->priority + 1;
     }
 

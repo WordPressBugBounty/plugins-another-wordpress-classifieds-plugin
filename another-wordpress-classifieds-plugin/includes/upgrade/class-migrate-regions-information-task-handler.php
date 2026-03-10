@@ -17,7 +17,7 @@ class AWPCP_Migrate_Regions_Information_Task_Handler {
 
         if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_country' ) ) {
             $cursor = get_option( 'awpcp-migrate-regions-info-cursor', 0 );
-            $total = $this->count_ads_pending_region_information_migration( $cursor );
+            $total  = $this->count_ads_pending_region_information_migration( $cursor );
 
             $results = $wpdb->get_results(
                 $wpdb->prepare(
@@ -56,7 +56,7 @@ class AWPCP_Migrate_Regions_Information_Task_Handler {
             update_option( 'awpcp-migrate-regions-info-cursor', $cursor );
             $remaining = $this->count_ads_pending_region_information_migration( $cursor );
         } else {
-            $total = 0;
+            $total     = 0;
             $remaining = 0;
         }
 

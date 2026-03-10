@@ -20,7 +20,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
         parent::__construct( $response );
 
         $this->settings = $settings;
-        $this->request = $request;
+        $this->request  = $request;
     }
 
     public function ajax() {
@@ -71,11 +71,11 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function get_posted_data() {
-        $current_user = wp_get_current_user();
+        $current_user      = wp_get_current_user();
         $name_alternatives = array( 'display_name', 'user_login', 'username' );
 
         return array(
-            'name' => awpcp_get_object_property_from_alternatives( $current_user, $name_alternatives ),
+            'name'  => awpcp_get_object_property_from_alternatives( $current_user, $name_alternatives ),
             'email' => $this->request->post( 'email' ),
         );
     }
@@ -100,19 +100,19 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
     private function build_confirmation_pointer() {
         return array(
-            'content' => $this->render_pointer_content(),
-            'buttons' => array(
+            'content'  => $this->render_pointer_content(),
+            'buttons'  => array(
                 array(
-                    'label' => 'Got it!',
-                    'event' => 'awpcp-autoresponder-confirmation-dismissed',
+                    'label'        => 'Got it!',
+                    'event'        => 'awpcp-autoresponder-confirmation-dismissed',
                     'elementClass' => 'button',
-                    'elementCSS' => array(
+                    'elementCSS'   => array(
                         'marginLeft' => '10px',
                     ),
                 ),
             ),
             'position' => array(
-                'edge' => 'top',
+                'edge'  => 'top',
                 'align' => 'center',
             ),
         );

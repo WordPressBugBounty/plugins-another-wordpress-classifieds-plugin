@@ -153,12 +153,12 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting(
             [
-                'id'      => 'hide-categories-selector',
-                'name'    => __( 'Hide categories selector dropdown', 'another-wordpress-classifieds-plugin' ),
-                'type'    => 'checkbox',
-                'default' => 0,
+                'id'          => 'hide-categories-selector',
+                'name'        => __( 'Hide categories selector dropdown', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
                 'description' => __( 'If checked, category filtering dropdown won\'t be displayed in "Browse Ads" page.', 'another-wordpress-classifieds-plugin' ),
-                'section' => 'general-settings',
+                'section'     => 'general-settings',
             ]
         );
 
@@ -175,15 +175,15 @@ class AWPCP_GeneralSettings {
 
         $settings_manager->add_setting(
             [
-                'id'          => 'awpcpadminaccesslevel',
-                'name'        => __( 'Who can access AWPCP Admin Dashboard', 'another-wordpress-classifieds-plugin' ),
-                'type'        => 'radio',
-                'default'     => 'admin',
-                'options'     => [
+                'id'      => 'awpcpadminaccesslevel',
+                'name'    => __( 'Who can access AWPCP Admin Dashboard', 'another-wordpress-classifieds-plugin' ),
+                'type'    => 'radio',
+                'default' => 'admin',
+                'options' => [
                     'admin'        => __( 'Administrator', 'another-wordpress-classifieds-plugin' ),
                     'admin,editor' => __( 'Administrator & Editor', 'another-wordpress-classifieds-plugin' ),
                 ],
-                'section'     => 'general-settings',
+                'section' => 'general-settings',
             ]
         );
 

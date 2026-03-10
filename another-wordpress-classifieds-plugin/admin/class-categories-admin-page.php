@@ -27,8 +27,8 @@ class AWPCP_CategoriesAdminPage {
 
     public function __construct( $listing_category_taxonomy, $categories, $template_renderer ) {
         $this->listing_category_taxonomy = $listing_category_taxonomy;
-        $this->categories = $categories;
-        $this->template_renderer = $template_renderer;
+        $this->categories                = $categories;
+        $this->template_renderer         = $template_renderer;
     }
 
     public function dispatch() {
@@ -73,13 +73,13 @@ class AWPCP_CategoriesAdminPage {
             );
         }
 
-        $children = $this->categories->get_hierarchy();
+        $children   = $this->categories->get_hierarchy();
         $categories = $this->categories->get_all();
 
-        $offset = (int) awpcp_get_var( array( 'param' => 'offset' ) );
+        $offset  = (int) awpcp_get_var( array( 'param' => 'offset' ) );
         $results = awpcp_get_var( array( 'param' => 'results', 'default' => 10, 'sanitize' => 'absint' ) );
         $results = max( $results, 1 );
-        $count = 0;
+        $count   = 0;
 
         $category_id = awpcp_get_var( array( 'param' => 'cat_ID' ) );
 
@@ -92,7 +92,7 @@ class AWPCP_CategoriesAdminPage {
         $items = awpcp_admin_categories_render_category_items( $categories, $children, $offset, $results, $count );
 
         $template = AWPCP_DIR . '/templates/admin/manage-categories-admin-page.tpl.php';
-        $params = array(
+        $params   = array(
             'icons'                         => $icons,
             'pager1'                        => awpcp_pagination(
                 [

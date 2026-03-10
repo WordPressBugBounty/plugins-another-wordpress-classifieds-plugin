@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="postbox">
     <div class="inside">
 
-    <?php include( AWPCP_DIR . '/templates/components/media-center.tpl.php' ); ?>
+    <?php require( AWPCP_DIR . '/templates/components/media-center.tpl.php' ); ?>
 
     </div>
 </div>

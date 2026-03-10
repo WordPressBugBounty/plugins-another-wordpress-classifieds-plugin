@@ -12,7 +12,7 @@ class AWPCP_CSV_Import_Sessions_Manager {
     public $settings;
 
     public function __construct() {
-        $this->settings                      = awpcp()->settings;
+        $this->settings = awpcp()->settings;
     }
 
     public function get_current_import_session() {

@@ -23,9 +23,9 @@ class AWPCP_Delete_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Actio
     private $request;
 
     public function __construct( $page, $template_renderer, $request ) {
-        $this->page = $page;
+        $this->page              = $page;
         $this->template_renderer = $template_renderer;
-        $this->request = $request;
+        $this->request           = $request;
     }
 
     public function process_entry_action( $ajax_handler ) {

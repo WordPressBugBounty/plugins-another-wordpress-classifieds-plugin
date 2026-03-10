@@ -32,10 +32,10 @@ class AWPCP_Default_Login_Form_Implementation {
 
         $show_register_link = !empty( $custom_registration_url ) || get_option( 'users_can_register' );
 
-        $redirect_to = urlencode( add_query_arg( 'register', true, $redirect ) );
+        $redirect_to  = urlencode( add_query_arg( 'register', true, $redirect ) );
         $register_url = add_query_arg( array( 'redirect_to' => $redirect_to ), $registration_url );
 
-        $redirect_to = urlencode( add_query_arg( 'reset', true, $redirect ) );
+        $redirect_to       = urlencode( add_query_arg( 'reset', true, $redirect ) );
         $lost_password_url = add_query_arg( array( 'redirect_to' => $redirect_to ), wp_lostpassword_url() );
 
         ob_start();

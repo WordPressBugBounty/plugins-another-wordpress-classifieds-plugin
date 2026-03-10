@@ -29,14 +29,26 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
     private $payments;
 
     /**
-     * @since 4.0.0
+     * @var AWPCP_ListingAuthorization
      */
-    public function __construct( $sections_generator, $listings, $payments, $response ) {
+    private $authorization;
+
+    /**
+     * @since 4.0.0
+     *
+     * @param AWPCP_SubmitLisitngSectionsGenerator $sections_generator Sections generator.
+     * @param AWPCP_ListingsCollection             $listings           Listings collection.
+     * @param AWPCP_PaymentsAPI                    $payments           Payments API.
+     * @param AWPCP_ListingAuthorization           $authorization      Listing authorization.
+     * @param object                               $response           Ajax response object.
+     */
+    public function __construct( $sections_generator, $listings, $payments, $authorization, $response ) {
         parent::__construct( $response );
 
         $this->sections_generator = $sections_generator;
         $this->listings           = $listings;
         $this->payments           = $payments;
+        $this->authorization      = $authorization;
     }
 
     /**
@@ -56,6 +68,10 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
             $listing = $this->listings->get( $listing_id );
         } catch ( AWPCP_Exception $e ) {
             return $this->error_response( $e->getMessage() );
+        }
+
+        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
+            return $this->error_response( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $response = [

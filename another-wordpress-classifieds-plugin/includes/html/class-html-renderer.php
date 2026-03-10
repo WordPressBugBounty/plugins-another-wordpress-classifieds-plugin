@@ -29,25 +29,25 @@ class AWPCP_HTML_Renderer {
 
     public function render_element( $element_definition ) {
         $element_definition = $this->normalize_element_definition( $element_definition );
-        $element_renderer = $this->get_element_renderer( $element_definition );
+        $element_renderer   = $this->get_element_renderer( $element_definition );
         return $element_renderer->render_element( $this, $element_definition );
     }
 
     private function normalize_element_definition( $element_definition ) {
         return wp_parse_args( $element_definition, array(
             '#content_prefix' => '',
-            '#content' => '',
+            '#content'        => '',
             '#content_suffix' => '',
-            '#attributes' => array(),
-            '#escape' => false,
+            '#attributes'     => array(),
+            '#escape'         => false,
         ) );
     }
 
     private function get_element_renderer( $element_definition ) {
         $this->load_renderers();
 
-        $type_name = str_replace( ' ', '_', ucwords( str_replace( '-', ' ', $element_definition['#type'] ) ) );
-        $class_name = 'AWPCP_HTML_' . $type_name . '_Renderer';
+        $type_name            = str_replace( ' ', '_', ucwords( str_replace( '-', ' ', $element_definition['#type'] ) ) );
+        $class_name           = 'AWPCP_HTML_' . $type_name . '_Renderer';
         $constructor_function = strtolower( $class_name );
 
         if ( isset( $this->element_renderers[ $class_name ] ) ) {

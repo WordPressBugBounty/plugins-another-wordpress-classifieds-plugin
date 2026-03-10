@@ -38,9 +38,9 @@ class AWPCP_BasicRegionsAPI {
 
     public function find_by_parent_name($parent_name, $parent_type, $type) {
         _deprecated_function( __METHOD__, '4.2' );
-        $sql = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS . ' AS r1 INNER JOIN ( ';
-        $sql.= '    SELECT id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE `%s` = %%s';
-        $sql.= ') AS r2 ON ( r1.id = r2.id )';
+        $sql  = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS . ' AS r1 INNER JOIN ( ';
+        $sql .= '    SELECT id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE `%s` = %%s';
+        $sql .= ') AS r2 ON ( r1.id = r2.id )';
 
         $sql = sprintf( $sql, $type, $parent_type );
 
@@ -72,8 +72,8 @@ class AWPCP_BasicRegionsAPI {
      * @return object|null
      */
     public function find_by_ad_id($ad_id) {
-        $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d ';
-        $sql.= 'ORDER BY id ASC';
+        $sql  = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d ';
+        $sql .= 'ORDER BY id ASC';
 
         return $this->db->get_results( $this->db->prepare( $sql, $ad_id ) );
     }

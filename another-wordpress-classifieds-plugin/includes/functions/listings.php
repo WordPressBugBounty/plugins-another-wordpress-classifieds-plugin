@@ -9,18 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 function awpcp_display_listings( $query_vars, $context, $options ) {
     $options = wp_parse_args( $options, array(
-        'page' => false,
-        'show_intro_message' => false,
-        'show_menu_items' => false,
-        'show_category_selector' => false,
-        'show_pagination' => false,
-        'featured' => false,
+        'page'                       => false,
+        'show_intro_message'         => false,
+        'show_menu_items'            => false,
+        'show_category_selector'     => false,
+        'show_pagination'            => false,
+        'featured'                   => false,
         'classifieds_bar_components' => array(),
-        'before_content' => '',
-        'before_pagination' => '',
-        'before_list' => '',
-        'after_pagination' => '',
-        'after_content' => '',
+        'before_content'             => '',
+        'before_pagination'          => '',
+        'before_list'                => '',
+        'after_pagination'           => '',
+        'after_content'              => '',
     ) );
 
     if ( has_action( 'awpcp_browse_ads_template_action' ) || has_filter( 'awpcp_browse_ads_template_filter' ) ) {
@@ -51,7 +51,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
     else {
         $listings = $listings_collection->find_enabled_listings( $query_vars );
     }
-    $query    = $listings_collection->get_last_query();
+    $query = $listings_collection->get_last_query();
 
     $before_content = apply_filters( 'awpcp-content-before-listings-page', $options['before_content'], $context );
 
@@ -72,7 +72,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 
     $top_pagination    = '';
     $bottom_pagination = '';
-    $items = array();
+    $items             = array();
 
     if ( $query->found_posts > 0 ) {
         if ( $options['show_pagination'] ) {
@@ -217,10 +217,10 @@ function awpcp_get_results_offset( $results_per_page, $query_vars = [] ) {
  */
 function awpcp_display_listings_in_page( $query, $context, $options = array() ) {
     $options = wp_parse_args( $options, array(
-        'show_intro_message' => true,
-        'show_menu_items' => true,
+        'show_intro_message'     => true,
+        'show_menu_items'        => true,
         'show_category_selector' => ! awpcp_get_option( 'hide-categories-selector', false ),
-        'show_pagination' => true,
+        'show_pagination'        => true,
     ) );
 
     return awpcp_display_listings( $query, $context, $options );
@@ -283,14 +283,14 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
     awpcp_maybe_add_thickbox();
     wp_enqueue_script('awpcp-page-show-ad');
 
-    $awpcp = awpcp();
+    $awpcp            = awpcp();
     $listing_renderer = awpcp_listing_renderer();
 
     $awpcp->js->set( 'page-show-ad-flag-ad-nonce', wp_create_nonce('flag_ad') );
 
     $awpcp->js->localize( 'page-show-ad', array(
         'flag-confirmation-message' => __( 'Are you sure you want to flag this ad?', 'another-wordpress-classifieds-plugin' ),
-        'flag-success-message' => __( 'This Ad has been flagged.', 'another-wordpress-classifieds-plugin' ),
+        'flag-success-message'      => __( 'This Ad has been flagged.', 'another-wordpress-classifieds-plugin' ),
         'flag-error-message'        => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' ),
     ) );
 
@@ -340,7 +340,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
             }
 
             $content_before_page = apply_filters( 'awpcp-content-before-listing-page', '' );
-            $content_after_page = apply_filters( 'awpcp-content-after-listing-page', '' );
+            $content_after_page  = apply_filters( 'awpcp-content-after-listing-page', '' );
 
             $output = '<div id="classiwrapper">%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
             $output = sprintf( $output, $content_before_page, $content_after_page );
@@ -356,13 +356,13 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
             }
 
             if ($show_messages && $is_moderator && $listing_renderer->is_disabled( $ad ) ) {
-                $message = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
+                $message    = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
                 $messages[] = awpcp_print_error($message);
-            } else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $listing_renderer->is_verified( $ad ) ) {
-                $message = __( 'This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
+            } elseif ( $show_messages && ( $is_ad_owner || $preview ) && ! $listing_renderer->is_verified( $ad ) ) {
+                $message    = __( 'This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
                 $messages[] = awpcp_print_error($message);
-            } else if ( $show_messages && ( $is_ad_owner || $preview ) && $listing_renderer->is_disabled( $ad ) ) {
-                $message = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
+            } elseif ( $show_messages && ( $is_ad_owner || $preview ) && $listing_renderer->is_disabled( $ad ) ) {
+                $message    = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
                 $messages[] = awpcp_print_error($message);
             }
 
@@ -388,7 +388,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
             'offset'         => awpcp_get_var(
                 array( 'param' => 'offset', 'default' => 0, 'sanitize' => 'absint' )
             ),
-            'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
+            'orderby'        => get_awpcp_option( 'groupbrowseadsby' ),
         );
 
         $output = awpcp_display_listings_in_page( $query, 'show-listing' );

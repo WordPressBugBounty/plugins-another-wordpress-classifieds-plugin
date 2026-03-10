@@ -116,7 +116,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
             $user_data = $this->get_user_data( $transaction->user_id );
         }
         elseif ( $mode === 'create' && get_current_user_id() ) {
-            $user_data       = $this->get_user_data( get_current_user_id() );
+            $user_data = $this->get_user_data( get_current_user_id() );
         }
         else {
             return $form_data;
@@ -198,12 +198,14 @@ class AWPCP_ListingFieldsSubmitListingSection {
     public function maybe_generate_nonces( $listing ) {
         $save_listing_information  = '';
         $clear_listing_information = '';
+        $edit_listing              = '';
 
         if ( ! is_null( $listing ) ) {
             $save_listing_information  = wp_create_nonce( "awpcp-save-listing-information-{$listing->ID}" );
             $clear_listing_information = wp_create_nonce( "awpcp-clear-listing-information-{$listing->ID}" );
+            $edit_listing              = wp_create_nonce( "awpcp-edit-listing-{$listing->ID}" );
         }
 
-        return compact( 'save_listing_information', 'clear_listing_information' );
+        return compact( 'save_listing_information', 'clear_listing_information', 'edit_listing' );
     }
 }

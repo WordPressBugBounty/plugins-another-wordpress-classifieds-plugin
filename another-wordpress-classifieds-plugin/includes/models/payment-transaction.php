@@ -16,24 +16,24 @@ class AWPCP_Payment_Transaction {
     // // public static $PAYMENT_STATUS_COMPLETED = 'Completed';
     // public static $PAYMENT_STATUS_SUBSCRIPTION_CANCELED = 'Canceled';
 
-    const STATUS_NEW = 'New';
-    const STATUS_OPEN = 'Open';
-    const STATUS_READY = 'Ready';
-    const STATUS_CHECKOUT = 'Checkout';
-    const STATUS_PAYMENT = 'Payment';
+    const STATUS_NEW               = 'New';
+    const STATUS_OPEN              = 'Open';
+    const STATUS_READY             = 'Ready';
+    const STATUS_CHECKOUT          = 'Checkout';
+    const STATUS_PAYMENT           = 'Payment';
     const STATUS_PAYMENT_COMPLETED = 'Payment Completed';
-    const STATUS_COMPLETED = 'Completed';
+    const STATUS_COMPLETED         = 'Completed';
 
-    const PAYMENT_STATUS_CANCELED = 'Canceled';
+    const PAYMENT_STATUS_CANCELED     = 'Canceled';
     const PAYMENT_STATUS_NOT_VERIFIED = 'Not Verified';
-    const PAYMENT_STATUS_UNKNOWN = 'Unknown';
-    const PAYMENT_STATUS_INVALID = 'Invalid';
-    const PAYMENT_STATUS_FAILED = 'Failed';
-    const PAYMENT_STATUS_PENDING = 'Pending';
-    const PAYMENT_STATUS_COMPLETED = 'Completed';
+    const PAYMENT_STATUS_UNKNOWN      = 'Unknown';
+    const PAYMENT_STATUS_INVALID      = 'Invalid';
+    const PAYMENT_STATUS_FAILED       = 'Failed';
+    const PAYMENT_STATUS_PENDING      = 'Pending';
+    const PAYMENT_STATUS_COMPLETED    = 'Completed';
     const PAYMENT_STATUS_NOT_REQUIRED = 'Not Required';
 
-    const PAYMENT_TYPE_MONEY = 'money';
+    const PAYMENT_TYPE_MONEY   = 'money';
     const PAYMENT_TYPE_CREDITS = 'credits';
 
     public static $defaults;
@@ -42,7 +42,7 @@ class AWPCP_Payment_Transaction {
 
     private $status;
     private $items = array();
-    private $data = array();
+    private $data  = array();
 
     public $id;
     public $user_id;
@@ -64,19 +64,19 @@ class AWPCP_Payment_Transaction {
 
         if (!is_array(self::$defaults)) {
             self::$defaults = array(
-                'id' => null,
-                'user_id' => 0,
-                'status' => self::STATUS_NEW,
+                'id'              => null,
+                'user_id'         => 0,
+                'status'          => self::STATUS_NEW,
                 'payment_status'  => $this->get_default_payment_status(),
                 'payment_gateway' => '',
-                'payer_email' => '',
-                'items' => array(),
-                'data' => array(),
-                'errors' => array(),
-                'created' => null,
-                'updated' => null,
-                'completed' => null,
-                'version' => 2,
+                'payer_email'     => '',
+                'items'           => array(),
+                'data'            => array(),
+                'errors'          => array(),
+                'created'         => null,
+                'updated'         => null,
+                'completed'       => null,
+                'version'         => 2,
             );
         }
 
@@ -102,11 +102,11 @@ class AWPCP_Payment_Transaction {
         global $wpdb;
 
         extract(wp_parse_args($args, array(
-            'fields' => '*',
-            'status' => null,
-            'created' => null,
+            'fields'     => '*',
+            'status'     => null,
+            'created'    => null,
             'conditions' => array(),
-            'user_id' => null,
+            'user_id'    => null,
         )));
 
         $query_vars = array( AWPCP_TABLE_PAYMENTS );
@@ -165,7 +165,7 @@ class AWPCP_Payment_Transaction {
 
         if (!empty($id)) {
             $conditions = array($wpdb->prepare('id = %s', $id));
-            $results = self::query(array('conditions' => $conditions));
+            $results    = self::query(array('conditions' => $conditions));
         } else {
             $results = array();
         }
@@ -196,7 +196,7 @@ class AWPCP_Payment_Transaction {
     public function save() {
         global $wpdb;
 
-        $now = current_time('mysql');
+        $now           = current_time('mysql');
         $this->created = $this->created ? $this->created : $now;
         $this->updated = $now;
 
@@ -216,7 +216,7 @@ class AWPCP_Payment_Transaction {
         if ($this->in_database) {
             $result = $wpdb->update(AWPCP_TABLE_PAYMENTS, $data, array('id' => $this->id));
         } else {
-            $result = $wpdb->insert(AWPCP_TABLE_PAYMENTS, $data);
+            $result            = $wpdb->insert(AWPCP_TABLE_PAYMENTS, $data);
             $this->in_database = (bool) $result;
         }
 
@@ -253,12 +253,12 @@ class AWPCP_Payment_Transaction {
             return false;
         }
 
-        $balance = 0;
+        $balance           = 0;
         $has_enough_credit = $this->user_has_enough_credit($balance);
 
         if (!$has_enough_credit) {
             $payments = awpcp_payments_api();
-            $plan = $payments->get_credit_plan($this->get('credit-plan'));
+            $plan     = $payments->get_credit_plan($this->get('credit-plan'));
 
             if (is_null($plan)) {
                 // translators: %d is the number of extra credits needed
@@ -274,7 +274,7 @@ class AWPCP_Payment_Transaction {
 
         // see if we can skip payment due to zero-priced items
         $totals = $this->get_totals();
-        $money = (float) $totals['money'];
+        $money  = (float) $totals['money'];
         // $credits = (int) $totals['credits'];
 
         if ( $money <= 0.0 ) {
@@ -340,7 +340,7 @@ class AWPCP_Payment_Transaction {
      */
     public function set_status($status, &$errors) {
         $allowed = true;
-        $verify = array();
+        $verify  = array();
 
         switch ($status) {
             case self::STATUS_COMPLETED:
@@ -502,12 +502,12 @@ class AWPCP_Payment_Transaction {
     }
 
     public function add_item($id, $name, $description, $payment_type, $amount) {
-        $item = new stdClass();
-        $item->id = $id;
-        $item->name = $name;
-        $item->description = $description;
+        $item               = new stdClass();
+        $item->id           = $id;
+        $item->name         = $name;
+        $item->description  = $description;
         $item->payment_type = $payment_type;
-        $item->amount = $amount;
+        $item->amount       = $amount;
 
         $this->items[] = $item;
     }
@@ -545,7 +545,7 @@ class AWPCP_Payment_Transaction {
 
         foreach ($this->items as $item) {
             if ($item->payment_type == 'money')
-                $money += $item->amount;
+                $money   += $item->amount;
             if ($item->payment_type == 'credits')
                 $credits += $item->amount;
         }
@@ -578,7 +578,7 @@ class AWPCP_Payment_Transaction {
             return true;
         }
 
-        $totals = $this->get_totals();
+        $totals  = $this->get_totals();
         $credits = $totals['credits'];
 
         // no need for credits
@@ -590,7 +590,7 @@ class AWPCP_Payment_Transaction {
             return false;
 
         $balance = $payments->get_account_balance($this->user_id);
-        $plan = $payments->get_credit_plan($this->get('credit-plan'));
+        $plan    = $payments->get_credit_plan($this->get('credit-plan'));
 
         $balance = $balance - $credits;
         if ($balance < 0) {

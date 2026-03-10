@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- echo esc_attr($action) ?>>
+echo esc_attr($action) ?>>
     <h3><?php esc_html_e( 'Transaction Details', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
     <?php $this->show_transaction_items( $transaction ); ?>

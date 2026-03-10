@@ -28,21 +28,21 @@ class AWPCP_UserProfileContactInformationController {
             return;
         }
 
-        $profile = (array) get_user_meta( $user_id, 'awpcp-profile', true );
+        $profile             = (array) get_user_meta( $user_id, 'awpcp-profile', true );
         $contact_information = $this->request->post( 'awpcp-profile' );
 
-        $profile['phone'] = awpcp_array_data( 'phone', '', $contact_information );
+        $profile['phone']   = awpcp_array_data( 'phone', '', $contact_information );
         $profile['address'] = awpcp_array_data( 'address', '', $contact_information );
-        $profile['email'] = $this->request->post( 'email' );
+        $profile['email']   = $this->request->post( 'email' );
         $profile['website'] = $this->request->post( 'url' );
 
         $posted_regions = $this->request->post( 'regions', array() );
-        $location = (array) array_shift( $posted_regions );
+        $location       = (array) array_shift( $posted_regions );
 
         $profile['country'] = awpcp_array_data( 'country', '', $location );
-        $profile['state'] = awpcp_array_data( 'state', '', $location );
-        $profile['city'] = awpcp_array_data( 'city', '', $location );
-        $profile['county'] = awpcp_array_data( 'county', '', $location );
+        $profile['state']   = awpcp_array_data( 'state', '', $location );
+        $profile['city']    = awpcp_array_data( 'city', '', $location );
+        $profile['county']  = awpcp_array_data( 'county', '', $location );
 
         update_user_meta( $user_id, 'awpcp-profile', $profile );
 

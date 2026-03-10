@@ -15,10 +15,10 @@ class AWPCP_BuyCreditsPageSelectCreditPlanStep {
 
     public function get( $controller ) {
         $params = array(
-            'payments' => $this->payments,
+            'payments'    => $this->payments,
             'transaction' => $controller->get_transaction( false ),
-            'messages' => $controller->messages,
-            'errors' => $controller->errors,
+            'messages'    => $controller->messages,
+            'errors'      => $controller->errors,
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php';

@@ -21,43 +21,43 @@ class AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer implements AWPCP_HTML_El
         }
 
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
-            '#content' => array(
+            '#content'    => array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'for' => $form_field_id ),
-                    '#content' => array(
+                    '#content'    => array(
                         array(
-                            '#type' => 'input',
+                            '#type'       => 'input',
                             '#attributes' => array(
-                                'type' => 'hidden',
+                                'type'  => 'hidden',
                                 'value' => false,
-                                'name' => "{$element_definition['#name']}_enabled",
+                                'name'  => "{$element_definition['#name']}_enabled",
                             ),
                         ),
                         array(
-                            '#type' => 'input',
+                            '#type'       => 'input',
                             '#attributes' => array_merge( $checbox_attributes, array(
-                                'id' => $form_field_id,
-                                'type' => 'checkbox',
+                                'id'    => $form_field_id,
+                                'type'  => 'checkbox',
                                 'value' => true,
-                                'name' => "{$element_definition['#name']}_enabled",
+                                'name'  => "{$element_definition['#name']}_enabled",
                             ) ),
                         ),
                         array(
-                            '#type' => 'text',
+                            '#type'    => 'text',
                             '#content' => $element_definition['#label'],
                         ),
                     ),
                 ),
                 array(
-                    '#type' => 'input',
+                    '#type'       => 'input',
                     '#attributes' => array(
-                        'id' => $form_field_id,
-                        'type' => 'text',
-                        'value' => $element_definition['#textfield_value'],
-                        'name' => $element_definition['#name'],
+                        'id'              => $form_field_id,
+                        'type'            => 'text',
+                        'value'           => $element_definition['#textfield_value'],
+                        'name'            => $element_definition['#name'],
                         'data-usableform' => "enable-if:{$element_definition['#name']}_enabled",
                     ),
                 ),

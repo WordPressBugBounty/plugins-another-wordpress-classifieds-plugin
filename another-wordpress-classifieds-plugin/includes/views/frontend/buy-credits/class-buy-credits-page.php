@@ -14,7 +14,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
     public function __construct( $steps, $request ) {
         parent::__construct( $steps, $request );
 
-        $this->page = 'awpcp-buy-credits';
+        $this->page  = 'awpcp-buy-credits';
         $this->title = __( 'Buy Credits', 'another-wordpress-classifieds-plugin' );
     }
 
@@ -74,7 +74,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
         if ( ! is_null( $transaction ) && $transaction->get( 'context' ) != 'add-credit' ) {
             $page_name = $this->title;
-            $page_url = $this->url( array( 'page' => $this->page ) );
+            $page_url  = $this->url( array( 'page' => $this->page ) );
 
             /* translators: %1$s back link, %2$s transaction id */
             $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Please go back to the %1$s page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' );
@@ -90,7 +90,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
         if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
             if ( ! ( $transaction->was_payment_successful() || $transaction->payment_is_not_verified() ) ) {
                 $this->errors = array_merge( $this->errors, awpcp_flatten_array( $transaction->errors ) );
-                $message = __( 'The payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
+                $message      = __( 'The payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
 
                 throw new AWPCP_Exception( esc_html( $message ) );
             }
@@ -100,7 +100,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
     private function force_payment_completed_step_if_necessary() {
         $transaction = $this->get_transaction();
 
-        $step_name = $this->get_current_step_name();
+        $step_name        = $this->get_current_step_name();
         $step_not_allowed = in_array( $step_name, array( 'select-credit-plan', 'checkout' ) );
 
         if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
@@ -128,7 +128,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
 function awpcp_buy_credits_page() {
     $request = new AWPCP_Request();
-    $steps = awpcp_buy_credit_page_steps( awpcp_payments_api() );
+    $steps   = awpcp_buy_credit_page_steps( awpcp_payments_api() );
 
     return new AWPCP_BuyCreditsPage( $steps, $request );
 }
@@ -151,7 +151,7 @@ function awpcp_buy_credit_page_steps( $payments ) {
                 ),
                 $payments
             ),
-        'checkout' =>
+        'checkout'           =>
             new AWPCP_VerifyTransactionExistsStepDecorator(
                 new AWPCP_SetTransactionStatusToCheckoutStepDecorator(
                     new AWPCP_VerifyPaymentCanBeProcessedStepDecorator(
@@ -163,8 +163,8 @@ function awpcp_buy_credit_page_steps( $payments ) {
                     $payments
                 )
             ),
-        'payment-completed' => new AWPCP_BuyCreditsPagePaymentCompletedStep( $payments ),
-        'final' =>
+        'payment-completed'  => new AWPCP_BuyCreditsPagePaymentCompletedStep( $payments ),
+        'final'              =>
             new AWPCP_SetTransactionStatusToCompletedStepDecorator(
                 new AWPCP_BuyCreditsPageFinalStep( $payments ),
                 $payments

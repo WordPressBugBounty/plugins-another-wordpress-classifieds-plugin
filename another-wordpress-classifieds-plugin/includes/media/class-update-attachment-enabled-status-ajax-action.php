@@ -21,7 +21,7 @@ class AWPCP_Update_Attachment_Enabled_Status_Ajax_Action implements AWPCP_Attach
 
     public function __construct( $attachments_logic, $request ) {
         $this->attachments_logic = $attachments_logic;
-        $this->request = $request;
+        $this->request           = $request;
     }
 
     public function do_action( $ajax_handler, $attachment, $listing ) {

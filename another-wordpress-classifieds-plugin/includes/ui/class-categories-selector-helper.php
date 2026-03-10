@@ -17,18 +17,18 @@ class AWPCP_Categories_Selector_Helper {
         $hide_empty_categories = awpcp_get_option( 'hide-empty-categories-dropdown' );
 
         $params = wp_parse_args( $params, array(
-            'context' => 'default',
-            'name' => 'category',
-            'label' => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
-            'placeholder'   => null,
-            'required' => true,
-            'selected' => null,
-            'multiple' => false,
-            'auto'          => true,
-            'hide_empty' => awpcp_parse_bool( $hide_empty_categories ),
+            'context'                   => 'default',
+            'name'                      => 'category',
+            'label'                     => __( 'Ad Category', 'another-wordpress-classifieds-plugin' ),
+            'placeholder'               => null,
+            'required'                  => true,
+            'selected'                  => null,
+            'multiple'                  => false,
+            'auto'                      => true,
+            'hide_empty'                => awpcp_parse_bool( $hide_empty_categories ),
             'disable_parent_categories' => false,
-            'mode'          => 'basic',
-            'payment_terms' => array(),
+            'mode'                      => 'basic',
+            'payment_terms'             => array(),
         ) );
 
         if ( $params['multiple'] ) {
@@ -61,7 +61,7 @@ class AWPCP_Categories_Selector_Helper {
     }
 
     public function get_categories_parents( $categories, &$all_categories ) {
-        $categories_parents = array();
+        $categories_parents     = array();
         $all_categories_parents = array();
 
         foreach ( $all_categories as $item ) {

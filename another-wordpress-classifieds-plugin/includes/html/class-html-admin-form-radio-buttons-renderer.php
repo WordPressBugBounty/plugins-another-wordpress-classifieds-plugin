@@ -13,15 +13,15 @@ class AWPCP_HTML_Admin_Form_Radio_Buttons_Renderer implements AWPCP_HTML_Element
 
     public function render_element( $html_renderer, $element_definition ) {
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => array(
                 'class' => 'awpcp-admin-form-radio-buttons',
             ),
-            '#content' => array_merge( array(
+            '#content'    => array_merge( array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'class' => array( 'awpcp-admin-form-radio-buttons-label' ) ),
-                    '#content' => $element_definition['#label'],
+                    '#content'    => $element_definition['#label'],
                 ),
             ), $this->get_radio_buttons_defintion( $element_definition ) ),
         );
@@ -34,8 +34,8 @@ class AWPCP_HTML_Admin_Form_Radio_Buttons_Renderer implements AWPCP_HTML_Element
 
         foreach ( $element_definition['#options'] as $option_value => $option_label ) {
             $attributes = array(
-                'type' => 'radio',
-                'name' => empty( $element_definition['#name'] ) ? 'price_model' : $element_definition['#name'],
+                'type'  => 'radio',
+                'name'  => empty( $element_definition['#name'] ) ? 'price_model' : $element_definition['#name'],
                 'value' => $option_value,
             );
 
@@ -44,15 +44,15 @@ class AWPCP_HTML_Admin_Form_Radio_Buttons_Renderer implements AWPCP_HTML_Element
             }
 
             $radio_buttons[] = array(
-                '#type' => 'label',
+                '#type'       => 'label',
                 '#attributes' => array( 'class' => array( 'awpcp-admin-form-radio-buttons-option' ) ),
-                '#content' => array(
+                '#content'    => array(
                     array(
-                        '#type' => 'input',
+                        '#type'       => 'input',
                         '#attributes' => $attributes,
                     ),
                     array(
-                        '#type' => 'text',
+                        '#type'    => 'text',
                         '#content' => $option_label,
                     ),
                 ),

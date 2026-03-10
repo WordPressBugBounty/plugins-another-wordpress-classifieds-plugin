@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- if ( $options['page'] ): ?>
+if ( $options['page'] ): ?>
 <div class="<?php echo esc_attr( $options['page'] ); ?> awpcp-page" id="classiwrapper">
 <?php else: ?>
 <div id="classiwrapper">

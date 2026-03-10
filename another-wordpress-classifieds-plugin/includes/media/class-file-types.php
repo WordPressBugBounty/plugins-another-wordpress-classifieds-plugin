@@ -29,17 +29,17 @@ class AWPCP_FileTypes {
         return array(
             'image' => array(
                 'png' => array(
-                    'name' => 'PNG',
+                    'name'       => 'PNG',
                     'extensions' => array( 'png' ),
                     'mime_types' => array( 'image/png' ),
                 ),
                 'jpg' => array(
-                    'name' => 'JPG',
+                    'name'       => 'JPG',
                     'extensions' => array( 'jpg', 'jpeg', 'pjpeg' ),
                     'mime_types' => array( 'image/jpg', 'image/jpeg', 'image/pjpeg' ),
                 ),
                 'gif' => array(
-                    'name' => 'GIF',
+                    'name'       => 'GIF',
                     'extensions' => array( 'gif' ),
                     'mime_types' => array( 'image/gif' ),
                 ),
@@ -72,7 +72,7 @@ class AWPCP_FileTypes {
     }
 
     public function get_allowed_file_mime_types_in_group( $group ) {
-        $file_types = $this->get_file_types_in_group( $group );
+        $file_types         = $this->get_file_types_in_group( $group );
         $allowed_extensions = $this->get_allowed_file_extesions_in_group( $group );
 
         return $this->get_allowed_mime_types( $file_types, $allowed_extensions );

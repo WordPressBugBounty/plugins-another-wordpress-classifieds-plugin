@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<?php $page_id    = 'awpcp-import-supported-csv-headers'; ?>
+<?php $page_id = 'awpcp-import-supported-csv-headers'; ?>
 <?php $page_title = awpcp_admin_page_title( __( 'Import Listings: Supported CSV Headers', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>

@@ -17,7 +17,7 @@ class AWPCP_Authentication_Redirection_Handler {
     private $settings;
 
     public function __construct( $query, $settings ) {
-        $this->query = $query;
+        $this->query    = $query;
         $this->settings = $settings;
     }
 

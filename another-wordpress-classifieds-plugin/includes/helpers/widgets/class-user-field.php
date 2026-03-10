@@ -24,7 +24,7 @@ abstract class AWPCP_UserField {
 
     protected function find_selected_user( $args ) {
         if ( ! is_null( $args['selected'] ) && empty( $args['selected'] ) ) {
-            $current_user = wp_get_current_user();
+            $current_user     = wp_get_current_user();
             $args['selected'] = $current_user->ID;
         }
 
@@ -45,13 +45,13 @@ abstract class AWPCP_UserField {
     protected function render_template( $template, $args = array() ) {
         $args = wp_parse_args( $args, array(
             'include-full-user-information' => true,
-            'required' => false,
-            'selected' => false,
-            'label' => false,
-            'default' => __( 'Select an User', 'another-wordpress-classifieds-plugin' ),
-            'id' => null,
-            'name' => 'user',
-            'class' => array(),
+            'required'                      => false,
+            'selected'                      => false,
+            'label'                         => false,
+            'default'                       => __( 'Select an User', 'another-wordpress-classifieds-plugin' ),
+            'id'                            => null,
+            'name'                          => 'user',
+            'class'                         => array(),
         ) );
 
         if ( $args['required'] ) {

@@ -144,6 +144,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             data = $.extend( {}, self.store.getListingFields(), {
                 action:            'awpcp_save_listing_information',
                 nonce:             $.AWPCP.get( 'save_listing_information_nonce' ),
+                edit_nonce:        $.AWPCP.get( 'edit_listing_nonce' ),
                 transaction_id:    self.store.getTransactionId(),
                 ad_id:             self.store.getListingId(),
                 user_id:           self.store.getSelectedUserId(),
@@ -226,6 +227,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             data = {
                 action: 'awpcp_generate_listing_preview',
                 nonce:  $.AWPCP.get( 'save_listing_information_nonce' ),
+                edit_nonce: $.AWPCP.get( 'edit_listing_nonce' ),
                 ad_id:  self.store.getListingId()
             };
 

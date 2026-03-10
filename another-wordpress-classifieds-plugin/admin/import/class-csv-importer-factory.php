@@ -19,7 +19,7 @@ class AWPCP_CSV_Importer_Factory {
         $importer_delegate = $this->importer_delegate_factory->create_importer_delegate( $import_session );
 
         $csv_file_path = $import_session->get_working_directory() . DIRECTORY_SEPARATOR . 'source.csv';
-        $csv_reader = $this->csv_reader_factory->create_reader( $csv_file_path );
+        $csv_reader    = $this->csv_reader_factory->create_reader( $csv_file_path );
 
         return new AWPCP_CSV_Importer( $importer_delegate, $import_session, $csv_reader );
     }

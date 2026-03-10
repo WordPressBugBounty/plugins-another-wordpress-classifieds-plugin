@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2026-02-10 07:13:16+00:00\n"
+"POT-Creation-Date: 2026-03-10 07:58:32+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/wp-translations/"
@@ -64,7 +64,7 @@ msgstr "Attributi"
 msgid "Categories"
 msgstr "Categorie"
 
-#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:853
+#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:852
 msgid "Featured Ads"
 msgstr "Annunci In Evidenza"
 
@@ -586,11 +586,16 @@ msgstr "Sembra tutto OK."
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:28
 #: functions.php:535
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:108
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:62
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:73
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:77
 #: includes/frontend/class-generate-listing-preview-ajax-handler.php:73
 #: includes/frontend/class-generate-listing-preview-ajax-handler.php:77
-#: includes/frontend/class-save-listing-information-ajax-handler.php:114
-#: includes/frontend/class-update-listing-order-ajax-handler.php:73
+#: includes/frontend/class-save-listing-information-ajax-handler.php:121
+#: includes/frontend/class-save-listing-information-ajax-handler.php:125
+#: includes/frontend/class-update-listing-order-ajax-handler.php:79
+#: includes/frontend/class-update-listing-order-ajax-handler.php:86
+#: includes/frontend/class-update-submit-listing-sections-ajax-handler.php:74
+#: includes/views/class-users-autocomplete-ajax-handler.php:24
 msgid "You are not authorized to perform this action."
 msgstr ""
 
@@ -3372,7 +3377,7 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:779
+#: includes/class-awpcp.php:778
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3380,88 +3385,88 @@ msgstr ""
 "AWPCP ha bisogno delle librerie GD che attualmente sono mancanti. Contattare "
 "il proprio hosting web per correggere il problema."
 
-#: includes/class-awpcp.php:780
+#: includes/class-awpcp.php:779
 #: includes/placeholders/class-placeholders-installation-verifier.php:67
 msgid "Warning"
 msgstr "Avviso"
 
-#: includes/class-awpcp.php:797
+#: includes/class-awpcp.php:796
 msgid "Attachments"
 msgstr "Allegati"
 
-#: includes/class-awpcp.php:804
+#: includes/class-awpcp.php:803
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:811
+#: includes/class-awpcp.php:810
 msgid "BuddyPress Listings"
 msgstr "Pubblicazione BuddyPress"
 
-#: includes/class-awpcp.php:818
+#: includes/class-awpcp.php:817
 msgid "Campaign Manager"
 msgstr "Gestore Campagne"
 
-#: includes/class-awpcp.php:825
+#: includes/class-awpcp.php:824
 msgid "Category Icons"
 msgstr "Icona categoria"
 
-#: includes/class-awpcp.php:832
+#: includes/class-awpcp.php:831
 msgid "Comments & Ratings"
 msgstr "Commenti e Valutazioni"
 
-#: includes/class-awpcp.php:839
+#: includes/class-awpcp.php:838
 msgid "Coupons/Discount"
 msgstr "Coupon/Sconti"
 
-#: includes/class-awpcp.php:846
+#: includes/class-awpcp.php:845
 msgid "Extra Fields"
 msgstr "Campi Extra"
 
-#: includes/class-awpcp.php:860
+#: includes/class-awpcp.php:859
 msgid "Fee per Category"
 msgstr "Commisione per Categoria"
 
-#: includes/class-awpcp.php:867
+#: includes/class-awpcp.php:866
 msgid "Mark as Sold"
 msgstr "Segna come Venduto"
 
-#: includes/class-awpcp.php:874
+#: includes/class-awpcp.php:873
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:881
+#: includes/class-awpcp.php:880
 msgid "Regions Control"
 msgstr "Controllo Regioni"
 
-#: includes/class-awpcp.php:888
+#: includes/class-awpcp.php:887
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:895
+#: includes/class-awpcp.php:894
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:902
+#: includes/class-awpcp.php:901
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:909 templates/components/media-manager.tpl.php:54
+#: includes/class-awpcp.php:908 templates/components/media-manager.tpl.php:54
 msgid "Videos"
 msgstr "Video"
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:916
 msgid "XML Sitemap"
 msgstr "Sitemap XML"
 
-#: includes/class-awpcp.php:925
+#: includes/class-awpcp.php:924
 msgid "ZIP Code Search Module"
 msgstr "Modulo di ricerca Codici Postali"
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1459
 msgid "This field is required."
 msgstr "Il campo è obbligatorio."
 
-#: includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1460
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:277
 #: includes/frontend/class-edit-listing-page.php:354
@@ -3469,38 +3474,38 @@ msgstr "Il campo è obbligatorio."
 msgid "Please enter a valid email address."
 msgstr "Immettere un indirizzo email valido."
 
-#: includes/class-awpcp.php:1462 includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1461 includes/class-awpcp.php:1462
 msgid "Please enter a valid URL."
 msgstr "Inserisci una URL valida."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1463
 msgid "Please enter a valid number."
 msgstr "Inserisci un numero valido."
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1464
 msgid "Please enter a valid amount."
 msgstr "Inserisci un importo valido"
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1465
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1485
+#: includes/class-awpcp.php:1484
 msgid "There are files currently being uploaded."
 msgstr "Sono presenti file in caricamento."
 
-#: includes/class-awpcp.php:1486
+#: includes/class-awpcp.php:1485
 msgid "There are files pending to be uploaded."
 msgstr "Sono presenti file in attesa di caricamento."
 
-#: includes/class-awpcp.php:1487
+#: includes/class-awpcp.php:1486
 msgid "You haven't uploaded any images or files."
 msgstr "Non hai caricato immagini o file."
 
-#: includes/class-awpcp.php:1556 includes/class-awpcp.php:1564
-#: includes/class-awpcp.php:1572 includes/class-awpcp.php:1647
-#: includes/class-awpcp.php:1655 includes/class-awpcp.php:1663
+#: includes/class-awpcp.php:1555 includes/class-awpcp.php:1563
+#: includes/class-awpcp.php:1571 includes/class-awpcp.php:1646
+#: includes/class-awpcp.php:1654 includes/class-awpcp.php:1662
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:11
 #: templates/privacy-policy.tpl.php:12
 #, fuzzy
@@ -3845,11 +3850,11 @@ msgid ""
 "with a new access token."
 msgstr ""
 
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:54
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:65
 msgid "No listing ID was provided."
 msgstr ""
 
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:66
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:81
 msgid "Unknown action: {action}"
 msgstr ""
 
@@ -3890,7 +3895,7 @@ msgstr ""
 "C'è stato un errore nella verifica della risposta reCAPTCHA. <reCAPTCHA-"
 "error>"
 
-#: includes/frontend/class-save-listing-information-ajax-handler.php:132
+#: includes/frontend/class-save-listing-information-ajax-handler.php:143
 msgid "There is no payment transaction associated with this request. Aborting."
 msgstr ""
 
@@ -3959,12 +3964,12 @@ msgid ""
 "the email address used to post the listing."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:80
+#: includes/frontend/class-update-listing-order-ajax-handler.php:90
 msgid ""
 "The payment information for the specified ad cannot be modified at this time."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:86
+#: includes/frontend/class-update-listing-order-ajax-handler.php:96
 msgid "The specified transaction doesn't exist."
 msgstr ""
 
@@ -4436,17 +4441,18 @@ msgstr "Rinnova"
 msgid "You can use this button to renew your ad."
 msgstr ""
 
-#: includes/media/class-attachment-action-ajax-handler.php:47
+#: includes/media/class-attachment-action-ajax-handler.php:68
 msgid "There was an error trying to update the database."
 msgstr ""
 
-#: includes/media/class-attachment-action-ajax-handler.php:58
+#: includes/media/class-attachment-action-ajax-handler.php:79
+#: includes/media/class-attachment-action-ajax-handler.php:83
 #, fuzzy
 msgid "You are not allowed to perform this action."
 msgstr "Non sei autorizzato a fare questa azione"
 
-#. translators: %d is the listing ID
-#: includes/media/class-attachment-action-ajax-handler.php:63
+#. translators: %d is the listing ID.
+#: includes/media/class-attachment-action-ajax-handler.php:88
 msgid "The specified file is not associated with Listing with ID %d."
 msgstr ""
 
@@ -4605,25 +4611,25 @@ msgstr ""
 msgid "New media is awaiting approval in listing: <listing-title>"
 msgstr ""
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:49
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:52
 msgid "Trying to upload a thumbnail for an unknown file."
 msgstr ""
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:55
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:58
 msgid "You are not authorized to upload thumbnails."
 msgstr ""
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:79
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:82
 msgid ""
 "There was an error trying to store the uploaded thumbnail for file "
 "<filename>."
 msgstr ""
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:89
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:92
 msgid "No thumbnail data found."
 msgstr ""
 
-#: includes/media/class-upload-listing-media-ajax-handler.php:47
+#: includes/media/class-upload-listing-media-ajax-handler.php:72
 msgid "You are not authorized to upload files."
 msgstr "Non hai i permessi per poter caricare file."
 
@@ -10059,17 +10065,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr ""
 
-#: includes/class-awpcp.php:1473
+#: includes/class-awpcp.php:1472
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prec"
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1473
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Succ&#x3e;"
 
-#: includes/class-awpcp.php:1480
+#: includes/class-awpcp.php:1479
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "Europe/Rome"

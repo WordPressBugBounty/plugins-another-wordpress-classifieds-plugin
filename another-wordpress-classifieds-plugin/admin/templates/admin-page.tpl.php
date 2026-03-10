@@ -16,7 +16,7 @@ awpcp_print_messages(); ?>
                 'attributes' => array(
                     'class' => 'awpcp-page-header',
                 ),
-                'content' => $page_title, // no need to escape; title() is allowed to output html
+                'content'    => $page_title, // no need to escape; title() is allowed to output html
                 'echo'       => true,
             );
 

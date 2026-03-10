@@ -32,15 +32,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php
 $selector_options = array(
     'showTextField' => true,
-    'maxRegions' => 1,
+    'maxRegions'    => 1,
 );
 
 $selected_region = array(
     array(
         'country' => awpcp_array_data( 'country', '', $profile ),
-        'state' => awpcp_array_data( 'state', '', $profile ),
-        'city' => awpcp_array_data( 'city', '', $profile ),
-        'county' => awpcp_array_data( 'county', '', $profile ),
+        'state'   => awpcp_array_data( 'state', '', $profile ),
+        'city'    => awpcp_array_data( 'city', '', $profile ),
+        'county'  => awpcp_array_data( 'county', '', $profile ),
     ),
 );
 

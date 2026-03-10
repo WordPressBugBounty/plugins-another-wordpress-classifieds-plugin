@@ -3,10 +3,10 @@
         <tr>
             <th class="item"><?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+                exit;
 }
 
- esc_html_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?></th>
+esc_html_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?></th>
             <th class="amount"><?php esc_html_e( 'Amount', 'another-wordpress-classifieds-plugin' ); ?></th>
         </tr>
     </thead>

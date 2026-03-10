@@ -9,17 +9,17 @@ class AWPCP_CSV_Reader {
 
     private $file = null;
 
-    private $path = null;
+    private $path     = null;
     private $settings = array();
 
     private $header = null;
 
-    private $number_of_rows = null;
-    private $current_line = 0;
+    private $number_of_rows            = null;
+    private $current_line              = 0;
     private $number_of_lines_processed = 0;
 
     public function __construct( $path, $settings = array() ) {
-        $this->path = $path;
+        $this->path     = $path;
         $this->settings = wp_parse_args( $settings, array(
             'csv-separator' => ',',
         ) );
@@ -27,11 +27,11 @@ class AWPCP_CSV_Reader {
 
     public function get_state() {
         return array(
-            'path' => $this->path,
-            'settings' => $this->settings,
-            'header' => $this->header,
-            'number_of_rows' => $this->get_number_of_rows(),
-            'current_line' => $this->current_line,
+            'path'                      => $this->path,
+            'settings'                  => $this->settings,
+            'header'                    => $this->header,
+            'number_of_rows'            => $this->get_number_of_rows(),
+            'current_line'              => $this->current_line,
             'number_of_lines_processed' => $this->number_of_lines_processed,
         );
     }
@@ -51,7 +51,7 @@ class AWPCP_CSV_Reader {
         $file = $this->get_file_object();
         $file->seek( PHP_INT_MAX );
         $last_line_number = absint( $file->key() );
-        $file = null;
+        $file             = null;
 
         ini_set( 'auto_detect_line_endings', $auto_detect_line_endings );
 
@@ -116,8 +116,8 @@ class AWPCP_CSV_Reader {
     }
 
     public function get_row( $row_number = null ) {
-        $header = $this->get_header();
-        $row_data = $this->get_row_data( $row_number );
+        $header            = $this->get_header();
+        $row_data          = $this->get_row_data( $row_number );
         $filtered_row_data = array_filter( $row_data );
 
         if ( empty( $filtered_row_data ) ) {

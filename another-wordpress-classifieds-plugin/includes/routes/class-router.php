@@ -28,7 +28,7 @@ class AWPCP_Router {
     private $template_renderer;
     private $request;
 
-    private $current_page = null;
+    private $current_page    = null;
     private $request_handler = null;
 
     public $routes;
@@ -60,7 +60,7 @@ class AWPCP_Router {
     }
 
     public function on_admin_init() {
-        $this->current_page = $this->get_active_admin_page();
+        $this->current_page    = $this->get_active_admin_page();
         $this->request_handler = $this->get_request_handler( $this->current_page );
 
         $this->init_admin_page( $this->current_page, $this->request_handler );
@@ -145,7 +145,7 @@ class AWPCP_Router {
     public function serve_admin_page( $route ) {
         $route = wp_parse_args( $route, array( 'parent' => null, 'page' => null, 'section' => null ) );
 
-        $admin_page = $this->routes->get_admin_page( $route['parent'], $route['page'] );
+        $admin_page      = $this->routes->get_admin_page( $route['parent'], $route['page'] );
         $request_handler = $this->get_request_handler_for_section( $admin_page, $route['section'] );
 
         $this->load_admin_page( $admin_page, $request_handler );
@@ -190,12 +190,12 @@ class AWPCP_Router {
         $template = AWPCP_DIR . '/admin/templates/admin-page.tpl.php';
 
         $params = array(
-            'current_page' => $this->current_page,
-            'page_slug' => $admin_page->slug,
-            'page_title' => $this->title(),
+            'current_page'      => $this->current_page,
+            'page_slug'         => $admin_page->slug,
+            'page_title'        => $this->title(),
             'should_show_title' => true,
-            'show_sidebar' => $this->show_sidebar( $this->current_page ),
-            'content' => $content,
+            'show_sidebar'      => $this->show_sidebar( $this->current_page ),
+            'content'           => $content,
             'echo'              => true,
         );
 

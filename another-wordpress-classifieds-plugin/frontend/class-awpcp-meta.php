@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AWPCP_Meta {
 
-    public $ad          = null;
+    public $ad = null;
     public $ad_id;
-    public $properties  = array();
-    public $metadata    = array();
+    public $properties = array();
+    public $metadata   = array();
     public $category;
     public $category_id = null;
 
@@ -26,7 +26,7 @@ class AWPCP_Meta {
     private $query;
     private $request = null;
 
-    private $doing_opengraph = false;
+    private $doing_opengraph          = false;
     public $doin_description_meta_tag = false;
 
     public function __construct( $listings_collection, $categories_collection, $title_builder, $meta_tags_genertor, $query, $request ) {

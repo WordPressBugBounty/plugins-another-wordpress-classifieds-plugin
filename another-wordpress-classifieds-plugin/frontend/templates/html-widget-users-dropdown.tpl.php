@@ -3,11 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- if ( $args['label'] ): ?>
+if ( $args['label'] ): ?>
 <label for="<?php echo esc_attr( $args['id'] ); ?>"><?php
     echo esc_attr( $args['label'] );
     if ( $args['required'] ):
-        ?><span class="required">*</span><?php
+    ?><span class="required">*</span><?php
     endif;
     ?></label>
 <?php endif; ?>
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php foreach ( $args['users'] as $k => $user ): ?>
     <option value="<?php echo esc_attr( $user->ID ); ?>" <?php
         if ( $args['include-full-user-information'] ):
-            ?>data-user-information="<?php echo esc_attr( wp_json_encode( $user ) ); ?>" <?php
+        ?>data-user-information="<?php echo esc_attr( wp_json_encode( $user ) ); ?>" <?php
         endif;
         echo $args['selected'] == $user->ID ? 'selected="selected"' : ''; ?>>
         <?php echo esc_html( $user->public_name ); ?>

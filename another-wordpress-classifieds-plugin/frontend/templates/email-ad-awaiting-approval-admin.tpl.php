@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- foreach ($messages as $message): ?>
+foreach ($messages as $message): ?>
 <?php echo wp_kses_post( $message ); ?>
 
 <?php endforeach; ?>

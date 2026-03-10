@@ -35,10 +35,10 @@ class AWPCP_CategoriesWidget extends WP_Widget {
 
     protected function defaults() {
         $defaults = array(
-            'title' => __( 'Ad Categories', 'another-wordpress-classifieds-plugin'),
-            'hide-empty' => 0,
+            'title'             => __( 'Ad Categories', 'another-wordpress-classifieds-plugin'),
+            'hide-empty'        => 0,
             'show-parents-only' => 0,
-            'show-ad-count' => get_awpcp_option( 'showadcount' ),
+            'show-ad-count'     => get_awpcp_option( 'showadcount' ),
         );
 
         return $defaults;
@@ -56,9 +56,9 @@ class AWPCP_CategoriesWidget extends WP_Widget {
         }
 
         $params = array(
-            'show_empty_categories' => $instance['hide-empty'] ? false : true,
+            'show_empty_categories'    => $instance['hide-empty'] ? false : true,
             'show_children_categories' => $instance['show-parents-only'] ? false : true,
-            'show_listings_count' => $instance['show-ad-count'],
+            'show_listings_count'      => $instance['show-ad-count'],
         );
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
@@ -74,10 +74,10 @@ class AWPCP_CategoriesWidget extends WP_Widget {
     }
 
     public function update($new_instance, $old_instance) {
-        $instance['title'] = wp_strip_all_tags( $new_instance['title'] );
-        $instance['hide-empty'] = intval( $new_instance['hide-empty'] );
+        $instance['title']             = wp_strip_all_tags( $new_instance['title'] );
+        $instance['hide-empty']        = intval( $new_instance['hide-empty'] );
         $instance['show-parents-only'] = intval( $new_instance['show-parents-only'] );
-        $instance['show-ad-count'] = intval( $new_instance['show-ad-count'] );
+        $instance['show-ad-count']     = intval( $new_instance['show-ad-count'] );
         return $instance;
     }
 }

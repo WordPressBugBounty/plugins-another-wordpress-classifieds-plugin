@@ -40,16 +40,16 @@ if ( ! defined( 'ABSPATH' ) ) {
                     <?php
                     awpcp()->container['UserSelector']->render(
                         [
-                            'required'                      => true,
-                            'selected'                      => awpcp_array_data( 'user', '', $form ),
-                            'label'                         => esc_html__( 'Who is the owner of this ad?', 'another-wordpress-classifieds-plugin' ),
-                            'default'                       => $show_user_field ? esc_html__( 'Please select a user', 'another-wordpress-classifieds-plugin' ) : '',
-                            'id'                            => 'ad-user-id',
-                            'name'                          => 'user',
-                            'class'                         => array( 'awpcp-user-selector' ),
-                            'include_selected_user_only'    => (bool) ! $show_user_field,
+                            'required'                   => true,
+                            'selected'                   => awpcp_array_data( 'user', '', $form ),
+                            'label'                      => esc_html__( 'Who is the owner of this ad?', 'another-wordpress-classifieds-plugin' ),
+                            'default'                    => $show_user_field ? esc_html__( 'Please select a user', 'another-wordpress-classifieds-plugin' ) : '',
+                            'id'                         => 'ad-user-id',
+                            'name'                       => 'user',
+                            'class'                      => array( 'awpcp-user-selector' ),
+                            'include_selected_user_only' => (bool) ! $show_user_field,
                             'include_full_user_information' => (bool) $show_user_field,
-                            'echo'                          => true,
+                            'echo'                       => true,
                         ]
                     );
 

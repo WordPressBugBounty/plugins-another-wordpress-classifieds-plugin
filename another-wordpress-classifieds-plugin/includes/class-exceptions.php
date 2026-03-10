@@ -13,7 +13,7 @@ class AWPCP_Exceptions {
 
     public function license_request_exception( $specific_message, $module_name, $previous_message = '', $code = 0, $previous_exception = null ) {
         $placeholders = array(
-            'module-name' => $this->strong( $module_name ),
+            'module-name'      => $this->strong( $module_name ),
             'previous-message' => $previous_message,
         );
 

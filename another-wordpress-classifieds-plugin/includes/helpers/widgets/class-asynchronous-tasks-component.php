@@ -11,14 +11,14 @@ class AWPCP_AsynchronousTasksComponent {
 
     public function __construct( $params ) {
         $this->params = wp_parse_args( $params, array(
-            'groups' => array(),
-            'title' => false,
+            'groups'       => array(),
+            'title'        => false,
             'introduction' => '',
-            'submit' => '',
-            'templates' => array(
+            'submit'       => '',
+            'templates'    => array(
                 'itemsProcessed' => _x( '<number-of-items-processed> of <total-number-of-items> items processed', 'e.g: 6 of 13 items processed', 'another-wordpress-classifieds-plugin'  ),
                 // 'percentageOfCompletion' => _x( 'completed', 'as in: 5% completed', 'another-wordpress-classifieds-plugin' ),
-                'remainingTime' => _x( 'remaining', 'as in: 2 minutes remaining', 'another-wordpress-classifieds-plugin' ),
+                'remainingTime'  => _x( 'remaining', 'as in: 2 minutes remaining', 'another-wordpress-classifieds-plugin' ),
             ),
         ) );
     }

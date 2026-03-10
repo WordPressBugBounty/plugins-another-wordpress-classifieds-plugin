@@ -27,7 +27,7 @@ class AWPCP_UploadsManager {
 
     public function move_file_to( $file, $relative_path, $related_directories = array() ) {
         $destination_dir = $this->get_path_for_relative_path( $relative_path );
-        $wp_filesystem = awpcp_get_wp_filesystem();
+        $wp_filesystem   = awpcp_get_wp_filesystem();
 
         if ( ! $wp_filesystem ) {
             throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );

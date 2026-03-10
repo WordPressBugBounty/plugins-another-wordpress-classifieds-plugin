@@ -67,7 +67,7 @@ class AWPCP_Request {
             $domain = isset( $_SERVER['SERVER_NAME'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '';
         }
 
-        $should_replace_www = $include_www ? false : true;
+        $should_replace_www     = $include_www ? false : true;
         $domain_starts_with_www = substr( $domain, 0, 4 ) === 'www.';
 
         if ( $should_replace_www && $domain_starts_with_www ) {

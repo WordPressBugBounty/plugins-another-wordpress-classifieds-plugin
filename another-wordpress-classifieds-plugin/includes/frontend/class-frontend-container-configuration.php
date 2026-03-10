@@ -156,6 +156,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsLogic'],
                 $container['PaymentInformationValidator'],
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 $container['ListingsPaymentTransactions'],
                 $container['ListingOrderPostedData'],
                 awpcp_ajax_response()
@@ -167,6 +168,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingsCollection'],
                 $container['Payments'],
+                $container['ListingAuthorization'],
                 awpcp_ajax_response()
             );
         } );
@@ -176,6 +178,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 $container['ListingsPaymentTransactions'],
                 $container['FormFieldsValidator'],
                 $container['PaymentInformationValidator'],
@@ -199,6 +202,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
         $container['ExecuteListingActionAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_ExecuteListingActionAjaxHandler(
                 $container['ListingsCollection'],
+                $container['ListingAuthorization'],
                 awpcp_ajax_response(),
                 $container['Request']
             );

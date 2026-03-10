@@ -351,9 +351,9 @@ function awpcpui_process( $awpcppagename ) {
     $isclassifiedpage = checkifclassifiedpage();
 
     if ( ! $isclassifiedpage && $isadmin ) {
-        $output .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
+        $output       .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
         $settings_link = admin_url( 'admin.php?page=awpcp-admin-settings&g=pages-settings' );
-        $output .= ' <a href="' . esc_url( $settings_link ) . '">' .
+        $output       .= ' <a href="' . esc_url( $settings_link ) . '">' .
             __( 'Choose pages now', 'another-wordpress-classifieds-plugin' ) .
             '</a>';
 

@@ -2,10 +2,10 @@
 
     <h2><?php
 if ( ! defined( 'ABSPATH' ) ) {
-    exit;
+        exit;
 }
 
- esc_html_e( 'Renew Ad', 'another-wordpress-classifieds-plugin' ); ?></h2>
+esc_html_e( 'Renew Ad', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php if ( $step == 'checkout' ): ?>
 

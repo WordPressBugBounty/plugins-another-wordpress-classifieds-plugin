@@ -20,8 +20,8 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
         );
 
         foreach ($transactions as $option_name) {
-            $option_name_parts = explode( '-', $option_name );
-            $hash = end( $option_name_parts );
+            $option_name_parts  = explode( '-', $option_name );
+            $hash               = end( $option_name_parts );
             $transaction_errors = array();
 
             $transaction = AWPCP_Payment_Transaction::find_by_id($hash);
@@ -37,10 +37,10 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
                 continue;
             }
 
-            $errors = awpcp_array_data('__errors__', array(), $data);
+            $errors  = awpcp_array_data('__errors__', array(), $data);
             $user_id = awpcp_array_data('user-id', null, $data);
-            $amount = awpcp_array_data('amount', 0.0, $data);
-            $items = awpcp_array_data('__items__', array(), $data);
+            $amount  = awpcp_array_data('amount', 0.0, $data);
+            $items   = awpcp_array_data('__items__', array(), $data);
             $created = awpcp_array_data('__created__', current_time('mysql'), $data);
             $updated = awpcp_array_data('__updated__', current_time('mysql'), $data);
             $type    = awpcp_array_data( 'payment-term-type', false, $data );
@@ -74,7 +74,7 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
 
             $completed = awpcp_array_data( 'completed', null, $data );
             if ( $completed ) {
-                $transaction->completed = $completed;
+                $transaction->completed      = $completed;
                 $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED;
                 $transaction->_set_status(AWPCP_Payment_Transaction::STATUS_COMPLETED);
             }
@@ -90,7 +90,7 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
             $transaction->user_id = $user_id;
             $transaction->created = $created;
             $transaction->updated = $updated;
-            $transaction->errors = $errors;
+            $transaction->errors  = $errors;
             $transaction->version = 1;
 
             // remove entries from wp_options table

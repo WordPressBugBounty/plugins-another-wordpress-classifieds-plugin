@@ -110,7 +110,7 @@ class AWPCP_SettingsAdminPage {
     }
 
     private function instantiate_auxiliar_pages() {
-        $pages = awpcp_classfieds_pages_settings();
+        $pages    = awpcp_classfieds_pages_settings();
         $facebook = new AWPCP_Facebook_Page_Settings();
     }
 }
@@ -205,7 +205,7 @@ class AWPCP_Facebook_Page_Settings {
     }
 
     private function redirect_with_error( $error_code, $error_message ) {
-        $params = array( 'code_error' => $error_code, 'error_message' => $error_message );
+        $params       = array( 'code_error' => $error_code, 'error_message' => $error_message );
         $settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
         wp_redirect( add_query_arg( urlencode_deep( $params ), $settings_url ) );
         die();

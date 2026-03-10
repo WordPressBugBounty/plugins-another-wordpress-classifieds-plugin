@@ -19,11 +19,11 @@ class AWPCP_FeesTable extends WP_List_Table {
 
     private function parse_query() {
         $user = wp_get_current_user();
-        $ipp = (int) get_user_meta($user->ID, 'fees-items-per-page', true);
+        $ipp  = (int) get_user_meta($user->ID, 'fees-items-per-page', true);
 
         $this->items_per_page = awpcp_get_var(
             array(
-                'param' => 'items-per-page',
+                'param'   => 'items-per-page',
                 'default' => $ipp === 0 ? 10 : $ipp,
             )
         );
@@ -91,8 +91,8 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         return array(
             'orderby' => $orderby,
-            'order' => $params['order'],
-            'offset' => $this->items_per_page * ($params['paged'] - 1),
+            'order'   => $params['order'],
+            'offset'  => $this->items_per_page * ($params['paged'] - 1),
             'limit'   => $this->items_per_page,
         );
     }
@@ -118,11 +118,11 @@ class AWPCP_FeesTable extends WP_List_Table {
     public function get_columns() {
         $columns = array();
 
-        $columns['cb'] = '<input type="checkbox" />';
-        $columns['name'] = __( 'Name', 'another-wordpress-classifieds-plugin');
-        $columns['attributes']  = __( 'Attributes', 'another-wordpress-classifieds-plugin' );
-        $columns['price'] = __( 'Price', 'another-wordpress-classifieds-plugin');
-        $columns['credits'] = __( 'Credits', 'another-wordpress-classifieds-plugin');
+        $columns['cb']         = '<input type="checkbox" />';
+        $columns['name']       = __( 'Name', 'another-wordpress-classifieds-plugin');
+        $columns['attributes'] = __( 'Attributes', 'another-wordpress-classifieds-plugin' );
+        $columns['price']      = __( 'Price', 'another-wordpress-classifieds-plugin');
+        $columns['credits']    = __( 'Credits', 'another-wordpress-classifieds-plugin');
 
         if (function_exists('awpcp_price_cats'))
             $columns['categories'] = __( 'Categories', 'another-wordpress-classifieds-plugin');
@@ -137,16 +137,16 @@ class AWPCP_FeesTable extends WP_List_Table {
 
     public function get_sortable_columns() {
         $columns = array(
-            'name' => array('name', true),
-            'duration' => array('duration', true),
-            'interval' => array('interval', true),
-            'images' => array('images', true),
-            'regions' => array( 'regions', true ),
+            'name'             => array('name', true),
+            'duration'         => array('duration', true),
+            'interval'         => array('interval', true),
+            'images'           => array('images', true),
+            'regions'          => array( 'regions', true ),
             'title_characters' => array('title-characters', true),
-            'characters' => array('characters', true),
-            'price' => array('price', true),
-            'credits' => array('credits', true),
-            'private' => array( 'private', true ),
+            'characters'       => array('characters', true),
+            'price'            => array('price', true),
+            'credits'          => array('credits', true),
+            'private'          => array( 'private', true ),
         );
 
         if (function_exists('awpcp_price_cats'))
@@ -285,7 +285,7 @@ class AWPCP_FeesTable extends WP_List_Table {
      */
     public function single_row($item) {
         static $row_class = '';
-        $row_class = $row_class === '' ? 'alternate' : '';
+        $row_class        = $row_class === '' ? 'alternate' : '';
 
         echo '<tr id="fee-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"';
         echo ' class="' . esc_attr( $row_class ) . '"';

@@ -12,23 +12,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class AWPCP_PaymentTerm {
 
-    const INTERVAL_DAY = 'D';
-    const INTERVAL_WEEK = 'W';
+    const INTERVAL_DAY   = 'D';
+    const INTERVAL_WEEK  = 'W';
     const INTERVAL_MONTH = 'M';
-    const INTERVAL_YEAR = 'Y';
+    const INTERVAL_YEAR  = 'Y';
 
     protected $defaults;
 
     public $type;
 
     public $id;
-    public $name = '';
-    public $description = '';
-    public $duration_amount = 0;
+    public $name              = '';
+    public $description       = '';
+    public $duration_amount   = 0;
     public $duration_interval = self::INTERVAL_YEAR;
-    public $price = 0;
-    public $credits = 0;
-    public $categories = array();
+    public $price             = 0;
+    public $credits           = 0;
+    public $categories        = array();
 
     public $title_characters;
     public $characters;
@@ -78,21 +78,21 @@ class AWPCP_PaymentTerm {
     protected function prepare_default_properties() {
         if ( empty( $this->defaults ) ) {
             $this->defaults = array(
-                'id' => null,
-                'name' => null,
-                'description' => null,
-                'duration_amount' => 30,
+                'id'                => null,
+                'name'              => null,
+                'description'       => null,
+                'duration_amount'   => 30,
                 'duration_interval' => self::INTERVAL_DAY,
-                'price' => null,
-                'credits' => null,
-                'categories' => array(),
-                'title_characters' => 0,
-                'characters' => 0,
-                'images' => 0,
-                'regions' => 1,
-                'ads' => 1,
-                'featured' => 0,
-                'private' => 0,
+                'price'             => null,
+                'credits'           => null,
+                'categories'        => array(),
+                'title_characters'  => 0,
+                'characters'        => 0,
+                'images'            => 0,
+                'regions'           => 1,
+                'ads'               => 1,
+                'featured'          => 0,
+                'private'           => 0,
             );
         }
 
@@ -118,16 +118,16 @@ class AWPCP_PaymentTerm {
             $data['categories'] = trim( $data['categories'] );
         }
 
-        $data['duration_amount'] = (int) $data['duration_amount'];
-        $data['images'] = (int) $data['images'];
-        $data['regions'] = (int) $data['regions'];
+        $data['duration_amount']  = (int) $data['duration_amount'];
+        $data['images']           = (int) $data['images'];
+        $data['regions']          = (int) $data['regions'];
         $data['title_characters'] = (int) $data['title_characters'];
-        $data['characters'] = (int) $data['characters'];
-        $data['credits'] = (int) $data['credits'];
-        $data['price'] = (float) $data['price'];
-        $data['ads'] = (int) $data['ads'];
-        $data['featured'] = absint( (bool) $data['featured'] );
-        $data['private'] = absint( (bool) $data['private'] );
+        $data['characters']       = (int) $data['characters'];
+        $data['credits']          = (int) $data['credits'];
+        $data['price']            = (float) $data['price'];
+        $data['ads']              = (int) $data['ads'];
+        $data['featured']         = absint( (bool) $data['featured'] );
+        $data['private']          = absint( (bool) $data['private'] );
 
         return $data;
     }
@@ -235,19 +235,19 @@ class AWPCP_PaymentTerm {
         switch ($this->duration_interval) {
             case self::INTERVAL_DAY:
                 $interval = 'days';
-                $amount = $amount == 0 ? 3650 : $amount;
+                $amount   = $amount == 0 ? 3650 : $amount;
                 break;
             case self::INTERVAL_WEEK:
                 $interval = 'weeks';
-                $amount = $amount == 0 ? 3520 : $amount;
+                $amount   = $amount == 0 ? 3520 : $amount;
                 break;
             case self::INTERVAL_MONTH:
                 $interval = 'months';
-                $amount = $amount == 0 ? 31200 : $amount;
+                $amount   = $amount == 0 ? 31200 : $amount;
                 break;
             case self::INTERVAL_YEAR:
                 $interval = 'years';
-                $amount = $amount == 0 ? 310 : $amount;
+                $amount   = $amount == 0 ? 310 : $amount;
                 break;
         }
 
@@ -271,7 +271,7 @@ class AWPCP_PaymentTerm {
     }
 
     public function get_duration() {
-        $amount = $this->duration_amount;
+        $amount   = $this->duration_amount;
         $interval = $this->get_duration_interval();
         return sprintf( '%d %s', $amount, $interval );
     }

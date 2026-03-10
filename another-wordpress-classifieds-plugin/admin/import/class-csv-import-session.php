@@ -120,7 +120,7 @@ class AWPCP_CSV_Import_Session {
     }
 
     public function clear_errors() {
-        $this->settings['errors'] = array();
+        $this->settings['errors']      = array();
         $this->settings['last_errors'] = array();
     }
 
@@ -137,7 +137,7 @@ class AWPCP_CSV_Import_Session {
     }
 
     public function clear_messages() {
-        $this->settings['messages'] = array();
+        $this->settings['messages']      = array();
         $this->settings['last_messages'] = array();
     }
 }

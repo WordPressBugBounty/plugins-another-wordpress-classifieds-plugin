@@ -65,7 +65,7 @@ function awpcp_string_with_names( $names ) {
         $string = '<strong>' . $names[0] . '</strong>';
     } else {
         $n_first_names = '<strong>' . implode( '</strong>, <strong>', array_slice( $names, 0, -1 ) ) . '</strong>';
-        $last_name = '<strong>' . end( $names ) . '</strong>';
+        $last_name     = '<strong>' . end( $names ) . '</strong>';
 
         /* translators: example: <First Name, Second Name, ...> and <Last Name> */
         $string = __( '<comma-separated-names> and <single-name>', 'another-wordpress-classifieds-plugin' );
@@ -96,7 +96,7 @@ function awpcp_trim_html_content( $content, $word_count ) {
 
     $tokens = array();
     $output = '';
-    $words = 0;
+    $words  = 0;
 
     // Divide the string into tokens; HTML tags, or words, followed by any whitespace
     preg_match_all( '/(<[^>]+>|[^<>\s]+)\s*/u', $content, $tokens );

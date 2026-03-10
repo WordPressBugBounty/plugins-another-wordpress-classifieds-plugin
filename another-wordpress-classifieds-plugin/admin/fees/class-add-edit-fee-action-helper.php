@@ -24,25 +24,25 @@ class AWPCP_Add_Edit_Fee_Action_Helper {
     private $request;
 
     public function __construct( $page, $table_rendering_helper, $html_renderer, $request ) {
-        $this->page = $page;
+        $this->page                   = $page;
         $this->table_rendering_helper = $table_rendering_helper;
-        $this->html_renderer = $html_renderer;
-        $this->request = $request;
+        $this->html_renderer          = $html_renderer;
+        $this->request                = $request;
     }
 
     public function get_posted_data() {
         return array(
-            'name' => $this->request->post( 'name' ),
-            'price' => $this->request->post( 'price' ),
-            'credits' => $this->request->post( 'credits' ),
-            'duration_amount' => $this->request->post( 'duration_amount' ),
-            'duration_interval' => $this->request->post( 'duration_interval' ),
-            'images' => $this->request->post( 'images_allowed' ),
-            'characters' => $this->request->post( 'characters_allowed_in_description' ),
-            'title_characters' => $this->request->post( 'characters_allowed_in_title' ),
-            'private' => $this->request->post( 'private', false ),
-            'featured' => $this->request->post( 'featured', false ),
-            'categories' => array_filter( $this->request->post( 'categories', array() ) ),
+            'name'                         => $this->request->post( 'name' ),
+            'price'                        => $this->request->post( 'price' ),
+            'credits'                      => $this->request->post( 'credits' ),
+            'duration_amount'              => $this->request->post( 'duration_amount' ),
+            'duration_interval'            => $this->request->post( 'duration_interval' ),
+            'images'                       => $this->request->post( 'images_allowed' ),
+            'characters'                   => $this->request->post( 'characters_allowed_in_description' ),
+            'title_characters'             => $this->request->post( 'characters_allowed_in_title' ),
+            'private'                      => $this->request->post( 'private', false ),
+            'featured'                     => $this->request->post( 'featured', false ),
+            'categories'                   => array_filter( $this->request->post( 'categories', array() ) ),
             'number_of_categories_allowed' => $this->request->post( 'number_of_categories_allowed' ),
         );
     }
@@ -53,7 +53,7 @@ class AWPCP_Add_Edit_Fee_Action_Helper {
 
     public function render_entry_form( $entry, $form ) {
         $params = array(
-            'entry' => $entry,
+            'entry'   => $entry,
             'columns' => count( $this->page->get_table()->get_columns() ),
         );
 

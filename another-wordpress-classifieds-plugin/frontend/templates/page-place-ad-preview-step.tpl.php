@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- foreach ( (array) $messages as $message ): ?>
+foreach ( (array) $messages as $message ): ?>
     <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 

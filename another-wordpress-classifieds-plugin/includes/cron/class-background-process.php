@@ -12,12 +12,12 @@ class AWPCP_BackgroundProccess {
     private $log_file;
 
     public function __construct( $command, $log_file ) {
-        $this->command = $command;
+        $this->command  = $command;
         $this->log_file = $log_file;
     }
 
     public function start() {
-        $command = sprintf( '%s > "%s" 2>&1 & printf "%%u" $!', escapeshellcmd( $this->command ), $this->log_file );
+        $command   = sprintf( '%s > "%s" 2>&1 & printf "%%u" $!', escapeshellcmd( $this->command ), $this->log_file );
         $this->pid = exec( $command, $output );
     }
 

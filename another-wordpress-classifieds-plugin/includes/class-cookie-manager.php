@@ -13,7 +13,7 @@ class AWPCP_CookieManager {
 
     public function set_cookie( $name, $value, $expire = 0 ) {
         $serialized_value = maybe_serialize( $value );
-        $encoded_value = base64_encode( $serialized_value );
+        $encoded_value    = base64_encode( $serialized_value );
 
         if ( is_ssl() && 'https' === wp_parse_url( get_option( 'home' ), PHP_URL_SCHEME ) ) {
             $secure = true;
@@ -30,7 +30,7 @@ class AWPCP_CookieManager {
     }
 
     public function get_cookie( $name ) {
-        $encoded_value = isset( $_COOKIE[ $name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $name ] ) ) : '';
+        $encoded_value    = isset( $_COOKIE[ $name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $name ] ) ) : '';
         $serialized_value = base64_decode( $encoded_value );
         return maybe_unserialize( $serialized_value );
     }

@@ -1,6 +1,6 @@
 <?php
     if ( ! defined( 'ABSPATH' ) ) {
-        exit;
+    exit;
     }
 ?>
 
@@ -17,7 +17,7 @@
 
         <p class="submit inline-edit-save">
             <?php
-            $url = $this->page_url(
+            $url    = $this->page_url(
                 array(
                     'action' => 'delete',
                     'id'     => awpcp_get_var(

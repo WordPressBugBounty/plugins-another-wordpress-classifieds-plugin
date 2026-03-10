@@ -17,7 +17,7 @@ class AWPCP_AccountBalancePageSummaryStep {
         $params = array(
             'payments' => $this->payments,
             'messages' => $controller->messages,
-            'url' => $controller->url( array( 'step' => 'select-credit-plan' ) ),
+            'url'      => $controller->url( array( 'step' => 'select-credit-plan' ) ),
         );
 
         $template = AWPCP_DIR . '/admin/templates/page-account-balance-summary-step.tpl.php';

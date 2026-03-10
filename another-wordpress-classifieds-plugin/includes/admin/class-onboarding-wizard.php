@@ -214,7 +214,7 @@ class AWPCP_OnboardingWizard {
         $view_path = $this->get_view_path();
 
         echo awpcp_render_template( $view_path . 'index.tpl.php', array( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            'view_path' => $view_path,
+            'view_path'  => $view_path,
             // Note: Add step parts in order.
             'step_parts' => array(
                 'consent-tracking' => 'steps/consent-tracking-step.tpl.php',

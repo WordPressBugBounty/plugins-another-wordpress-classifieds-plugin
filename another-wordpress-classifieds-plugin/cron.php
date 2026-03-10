@@ -10,12 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     $cron_jobs = array(
-        'doadexpirations_hook' => 'hourly',
-        'doadcleanup_hook' => 'daily',
-        'awpcp_ad_renewal_email_hook' => 'hourly',
+        'doadexpirations_hook'                => 'hourly',
+        'doadcleanup_hook'                    => 'daily',
+        'awpcp_ad_renewal_email_hook'         => 'hourly',
         'awpcp-clean-up-payment-transactions' => 'daily',
-        'awpcp-clean-up-non-verified-ads' => 'daily',
-        'awpcp-task-queue-cron' => 'hourly',
+        'awpcp-clean-up-non-verified-ads'     => 'daily',
+        'awpcp-task-queue-cron'               => 'hourly',
     );
 
     foreach ( $cron_jobs as $cron_job => $frequency ) {
@@ -121,8 +121,8 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
     $query = array(
         'meta_query' => array(
             array(
-                'key' => '_awpcp_payment_status',
-                'value' => 'Unpaid',
+                'key'     => '_awpcp_payment_status',
+                'value'   => 'Unpaid',
                 'compare' => '=',
             ),
         ),
@@ -155,7 +155,7 @@ function awpcp_ad_renewal_email() {
 }
 
 function awpcp_calculate_end_of_renew_email_date_range_from_now() {
-    $threshold = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
+    $threshold   = intval( get_awpcp_option( 'ad-renew-email-threshold' ) );
     $target_date = strtotime( "+ $threshold days", current_time( 'timestamp' ) );
 
     return $target_date;
@@ -168,7 +168,7 @@ function awpcp_clean_up_payment_transactions() {
     $threshold = awpcp_datetime( 'mysql', current_time( 'timestamp' ) - 24 * 60 * 60 );
 
     $transactions = AWPCP_Payment_Transaction::query(array(
-        'status' => array(
+        'status'  => array(
             AWPCP_Payment_Transaction::STATUS_NEW,
             AWPCP_Payment_Transaction::STATUS_OPEN,
         ),
@@ -202,7 +202,7 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
     }
 
     $resend_email_threshold = $settings->get_option( 'email-verification-first-threshold' );
-    $delete_ads_threshold = $settings->get_option( 'email-verification-second-threshold' );
+    $delete_ads_threshold   = $settings->get_option( 'email-verification-second-threshold' );
 
     // delete Ads that have been in a non-verified state for more than M days
     $results = $listings_collection->find_listings_awaiting_verification( array(
@@ -229,8 +229,8 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
         'meta_query' => array(
             'relation' => 'AND',
             array(
-                'key' => '_awpcp_verification_emails_sent',
-                'value' => 1,
+                'key'     => '_awpcp_verification_emails_sent',
+                'value'   => 1,
                 'compare' => '<=',
                 'type'    => 'UNSIGNED',
             ),

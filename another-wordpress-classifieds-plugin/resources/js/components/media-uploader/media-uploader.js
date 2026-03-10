@@ -28,7 +28,8 @@ function( $, settings) {
                     action: 'awpcp-upload-listing-media',
                     listing: self.get('settings').listing_id,
                     context: self.get( 'settings' ).context,
-                    nonce: self.get('settings').nonce
+                    nonce: self.get('settings').nonce,
+                    edit_nonce: settings.get( 'edit_listing_nonce' )
                 },
                 multi_selection: true,
                 chunk_size: '10000000',

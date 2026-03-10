@@ -33,8 +33,8 @@ class AWPCP_ListingRenderer {
     public function __construct( $categories, $null, $payments, $wordpress ) {
         $this->categories = $categories;
         $this->regions    = awpcp_basic_regions_api();
-        $this->payments = $payments;
-        $this->wordpress = $wordpress;
+        $this->payments   = $payments;
+        $this->wordpress  = $wordpress;
     }
 
     public function get_listing_title( $listing ) {
@@ -234,8 +234,8 @@ class AWPCP_ListingRenderer {
         foreach ( $this->regions->find_by_ad_id( $listing->ID ) as $region ) {
             $regions[] = array(
                 'country' => $region->country,
-                'county' => $region->county,
-                'state' => $region->state,
+                'county'  => $region->county,
+                'state'   => $region->state,
                 'city'    => $region->city,
             );
         }
@@ -434,7 +434,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_payment_term( $listing ) {
-        $payment_term_id = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_id', true );
+        $payment_term_id   = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_id', true );
         $payment_term_type = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_payment_term_type', true );
 
         return $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
@@ -457,7 +457,7 @@ class AWPCP_ListingRenderer {
     }
 
     public function get_view_listing_link( $listing ) {
-        $url = $this->get_view_listing_url( $listing );
+        $url   = $this->get_view_listing_url( $listing );
         $title = $this->get_listing_title( $listing );
 
         return sprintf( '<a href="%s" title="%s">%s</a>', $url, esc_attr( $title ), $title );

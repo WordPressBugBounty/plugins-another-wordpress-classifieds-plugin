@@ -25,19 +25,19 @@ class AWPCP_ListingsAPI {
     /**
      * var AWPCP_Request
      */
-    private $request = null;
+    private $request  = null;
     private $settings = null;
     private $wordpress;
 
     public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, $settings, $wordpress ) {
         $this->attachments_logic = $attachments_logic;
-        $this->attachments = $attachments;
-        $this->listing_renderer = $listing_renderer;
-        $this->listings = $listings;
+        $this->attachments       = $attachments;
+        $this->listing_renderer  = $listing_renderer;
+        $this->listings          = $listings;
         $this->roles             = $roles;
-        $this->settings = $settings;
-        $this->wordpress = $wordpress;
-        $this->request   = awpcp_request();
+        $this->settings          = $settings;
+        $this->wordpress         = $wordpress;
+        $this->request           = awpcp_request();
 
         add_action( 'template_redirect', array( $this, 'dispatch' ) );
     }
@@ -73,7 +73,7 @@ class AWPCP_ListingsAPI {
      */
     public function handle_email_verification_link() {
         $ad_id = $this->request->get_query_var( 'awpcp-ad' );
-        $hash = $this->request->get_query_var( 'awpcp-hash' );
+        $hash  = $this->request->get_query_var( 'awpcp-hash' );
 
         try {
             $ad = $this->listings->get( $ad_id );
@@ -100,9 +100,9 @@ class AWPCP_ListingsAPI {
         $now = current_time( 'mysql' );
 
         $post_fields = wp_parse_args( $listing_data['post_fields'], array(
-            'post_type' => AWPCP_LISTING_POST_TYPE,
+            'post_type'     => AWPCP_LISTING_POST_TYPE,
             'post_status'   => $this->disabled_status,
-            'post_date' => $now,
+            'post_date'     => $now,
             'post_date_gmt' => get_gmt_from_date( $now ),
         ) );
 
@@ -295,8 +295,8 @@ class AWPCP_ListingsAPI {
     public function update_listing( $listing, $listing_data ) {
         $listing_data = wp_parse_args( $listing_data, array(
             'post_fields' => array(),
-            'terms' => array(),
-            'metadata' => array(),
+            'terms'       => array(),
+            'metadata'    => array(),
         ) );
 
         $post_fields = wp_parse_args( $listing_data['post_fields'], array(
@@ -309,9 +309,9 @@ class AWPCP_ListingsAPI {
             $error_message = $listing_id->get_error_message();
 
             if ( $error_message ) {
-                $message = __( 'There was an error trying to save the listing details:', 'another-wordpress-classifieds-plugin' );
-                $message.= '<br/><br/>';
-                $message.= $error_message;
+                $message  = __( 'There was an error trying to save the listing details:', 'another-wordpress-classifieds-plugin' );
+                $message .= '<br/><br/>';
+                $message .= $error_message;
             } else {
                 $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
             }
@@ -753,7 +753,7 @@ class AWPCP_ListingsAPI {
         awpcp_send_listing_posted_notification_to_moderators( $ad, $transaction, join( "\n\n", $messages ) );
 
         $moderate_listings = get_awpcp_option( 'adapprove' );
-        $moderate_images = get_awpcp_option('imagesapprove') == 1;
+        $moderate_images   = get_awpcp_option('imagesapprove') == 1;
 
         if ( ( $moderate_listings || $moderate_images ) && $this->listing_renderer->is_pending_approval( $ad ) ) {
             awpcp_send_listing_awaiting_approval_notification_to_moderators(
@@ -772,7 +772,7 @@ class AWPCP_ListingsAPI {
         awpcp_send_listing_updated_notification_to_moderators( $ad, join( "\n\n", $messages ) );
 
         $moderate_modifications = get_awpcp_option( 'disable-edited-listings-until-admin-approves' );
-        $moderate_images = get_awpcp_option('imagesapprove') == 1;
+        $moderate_images        = get_awpcp_option('imagesapprove') == 1;
 
         if ( ( $moderate_modifications || $moderate_images ) && $this->listing_renderer->is_disabled( $ad ) ) {
             awpcp_send_listing_awaiting_approval_notification_to_moderators(
@@ -786,7 +786,7 @@ class AWPCP_ListingsAPI {
      */
     public function send_verification_email( $ad ) {
         $contact_email = $this->listing_renderer->get_contact_email( $ad );
-        $contact_name = $this->listing_renderer->get_contact_name( $ad );
+        $contact_name  = $this->listing_renderer->get_contact_name( $ad );
         $listing_title = $this->listing_renderer->get_listing_title( $ad );
 
         $replacement = [

@@ -24,7 +24,7 @@ class AWPCP_Plugin_Rewrite_Rules {
 
     public function __construct( $rewrite_rules_helper, $settings ) {
         $this->rewrite_rules_helper = $rewrite_rules_helper;
-        $this->settings = $settings;
+        $this->settings             = $settings;
     }
 
     public function add_rewrite_rules( $rules ) {
@@ -85,7 +85,7 @@ class AWPCP_Plugin_Rewrite_Rules {
 
     private function add_plugin_pages_rewrite_rules() {
         $pages_rules = $this->get_pages_rewrite_rules_definitions();
-        $pages_uris = $this->get_pages_uris( array_keys( $pages_rules ) );
+        $pages_uris  = $this->get_pages_uris( array_keys( $pages_rules ) );
 
         foreach ( $pages_rules as $page_ref => $rules ) {
             if ( ! isset( $pages_uris[ $page_ref ] ) ) {
@@ -105,38 +105,38 @@ class AWPCP_Plugin_Rewrite_Rules {
         $rewrite_rules = array(
             'reply-to-ad-page-name' => array(
                 array(
-                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
+                    'regex'    => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top',
                 ),
             ),
-            'edit-ad-page-name' => array(
+            'edit-ad-page-name'     => array(
                 array(
-                    'regex' => '(<page-uri>)(?:/([0-9]+))?',
+                    'regex'    => '(<page-uri>)(?:/([0-9]+))?',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top',
                 ),
             ),
-            'browse-ads-page-name' => array(
+            'browse-ads-page-name'  => array(
                 array(
-                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
+                    'regex'    => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]',
                     'position' => 'top',
                 ),
             ),
-            'main-page-name' => array(
+            'main-page-name'        => array(
                 array(
-                    'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)',
+                    'regex'    => '(<page-uri>)/(setregion)/(.+?)/(.+?)',
                     'redirect' => 'index.php?pagename=$matches[1]&regionid=$matches[3]',
                     'position' => 'top',
                 ),
                 array(
-                    'regex' => '(<page-uri>)/(classifiedsrss)/(\d+)',
+                    'regex'    => '(<page-uri>)/(classifiedsrss)/(\d+)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss&cid=$matches[3]',
                     'position' => 'top',
                 ),
                 array(
-                    'regex' => '(<page-uri>)/(classifiedsrss)',
+                    'regex'    => '(<page-uri>)/(classifiedsrss)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss',
                     'position' => 'top',
                 ),
@@ -146,7 +146,7 @@ class AWPCP_Plugin_Rewrite_Rules {
         if ( ! $this->settings->get_option( 'display-listings-as-single-posts' ) && $this->settings->get_option( 'seofriendlyurls' ) ) {
             $rewrite_rules['show-ads-page-name'] = array(
                 array(
-                    'regex' => '(<page-uri>)/(\d+)(?:.*)',
+                    'regex'    => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
                     'position' => 'top',
                 ),
@@ -157,7 +157,7 @@ class AWPCP_Plugin_Rewrite_Rules {
 
         if ( $view_categories ) {
             array_unshift( $rewrite_rules['main-page-name'], array(
-                'regex' => '(<page-uri>)/(' . $view_categories . ')',
+                'regex'    => '(<page-uri>)/(' . $view_categories . ')',
                 'redirect' => 'index.php?pagename=$matches[1]&layout=2',
                 'position' => 'top',
             ) );
@@ -173,13 +173,13 @@ class AWPCP_Plugin_Rewrite_Rules {
             return;
         }
 
-        $page_uris = $this->rewrite_rules_helper->generate_page_uri_variants( $browse_categories_page_info['page_uri'] );
+        $page_uris               = $this->rewrite_rules_helper->generate_page_uri_variants( $browse_categories_page_info['page_uri'] );
         $browse_listings_page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
-        $base_regex = '<page-uri>(?:$|/(\d+)?)';
-        $base_redirect = 'index.php?page_id=<browse-listings-page-id>&cid=$matches[1]&awpcp-custom=redirect-browse-listings';
+        $base_regex              = '<page-uri>(?:$|/(\d+)?)';
+        $base_redirect           = 'index.php?page_id=<browse-listings-page-id>&cid=$matches[1]&awpcp-custom=redirect-browse-listings';
 
         foreach ( $page_uris as $page_uri ) {
-            $regex = str_replace( '<page-uri>', $page_uri, $base_regex );
+            $regex    = str_replace( '<page-uri>', $page_uri, $base_regex );
             $redirect = str_replace( '<browse-listings-page-id>', $browse_listings_page_id, $base_redirect );
 
             $this->rewrite_rules_helper->add_page_rewrite_rule( $regex, $redirect, 'top' );

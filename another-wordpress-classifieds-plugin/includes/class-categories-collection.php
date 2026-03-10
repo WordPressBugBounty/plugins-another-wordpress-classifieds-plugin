@@ -134,7 +134,7 @@ class AWPCP_Categories_Collection {
 
         // See: https://core.trac.wordpress.org/ticket/11311#comment:14
         $sanitized_name = sanitize_term_field( 'name', $name, 0, $this->taxonomy, 'db' );
-        $category = $this->wordpress->get_term_by( 'name', $sanitized_name, $this->taxonomy );
+        $category       = $this->wordpress->get_term_by( 'name', $sanitized_name, $this->taxonomy );
 
         if ( $category === false || is_null( $category ) ) {
             /* translators: %s is the category name */
@@ -172,7 +172,7 @@ class AWPCP_Categories_Collection {
      */
     private function prepare_categories_args( $args = array() ) {
         $args = wp_parse_args( $args, array(
-            'taxonomy' => $this->taxonomy,
+            'taxonomy'   => $this->taxonomy,
             'hide_empty' => false,
             'meta_query' => [],
         ) );
@@ -222,7 +222,7 @@ class AWPCP_Categories_Collection {
      */
     public function maybe_update_categories_order() {
         $total_count = $this->count_categories();
-        $args = $this->prepare_categories_args();
+        $args        = $this->prepare_categories_args();
 
         if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
             unset( $args['meta_key'] );

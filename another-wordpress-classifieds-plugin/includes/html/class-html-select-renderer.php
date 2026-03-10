@@ -13,7 +13,7 @@ class AWPCP_HTML_Select_Renderer implements AWPCP_HTML_Element_Renderer {
 
     public function render_element( $html_renderer, $element_definition ) {
         $form_field_definition = array_merge( $element_definition, array(
-            '#type' => 'a' . uniqid(),
+            '#type'    => 'a' . uniqid(),
             '#content' => $this->get_field_options_defintion( $element_definition ),
         ) );
 
@@ -35,9 +35,9 @@ class AWPCP_HTML_Select_Renderer implements AWPCP_HTML_Element_Renderer {
             }
 
             $options[] = array(
-                '#type' => 'option',
+                '#type'       => 'option',
                 '#attributes' => $attributes,
-                '#content' => $option_label,
+                '#content'    => $option_label,
             );
         }
 

@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AWPCP_PaymentTermsTable {
 
-    protected $items = array();
+    protected $items    = array();
     protected $selected = null;
 
     protected $term = null;
@@ -40,12 +40,12 @@ class AWPCP_PaymentTermsTable {
 
     public function get_columns() {
         $columns = array(
-            'name' => _x('Payment Term', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
-            'ads' => _x('Ads Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
-            'images' => _x('Images Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'name'             => _x('Payment Term', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'ads'              => _x('Ads Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'images'           => _x('Images Allowed', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
             'title_characters' => _x( 'Characters in Title', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
-            'characters' => _x('Chars in Description', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
-            'duration' => _x('Duration', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'characters'       => _x('Chars in Description', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
+            'duration'         => _x('Duration', 'place ad payment terms column headers', 'another-wordpress-classifieds-plugin'),
         );
 
         $accepted_payment_types = awpcp_payments_api()->get_accepted_payment_types();
@@ -78,8 +78,8 @@ class AWPCP_PaymentTermsTable {
 
     public function item_group_name($item) {
         $payments = awpcp_payments_api();
-        $type = $payments->get_payment_term_type($item->type);
-        $name = is_null($type) ? '' : sprintf('%s - %s', $type->name, $type->description);
+        $type     = $payments->get_payment_term_type($item->type);
+        $name     = is_null($type) ? '' : sprintf('%s - %s', $type->name, $type->description);
         return trim($name, '- ');
     }
 
@@ -96,10 +96,10 @@ class AWPCP_PaymentTermsTable {
 
     public function item_attributes($item) {
         $attrs = array(
-            'class' => 'awpcp-payment-term',
-            'id' => $this->item_id($item),
-            'data-price' => $item->price,
-            'data-credits' => $item->credits,
+            'class'           => 'awpcp-payment-term',
+            'id'              => $this->item_id($item),
+            'data-price'      => $item->price,
+            'data-credits'    => $item->credits,
             'data-categories' => esc_attr( wp_json_encode( array_map( 'absint', $item->categories ) ) ),
         );
 
@@ -219,9 +219,9 @@ class AWPCP_PaymentTermsTable {
     public function render_payment_option($value, $amount, $selected) {
         $attrs = array(
             'class' => 'required',
-            'id' => $value,
-            'type' => 'radio',
-            'name' => 'payment_term',
+            'id'    => $value,
+            'type'  => 'radio',
+            'name'  => 'payment_term',
             'value' => $value,
         );
 

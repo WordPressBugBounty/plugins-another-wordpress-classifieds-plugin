@@ -22,7 +22,7 @@ class AWPCP_Add_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_H
 
     public function __construct( $rendering_helper, $request ) {
         $this->rendering_helper = $rendering_helper;
-        $this->request = $request;
+        $this->request          = $request;
     }
 
     public function process_entry_action( $ajax_handler ) {
@@ -30,7 +30,7 @@ class AWPCP_Add_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_H
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
         $posted = $_POST;
         awpcp_sanitize_value( 'sanitize_textarea_field', $posted );
-        $plan   = new AWPCP_CreditPlan( $posted );
+        $plan = new AWPCP_CreditPlan( $posted );
 
         if ( $this->request->post( 'save' ) ) {
             $this->save_new_credit_plan( $plan, $ajax_handler );

@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- // emails are sent in plain text, trailing whitespace are required for proper formatting ?>
+// emails are sent in plain text, trailing whitespace are required for proper formatting ?>
 <?php echo wp_kses_post( get_awpcp_option( 'paymentabortedbodymessage' ) ); ?>
 
 <?php esc_html_e( 'Additional Details', 'another-wordpress-classifieds-plugin' ); ?>

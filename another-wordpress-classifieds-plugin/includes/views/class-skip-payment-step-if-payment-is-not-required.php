@@ -29,7 +29,7 @@ class AWPCP_SkipPaymentStepIfPaymentIsNotRequiredStepDecorator extends AWPCP_Ste
     }
 
     private function skip_payment_step_if_payment_is_not_required( $controller ) {
-        $this->controller = $controller;
+        $this->controller  = $controller;
         $this->transaction = $controller->get_transaction();
 
         if ( $this->transaction->is_doing_checkout() && $this->transaction->payment_is_not_required() ) {

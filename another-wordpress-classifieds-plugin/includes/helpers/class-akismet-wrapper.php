@@ -30,7 +30,7 @@ class AWPCP_AkismetWrapper extends AWPCP_AkismetWrapperBase {
         $current_user = wp_get_current_user();
 
         if ( is_object( $current_user ) ) {
-            $reporter_data['reporter'] = $current_user->user_login;
+            $reporter_data['reporter']  = $current_user->user_login;
             $reporter_data['user_role'] = empty( $current_user->roles ) ? '' : end( $current_user->roles );
         }
 

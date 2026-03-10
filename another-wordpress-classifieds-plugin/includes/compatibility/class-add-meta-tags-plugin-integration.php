@@ -71,7 +71,7 @@ class AWPCP_AddMetaTagsPluginIntegration {
 
     public function overwrite_opengraph_metadata( $meta_tags ) {
         $opengraph_meta_tags = $this->meta_tags_generator->generate_opengraph_meta_tags( $this->metadata );
-        $meta_tags_replaced = array();
+        $meta_tags_replaced  = array();
 
         foreach ( $meta_tags as $index => $tag ) {
             if ( ! preg_match( '/property="([^"]+)"/', $tag, $matches) ) {
@@ -82,7 +82,7 @@ class AWPCP_AddMetaTagsPluginIntegration {
                 continue;
             }
 
-            $meta_tags[ $index ] = $opengraph_meta_tags[ $matches[1] ];
+            $meta_tags[ $index ]  = $opengraph_meta_tags[ $matches[1] ];
             $meta_tags_replaced[] = $matches[1];
         }
 

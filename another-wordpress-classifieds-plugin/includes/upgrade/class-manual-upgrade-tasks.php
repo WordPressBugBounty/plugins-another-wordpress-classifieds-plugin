@@ -53,29 +53,29 @@ class AWPCP_Manual_Upgrade_Tasks {
         );
 
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-migrate-regions-information',
-            'name' => __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-migrate-regions-information',
+            'name'    => __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'MigrateRegionsInformationTaskHandler',
             'context' => 'plugin',
         ) );
 
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-migrate-media-information',
-            'name' => __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-migrate-media-information',
+            'name'    => __( 'Migrate Media Information', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'MigrateMediaInformationTaskHandler',
             'context' => 'plugin',
         ) );
 
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-update-media-status',
-            'name' => __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-update-media-status',
+            'name'    => __( 'Update Image/Attachments Status', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'UpdateMediaStatusTaskHandler',
             'context' => 'plugin',
         ) );
 
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-store-phone-number-digits',
-            'name' => __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-store-phone-number-digits',
+            'name'    => __( 'Store phone number digits', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'StorePhoneNumberDigitsUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
@@ -88,15 +88,15 @@ class AWPCP_Manual_Upgrade_Tasks {
      */
     private function register_upgrade_tasks_for_4_0_0() {
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-store-listing-categories-as-custom-taxonomies',
-            'name' => __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-store-listing-categories-as-custom-taxonomies',
+            'name'    => __( 'Store Listing Categories as Custom Taxonomies', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'StoreListingCategoriesAsCustomTaxonomiesUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
 
         $this->upgrade_tasks->register_upgrade_task( array(
-            'slug' => 'awpcp-store-listings-as-custom-post-types',
-            'name' => __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
+            'slug'    => 'awpcp-store-listings-as-custom-post-types',
+            'name'    => __( 'Store Listings as Custom Post Types', 'another-wordpress-classifieds-plugin' ),
             'handler' => 'StoreListingsAsCustomPostTypesUpgradeTaskHandler',
             'context' => 'plugin',
         ) );

@@ -22,7 +22,7 @@ class AWPCP_ManualUpgradeAdminPage {
     private $upgrade_sessions;
 
     public function __construct( $upgrade_tasks, $upgrade_sessions ) {
-        $this->upgrade_tasks = $upgrade_tasks;
+        $this->upgrade_tasks    = $upgrade_tasks;
         $this->upgrade_sessions = $upgrade_sessions;
     }
 
@@ -99,7 +99,7 @@ class AWPCP_ManualUpgradeAdminPage {
     }
 
     private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
-        $upgrade_tasks = array();
+        $upgrade_tasks      = array();
         $asynchronous_tasks = array();
 
         foreach ( array_keys( $upgrade_session->get_tasks() ) as $task_slug ) {
@@ -123,12 +123,12 @@ class AWPCP_ManualUpgradeAdminPage {
             }
 
             $asynchronous_tasks[ $task_slug ] = array(
-                'name' => $upgrade_tasks[ $task_slug ]['name'],
-                'description' => $upgrade_tasks[ $task_slug ]['description'],
-                'action' => $task_slug,
-                'context' => $context,
+                'name'         => $upgrade_tasks[ $task_slug ]['name'],
+                'description'  => $upgrade_tasks[ $task_slug ]['description'],
+                'action'       => $task_slug,
+                'context'      => $context,
                 'recordsCount' => $items_count,
-                'recordsLeft' => is_null( $items_count ) ? null : $items_count - $items_processed,
+                'recordsLeft'  => is_null( $items_count ) ? null : $items_count - $items_processed,
             );
         }
 
@@ -136,7 +136,7 @@ class AWPCP_ManualUpgradeAdminPage {
     }
 
     private function split_tasks_defintions( $pending_upgrade_tasks, $asynchronous_tasks ) {
-        $last_blocking_task = null;
+        $last_blocking_task     = null;
         $storing_blocking_tasks = true;
 
         foreach ( array_reverse( array_keys( $pending_upgrade_tasks ) ) as $key ) {
@@ -146,7 +146,7 @@ class AWPCP_ManualUpgradeAdminPage {
             }
         }
 
-        $blocking_tasks = array();
+        $blocking_tasks     = array();
         $non_blocking_tasks = array();
 
         foreach ( array_keys( $pending_upgrade_tasks ) as $slug ) {
@@ -167,8 +167,8 @@ class AWPCP_ManualUpgradeAdminPage {
     private function render_asynchronous_tasks_component( $asynchronous_tasks, $context ) {
         $params = array(
             'introduction' => $this->get_introduction_text( $context ),
-            'groups' => $this->get_tasks_groups( $asynchronous_tasks ),
-            'submit' => $this->get_submit_button_text( $asynchronous_tasks ),
+            'groups'       => $this->get_tasks_groups( $asynchronous_tasks ),
+            'submit'       => $this->get_submit_button_text( $asynchronous_tasks ),
         );
 
         $tasks = new AWPCP_AsynchronousTasksComponent( $params );
@@ -204,10 +204,10 @@ class AWPCP_ManualUpgradeAdminPage {
             }
 
             $groups[] = array(
-                'title' => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
-                'content' => '<p>' . __( "The following tasks need to be completed before you can use the plugin and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
+                'title'          => __( 'Upgrade Tasks that must complete immediately', 'another-wordpress-classifieds-plugin' ),
+                'content'        => '<p>' . __( "The following tasks need to be completed before you can use the plugin and modules features again.", 'another-wordpress-classifieds-plugin' ) . '</p>',
                 'successContent' => $successContent,
-                'tasks' => $asynchronous_tasks['blocking_tasks'],
+                'tasks'          => $asynchronous_tasks['blocking_tasks'],
             );
         }
 
@@ -232,10 +232,10 @@ class AWPCP_ManualUpgradeAdminPage {
             $successContent = str_replace( '<continue-link>', $continue_link, $successContent );
 
             $groups[] = array(
-                'title' => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
-                'content' => $content,
+                'title'          => __( 'Upgrade tasks that will run while the plugin continues to work', 'another-wordpress-classifieds-plugin' ),
+                'content'        => $content,
                 'successContent' => $successContent,
-                'tasks' => $asynchronous_tasks['non_blocking_tasks'],
+                'tasks'          => $asynchronous_tasks['non_blocking_tasks'],
             );
         }
 

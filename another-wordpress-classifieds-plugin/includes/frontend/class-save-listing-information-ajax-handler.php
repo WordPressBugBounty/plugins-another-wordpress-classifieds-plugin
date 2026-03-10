@@ -28,6 +28,11 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $listings;
 
     /**
+     * @var AWPCP_ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @var AWPCP_ListingsPaymentTransactions
      */
     private $listings_transactions;
@@ -64,6 +69,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $listings_logic,
         $listing_renderer,
         $listings,
+        $authorization,
         $listings_transactions,
         $form_fields_validator,
         $payment_information_validator,
@@ -77,6 +83,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $this->listings_logic                = $listings_logic;
         $this->listing_renderer              = $listing_renderer;
         $this->listings                      = $listings;
+        $this->authorization                 = $authorization;
         $this->listings_transactions         = $listings_transactions;
         $this->form_fields_validator         = $form_fields_validator;
         $this->payment_information_validator = $payment_information_validator;
@@ -111,6 +118,10 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $nonce   = awpcp_get_var( array( 'param' => 'nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, "awpcp-save-listing-information-{$listing->ID}" ) ) {
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
             throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 

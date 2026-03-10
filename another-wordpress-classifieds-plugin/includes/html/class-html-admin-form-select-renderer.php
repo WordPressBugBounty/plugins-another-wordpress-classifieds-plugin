@@ -16,22 +16,22 @@ class AWPCP_HTML_Admin_Form_Select_Renderer implements AWPCP_HTML_Element_Render
         $form_field_id = "awpcp-admin-form-select-{$element_definition['#name']}";
 
         $form_field_definition = array(
-            '#type' => 'div',
+            '#type'       => 'div',
             '#attributes' => $this->get_form_field_attributes( $element_definition ),
-            '#content' => array(
+            '#content'    => array(
                 array(
-                    '#type' => 'label',
+                    '#type'       => 'label',
                     '#attributes' => array( 'for' => $form_field_id ),
-                    '#content' => $element_definition['#label'],
+                    '#content'    => $element_definition['#label'],
                 ),
                 array(
-                    '#type' => 'select',
+                    '#type'       => 'select',
                     '#attributes' => array(
-                        'id' => $form_field_id,
+                        'id'   => $form_field_id,
                         'name' => $element_definition['#name'],
                     ),
-                    '#options' => $element_definition['#options'],
-                    '#value' => $element_definition['#value'],
+                    '#options'    => $element_definition['#options'],
+                    '#value'      => $element_definition['#value'],
                 ),
             ),
         );
@@ -40,7 +40,7 @@ class AWPCP_HTML_Admin_Form_Select_Renderer implements AWPCP_HTML_Element_Render
     }
 
     private function get_form_field_attributes( $element_definition ) {
-        $form_field_attributes = awpcp_parse_html_attributes( $element_definition['#attributes'] );
+        $form_field_attributes            = awpcp_parse_html_attributes( $element_definition['#attributes'] );
         $form_field_attributes['class'][] = 'awpcp-admin-form-select';
 
         return $form_field_attributes;

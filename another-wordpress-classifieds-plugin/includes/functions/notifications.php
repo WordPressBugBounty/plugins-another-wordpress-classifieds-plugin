@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function awpcp_send_listing_posted_notification_to_user( $listing, $transaction, $message ) {
     if ( get_awpcp_option( 'send-user-ad-posted-notification' ) ) {
         $user_message = awpcp_ad_posted_user_email( $listing, $transaction, $message );
-        $response = $user_message->send();
+        $response     = $user_message->send();
     } else {
         $response = false;
     }
@@ -18,7 +18,7 @@ function awpcp_send_listing_posted_notification_to_user( $listing, $transaction,
 
 function awpcp_send_listing_posted_notification_to_moderators( $listing, $transaction, $messages ) {
     $send_notification_to_administrators = get_awpcp_option( 'notifyofadposted' );
-    $send_notification_to_moderators = get_awpcp_option( 'send-listing-posted-notification-to-moderators' );
+    $send_notification_to_moderators     = get_awpcp_option( 'send-listing-posted-notification-to-moderators' );
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
@@ -31,10 +31,10 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     }
 
     $user_message = awpcp_ad_posted_user_email( $listing, $transaction, $messages );
-    $content = $user_message->body;
+    $content      = $user_message->body;
 
-    $admin_message = new AWPCP_Email();
-    $admin_message->to = $email_recipients;
+    $admin_message          = new AWPCP_Email();
+    $admin_message->to      = $email_recipients;
     $admin_message->subject = __( 'New classified ad created', 'another-wordpress-classifieds-plugin' );
 
     $url = awpcp_get_quick_view_listing_url( $listing );
@@ -50,7 +50,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
 function awpcp_send_listing_updated_notification_to_user( $listing, $messages ) {
     if ( get_awpcp_option( 'send-user-ad-edited-notification' ) ) {
         $user_mesage = awpcp_ad_updated_user_email( $listing, $messages );
-        $response = $user_mesage->send();
+        $response    = $user_mesage->send();
     } else {
         $response = false;
     }
@@ -60,7 +60,7 @@ function awpcp_send_listing_updated_notification_to_user( $listing, $messages ) 
 
 function awpcp_send_listing_updated_notification_to_moderators( $listing, $messages ) {
     $send_notification_to_administrators = get_awpcp_option( 'send-listing-updated-notification-to-administrators' );
-    $send_notification_to_moderators = get_awpcp_option( 'send-listing-updated-notification-to-moderators' );
+    $send_notification_to_moderators     = get_awpcp_option( 'send-listing-updated-notification-to-moderators' );
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
@@ -79,10 +79,10 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $subject = sprintf( $subject, $listing_title );
 
     $user_message = awpcp_ad_updated_user_email( $listing, $messages );
-    $content = $user_message->body;
+    $content      = $user_message->body;
 
-    $admin_message = new AWPCP_Email();
-    $admin_message->to = $email_recipients;
+    $admin_message          = new AWPCP_Email();
+    $admin_message->to      = $email_recipients;
     $admin_message->subject = $subject;
 
     $manage_listing_url = awpcp_get_quick_view_listing_url( $listing );
@@ -108,13 +108,13 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators( $listi
         return false;
     }
 
-    $content = awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images );
+    $content  = awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images );
     $messages = $content['messages'];
 
-    $mail = new AWPCP_Email();
-    $mail->to = $email_recipients;
+    $mail          = new AWPCP_Email();
+    $mail->to      = $email_recipients;
     $mail->subject = $content['subject'];
-    $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
+    $template      = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
     $mail->prepare( $template, compact( 'messages' ) );
 
     return $mail->send();
@@ -125,7 +125,7 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators( $listi
  */
 function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
     $send_notification_to_administrators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-administrators' );
-    $send_notification_to_moderators = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-moderators' );
+    $send_notification_to_moderators     = get_awpcp_option( 'send-listing-awaiting-approval-notification-to-moderators' );
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
@@ -143,7 +143,7 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
     $listing_renderer = awpcp_listing_renderer();
 
-    $params = array( 'action' => 'edit', 'post' => $listing->ID );
+    $params            = array( 'action' => 'edit', 'post' => $listing->ID );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
     if ( $moderate_images && ! $moderate_listings ) {
@@ -151,7 +151,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
         $subject = __( 'Images on listing "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         /* translators: %1$s is the listing title. %2$s is the URL for managing listing images. */
-        $message = __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
+        $message  = __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
         $messages = array( sprintf( $message, $listing_renderer->get_listing_title( $listing ), $manage_images_url ) );
     } else {
         /* translators: %s is the listing title. */
@@ -166,7 +166,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
 
         if ( $moderate_images ) {
             /* translators: %s is the URL for managing listing images. */
-            $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
+            $message    = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
             $messages[] = sprintf( $message, $manage_images_url );
         }
     }
@@ -188,7 +188,7 @@ function awpcp_send_listing_was_flagged_notification( $listing ) {
         return false;
     }
 
-    $query_args = array( 'filterby' => 'flagged', 'filter' => 1 );
+    $query_args           = array( 'filterby' => 'flagged', 'filter' => 1 );
     $flagged_listings_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
 
     $params = array(
@@ -198,8 +198,8 @@ function awpcp_send_listing_was_flagged_notification( $listing ) {
 
     $template = AWPCP_DIR . '/templates/email/listing-was-flagged.plain.tpl.php';
 
-    $mail = new AWPCP_Email();
-    $mail->to = awpcp_admin_email_to();
+    $mail          = new AWPCP_Email();
+    $mail->to      = awpcp_admin_email_to();
     $mail->subject = str_replace(
         '<listing-title>',
         $listing_renderer->get_listing_title( $listing ),

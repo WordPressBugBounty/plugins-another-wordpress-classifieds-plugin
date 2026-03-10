@@ -18,9 +18,9 @@ class AWPCP_MainClassifiedsAdminPage {
         global $extrafieldsversioncompatibility;
 
         $params = array(
-            'awpcp_db_version' => $awpcp_db_version,
-            'message' => $message,
-            'hasextrafieldsmodule' => $hasextrafieldsmodule,
+            'awpcp_db_version'                => $awpcp_db_version,
+            'message'                         => $message,
+            'hasextrafieldsmodule'            => $hasextrafieldsmodule,
             'extrafieldsversioncompatibility' => $extrafieldsversioncompatibility,
         );
 

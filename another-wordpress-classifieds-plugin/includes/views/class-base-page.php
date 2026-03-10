@@ -9,22 +9,22 @@ require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 class AWPCP_BasePage extends AWPCP_Page {
 
-    private $request_method = null;
+    private $request_method    = null;
     private $default_step_name = null;
     private $current_step_name = null;
-    private $do_next_step = true;
-    private $step = null;
-    private $next_step = null;
+    private $do_next_step      = true;
+    private $step              = null;
+    private $next_step         = null;
 
     public $steps;
     protected $request = null;
 
     public $messages = array();
-    public $errors = array();
-    public $output = '';
+    public $errors   = array();
+    public $output   = '';
 
     public function __construct( $steps, $request ) {
-        $this->steps = $steps;
+        $this->steps   = $steps;
         $this->request = $request;
     }
 
@@ -55,7 +55,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     protected function get_current_step() {
         if ( $this->step === null ) {
-            $step_name = $this->get_current_step_name();
+            $step_name  = $this->get_current_step_name();
             $this->step = $this->get_step_by_name( $step_name );
         }
 
@@ -64,7 +64,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     protected function get_current_step_name() {
         if ( ! isset( $this->current_step_name ) ) {
-            $step = $this->get_default_step_name();
+            $step                    = $this->get_default_step_name();
             $this->current_step_name = awpcp_get_var( array( 'param' => 'step', 'default' => $step ) );
         }
 
@@ -73,7 +73,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     private function get_default_step_name() {
         if ( ! isset( $this->default_step_name ) ) {
-            $step_names = array_keys( $this->steps );
+            $step_names              = array_keys( $this->steps );
             $this->default_step_name = reset( $step_names );
         }
 
@@ -122,7 +122,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     private function get_next_step() {
         if ( ! isset( $this->next_step ) ) {
-            $current_step = $this->get_current_step();
+            $current_step    = $this->get_current_step();
             $this->next_step = $this->calculate_next_step( $current_step );
         }
 
@@ -146,8 +146,8 @@ class AWPCP_BasePage extends AWPCP_Page {
     private function handle_redirection_exception( $redirection ) {
         $this->default_step_name = null;
         $this->current_step_name = null;
-        $this->do_next_step = true;
-        $this->next_step = null;
+        $this->do_next_step      = true;
+        $this->next_step         = null;
 
         $this->set_request_method( $redirection->request_method );
         $this->set_current_step( $redirection->step_name );
@@ -171,7 +171,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     public function set_current_step( $step_name ) {
         $this->current_step_name = $step_name;
-        $this->step = $this->get_step_by_name( $this->current_step_name );
+        $this->step              = $this->get_step_by_name( $this->current_step_name );
     }
 
     public function set_next_step( $step_name ) {

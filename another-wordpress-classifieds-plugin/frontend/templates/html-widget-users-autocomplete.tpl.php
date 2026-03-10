@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- if ( $args['label'] ): ?>
+if ( $args['label'] ): ?>
 <label for="<?php echo esc_attr( $args['id'] ); ?>"><?php echo esc_html( $args['label'] ); ?><?php if ( $args['required'] ): ?><span class="required">*</span><?php endif; ?></label>
 <?php endif; ?>
 <input type="hidden" name="<?php echo esc_attr( $args['name'] ); ?>" autocomplete-selected-value>

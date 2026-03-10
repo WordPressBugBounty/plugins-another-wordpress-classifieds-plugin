@@ -20,10 +20,14 @@ class AWPCP_UsersAutocompleteAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
+        if ( ! is_user_logged_in() || ! awpcp_current_user_is_moderator() ) {
+            return $this->error_response( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $users = $this->users->find( array(
             'fields' => array( 'ID', 'public_name' ),
             'like'   => awpcp_get_var( array( 'param' => 'term' ) ),
-            'limit' => 100,
+            'limit'  => 100,
         ) );
 
         return $this->success( array( 'items' => array_values( $users ) ) );

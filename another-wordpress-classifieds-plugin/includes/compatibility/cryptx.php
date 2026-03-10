@@ -11,8 +11,8 @@ if ( defined( 'CRYPTX_BASENAME' ) ) {
 
     function awpcp_cryptx_exclude_posts($posts=array()) {
         global $cryptX_var;
-        $excluded = explode( ',', $cryptX_var['excludedIDs'] );
-        $excluded = array_unique( array_merge( $excluded, $posts ) );
+        $excluded                  = explode( ',', $cryptX_var['excludedIDs'] );
+        $excluded                  = array_unique( array_merge( $excluded, $posts ) );
         $cryptX_var['excludedIDs'] = join( ',', array_filter( $excluded ) );
     }
 

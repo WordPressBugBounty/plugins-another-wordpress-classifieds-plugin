@@ -40,15 +40,15 @@ class AWPCP_Image_Placeholders {
 
     public function __construct( $attachment_properties, $attachments, $image_renderer, $listing_renderer, $settings ) {
         $this->attachment_properties = $attachment_properties;
-        $this->attachments = $attachments;
+        $this->attachments           = $attachments;
         $this->image_renderer        = $image_renderer;
-        $this->listing_renderer = $listing_renderer;
+        $this->listing_renderer      = $listing_renderer;
         $this->settings              = $settings;
     }
 
     public function do_image_placeholders( $ad, $placeholder ) {
         if ( ! isset( $this->cache[ $ad->ID ] ) ) {
-            $placeholders = $this->render_image_placeholders( $ad, $placeholder );
+            $placeholders           = $this->render_image_placeholders( $ad, $placeholder );
             $this->cache[ $ad->ID ] = apply_filters( 'awpcp-image-placeholders', $placeholders, $ad );
         }
 
@@ -59,13 +59,13 @@ class AWPCP_Image_Placeholders {
         global $awpcp_imagesurl;
 
         $placeholders = array(
-            'featureimg' => '',
-            'awpcpshowadotherimages' => '',
-            'images' => '',
+            'featureimg'               => '',
+            'awpcpshowadotherimages'   => '',
+            'images'                   => '',
             'awpcp_image_name_srccode' => '',
         );
 
-        $url = $this->listing_renderer->get_view_listing_url( $ad );
+        $url             = $this->listing_renderer->get_view_listing_url( $ad );
         $thumbnail_width = get_awpcp_option('displayadthumbwidth');
 
         if ( awpcp_are_images_allowed() ) {
@@ -83,9 +83,9 @@ class AWPCP_Image_Placeholders {
                 }
 
                 $link_attributes = array(
-                    'class' => 'awpcp-listing-primary-image-thickbox-link thickbox thumbnail',
-                    'href' => esc_url( $large_image ),
-                    'rel' => esc_attr( $gallery_name ),
+                    'class'              => 'awpcp-listing-primary-image-thickbox-link thickbox thumbnail',
+                    'href'               => esc_url( $large_image ),
+                    'rel'                => esc_attr( $gallery_name ),
                     'data-awpcp-gallery' => esc_attr( $gallery_name ),
                 );
 
@@ -94,11 +94,11 @@ class AWPCP_Image_Placeholders {
                     'alt'   => __( "Thumbnail for the listing's main image", 'another-wordpress-classifieds-plugin' ),
                 );
 
-                $content = '<div class="awpcp-ad-primary-image">';
-                $content.= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
-                $content.= wp_get_attachment_image( $primary_image->ID, 'awpcp-featured', false, $image_attributes );
-                $content.= '</a>' . $link;
-                $content.= '</div>';
+                $content  = '<div class="awpcp-ad-primary-image">';
+                $content .= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
+                $content .= wp_get_attachment_image( $primary_image->ID, 'awpcp-featured', false, $image_attributes );
+                $content .= '</a>' . $link;
+                $content .= '</div>';
 
                 $placeholders['featureimg'] = $content;
 
@@ -130,8 +130,8 @@ class AWPCP_Image_Placeholders {
                 $results = $this->attachments->find_visible_attachments( array( 'post_parent' => $ad->ID ) );
 
                 $columns = get_awpcp_option('display-thumbnails-in-columns', 0);
-                $rows = $columns > 0 ? ceil(count($results) / $columns) : 0;
-                $shown = 0;
+                $rows    = $columns > 0 ? ceil(count($results) / $columns) : 0;
+                $shown   = 0;
 
                 $images = array();
                 foreach ($results as $image) {
@@ -148,21 +148,21 @@ class AWPCP_Image_Placeholders {
 
                     if ($columns > 0) {
                         $li_classes[] = "awpcp-attchment-column-width-1-{$columns}";
-                        $li_classes = awpcp_get_grid_item_css_class( $li_classes, $shown, $columns, $rows );
+                        $li_classes   = awpcp_get_grid_item_css_class( $li_classes, $shown, $columns, $rows );
                     }
 
                     $link_attributes = array(
-                        'class' => 'awpcp-attachment-thumbnail-container thickbox',
-                        'href' => esc_url( $large_image ),
-                        'rel' => esc_attr( $gallery_name ),
+                        'class'              => 'awpcp-attachment-thumbnail-container thickbox',
+                        'href'               => esc_url( $large_image ),
+                        'rel'                => esc_attr( $gallery_name ),
                         'data-awpcp-gallery' => esc_attr( $gallery_name ),
                     );
 
-                    $content = '<li ' . awpcp_html_attributes( [ 'class' => $li_classes ] ) . '>';
-                    $content.= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
-                    $content.= $this->image_renderer->render_attachment_thumbnail( $image->ID, [ 'class' => 'thumbshow' ] );
-                    $content.= '</a>';
-                    $content.= '</li>';
+                    $content  = '<li ' . awpcp_html_attributes( [ 'class' => $li_classes ] ) . '>';
+                    $content .= '<a ' . awpcp_html_attributes( $link_attributes ) . '>';
+                    $content .= $this->image_renderer->render_attachment_thumbnail( $image->ID, [ 'class' => 'thumbshow' ] );
+                    $content .= '</a>';
+                    $content .= '</li>';
 
                     $images[] = $content;
 
@@ -171,7 +171,7 @@ class AWPCP_Image_Placeholders {
 
                 $placeholders['awpcpshowadotherimages'] = join('', $images);
 
-                $content = '<ul class="awpcp-single-ad-images">%s</ul>';
+                $content                = '<ul class="awpcp-single-ad-images">%s</ul>';
                 $placeholders['images'] = sprintf($content, $placeholders['awpcpshowadotherimages']);
             }
         }
@@ -207,11 +207,11 @@ class AWPCP_Image_Placeholders {
             $placeholders['awpcp_image_name_srccode'] = $content;
         }
 
-        $placeholders['featureimg'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['featureimg'], 'single', $ad );
+        $placeholders['featureimg']               = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['featureimg'], 'single', $ad );
         $placeholders['awpcp_image_name_srccode'] = apply_filters( 'awpcp-featured-image-placeholder', $placeholders['awpcp_image_name_srccode'], 'listings', $ad );
 
-        $placeholders['featured_image'] = $placeholders['featureimg'];
-        $placeholders['imgblockwidth'] = "{$thumbnail_width}px";
+        $placeholders['featured_image']  = $placeholders['featureimg'];
+        $placeholders['imgblockwidth']   = "{$thumbnail_width}px";
         $placeholders['thumbnail_width'] = "{$thumbnail_width}px";
 
         return $placeholders;

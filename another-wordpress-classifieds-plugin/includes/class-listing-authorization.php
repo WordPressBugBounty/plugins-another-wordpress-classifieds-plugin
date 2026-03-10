@@ -80,6 +80,48 @@ class AWPCP_ListingAuthorization {
     }
 
     /**
+     * Checks whether the current user is allowed to manage a listing.
+     *
+     * Logged-in users must be the listing owner or a moderator.
+     * Non-logged-in users can manage listings while creating one (auto-draft)
+     * or while editing one using a valid edit nonce.
+     *
+     * @since 4.4.5
+     *
+     * @param object $listing An instance of WP_Post.
+     *
+     * @return bool
+     */
+    public function is_current_user_allowed_to_manage_listing( $listing ) {
+        if ( is_user_logged_in() ) {
+            return $this->is_current_user_allowed_to_edit_listing( $listing );
+        }
+
+        if ( 'auto-draft' === $listing->post_status ) {
+            return true;
+        }
+
+        return $this->request_includes_valid_edit_nonce( $listing );
+    }
+
+    /**
+     * Checks whether the current request includes a valid edit nonce.
+     *
+     * @since 4.4.5
+     *
+     * @param object $listing An instance of WP_Post.
+     *
+     * @return bool
+     */
+    private function request_includes_valid_edit_nonce( $listing ) {
+        $nonce  = awpcp_get_var( array( 'param' => 'edit_nonce' ) );
+        $nonce  = $this->request->post( 'edit_nonce', $nonce );
+        $action = "awpcp-edit-listing-{$listing->ID}";
+
+        return wp_verify_nonce( $nonce, $action );
+    }
+
+    /**
      * Determine whether current user can edit the start date of the listing.
      *
      * See https://github.com/drodenbaugh/awpcp/issues/1906#issuecomment-328189213

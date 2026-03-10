@@ -25,9 +25,9 @@ class AWPCP_Fee_Details_Admin_Page {
 
     public function __construct( $fee_details_form, $fees, $html_renderer, $router ) {
         $this->fee_details_form = $fee_details_form;
-        $this->fees = $fees;
-        $this->html_renderer = $html_renderer;
-        $this->router = $router;
+        $this->fees             = $fees;
+        $this->html_renderer    = $html_renderer;
+        $this->router           = $router;
     }
 
     public function enqueue_scripts() {
@@ -107,8 +107,8 @@ class AWPCP_Fee_Details_Admin_Page {
     private function render_form( $fee ) {
         $params = array(
             'form_title' => __( 'Create Fee Plan', 'another-wordpress-classifieds-plugin' ),
-            'fee' => $fee,
-            'action' => 'create-fee',
+            'fee'        => $fee,
+            'action'     => 'create-fee',
         );
 
         return $this->html_renderer->render( $this->fee_details_form->build( $params ) );

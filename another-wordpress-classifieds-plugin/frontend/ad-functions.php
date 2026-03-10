@@ -64,18 +64,18 @@ function awpcp_send_ad_renewed_email($ad) {
 }
 
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
-    $output = '';
-    $awpcppage = get_currentpagename();
+    $output        = '';
+    $awpcppage     = get_currentpagename();
     $awpcppagename = sanitize_title($awpcppage, $post_ID='');
 
     $isadmin = checkifisadmin() || $force;
 
     if (get_awpcp_option('onlyadmincanplaceads') && ( $isadmin != 1 )) {
-        $message = __("You do not have permission to perform the function you are trying to perform. Access to this page has been denied",'another-wordpress-classifieds-plugin');
+        $message  = __("You do not have permission to perform the function you are trying to perform. Access to this page has been denied",'another-wordpress-classifieds-plugin');
         $errors[] = $message;
 
     } else {
-        $savedemail=get_adposteremail($adid);
+        $savedemail =get_adposteremail($adid);
 
         if ( $isadmin == 1 || strcasecmp( $editemail, $savedemail ) == 0 ) {
             try {
@@ -86,10 +86,10 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
             if ( $ad && awpcp_listings_api()->delete_listing( $ad ) ) {
                 if (( $isadmin == 1 ) && is_admin()) {
-                    $message=__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
+                    $message =__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
                     return $message;
                 } else {
-                    $message=__("Your Ad details and any photos you have uploaded have been deleted from the system",'another-wordpress-classifieds-plugin');
+                    $message  =__("Your Ad details and any photos you have uploaded have been deleted from the system",'another-wordpress-classifieds-plugin');
                     $errors[] = $message;
                 }
             } elseif ( $ad === null ) {
@@ -98,7 +98,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
                 $errors[] = __( "There was an error trying to delete the Ad. The Ad was not deleted.", 'another-wordpress-classifieds-plugin' );
             }
         } else {
-            $message=__("Problem encountered. Cannot complete  request",'another-wordpress-classifieds-plugin');
+            $message  =__("Problem encountered. Cannot complete  request",'another-wordpress-classifieds-plugin');
             $errors[] = $message;
         }
     }
@@ -119,35 +119,35 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
     $admin_email = awpcp_admin_recipient_email_address();
 
-    $payments_api = awpcp_payments_api();
-    $show_total_amount = $payments_api->payments_enabled();
+    $payments_api       = awpcp_payments_api();
+    $show_total_amount  = $payments_api->payments_enabled();
     $show_total_credits = $payments_api->credit_system_enabled();
-    $currency_code = awpcp_get_currency_code();
-    $blog_name = awpcp_get_blog_name();
+    $currency_code      = awpcp_get_currency_code();
+    $blog_name          = awpcp_get_blog_name();
 
     if ( ! is_null( $transaction ) ) {
         $transaction_totals = $transaction->get_totals();
-        $total_amount = $transaction_totals['money'];
-        $total_credits = $transaction_totals['credits'];
+        $total_amount       = $transaction_totals['money'];
+        $total_credits      = $transaction_totals['credits'];
     } else {
-        $total_amount = 0;
+        $total_amount  = 0;
         $total_credits = 0;
     }
 
     if ( get_awpcp_option( 'requireuserregistration' ) ) {
         $include_listing_access_key = false;
-        $include_edit_listing_url = true;
+        $include_edit_listing_url   = true;
     } else {
         $include_listing_access_key = get_awpcp_option( 'include-ad-access-key' );
-        $include_edit_listing_url = false;
+        $include_edit_listing_url   = false;
     }
 
     $listing_renderer = awpcp_listing_renderer();
 
     $listing_title = $listing_renderer->get_listing_title( $ad );
-    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $contact_name  = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
-    $access_key = $listing_renderer->get_access_key( $ad );
+    $access_key    = $listing_renderer->get_access_key( $ad );
 
     $params = compact(
         'ad',
@@ -167,8 +167,8 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
         'blog_name'
     );
 
-    $email = new AWPCP_Email();
-    $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    $email          = new AWPCP_Email();
+    $email->to[]    = awpcp_format_recipient_address( $contact_email, $contact_name );
     $email->subject = get_awpcp_option('listingaddedsubject');
     $email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
 

@@ -31,8 +31,8 @@ class AWPCP_MarkPaidListingTableAction implements
      * @param object $roles             An instance of Roles and Capabilities.
      */
     public function __construct( $listings_logic, $roles ) {
-        $this->listings_logic   = $listings_logic;
-        $this->roles            = $roles;
+        $this->listings_logic = $listings_logic;
+        $this->roles          = $roles;
     }
 
     /**

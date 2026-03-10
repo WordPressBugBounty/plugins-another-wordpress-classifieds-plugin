@@ -27,11 +27,11 @@ class AWPCP_Media_Uploaded_Notification {
 
     public function __construct( $attachments_properties, $attachments, $listing_renderer, $listings, $settings, $wordpress ) {
         $this->attachments_properties = $attachments_properties;
-        $this->attachments = $attachments;
-        $this->listing_renderer = $listing_renderer;
-        $this->listings = $listings;
-        $this->settings = $settings;
-        $this->wordpress = $wordpress;
+        $this->attachments            = $attachments;
+        $this->listing_renderer       = $listing_renderer;
+        $this->listings               = $listings;
+        $this->settings               = $settings;
+        $this->wordpress              = $wordpress;
     }
 
     public function maybe_schedule_notification( $file, $listing ) {
@@ -79,7 +79,7 @@ class AWPCP_Media_Uploaded_Notification {
     }
 
     private function store_uploaded_media_information( $uploaded_file, $listing ) {
-        $uploaded_media = $this->get_uploaded_media_information( $listing->ID );
+        $uploaded_media   = $this->get_uploaded_media_information( $listing->ID );
         $uploaded_media[] = (array) $uploaded_file;
 
         $option_name = $this->get_uploaded_media_information_option_name( $listing->ID );
@@ -103,7 +103,7 @@ class AWPCP_Media_Uploaded_Notification {
         }
 
         $attachments_awaiting_approval = array();
-        $other_attachments = array();
+        $other_attachments             = array();
 
         foreach ( $this->get_uploaded_media_information( $listing_id ) as $attachment_data ) {
             try {
@@ -129,13 +129,13 @@ class AWPCP_Media_Uploaded_Notification {
             $subject = __( 'New media is awaiting approval in listing: <listing-title>', 'another-wordpress-classifieds-plugin' );
         }
 
-        $message = new AWPCP_Email();
-        $message->to = array( awpcp_admin_email_to() );
+        $message          = new AWPCP_Email();
+        $message->to      = array( awpcp_admin_email_to() );
         $message->subject = str_replace( '<listing-title>', $this->listing_renderer->get_listing_title( $listing ), $subject );
 
         $view_listing_url = awpcp_get_quick_view_listing_url( $listing );
 
-        $query_args = array( 'action' => 'edit', 'post' => $listing->ID );
+        $query_args               = array( 'action' => 'edit', 'post' => $listing->ID );
         $manage_listing_media_url = add_query_arg( $query_args, admin_url( 'post.php' ) );
 
         $params = array(

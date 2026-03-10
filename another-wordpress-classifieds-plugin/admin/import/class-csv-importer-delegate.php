@@ -62,9 +62,9 @@ class AWPCP_CSV_Importer_Delegate {
         '_awpcp_end_date',
     );
 
-    private $messages = array();
+    private $messages      = array();
     protected $users_cache = array();
-    protected $options = array();
+    protected $options     = array();
     protected $extra_fields;
 
     public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $listings, $payments, $media_manager ) {
@@ -123,7 +123,7 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         if ( ! empty( $row_data['images'] ) ) {
-            $image_names = array_filter( explode( ';', $row_data['images'] ) );
+            $image_names                 = array_filter( explode( ';', $row_data['images'] ) );
             $listing_data['attachments'] = $this->import_images( $image_names );
         } else {
             $listing_data['attachments'] = array();
@@ -225,8 +225,8 @@ class AWPCP_CSV_Importer_Delegate {
 
         if ( isset( $user_data['user'] ) && is_object( $user_data['user'] ) ) {
             return (object) array(
-                'ID' => $user_data['user']->ID,
-                'created' => true,
+                'ID'       => $user_data['user']->ID,
+                'created'  => true,
                 'password' => $user_data['password'],
             );
         }
@@ -297,10 +297,10 @@ class AWPCP_CSV_Importer_Delegate {
      */
     private function parse_category_name_column( $category_name, $row_data ) {
         $category_separator = $this->import_session->get_param( 'category_separator' );
-        $categories = explode($category_separator, $category_name);
-        $category_ids = [];
+        $categories         = explode($category_separator, $category_name);
+        $category_ids       = [];
         foreach ($categories as $category) {
-            $category = $this->get_category( $category );
+            $category       = $this->get_category( $category );
             $category_ids[] = $category ? $category->term_id : null;
         }
 
@@ -315,7 +315,7 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         $create_missing_categories = $this->import_session->get_param( 'create_missing_categories' );
-        $is_test_mode_enabled = $this->import_session->is_test_mode_enabled();
+        $is_test_mode_enabled      = $this->import_session->is_test_mode_enabled();
 
         if ( is_null( $category ) && $create_missing_categories && $is_test_mode_enabled ) {
             return (object) array(
@@ -379,8 +379,8 @@ class AWPCP_CSV_Importer_Delegate {
             $this->import_session->get_param( 'default_start_date' ),
             array(
                 'empty-date-with-no-default' => _x( 'The start date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
-                'invalid-date' => _x( 'The start date is invalid and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
-                'invalid-default-date' => _x( "Invalid default start date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-date'               => _x( 'The start date is invalid and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-default-date'       => _x( "Invalid default start date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
             )
         );
     }
@@ -430,7 +430,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         } elseif ( $date_time_format === 'uk_date' ) {
             // Rearrange UK dates in case of 2-digit year.
-            $val = str_replace( '-', '/', $val );
+            $val  = str_replace( '-', '/', $val );
             $bits = explode( '/', $val );
             if ( count( $bits ) === 3 ) {
                 $val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
@@ -446,8 +446,8 @@ class AWPCP_CSV_Importer_Delegate {
             $this->import_session->get_param( 'default_end_date' ),
             array(
                 'empty-date-with-no-default' => _x( 'The end date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
-                'invalid-date' => _x( 'The end date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
-                'invalid-default-date' => _x( "Invalid default end date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-date'               => _x( 'The end date is missing and no default value was defined.', 'csv importer', 'another-wordpress-classifieds-plugin' ),
+                'invalid-default-date'       => _x( "Invalid default end date.", 'csv importer', 'another-wordpress-classifieds-plugin' ),
             )
         );
     }
@@ -553,7 +553,7 @@ class AWPCP_CSV_Importer_Delegate {
         $payment_term = null;
 
         $listing_data['metadata']['_awpcp_payment_status'] = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
-        $import_settings = $this->import_session->get_params();
+        $import_settings                                   = $this->import_session->get_params();
         if ($import_settings['listing_status'] !== 'default') {
             $listing_data['post_fields']['post_status'] = $import_settings['listing_status'];
         }
@@ -683,9 +683,9 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
         case 'Select Multiple':
             // value can be any combination of items from options list
             // translators: %s is the extra field name
-            $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
+            $msg         = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
-            $value = explode( ';', $value );
+            $value       = explode( ';', $value );
 
             // Process with single selects too.
         case 'Select':
@@ -703,7 +703,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
                     continue;
                 }
                 if ( ! in_array( $item, $options ) ) {
-                    $msg = sprintf( $msg, implode( ', ', $options ) );
+                    $msg                 = sprintf( $msg, implode( ', ', $options ) );
                     $validation_errors[] = $msg;
                 }
             }

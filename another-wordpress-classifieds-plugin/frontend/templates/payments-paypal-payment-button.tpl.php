@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- echo esc_attr( $paypal_url ); ?>" method="post">
+echo esc_attr( $paypal_url ); ?>" method="post">
     <input type="hidden" value="2" name="rm">
     <input type="hidden" value="_cart" name="cmd">
     <?php /*<input type="hidden" value="utf-8" name="charset"> */ ?>

@@ -16,10 +16,34 @@ function awpcp_upload_listing_media_ajax_handler() {
 
 class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
 
+    /**
+     * @var object
+     */
     private $attachment_properties;
+
+    /**
+     * @var AWPCP_ListingsCollection
+     */
     private $listings;
+
+    /**
+     * @var object
+     */
     private $uploader;
+
+    /**
+     * @var object
+     */
     private $media_manager;
+
+    /**
+     * @var AWPCP_ListingAuthorization
+     */
+    private $authorization;
+
+    /**
+     * @var AWPCP_Request
+     */
     private $request;
 
     public function __construct() {
@@ -29,6 +53,7 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
         $this->listings              = awpcp_listings_collection();
         $this->media_manager         = awpcp_new_media_manager();
         $this->uploader              = awpcp_file_uploader();
+        $this->authorization         = awpcp_listing_authorization();
         $this->request               = awpcp_request();
     }
 
@@ -55,7 +80,7 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
-        return true;
+        return $this->authorization->is_current_user_allowed_to_manage_listing( $listing );
     }
 
     private function process_uploaded_file( $listing ) {

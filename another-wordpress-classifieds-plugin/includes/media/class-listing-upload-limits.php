@@ -17,10 +17,10 @@ class AWPCP_ListingUploadLimits {
     private $settings;
 
     public function __construct( $attachments, $file_types, $listing_renderer, $settings ) {
-        $this->attachments = $attachments;
-        $this->file_types = $file_types;
+        $this->attachments      = $attachments;
+        $this->file_types       = $file_types;
         $this->listing_renderer = $listing_renderer;
-        $this->settings = $settings;
+        $this->settings         = $settings;
     }
 
     public function get_upload_limits_for_payment_term( $payment_term ) {
@@ -42,14 +42,14 @@ class AWPCP_ListingUploadLimits {
         $extensions = $this->file_types->get_allowed_file_extesions_in_group( 'image' );
 
         return array(
-            'mime_types' => $mime_types,
-            'extensions' => $extensions,
-            'allowed_file_count' => $allowed_file_count,
+            'mime_types'          => $mime_types,
+            'extensions'          => $extensions,
+            'allowed_file_count'  => $allowed_file_count,
             'uploaded_file_count' => $uploaded_file_count,
-            'min_file_size' => $this->settings->get_option( 'minimagesize' ),
-            'max_file_size' => $this->settings->get_option( 'maximagesize' ),
-            'min_image_width' => $this->settings->get_option( 'imgminwidth' ),
-            'min_image_height' => $this->settings->get_option( 'imgminheight' ),
+            'min_file_size'       => $this->settings->get_option( 'minimagesize' ),
+            'max_file_size'       => $this->settings->get_option( 'maximagesize' ),
+            'min_image_width'     => $this->settings->get_option( 'imgminwidth' ),
+            'min_image_height'    => $this->settings->get_option( 'imgminheight' ),
         );
     }
 
@@ -127,12 +127,12 @@ class AWPCP_ListingUploadLimits {
             return $upload_limits[ $file_type ];
         } else {
             return array(
-                'mime_types' => array(),
-                'extensions' => array(),
-                'allowed_file_count' => 0,
+                'mime_types'          => array(),
+                'extensions'          => array(),
+                'allowed_file_count'  => 0,
                 'uploaded_file_count' => 0,
-                'min_file_size' => 0,
-                'max_file_size' => 0,
+                'min_file_size'       => 0,
+                'max_file_size'       => 0,
             );
         }
     }

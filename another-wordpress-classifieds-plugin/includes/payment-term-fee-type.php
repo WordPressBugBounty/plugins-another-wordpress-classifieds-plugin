@@ -36,21 +36,21 @@ class AWPCP_FeeType extends AWPCP_PaymentTermType {
 
     private function get_free_payment_term() {
         return new AWPCP_Fee(array(
-            'id' => 0,
-            'name' => __( 'Free Listing', 'another-wordpress-classifieds-plugin'),
-            'description' => '',
-            'duration_amount' => get_awpcp_option('addurationfreemode'),
+            'id'                => 0,
+            'name'              => __( 'Free Listing', 'another-wordpress-classifieds-plugin'),
+            'description'       => '',
+            'duration_amount'   => get_awpcp_option('addurationfreemode'),
             'duration_interval' => AWPCP_Fee::INTERVAL_DAY,
-            'price' => 0,
-            'credits' => 0,
-            'categories' => array(),
-            'images' => get_awpcp_option('imagesallowedfree'),
-            'ads' => 1,
-            'characters' => get_awpcp_option( 'maxcharactersallowed' ),
-            'title_characters' => get_awpcp_option( 'characters-allowed-in-title' ),
-            'buys' => 0,
-            'featured' => 0,
-            'private' => 0,
+            'price'             => 0,
+            'credits'           => 0,
+            'categories'        => array(),
+            'images'            => get_awpcp_option('imagesallowedfree'),
+            'ads'               => 1,
+            'characters'        => get_awpcp_option( 'maxcharactersallowed' ),
+            'title_characters'  => get_awpcp_option( 'characters-allowed-in-title' ),
+            'buys'              => 0,
+            'featured'          => 0,
+            'private'           => 0,
         ));
     }
 
@@ -61,7 +61,7 @@ class AWPCP_FeeType extends AWPCP_PaymentTermType {
             return array($this->get_free_payment_term());
         }
 
-        $order = get_awpcp_option( 'fee-order' );
+        $order     = get_awpcp_option( 'fee-order' );
         $direction = get_awpcp_option( 'fee-order-direction' );
 
         switch ($order) {
@@ -82,13 +82,13 @@ class AWPCP_FeeType extends AWPCP_PaymentTermType {
         if ( awpcp_current_user_is_admin() ) {
             $args = array(
                 'orderby' => $orderby[0],
-                'order' => $orderby[1],
+                'order'   => $orderby[1],
             );
         } else {
             $args = array(
-                'where' => 'private = 0',
+                'where'   => 'private = 0',
                 'orderby' => $orderby[0],
-                'order' => $orderby[1],
+                'order'   => $orderby[1],
             );
         }
 

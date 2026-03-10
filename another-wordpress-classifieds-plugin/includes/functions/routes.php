@@ -86,7 +86,7 @@ function awpcp_get_page_id_by_ref( $refname ) {
  */
 function awpcp_get_page_ids_by_ref( $refnames ) {
     $plugin_pages_ids = awpcp_get_plugin_pages_ids();
-    $pages_ids = array();
+    $pages_ids        = array();
 
     foreach ( $refnames as $refname ) {
         if ( isset( $plugin_pages_ids[ $refname ] ) ) {
@@ -116,14 +116,14 @@ function awpcp_get_plugin_pages_ids() {
  */
 function awpcp_get_wordpress_pages_settings_translations() {
     return array(
-        'main-plugin-page' => 'main-page-name',
-        'show-listing-page' => 'show-ads-page-name',
-        'submit-listing-page' => 'place-ad-page-name',
-        'edit-listing-page' => 'edit-ad-page-name',
-        'renew-listing-page' => 'renew-ad-page-name',
+        'main-plugin-page'      => 'main-page-name',
+        'show-listing-page'     => 'show-ads-page-name',
+        'submit-listing-page'   => 'place-ad-page-name',
+        'edit-listing-page'     => 'edit-ad-page-name',
+        'renew-listing-page'    => 'renew-ad-page-name',
         'reply-to-listing-page' => 'reply-to-ad-page-name',
-        'browse-listings-page' => 'browse-ads-page-name',
-        'search-listings-page' => 'search-ads-page-name',
+        'browse-listings-page'  => 'browse-ads-page-name',
+        'search-listings-page'  => 'search-ads-page-name',
         'buy-subscription-page' => 'subscriptions-page-name',
         'payment-thnakyou-page' => 'payment-thankyou-page-name',
         'cancel-payment-page'   => 'payment-cancel-page-name',
@@ -212,7 +212,7 @@ function awpcp_get_browse_categories_page_url() {
  */
 function awpcp_get_browse_category_url_from_id( $category_id ) {
     try {
-        $category = awpcp_categories_collection()->get( $category_id );
+        $category     = awpcp_categories_collection()->get( $category_id );
         $category_url = url_browsecategory( $category );
     } catch ( AWPCP_Exception $ex ) {
         $category_url = '';
@@ -224,12 +224,12 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
 
-    $page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
-    $cat_id = $category->term_id;
+    $page_id  = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
+    $cat_id   = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
 
     if ( get_awpcp_option( 'seofriendlyurls' ) && $permalinks ) {
-        $path = sprintf( '%s/%s/%s', get_page_uri( $page_id ), $cat_id, $cat_slug );
+        $path           = sprintf( '%s/%s/%s', get_page_uri( $page_id ), $cat_id, $cat_slug );
         $url_browsecats = awpcp_get_url_with_page_permastruct( $path );
     } else {
         if (!empty($permalinks)) {
@@ -301,7 +301,7 @@ function awpcp_get_view_categories_url() {
     global $wp_rewrite;
 
     $permalink_structure = $wp_rewrite->get_page_permastruct();
-    $main_page_id = awpcp_get_page_id_by_ref( 'main-page-name' );
+    $main_page_id        = awpcp_get_page_id_by_ref( 'main-page-name' );
 
     $base_url = get_permalink( $main_page_id, true );
 
@@ -310,7 +310,7 @@ function awpcp_get_view_categories_url() {
         $view_categories_page_slug = sanitize_title( $view_categories_page_name );
 
         $pagename = sprintf( '%s/%s', get_page_uri( $main_page_id ), $view_categories_page_slug );
-        $url = str_replace( '%pagename%', $pagename, $base_url );
+        $url      = str_replace( '%pagename%', $pagename, $base_url );
     } else {
         $url = add_query_arg( 'layout', 2, $base_url );
     }
@@ -389,7 +389,7 @@ function awpcp_get_edit_listing_direct_url( $listing, $context = 'display' ) {
  */
 function awpcp_get_edit_listing_url_with_access_key( $listing ) {
     $args = array(
-        'step' => 'verify-access-token',
+        'step'         => 'verify-access-token',
         'access_token' => awpcp_create_edit_listing_access_token( $listing ),
     );
 
@@ -399,7 +399,7 @@ function awpcp_get_edit_listing_url_with_access_key( $listing ) {
 function awpcp_create_edit_listing_access_token( $listing ) {
     $i = wp_nonce_tick();
 
-    $nonce = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
+    $nonce   = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
     $id_hash = substr( wp_hash( $nonce . '|' . $listing->ID, 'nonce' ), -12, 10 );
 
     return $nonce . $id_hash . '-' . $listing->ID;
@@ -409,7 +409,7 @@ function awpcp_verify_edit_listing_access_token( $access_token, $listing ) {
     $listing_id = $listing->ID;
     $i          = wp_nonce_tick();
 
-    $nonce = substr( $access_token, 0, 10 );
+    $nonce          = substr( $access_token, 0, 10 );
     $expected_nonce = substr( wp_hash( $i . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     if ( hash_equals( $nonce, $expected_nonce ) ) {
@@ -422,7 +422,7 @@ function awpcp_verify_edit_listing_access_token( $access_token, $listing ) {
         return 'valid';
     }
 
-    $id_hash = substr( $access_token, 10 );
+    $id_hash          = substr( $access_token, 10 );
     $expected_id_hash = substr( wp_hash( $nonce . '|' . $listing_id, 'nonce' ), -12, 10 );
 
     return hash_equals( $id_hash, $expected_id_hash ) ? 'expired' : 'invalid';
@@ -435,10 +435,10 @@ function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
     $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
 
     if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
-        $page_id = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
+        $page_id  = awpcp_get_page_id_by_ref( 'edit-ad-page-name' );
         $base_url = get_permalink( $page_id, true );
         $pagename = sprintf( '%s/%d', get_page_uri( $page_id ), $listing->ID );
-        $url = str_replace( '%pagename%', $pagename, $base_url );
+        $url      = str_replace( '%pagename%', $pagename, $base_url );
     } else {
         $url = add_query_arg( 'id', $listing->ID, awpcp_get_page_url( 'edit-ad-page-name' ) );
     }
@@ -481,11 +481,11 @@ function awpcp_get_email_verification_url( $ad_id ) {
         return awpcp_get_url_with_page_permastruct( "/awpcpx/listings/verify/{$ad_id}/$hash" );
     } else {
         $params = array(
-            'awpcpx' => true,
+            'awpcpx'       => true,
             'awpcp-module' => 'listings',
             'awpcp-action' => 'verify',
-            'awpcp-ad' => $ad_id,
-            'awpcp-hash' => $hash,
+            'awpcp-ad'     => $ad_id,
+            'awpcp-hash'   => $hash,
         );
 
         return add_query_arg( urlencode_deep( $params ), home_url( 'index.php' ) );
@@ -500,8 +500,8 @@ function awpcp_get_email_verification_url( $ad_id ) {
 function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
     $use_seo_friendly_urls = get_awpcp_option( 'seofriendlyurls' );
 
-    $page_id = awpcp_get_page_id_by_ref( 'reply-to-ad-page-name' );
-    $base_url = get_permalink( $page_id, $use_seo_friendly_urls );
+    $page_id    = awpcp_get_page_id_by_ref( 'reply-to-ad-page-name' );
+    $base_url   = get_permalink( $page_id, $use_seo_friendly_urls );
     $permalinks = get_option('permalink_structure');
 
     if (!is_null($ad_title)) {
@@ -517,10 +517,10 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
 
     if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
         $pagename = sprintf( '%s/%d/%s', get_page_uri( $page_id ), $ad_id, $title );
-        $url = str_replace( '%pagename%', $pagename, $base_url );
+        $url      = str_replace( '%pagename%', $pagename, $base_url );
     } else {
         $base_url = user_trailingslashit($base_url);
-        $url = add_query_arg( array('i' => urlencode( $ad_id ) ), $base_url );
+        $url      = add_query_arg( array('i' => urlencode( $ad_id ) ), $base_url );
     }
 
     return $url;

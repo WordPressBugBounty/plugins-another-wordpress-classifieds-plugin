@@ -117,6 +117,7 @@ function( $, settings ) {
             $.post( settings.get( 'ajaxurl' ), {
                 action: 'awpcp-upload-generated-thumbnail',
                 nonce: self.element.attr( 'data-nonce' ),
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 file: fileInfo.id,
                 thumbnail: thumbnail
             }, function( response ) {

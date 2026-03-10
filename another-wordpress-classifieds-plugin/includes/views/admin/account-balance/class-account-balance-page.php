@@ -43,7 +43,7 @@ class AWPCP_AccountBalancePage extends AWPCP_BuyCreditsPage {
 
 function awpcp_account_balance_page() {
     $request = new AWPCP_Request();
-    $steps = awpcp_account_balance_page_steps( awpcp_payments_api() );
+    $steps   = awpcp_account_balance_page_steps( awpcp_payments_api() );
 
     return new AWPCP_AccountBalancePage( $steps, $request );
 }

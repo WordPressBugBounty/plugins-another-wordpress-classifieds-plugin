@@ -107,7 +107,8 @@ AWPCP.define( 'awpcp/frontend/actions-section-controller', [
                     action: 'awpcp_execute_listing_action',
                     listing_action: $action.data( 'action' ),
                     listing_id: self.store.getListingId(),
-                    nonce: $action.data( 'nonce' )
+                    nonce: $action.data( 'nonce' ),
+                    edit_nonce: $.AWPCP.get( 'edit_listing_nonce' )
                 },
                 dataType: 'json',
                 method:   'POST',

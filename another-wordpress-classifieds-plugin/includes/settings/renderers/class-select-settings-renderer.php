@@ -34,7 +34,7 @@ class AWPCP_SelectSettingsRenderer {
 
         foreach ( $setting['options'] as $value => $label ) {
             if ( 0 === strcmp( $value, $current ) ) {
-                 echo '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
+                echo '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
             } else {
                 echo '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
             }

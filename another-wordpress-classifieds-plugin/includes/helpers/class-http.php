@@ -24,7 +24,7 @@ class AWPCP_HTTP {
             return $this->handle_wp_error( $response, $url, $args );
         }
 
-        $response_code    = wp_remote_retrieve_response_code( $response );
+        $response_code = wp_remote_retrieve_response_code( $response );
 
         if ( 403 === $response_code ) {
             $url_parts = wp_parse_url( $url );

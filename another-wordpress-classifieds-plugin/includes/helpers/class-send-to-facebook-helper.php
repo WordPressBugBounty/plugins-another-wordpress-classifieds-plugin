@@ -241,7 +241,7 @@ class AWPCP_SendToFacebookHelper {
                 'headers' => array(
                     'content-type' => 'application/json; charset=' . get_bloginfo( 'charset' ),
                 ),
-                'body' => wp_json_encode( $webhook['data'] ),
+                'body'    => wp_json_encode( $webhook['data'] ),
             );
 
             $response = wp_remote_post( $webhook['url'], $params );

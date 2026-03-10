@@ -39,7 +39,7 @@ class AWPCP_Delete_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handle
                 return $ajax_handler->error( array( 'message' => join( '<br/>', $errors ) ) );
             }
         } else {
-            $params = array( 'columns' => count( $this->page->get_table()->get_columns() ) );
+            $params   = array( 'columns' => count( $this->page->get_table()->get_columns() ) );
             $template = AWPCP_DIR . '/admin/templates/delete_form.tpl.php';
             return $ajax_handler->success( array( 'html' => awpcp_render_template( $template, $params ) ) );
         }

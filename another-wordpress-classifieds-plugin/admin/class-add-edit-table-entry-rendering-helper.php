@@ -18,7 +18,7 @@ class AWPCP_Add_Edit_Table_Entry_Rendering_Helper {
     private $template_renderer;
 
     public function __construct( $page, $template_renderer ) {
-        $this->page = $page;
+        $this->page              = $page;
         $this->template_renderer = $template_renderer;
     }
 
@@ -33,7 +33,7 @@ class AWPCP_Add_Edit_Table_Entry_Rendering_Helper {
 
     public function render_entry_form( $template, $entry ) {
         $params = array(
-            'entry' => $entry,
+            'entry'   => $entry,
             'columns' => count( $this->page->get_table()->get_columns() ),
         );
 

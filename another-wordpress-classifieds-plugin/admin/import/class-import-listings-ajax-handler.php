@@ -29,10 +29,10 @@ class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
         $this->import_sessions_manager->update_current_import_session( $import_session );
 
         return $this->success( array(
-            'rowsCount' => $import_session->get_number_of_rows(),
+            'rowsCount'    => $import_session->get_number_of_rows(),
             'rowsImported' => $import_session->get_number_of_rows_imported(),
             'rowsRejected' => $import_session->get_number_of_rows_rejected(),
-            'errors' => array_merge(
+            'errors'       => array_merge(
                 $import_session->get_last_errors(),
                 $import_session->get_last_messages()
             ),

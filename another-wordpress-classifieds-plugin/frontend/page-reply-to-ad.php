@@ -46,7 +46,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         parent::__construct( $page, $title, $template_renderer );
 
         $this->listing_renderer = $listing_renderer;
-        $this->listings = $listings;
+        $this->listings         = $listings;
         $this->email_helper     = $email_helper;
         $this->request          = $request;
     }
@@ -84,10 +84,10 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
         $awpcp = awpcp();
         $awpcp->js->localize( 'page-reply-to-ad', array(
-            'awpcp_sender_name' => __( 'Please enter your name.', 'another-wordpress-classifieds-plugin' ),
-            'awpcp_sender_email' => __( 'Please enter your email address.', 'another-wordpress-classifieds-plugin' ),
+            'awpcp_sender_name'     => __( 'Please enter your name.', 'another-wordpress-classifieds-plugin' ),
+            'awpcp_sender_email'    => __( 'Please enter your email address.', 'another-wordpress-classifieds-plugin' ),
             'awpcp_contact_message' => __( 'The message cannot be empty.', 'another-wordpress-classifieds-plugin' ),
-            'captcha' => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
+            'captcha'               => __( 'Please type in the result of the operation.', 'another-wordpress-classifieds-plugin' ),
         ) );
 
         return $this->_dispatch();
@@ -118,9 +118,9 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     protected function get_posted_data() {
-        $name    = awpcp_get_var( array( 'param' => 'awpcp_sender_name' ) );
-        $email   = awpcp_get_var( array( 'param' => 'awpcp_sender_email' ) );
-        $message = awpcp_get_var(
+        $name        = awpcp_get_var( array( 'param' => 'awpcp_sender_name' ) );
+        $email       = awpcp_get_var( array( 'param' => 'awpcp_sender_email' ) );
+        $message     = awpcp_get_var(
             array(
                 'param'    => 'awpcp_contact_message',
                 'sanitize' => 'sanitize_textarea_field',
@@ -147,7 +147,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             get_current_user_id(), array( 'public_name', 'user_email' )
         );
 
-        $posted_data['awpcp_sender_name'] = $user_information->public_name;
+        $posted_data['awpcp_sender_name']  = $user_information->public_name;
         $posted_data['awpcp_sender_email'] = $user_information->user_email;
 
         return $posted_data;
@@ -194,7 +194,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     protected function contact_form($form, $errors=array()) {
-        $ad = $this->get_ad();
+        $ad      = $this->get_ad();
         $ad_link = sprintf(
             '<strong><a href="%s">%s</a></strong>',
             url_showad( $ad->ID ),
@@ -203,16 +203,16 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
         $params = array(
             'messages' => $this->messages,
-            'hidden' => array(
-                'a' => 'docontact1',
+            'hidden'   => array(
+                'a'     => 'docontact1',
                 'ad_id' => $ad->ID,
             ),
-            'form' => $form,
-            'errors' => $errors,
-            'ad_link' => $ad_link,
-            'ui' => array(
+            'form'     => $form,
+            'errors'   => $errors,
+            'ad_link'  => $ad_link,
+            'ui'       => array(
                 'disable-sender-fields' => get_awpcp_option( 'reply-to-ad-requires-registration' ),
-                'captcha' => get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ),
+                'captcha'               => get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ),
             ),
         );
 
@@ -224,7 +224,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     protected function process_contact_form() {
         $ad = $this->get_ad();
 
-        $form = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ID ) );
+        $form   = array_merge( $this->get_posted_data(), array( 'ad_id' => $ad->ID ) );
         $errors = array();
 
         if (!$this->validate_posted_data($form, $errors)) {
@@ -232,18 +232,18 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         }
 
         $ad_title = $this->listing_renderer->get_listing_title( $ad );
-        $ad_url = url_showad( $ad->ID );
+        $ad_url   = url_showad( $ad->ID );
 
-        $sender_name = stripslashes($form['awpcp_sender_name']);
+        $sender_name  = stripslashes($form['awpcp_sender_name']);
         $sender_email = stripslashes($form['awpcp_sender_email']);
-        $message = awpcp_strip_html_tags(stripslashes($form['awpcp_contact_message']));
+        $message      = awpcp_strip_html_tags(stripslashes($form['awpcp_contact_message']));
 
         if (get_awpcp_option('usesenderemailinsteadofadmin')) {
             $sender = awpcp_strip_html_tags($sender_name);
-            $from = $sender_email;
+            $from   = $sender_email;
         } else {
             $sender = awpcp_admin_sender_name();
-            $from = awpcp_admin_sender_email_address();
+            $from   = awpcp_admin_sender_email_address();
         }
 
         $replacement = [
@@ -260,8 +260,8 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         if (get_awpcp_option('notify-admin-about-contact-message')) {
             $email = $this->email_helper->prepare_email_from_template_setting( 'contact-form-admin-notification-email-template-x', $replacement );
 
-            $email->to = awpcp_admin_recipient_email_address();
-            $email->from = awpcp_format_email_address( $from, $sender );
+            $email->to                  = awpcp_admin_recipient_email_address();
+            $email->from                = awpcp_format_email_address( $from, $sender );
             $email->headers['Reply-To'] = awpcp_format_email_address( $sender_email, $sender_name );
 
             $result = $email->send();
@@ -279,15 +279,15 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
             $email->body                = awpcp_replace_placeholders( $placeholders, $ad, $email->body, 'reply-to-listing' );
             $email->to                  = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
-            $email->from = awpcp_format_email_address( $from, $sender );
+            $email->from                = awpcp_format_email_address( $from, $sender );
             $email->headers['Reply-To'] = awpcp_format_email_address( $sender_email, $sender_name );
 
             $result = $email->send();
         }
 
         if ( ! $result ) {
-            $this->messages[] = __("There was a problem encountered during the attempt to send your message. Please try again and if the problem persists, please contact the system administrator.",'another-wordpress-classifieds-plugin');
-            return $this->contact_form($form, $errors);
+                $this->messages[] = __("There was a problem encountered during the attempt to send your message. Please try again and if the problem persists, please contact the system administrator.",'another-wordpress-classifieds-plugin');
+                return $this->contact_form($form, $errors);
         }
 
         $view_listing_link = sprintf( '<a href="%s">%s</a>', $ad_url, $ad_title );

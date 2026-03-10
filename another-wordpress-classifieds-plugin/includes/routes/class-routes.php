@@ -9,18 +9,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class AWPCP_Routes {
 
-    private $admin_pages = array();
+    private $admin_pages  = array();
     private $ajax_actions = array( 'private' => array(), 'anonymous' => array() );
 
     public function add_admin_page( $menu_title, $page_title, $slug, $handler, $capability, $menu_icon = null, $position = 27 ) {
         $admin_page = $this->get_or_create_admin_page( $slug );
 
         $admin_page->menu_title = $menu_title;
-        $admin_page->title = $page_title;
-        $admin_page->slug = $slug;
-        $admin_page->handler = $handler;
+        $admin_page->title      = $page_title;
+        $admin_page->slug       = $slug;
+        $admin_page->handler    = $handler;
         $admin_page->capability = $capability;
-        $admin_page->menu_icon = $menu_icon;
+        $admin_page->menu_icon  = $menu_icon;
         $admin_page->position   = $position;
 
         return $slug;
@@ -28,8 +28,8 @@ class AWPCP_Routes {
 
     private function get_or_create_admin_page( $slug ) {
         if ( ! isset( $this->admin_pages[ $slug ] ) ) {
-            $this->admin_pages[ $slug ] = new stdClass();
-            $this->admin_pages[ $slug ]->slug = $slug;
+            $this->admin_pages[ $slug ]           = new stdClass();
+            $this->admin_pages[ $slug ]->slug     = $slug;
             $this->admin_pages[ $slug ]->subpages = array();
         }
 
@@ -60,13 +60,13 @@ class AWPCP_Routes {
         $subpage = new stdClass();
 
         $subpage->menu_title = $menu_title;
-        $subpage->title = $page_title;
-        $subpage->slug = $slug;
-        $subpage->handler = $handler;
+        $subpage->title      = $page_title;
+        $subpage->slug       = $slug;
+        $subpage->handler    = $handler;
         $subpage->capability = $capability;
-        $subpage->sections = array();
-        $subpage->priority = $priority;
-        $subpage->type = $type;
+        $subpage->sections   = array();
+        $subpage->priority   = $priority;
+        $subpage->type       = $type;
 
         return $subpage;
     }
@@ -77,9 +77,9 @@ class AWPCP_Routes {
         if ( ! is_null( $subpage ) ) {
             $section = new stdClass();
 
-            $section->param = $section_param;
-            $section->value = $param_value;
-            $section->slug = $section_slug;
+            $section->param   = $section_param;
+            $section->value   = $param_value;
+            $section->slug    = $section_slug;
             $section->handler = $handler;
 
             $subpage->sections[ $section_slug ] = $section;
@@ -126,13 +126,13 @@ class AWPCP_Routes {
         $custom_page = new stdClass();
 
         $custom_page->menu_title = $menu_title;
-        $custom_page->slug = $slug;
+        $custom_page->slug       = $slug;
         $custom_page->capability = $capability;
-        $custom_page->priority = $priority;
-        $custom_page->url = $url;
-        $custom_page->type = 'custom-link';
+        $custom_page->priority   = $priority;
+        $custom_page->url        = $url;
+        $custom_page->type       = 'custom-link';
 
-        $admin_page = $this->get_or_create_admin_page( $parent_page );
+        $admin_page                    = $this->get_or_create_admin_page( $parent_page );
         $admin_page->subpages[ $slug ] = $custom_page;
 
         return "custom:$parent_page::$slug::$url";
@@ -145,7 +145,7 @@ class AWPCP_Routes {
     private function add_ajax_action( $type, $action_name, $action_handler ) {
         $action = new stdClass();
 
-        $action->name = $action_name;
+        $action->name    = $action_name;
         $action->handler = $action_handler;
 
         $this->ajax_actions[ $type ][ $action->name ] = $action;

@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2026-02-10 07:13:16+00:00\n"
+"POT-Creation-Date: 2026-03-10 07:58:32+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/"
@@ -81,7 +81,7 @@ msgstr "Attributs"
 msgid "Categories"
 msgstr "Catégories"
 
-#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:853
+#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:852
 msgid "Featured Ads"
 msgstr "Annonces mises en avant"
 
@@ -677,11 +677,16 @@ msgstr "Tout semble fonctionner correctement."
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:28
 #: functions.php:535
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:108
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:62
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:73
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:77
 #: includes/frontend/class-generate-listing-preview-ajax-handler.php:73
 #: includes/frontend/class-generate-listing-preview-ajax-handler.php:77
-#: includes/frontend/class-save-listing-information-ajax-handler.php:114
-#: includes/frontend/class-update-listing-order-ajax-handler.php:73
+#: includes/frontend/class-save-listing-information-ajax-handler.php:121
+#: includes/frontend/class-save-listing-information-ajax-handler.php:125
+#: includes/frontend/class-update-listing-order-ajax-handler.php:79
+#: includes/frontend/class-update-listing-order-ajax-handler.php:86
+#: includes/frontend/class-update-submit-listing-sections-ajax-handler.php:74
+#: includes/views/class-users-autocomplete-ajax-handler.php:24
 msgid "You are not authorized to perform this action."
 msgstr "Vous n'êtes pas autorisé à effectuer cette action."
 
@@ -3734,7 +3739,7 @@ msgstr ""
 "La catégorie n'a pas pu être supprimée car une erreur s'est produite lors de "
 "la tentative de suppression de l'une des listes associées: <message d'erreur>"
 
-#: includes/class-awpcp.php:779
+#: includes/class-awpcp.php:778
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3743,88 +3748,88 @@ msgstr ""
 "n’est pas activée sur votre site. Veuillez corriger cela ou vous mettre en "
 "relation avec votre hébergeur."
 
-#: includes/class-awpcp.php:780
+#: includes/class-awpcp.php:779
 #: includes/placeholders/class-placeholders-installation-verifier.php:67
 msgid "Warning"
 msgstr "Avertissement"
 
-#: includes/class-awpcp.php:797
+#: includes/class-awpcp.php:796
 msgid "Attachments"
 msgstr "Pièces jointes"
 
-#: includes/class-awpcp.php:804
+#: includes/class-awpcp.php:803
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:811
+#: includes/class-awpcp.php:810
 msgid "BuddyPress Listings"
 msgstr "Listes BuddyPress"
 
-#: includes/class-awpcp.php:818
+#: includes/class-awpcp.php:817
 msgid "Campaign Manager"
 msgstr "Gestionnaire de campagne"
 
-#: includes/class-awpcp.php:825
+#: includes/class-awpcp.php:824
 msgid "Category Icons"
 msgstr "Icônes des rubriques"
 
-#: includes/class-awpcp.php:832
+#: includes/class-awpcp.php:831
 msgid "Comments & Ratings"
 msgstr "Commentaires & Notations"
 
-#: includes/class-awpcp.php:839
+#: includes/class-awpcp.php:838
 msgid "Coupons/Discount"
 msgstr "Coupons/Remises"
 
-#: includes/class-awpcp.php:846
+#: includes/class-awpcp.php:845
 msgid "Extra Fields"
 msgstr "Champs supplémentaires"
 
-#: includes/class-awpcp.php:860
+#: includes/class-awpcp.php:859
 msgid "Fee per Category"
 msgstr "Participation par rubrique"
 
-#: includes/class-awpcp.php:867
+#: includes/class-awpcp.php:866
 msgid "Mark as Sold"
 msgstr "Marqué comme Vendu"
 
-#: includes/class-awpcp.php:874
+#: includes/class-awpcp.php:873
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:881
+#: includes/class-awpcp.php:880
 msgid "Regions Control"
 msgstr "Contrôle des régions"
 
-#: includes/class-awpcp.php:888
+#: includes/class-awpcp.php:887
 msgid "RSS"
 msgstr "Flux RSS"
 
-#: includes/class-awpcp.php:895
+#: includes/class-awpcp.php:894
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:902
+#: includes/class-awpcp.php:901
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:909 templates/components/media-manager.tpl.php:54
+#: includes/class-awpcp.php:908 templates/components/media-manager.tpl.php:54
 msgid "Videos"
 msgstr "Vidéos"
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:916
 msgid "XML Sitemap"
 msgstr "Plan du site XML"
 
-#: includes/class-awpcp.php:925
+#: includes/class-awpcp.php:924
 msgid "ZIP Code Search Module"
 msgstr "Module de recherche de code postal"
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1459
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
-#: includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1460
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:277
 #: includes/frontend/class-edit-listing-page.php:354
@@ -3832,40 +3837,40 @@ msgstr "Ce champ est obligatoire."
 msgid "Please enter a valid email address."
 msgstr "Veuillez saisir une adresse e-mail valide."
 
-#: includes/class-awpcp.php:1462 includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1461 includes/class-awpcp.php:1462
 msgid "Please enter a valid URL."
 msgstr "Veuillez indiquer une URL valide."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1463
 msgid "Please enter a valid number."
 msgstr "Veuillez saisir un nombre valide."
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1464
 msgid "Please enter a valid amount."
 msgstr "Veuillez saisir un montant valide."
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1465
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 "Vous avez atteint le nombre maximum de catégories autorisées pour le forfait "
 "sélectionné."
 
-#: includes/class-awpcp.php:1485
+#: includes/class-awpcp.php:1484
 msgid "There are files currently being uploaded."
 msgstr "Il y a des fichiers en cours de téléchargement."
 
-#: includes/class-awpcp.php:1486
+#: includes/class-awpcp.php:1485
 msgid "There are files pending to be uploaded."
 msgstr "Il y a des fichiers en attente de téléchargement."
 
-#: includes/class-awpcp.php:1487
+#: includes/class-awpcp.php:1486
 msgid "You haven't uploaded any images or files."
 msgstr "Vous n’avez téléchargé aucune image ni aucun fichier."
 
-#: includes/class-awpcp.php:1556 includes/class-awpcp.php:1564
-#: includes/class-awpcp.php:1572 includes/class-awpcp.php:1647
-#: includes/class-awpcp.php:1655 includes/class-awpcp.php:1663
+#: includes/class-awpcp.php:1555 includes/class-awpcp.php:1563
+#: includes/class-awpcp.php:1571 includes/class-awpcp.php:1646
+#: includes/class-awpcp.php:1654 includes/class-awpcp.php:1662
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:11
 #: templates/privacy-policy.tpl.php:12
 #, fuzzy
@@ -4262,11 +4267,11 @@ msgstr ""
 "Le lien que vous avez utilisé a déjà expiré. Veuillez vérifier votre email "
 "pour recevoir un lien avec un nouveau jeton d'accès."
 
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:54
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:65
 msgid "No listing ID was provided."
 msgstr "Aucun identifiant d'inscription n'a été fourni."
 
-#: includes/frontend/class-execute-listing-action-ajax-handler.php:66
+#: includes/frontend/class-execute-listing-action-ajax-handler.php:81
 msgid "Unknown action: {action}"
 msgstr "Action inconnue: {action}"
 
@@ -4315,7 +4320,7 @@ msgstr ""
 "Une erreur est survenue durant la validation de la réponse reCAPTCHA. "
 "<reCAPTCHA-error>"
 
-#: includes/frontend/class-save-listing-information-ajax-handler.php:132
+#: includes/frontend/class-save-listing-information-ajax-handler.php:143
 msgid "There is no payment transaction associated with this request. Aborting."
 msgstr ""
 "Aucune transaction de paiement n'est associée à cette demande. Abandonné."
@@ -4393,14 +4398,14 @@ msgid ""
 "the email address used to post the listing."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:80
+#: includes/frontend/class-update-listing-order-ajax-handler.php:90
 msgid ""
 "The payment information for the specified ad cannot be modified at this time."
 msgstr ""
 "Les informations de paiement pour l'annonce spécifiée ne peuvent pas être "
 "modifiées pour le moment."
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:86
+#: includes/frontend/class-update-listing-order-ajax-handler.php:96
 msgid "The specified transaction doesn't exist."
 msgstr "La transaction spécifiée n'existe pas."
 
@@ -4921,17 +4926,18 @@ msgstr "Renouveler"
 msgid "You can use this button to renew your ad."
 msgstr ""
 
-#: includes/media/class-attachment-action-ajax-handler.php:47
+#: includes/media/class-attachment-action-ajax-handler.php:68
 msgid "There was an error trying to update the database."
 msgstr "Il y a eu une erreur en essayant de mettre à jour la base de données."
 
-#: includes/media/class-attachment-action-ajax-handler.php:58
+#: includes/media/class-attachment-action-ajax-handler.php:79
+#: includes/media/class-attachment-action-ajax-handler.php:83
 #, fuzzy
 msgid "You are not allowed to perform this action."
 msgstr "Vous n'êtes pas autorisé à effectuer cette action."
 
-#. translators: %d is the listing ID
-#: includes/media/class-attachment-action-ajax-handler.php:63
+#. translators: %d is the listing ID.
+#: includes/media/class-attachment-action-ajax-handler.php:88
 msgid "The specified file is not associated with Listing with ID %d."
 msgstr "Le fichier spécifié n’est pas associée à la liste avec l’ID %d."
 
@@ -5106,15 +5112,15 @@ msgid "New media is awaiting approval in listing: <listing-title>"
 msgstr ""
 "Le nouveau média est attente d’approbation dans l'annonce: <listing-title>"
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:49
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:52
 msgid "Trying to upload a thumbnail for an unknown file."
 msgstr "Tentative de chargement d’une vignette pour un fichier inconnu."
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:55
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:58
 msgid "You are not authorized to upload thumbnails."
 msgstr "Vous n'êtes pas autorisé à télécharger des vignettes."
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:79
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:82
 msgid ""
 "There was an error trying to store the uploaded thumbnail for file "
 "<filename>."
@@ -5122,11 +5128,11 @@ msgstr ""
 "Une erreur est intervenue lors de l’enregistrement de la Vignette chargée "
 "pour le fichier <filename>."
 
-#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:89
+#: includes/media/class-upload-generated-thumbnail-ajax-handler.php:92
 msgid "No thumbnail data found."
 msgstr "Aucune donnée trouvée pour les Vignettes."
 
-#: includes/media/class-upload-listing-media-ajax-handler.php:47
+#: includes/media/class-upload-listing-media-ajax-handler.php:72
 msgid "You are not authorized to upload files."
 msgstr "Vous n’êtes pas autorisé à charger des fichiers."
 
@@ -11321,17 +11327,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Aperçu rapide"
 
-#: includes/class-awpcp.php:1473
+#: includes/class-awpcp.php:1472
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Précedent"
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1473
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Suivant&#x3e;"
 
-#: includes/class-awpcp.php:1480
+#: includes/class-awpcp.php:1479
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"

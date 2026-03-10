@@ -335,6 +335,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
                 mode:           self.mode,
                 // TODO: create, validate and pass this nonce around.
                 nonce: $.AWPCP.get( 'update_submit_listing_sections_nonce' ),
+                edit_nonce: $.AWPCP.get( 'edit_listing_nonce' ),
                 listing: self.getListingId(),
                 transaction_id: self.getTransactionId()
             };

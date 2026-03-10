@@ -196,9 +196,9 @@ function awpcp_payment_failed_email($transaction, $message='') {
 
     // user email
 
-    $mail           = new AWPCP_Email();
-    $mail->to[]     = awpcp_format_recipient_address( $user->user_email, $user->display_name );
-    $mail->subject  = get_awpcp_option('paymentabortedsubjectline');
+    $mail          = new AWPCP_Email();
+    $mail->to[]    = awpcp_format_recipient_address( $user->user_email, $user->display_name );
+    $mail->subject = get_awpcp_option('paymentabortedsubjectline');
 
     $template = AWPCP_DIR . '/frontend/templates/email-abort-payment-user.tpl.php';
     $mail->prepare($template, compact('message', 'user', 'transaction'));
@@ -207,9 +207,9 @@ function awpcp_payment_failed_email($transaction, $message='') {
 
     // admin email
 
-    $mail           = new AWPCP_Email();
-    $mail->to[]     = awpcp_admin_email_to();
-    $mail->subject  = __( 'Customer attempt to pay has failed', 'another-wordpress-classifieds-plugin');
+    $mail          = new AWPCP_Email();
+    $mail->to[]    = awpcp_admin_email_to();
+    $mail->subject = __( 'Customer attempt to pay has failed', 'another-wordpress-classifieds-plugin');
 
     $template = AWPCP_DIR . '/frontend/templates/email-abort-payment-admin.tpl.php';
     $mail->prepare($template, compact('message', 'user', 'transaction'));

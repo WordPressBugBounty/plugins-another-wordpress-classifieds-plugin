@@ -79,7 +79,7 @@ class AWPCP_PaymentSettings {
         );
 
         $direction_options = array(
-            'ASC' => __( 'Ascending', 'another-wordpress-classifieds-plugin' ),
+            'ASC'  => __( 'Ascending', 'another-wordpress-classifieds-plugin' ),
             'DESC' => __( 'Descending', 'another-wordpress-classifieds-plugin' ),
         );
 
@@ -151,14 +151,14 @@ class AWPCP_PaymentSettings {
             'type'        => 'textfield',
             'default'     => '',
             'description' => __( 'Email address for PayPal payments (if running in pay mode and if PayPal is activated).', 'another-wordpress-classifieds-plugin' ),
-            'behavior'   => [
+            'behavior'    => [
                 'enabledIf' => 'activatepaypal',
             ],
             'validation'  => [
                 'required' => [
                     'depends' => 'activatepaypal',
                 ],
-                'email' => [
+                'email'    => [
                     'message' => __( 'Please enter a valid email address.', 'another-wordpress-classifieds-plugin' ),
                 ],
             ],
@@ -176,7 +176,7 @@ class AWPCP_PaymentSettings {
                 esc_html__( 'Merchant ID associated with the PayPal account that will receive the payments. Go to %s to obtain your Merchant ID.', 'another-wordpress-classifieds-plugin' ),
                 '<a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a>'
             ),
-            'behavior'   => [
+            'behavior'    => [
                 'enabledIf' => 'activatepaypal',
             ],
         ] );
@@ -196,12 +196,12 @@ class AWPCP_PaymentSettings {
                 'required' => [
                     'depends' => 'activatepaypal',
                 ],
-                'oneof' => [
+                'oneof'    => [
                     'param'   => $supported_currencies,
                     'message' => $message,
                 ],
             ],
-            'behavior'   => [
+            'behavior'    => [
                 'enabledIf' => 'activatepaypal',
             ],
             'section'     => $key,
@@ -210,7 +210,7 @@ class AWPCP_PaymentSettings {
 
     private function register_2checkout_settings( $settings_manager ) {
         $group = '2checkout-settings';
-        $key = '2checkout';
+        $key   = '2checkout';
 
         $settings_manager->add_settings_subgroup( [
             'id'       => '2checkout-settings',
@@ -234,7 +234,7 @@ class AWPCP_PaymentSettings {
                     'depends' => 'activate2checkout',
                 ],
             ],
-            'behavior'   => [
+            'behavior'    => [
                 'enabledIf' => 'activate2checkout',
             ],
             'section'     => $key,
@@ -251,7 +251,7 @@ class AWPCP_PaymentSettings {
                     'depends' => 'activate2checkout',
                 ],
             ],
-            'behavior'   => [
+            'behavior'    => [
                 'enabledIf' => 'activate2checkout',
             ],
             'description' => __( 'The currency in which you would like to receive your 2Checkout payments', 'another-wordpress-classifieds-plugin' ),
@@ -265,10 +265,10 @@ class AWPCP_PaymentSettings {
         $key = 'credit-system-settings';
 
         $settings_manager->add_settings_subgroup( [
-            'id' => 'credit-system-settings',
-            'name' => __( 'Credit System', 'another-wordpress-classifieds-plugin' ),
+            'id'       => 'credit-system-settings',
+            'name'     => __( 'Credit System', 'another-wordpress-classifieds-plugin' ),
             'priority' => 20,
-            'parent' => 'payment-settings',
+            'parent'   => 'payment-settings',
         ] );
 
         $settings_manager->add_section( 'credit-system-settings' , __( 'Credit System', 'another-wordpress-classifieds-plugin' ), $key, 5, array( $settings_manager, 'section' ) );
@@ -276,7 +276,7 @@ class AWPCP_PaymentSettings {
         $options = array(
             AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY => __( 'Currency', 'another-wordpress-classifieds-plugin' ),
             AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS => __( 'Credits', 'another-wordpress-classifieds-plugin' ),
-            'both' => __( 'Currency & Credits', 'another-wordpress-classifieds-plugin' ),
+            'both'                                        => __( 'Currency & Credits', 'another-wordpress-classifieds-plugin' ),
         );
 
         $settings_manager->add_setting( $key, 'enable-credit-system', __( 'Enable Credit System', 'another-wordpress-classifieds-plugin'), 'checkbox', 0, __( 'The Credit System allows users to purchase credit that can later be used to pay for placing Ads.', 'another-wordpress-classifieds-plugin' ) );
@@ -316,9 +316,9 @@ class AWPCP_PaymentSettings {
 
         if ( isset( $options[ $setting ] ) && ! awpcp_paypal_supports_currency( $options[ $setting ] ) ) {
             $currency_codes = awpcp_paypal_supported_currencies();
-            $message = __( 'There is a problem with the PayPal Currency Code you have entered. It does not match any of the codes in our list of curencies supported by PayPal.', 'another-wordpress-classifieds-plugin' );
-            $message.= '<br/><br/><strong>' . __( 'The available currency codes are', 'another-wordpress-classifieds-plugin' ) . '</strong>:<br/>';
-            $message.= join(' | ', $currency_codes);
+            $message        = __( 'There is a problem with the PayPal Currency Code you have entered. It does not match any of the codes in our list of curencies supported by PayPal.', 'another-wordpress-classifieds-plugin' );
+            $message       .= '<br/><br/><strong>' . __( 'The available currency codes are', 'another-wordpress-classifieds-plugin' ) . '</strong>:<br/>';
+            $message       .= join(' | ', $currency_codes);
             awpcp_flash($message);
 
             $options[$setting] = 'USD';

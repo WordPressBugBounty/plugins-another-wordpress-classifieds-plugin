@@ -9,12 +9,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?><?php
     foreach ($errors as $index => $error) {
-        if (is_numeric($index)) {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo awpcp_print_message($error, array('error'));
+    if (is_numeric($index)) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo awpcp_print_message($error, array('error'));
         } else {
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo awpcp_print_message($error, array('error', 'ghost'));
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo awpcp_print_message($error, array('error', 'ghost'));
         }
     }
 ?>
@@ -72,14 +72,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <?php
     $options = array(
-        'showTextField' => false,
+        'showTextField'           => false,
         'showExistingRegionsOnly' => true,
-        'maxRegions' => ($ui['allow-user-to-search-in-multiple-regions'] ? 10 : 1),
-        'enabled_fields' => array(
+        'maxRegions'              => ($ui['allow-user-to-search-in-multiple-regions'] ? 10 : 1),
+        'enabled_fields'          => array(
             'country' => get_awpcp_option('display_country_field_on_search_form'),
-            'state' => get_awpcp_option('display_state_field_on_search_form'),
+            'state'   => get_awpcp_option('display_state_field_on_search_form'),
             'county'  => get_awpcp_option('display_county_field_on_search_form'),
-            'city' => get_awpcp_option('display_city_field_on_search_form'),
+            'city'    => get_awpcp_option('display_city_field_on_search_form'),
         ),
     );
 

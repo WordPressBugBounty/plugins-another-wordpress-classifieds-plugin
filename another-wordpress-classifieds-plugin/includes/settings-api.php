@@ -22,7 +22,7 @@ class AWPCP_Settings_API {
     private $runtime_settings = array();
 
     public $setting_name = 'awpcp-options';
-    public $options = array();
+    public $options      = array();
 
     /**
      * @var AWPCP_SettingsManager

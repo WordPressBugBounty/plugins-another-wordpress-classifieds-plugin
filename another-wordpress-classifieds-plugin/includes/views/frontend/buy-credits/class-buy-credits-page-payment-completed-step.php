@@ -15,11 +15,11 @@ class AWPCP_BuyCreditsPagePaymentCompletedStep {
 
     public function get( $controller ) {
         $params = array(
-            'payments' => $this->payments,
+            'payments'    => $this->payments,
             'transaction' => $controller->get_transaction(),
-            'messages' => $controller->messages,
-            'url' => $controller->url(),
-            'hidden' => array(
+            'messages'    => $controller->messages,
+            'url'         => $controller->url(),
+            'hidden'      => array(
                 'step' => 'final',
             ),
         );

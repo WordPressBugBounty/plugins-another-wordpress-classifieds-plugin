@@ -18,6 +18,7 @@ function( $, ko, File, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-set-image-as-primary',
                 listing_id: file.listing_id,
                 file_id: file.id
@@ -49,6 +50,7 @@ function( $, ko, File, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-update-file-enabled-status',
                 listing_id: file.listing_id,
                 file_id: file.id,
@@ -67,6 +69,7 @@ function( $, ko, File, settings ) {
 
             $.post( settings.get( 'ajaxurl' ), {
                 nonce: nonce,
+                edit_nonce: settings.get( 'edit_listing_nonce' ),
                 action: 'awpcp-delete-file',
                 listing_id: file.listing_id,
                 file_id: file.id

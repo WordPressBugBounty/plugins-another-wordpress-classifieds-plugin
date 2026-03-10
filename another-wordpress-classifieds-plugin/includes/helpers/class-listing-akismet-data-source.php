@@ -25,11 +25,11 @@ class AWPCP_ListingAkismetDataSource {
 
     public function get_request_data( $listing ) {
         $subject_data = array(
-            'comment_type' => 'comment',
-            'comment_author' => $this->listing_renderer->get_contact_name( $listing ),
+            'comment_type'         => 'comment',
+            'comment_author'       => $this->listing_renderer->get_contact_name( $listing ),
             'comment_author_email' => $this->listing_renderer->get_contact_email( $listing ),
-            'comment_author_url' => $this->listing_renderer->get_website_url( $listing ),
-            'comment_content' => $listing->post_content,
+            'comment_author_url'   => $this->listing_renderer->get_website_url( $listing ),
+            'comment_content'      => $listing->post_content,
         );
 
         if ( isset( $listing->ID ) ) {

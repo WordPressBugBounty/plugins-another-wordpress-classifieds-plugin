@@ -107,9 +107,9 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     protected function search_form($form, $errors=array()) {
         global $hasregionsmodule, $hasextrafieldsmodule;
 
-        $ui['module-extra-fields'] = $hasextrafieldsmodule;
-        $ui['posted-by-field'] = get_awpcp_option('displaypostedbyfield');
-        $ui['price-field'] = get_awpcp_option( 'display_price_field_on_search_form' );
+        $ui['module-extra-fields']                      = $hasextrafieldsmodule;
+        $ui['posted-by-field']                          = get_awpcp_option('displaypostedbyfield');
+        $ui['price-field']                              = get_awpcp_option( 'display_price_field_on_search_form' );
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
         $url_params = wp_parse_args( wp_parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
@@ -124,7 +124,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         unset( $url_params['searchcategory'] );
 
         $action_url = awpcp_current_url();
-        $hidden = array_merge( $url_params, array( 'awpcp-step' => 'dosearch' ) );
+        $hidden     = array_merge( $url_params, array( 'awpcp-step' => 'dosearch' ) );
 
         $params = compact( 'action_url', 'ui', 'form', 'hidden', 'errors' );
 

@@ -30,7 +30,7 @@ class AWPCP_SendEmails {
         $from = awpcp_admin_email_from();
 
         if ( $email_info['notify_expiring'] ) {
-            $renderer = awpcp_listing_renderer();
+            $renderer   = awpcp_listing_renderer();
             $user_email = awpcp_format_recipient_address( $renderer->get_contact_email( $ad) );
             if ( ! empty( $user_email ) ) {
                 $email = new AWPCP_Email();

@@ -48,11 +48,11 @@ class AWPCP_WPError extends AWPCP_Exception {
 
 class AWPCP_RedirectionException extends AWPCP_Exception {
 
-    public $step_name = null;
+    public $step_name      = null;
     public $request_method = null;
 
     public function __construct( $step_name, $request_method ) {
-        $this->step_name = $step_name;
+        $this->step_name      = $step_name;
         $this->request_method = $request_method;
     }
 }
@@ -78,7 +78,7 @@ class AWPCP_DBException extends AWPCP_Exception {
         if ( $database_error ) {
             /* translators: %1$s the message, %2$s the error */
             $template = _x( '%1$s The error was: %2$s.', 'DBException message template', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( $template, $message, $database_error );
+            $message  = sprintf( $template, $message, $database_error );
         }
 
         parent::__construct( $message );

@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         window.awpcp.options = window.awpcp.options || [];
         window.awpcp.options.push( ['save_listing_information_nonce', <?php echo wp_json_encode( $nonces['save_listing_information'] ); ?> ] );
         window.awpcp.options.push( ['clear_listing_information_nonce', <?php echo wp_json_encode( $nonces['clear_listing_information'] ); ?> ] );
+        window.awpcp.options.push( ['edit_listing_nonce', <?php echo wp_json_encode( $nonces['edit_listing'] ); ?> ] );
     /* ]]> */
     </script>
 </div>

@@ -83,7 +83,7 @@ function awpcp_get_category_hierarchy( $category_id, &$categories ) {
 
     while ( $category_id > 0 && isset( $categories[ $category_id ] ) ) {
         $category_parents[] = $categories[ $category_id ];
-        $category_id = $categories[ $category_id ]->parent;
+        $category_id        = $categories[ $category_id ]->parent;
     }
 
     return $category_parents;
@@ -121,8 +121,8 @@ function awpcp_render_categories_dropdown_option( $category, $selected_categorie
     $category_name = esc_html( wp_unslash( $category->name ) );
 
     $attributes = [
-        'class'     => 'dropdownparentcategory',
-        'value'     => esc_attr( $category->term_id ),
+        'class' => 'dropdownparentcategory',
+        'value' => esc_attr( $category->term_id ),
     ];
 
     if ( $category->parent ) {
@@ -183,11 +183,11 @@ function awpcp_count_listings_in_category( $category_id ) {
 
     $listings_count = awpcp_listings_collection()->count_enabled_listings( array(
         'classifieds_query' => array('context' => 'public-listings'),
-        'tax_query' => array(
+        'tax_query'         => array(
             array(
                 'taxonomy' => 'awpcp_listing_category',
-                'field' => 'term_id',
-                'terms' => array_merge( array( $category_id ), $children_categories ),
+                'field'    => 'term_id',
+                'terms'    => array_merge( array( $category_id ), $children_categories ),
                 'operator' => 'IN',
             ),
         ),

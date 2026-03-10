@@ -11,8 +11,8 @@ class AWPCP_PaymentsAPI {
 
     private $request = null;
 
-    private $terms = null;
-    private $types = array();
+    private $terms   = null;
+    private $types   = array();
     private $methods = array();
 
     private $cache = array();
@@ -56,9 +56,9 @@ class AWPCP_PaymentsAPI {
             return awpcp_get_url_with_page_permastruct( "/awpcpx/payments/$action/{$transaction->id}" );
         } else {
             $params = array(
-                'awpcpx' => true,
-                'module' => 'payments',
-                'action' => $action,
+                'awpcpx'    => true,
+                'module'    => 'payments',
+                'action'    => $action,
                 'awpcp-txn' => $transaction->id,
             );
             return add_query_arg( urlencode_deep( $params ), home_url('index.php'));
@@ -236,7 +236,7 @@ class AWPCP_PaymentsAPI {
 
     public function get_transaction_payment_term($transaction) {
         $term_type = $transaction->get('payment-term-type');
-        $term_id = $transaction->get('payment-term-id');
+        $term_id   = $transaction->get('payment-term-id');
 
         return $this->get_payment_term($term_id, $term_type);
     }
@@ -253,7 +253,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function get_user_payment_terms($user_id) {
-        $terms = array();
+        $terms            = array();
         foreach ($this->types as $slug => $type)
             $terms[$slug] = $type->get_user_payment_terms($user_id);
         return $terms;
@@ -280,7 +280,7 @@ class AWPCP_PaymentsAPI {
 
     public function payment_term_requires_payment($term) {
         $credits = intval($this->credit_system_enabled() ? $term->credits : 0);
-        $money = floatval($term->price);
+        $money   = floatval($term->price);
 
         return $money > 0 || $credits > 0;
     }
@@ -331,7 +331,7 @@ class AWPCP_PaymentsAPI {
 
     private function get_transaction_with_method( $method_name ) {
         if ( is_null( $this->current_transaction ) ) {
-            $transaction_id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
+            $transaction_id            = awpcp_get_var( array( 'param' => 'transaction_id' ) );
             $this->current_transaction = call_user_func( array( 'AWPCP_Payment_Transaction', $method_name ), $transaction_id );
         }
 
@@ -758,17 +758,17 @@ class AWPCP_PaymentsAPI {
             return '';
 
         $credit_plans = $this->get_credit_plans();
-        $selected = is_null($transaction) ? '' : $transaction->get('credit-plan');
+        $selected     = is_null($transaction) ? '' : $transaction->get('credit-plan');
 
         if ( empty( $credit_plans ) ) {
             return '';
         }
 
         $column_names = array(
-            'plan' => _x( 'Plan', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
+            'plan'        => _x( 'Plan', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
             'description' => _x( 'Description', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
-            'credits' => _x( 'Credits', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
-            'price' => _x( 'Price', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
+            'credits'     => _x( 'Credits', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
+            'price'       => _x( 'Price', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
         );
 
         $file = AWPCP_DIR . '/frontend/templates/payments-credit-plans-table.tpl.php';
@@ -829,7 +829,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function render_payment_methods($transaction) {
-        $payment_methods = $this->get_payment_methods();
+        $payment_methods         = $this->get_payment_methods();
         $selected_payment_method = $transaction->get( 'payment-method' );
 
         if ( count( $payment_methods ) === 1 ) {
@@ -871,14 +871,14 @@ class AWPCP_PaymentsAPI {
 
     public function render_checkout_page($transaction, $hidden=array()) {
         $payment_method = $this->get_transaction_payment_method($transaction);
-        $attempts = awpcp_get_var( array( 'param' => 'attempts', 'default' => 0 ), 'post' );
+        $attempts       = awpcp_get_var( array( 'param' => 'attempts', 'default' => 0 ), 'post' );
 
         $result = awpcp_array_data($transaction->id, array(), $this->cache);
         $html   = '';
 
         if (is_null($payment_method) || isset($result['errors'])) {
             $transaction_errors = awpcp_array_data('errors', array(), $result);
-            $file = AWPCP_DIR . '/frontend/templates/payments-checkout-page.tpl.php';
+            $file               = AWPCP_DIR . '/frontend/templates/payments-checkout-page.tpl.php';
             if ( $this->echo ) {
                 include $file;
                 return;
@@ -898,7 +898,7 @@ class AWPCP_PaymentsAPI {
         $integration = $payment_method->get_integration_type();
         if ( $integration === AWPCP_PaymentGateway::INTEGRATION_BUTTON ) {
             $message = _x('Please use the button below to complete your payment.', 'checkout-payment page', 'another-wordpress-classifieds-plugin');
-            $html = $this->render_checkout_payment_template($result['output'], $message, $transaction);
+            $html    = $this->render_checkout_payment_template($result['output'], $message, $transaction);
             if ( $this->echo ) {
                 return;
             }
@@ -955,28 +955,28 @@ class AWPCP_PaymentsAPI {
 
         } elseif ($transaction->payment_is_not_required()) {
             $title = __( 'Payment Not Required', 'another-wordpress-classifieds-plugin');
-            $text = __( 'No Payment is required for this transaction. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
+            $text  = __( 'No Payment is required for this transaction. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
 
             $success = true;
 
         } elseif ($transaction->payment_is_failed()) {
             $title = __( 'Payment Failed', 'another-wordpress-classifieds-plugin');
-            $text = __("Your Payment has been processed successfully. However, the payment gateway didn't return a payment status that allows us to continue with the process. Please contact the website administrator to solve this issue.", 'another-wordpress-classifieds-plugin');
+            $text  = __("Your Payment has been processed successfully. However, the payment gateway didn't return a payment status that allows us to continue with the process. Please contact the website administrator to solve this issue.", 'another-wordpress-classifieds-plugin');
 
         } elseif ($transaction->payment_is_canceled()) {
             $title = __( 'Payment Canceled', 'another-wordpress-classifieds-plugin');
-            $text = __("The Payment transaction was canceled. You can't post an Ad this time.", 'another-wordpress-classifieds-plugin');
+            $text  = __("The Payment transaction was canceled. You can't post an Ad this time.", 'another-wordpress-classifieds-plugin');
 
         } elseif ( $transaction->payment_is_not_verified() ) {
             $title = __( 'Waiting on Confirmation', 'another-wordpress-classifieds-plugin' );
-            $text = __( 'The payment gateway is taking a bit longer than expected to confirm your payment. Please wait a few seconds while we verify the transaction. The page will reload automatically.', 'another-wordpress-classifieds-plugin' );
+            $text  = __( 'The payment gateway is taking a bit longer than expected to confirm your payment. Please wait a few seconds while we verify the transaction. The page will reload automatically.', 'another-wordpress-classifieds-plugin' );
         } else {
             $title = __( 'Payment Error', 'another-wordpress-classifieds-plugin');
-            $text = __("There was an error processing your payment. The payment status couldn't be found. Please contact the website admin to solve this issue.", 'another-wordpress-classifieds-plugin');
+            $text  = __("There was an error processing your payment. The payment status couldn't be found. Please contact the website admin to solve this issue.", 'another-wordpress-classifieds-plugin');
         }
 
         $redirect = $transaction->get('redirect');
-        $hidden = array_merge(
+        $hidden   = array_merge(
             $transaction->get( 'redirect-data' ),
             array(
                 'payment_status' => $transaction->payment_status,

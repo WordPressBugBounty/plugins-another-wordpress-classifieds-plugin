@@ -41,10 +41,10 @@ class AWPCP_Search_Widget extends WP_Widget {
         return apply_filters(
             'awpcp-search-listings-widget-defaults',
             array(
-                'title' => '',
-                'subtitle' => '',
-                'show_keyword' => 1,
-                'show_by' => 1,
+                'title'         => '',
+                'subtitle'      => '',
+                'show_keyword'  => 1,
+                'show_by'       => 1,
                 'show_category' => 1,
             )
         );
@@ -82,20 +82,20 @@ class AWPCP_Search_Widget extends WP_Widget {
         }
 
         $label = awpcp_html_label(array(
-            'text' => $label,
+            'text'       => $label,
             'attributes' => array(
                 'class' => 'awpcp-block-label',
-                'for' => $id,
+                'for'   => $id,
             ),
         ));
 
         $select = awpcp_html_select(array(
-            'attributes' => array(
-                'id' => $id,
+            'attributes'    => array(
+                'id'   => $id,
                 'name' => $name,
             ),
             'current-value' => $selected,
-            'options' => array_merge( array( '' => $default ), $options ),
+            'options'       => array_merge( array( '' => $default ), $options ),
         ));
 
         return $label . $select;
@@ -143,19 +143,19 @@ class AWPCP_Search_Widget extends WP_Widget {
         if ($instance['show_category'] == 1) {
             wp_enqueue_style( 'select2' );
 
-            $label = __( 'Search by Category', 'another-wordpress-classifieds-plugin');
-            $name = 'searchcategory';
+            $label    = __( 'Search by Category', 'another-wordpress-classifieds-plugin');
+            $name     = 'searchcategory';
             $selected = awpcp_get_var( array( 'param' => $name, 'default' => null ) );
 
             echo '<div class="awpcp-form-field">';
             awpcp_categories_selector()->show(
                 array(
-                    'context' => 'search',
+                    'context'  => 'search',
                     'selected' => $selected,
                     'required' => false,
                     'multiple' => true,
-                    'name' => $name,
-                    'label' => $label,
+                    'name'     => $name,
+                    'label'    => $label,
                 )
             );
             echo '</div>';
@@ -172,11 +172,11 @@ class AWPCP_Search_Widget extends WP_Widget {
     }
 
     public function update( $new_instance, $old_instance ) {
-        $instance = $old_instance;
-        $instance['title'] = wp_strip_all_tags( $new_instance['title'] );
-        $instance['subtitle'] = wp_strip_all_tags( $new_instance['subtitle'] );
-        $instance['show_keyword'] = absint( $new_instance['show_keyword'] );
-        $instance['show_by'] = absint( $new_instance['show_by'] );
+        $instance                  = $old_instance;
+        $instance['title']         = wp_strip_all_tags( $new_instance['title'] );
+        $instance['subtitle']      = wp_strip_all_tags( $new_instance['subtitle'] );
+        $instance['show_keyword']  = absint( $new_instance['show_keyword'] );
+        $instance['show_by']       = absint( $new_instance['show_by'] );
         $instance['show_category'] = absint( $new_instance['show_category'] );
         return apply_filters( 'awpcp-search-listings-widget-update-widget', $instance, $new_instance );
     }

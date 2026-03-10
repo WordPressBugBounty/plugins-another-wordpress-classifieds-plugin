@@ -88,7 +88,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         if ( is_array( $args['where'] ) ) {
             $original_where = $args['where'];
             $args['where']  = $args['where'][0];
-            $query_vars = array_merge( $query_vars, array_slice( $original_where, 1 ) );
+            $query_vars     = array_merge( $query_vars, array_slice( $original_where, 1 ) );
         }
 
         if ( $fields === 'count' ) {

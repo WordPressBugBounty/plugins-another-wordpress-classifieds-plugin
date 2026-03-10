@@ -3,11 +3,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- $payments->show_payment_completed_page_title( $transaction ); ?></h2>
+$payments->show_payment_completed_page_title( $transaction ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        awpcp_listing_form_steps_componponent()->show( 'payment', compact( 'transaction' ) );
+    awpcp_listing_form_steps_componponent()->show( 'payment', compact( 'transaction' ) );
     }
 ?>
 

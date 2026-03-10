@@ -29,7 +29,7 @@ class AWPCP_AdminPanel {
         $this->upgrade_tasks = $upgrade_tasks;
 
         $this->title = awpcp_admin_page_title();
-        $this->menu = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
+        $this->menu  = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
 
         // not a page, but an extension to the Users table
         $this->users = new AWPCP_AdminUsers();
@@ -131,12 +131,12 @@ class AWPCP_AdminPanel {
     }
 
     private function configure_routes_for_admin_subpages( $parent_page, $router ) {
-        $admin_capability = awpcp_admin_capability();
+        $admin_capability     = awpcp_admin_capability();
         $moderator_capability = awpcp_roles_and_capabilities()->get_moderator_capability();
 
         add_submenu_page( $parent_page, 'AWPCP', __( 'Dashboard', 'another-wordpress-classifieds-plugin' ), $admin_capability, $parent_page, $router );
 
-        $post_type    = awpcp()->container['listing_post_type'];
+        $post_type = awpcp()->container['listing_post_type'];
         add_submenu_page( $parent_page, 'AWPCP', __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $moderator_capability, 'edit.php?post_type=' . $post_type );
 
         $router->add_admin_subpage(
@@ -405,7 +405,7 @@ class AWPCP_AdminPanel {
         }
 
         $show_quick_start_quide_notice = get_awpcp_option( 'show-quick-start-guide-notice' );
-        $show_drip_autoresponder = get_awpcp_option( 'show-drip-autoresponder' );
+        $show_drip_autoresponder       = get_awpcp_option( 'show-drip-autoresponder' );
 
         /**
          * Filters whether to show the quick start guide notice in the admin area.
@@ -525,8 +525,8 @@ class AWPCP_AdminPanel {
         global $wpdb;
 
         $view_categories_option = 'view-categories-page-name';
-        $view_categories = sanitize_title( awpcp_get_page_name( $view_categories_option ) );
-        $view_categories_url = awpcp_get_view_categories_url();
+        $view_categories        = sanitize_title( awpcp_get_page_name( $view_categories_option ) );
+        $view_categories_url    = awpcp_get_view_categories_url();
 
         $duplicates = array();
 
@@ -541,7 +541,7 @@ class AWPCP_AdminPanel {
                 '<a href="%s"><strong>%s</strong></a>',
                 add_query_arg(
                     array(
-                        'post' => $post->ID,
+                        'post'   => $post->ID,
                         'action' => 'edit',
                     ),
                     admin_url( 'post.php' )
@@ -594,7 +594,7 @@ class AWPCP_AdminPanel {
 
         if ( ! empty( $domain ) ) {
             $domain_position = strpos( $full_url, $domain );
-            $url = substr( $full_url, $domain_position + strlen( $domain ) );
+            $url             = substr( $full_url, $domain_position + strlen( $domain ) );
         } else {
             $url = $full_url;
         }
@@ -661,8 +661,8 @@ class AWPCP_AdminPanel {
     public function maybe_highlight_menu() {
         global $post;
 
-        $post_type = awpcp()->container['listing_post_type'];
-        $selected_post = awpcp_get_var( array( 'param' => 'post_type' ) );
+        $post_type         = awpcp()->container['listing_post_type'];
+        $selected_post     = awpcp_get_var( array( 'param' => 'post_type' ) );
         $is_single_listing = $post_type === $selected_post || ( is_object( $post ) && $post_type === $post->post_type );
 
         if ( ! $is_single_listing ) {
@@ -685,7 +685,7 @@ class AWPCP_AdminPanel {
 function checkifclassifiedpage() {
     global $wpdb;
 
-    $id = awpcp_get_page_id_by_ref( 'main-page-name' );
+    $id      = awpcp_get_page_id_by_ref( 'main-page-name' );
     $page_id = intval(
         $wpdb->get_var(
             $wpdb->prepare(
@@ -701,7 +701,7 @@ function checkifclassifiedpage() {
 function awpcp_admin_categories_render_category_items($categories, &$children, $start, $per_page, &$count, $parent=0, $level=0) {
     $categories_collection = awpcp_categories_collection();
 
-    $end = $start + $per_page;
+    $end   = $start + $per_page;
     $items = array();
 
     foreach ( $categories as $category ) {
@@ -712,7 +712,7 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
         if ( $count == $start && $category->parent > 0 ) {
             try {
                 $category_parent = $categories_collection->get( $category->parent );
-                $items[] = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
+                $items[]         = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
 
             // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             } catch ( AWPCP_Exception $e ) {
@@ -728,7 +728,7 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 
         if ( isset( $children[ $category->term_id ] ) ) {
             $_children = awpcp_admin_categories_render_category_items( $categories, $children, $start, $per_page, $count, $category->term_id, $level + 1 );
-            $items = array_merge( $items, $_children );
+            $items     = array_merge( $items, $_children );
         }
     }
 
@@ -743,17 +743,17 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
     }
 
     if ( isset( $category_icon ) && !empty( $category_icon ) && function_exists( 'awpcp_category_icon_url' )  ) {
-        $caticonsurl = awpcp_category_icon_url( $category_icon );
+        $caticonsurl     = awpcp_category_icon_url( $category_icon );
         $thecategoryicon = '<img style="vertical-align:middle;margin-right:5px;max-height:16px" src="%s" alt="%s" border="0" />';
         $thecategoryicon = sprintf( $thecategoryicon, esc_url( $caticonsurl ), esc_attr( $category->name ) );
     } else {
         $thecategoryicon = '';
     }
 
-    $params = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->term_id );
+    $params             = array( 'page' => 'awpcp-admin-categories', 'cat_ID' => $category->term_id );
     $admin_listings_url = add_query_arg( urlencode_deep( $params ), admin_url( 'admin.php' ) );
 
-    $thecategory_parent_id = $category->parent;
+    $thecategory_parent_id   = $category->parent;
     $thecategory_parent_name = stripslashes(get_adparentcatname($thecategory_parent_id));
     $thecategory_order       = intval( get_term_meta( $category->term_id, '_awpcp_order', true ) );
     $thecategory_name        = sprintf(
@@ -766,20 +766,20 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
     $totaladsincat = total_ads_in_cat( $category->term_id );
 
-    $params = array( 'cat_ID' => $category->term_id, 'offset' => $start, 'results' => $per_page );
+    $params               = array( 'cat_ID' => $category->term_id, 'offset' => $start, 'results' => $per_page );
     $admin_categories_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_categories_url() );
 
     if ($hascaticonsmodule == 1 ) {
-        $url = esc_url( add_query_arg( 'action', 'managecaticon', $admin_categories_url ) );
+        $url           = esc_url( add_query_arg( 'action', 'managecaticon', $admin_categories_url ) );
         $managecaticon = "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"" . __("Manage Category Icon", 'another-wordpress-classifieds-plugin') . "\"><i class=\"fa fa-wrench\"></i></a>";
     } else {
         $managecaticon = '';
     }
 
-    $awpcpeditcategoryword = __("Edit Category",'another-wordpress-classifieds-plugin');
+    $awpcpeditcategoryword   = __("Edit Category",'another-wordpress-classifieds-plugin');
     $awpcpdeletecategoryword = __("Delete Category",'another-wordpress-classifieds-plugin');
 
-    $row = '<tr>';
+    $row  = '<tr>';
     $row .= '<td style="padding:5px;text-align:center;">';
     $row .= '<label class="screen-reader-text" for="awpcp-category-select-' . esc_attr( $category->term_id ) . '">';
     $row .= esc_html( str_replace( '{category_name}', $thecategory_name, __( 'Select {category_name}', 'another-wordpress-classifieds-plugin' ) ) );
@@ -787,17 +787,17 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
     $row .= '<input id="awpcp-category-select-' . esc_attr( $category->term_id ) . '" type="checkbox" name="category_to_delete_or_move[]" value="' . esc_attr( $category->term_id ) . '" />';
     $row .= '</td>';
     $row .= '<td style="font-weight:normal; text-align: center;">' . $category->term_id . '</td>';
-    $row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_name ($totaladsincat)</td>";
-    $row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_parent_name</td>";
-    $row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
-    $row.= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
-    $url = esc_url( add_query_arg( 'awpcp-action', 'edit-category', $admin_categories_url ) );
-    $row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fa fa-pen fa-pencil\"></i></a>";
-    $url = esc_url( add_query_arg( 'awpcp-action', 'delete-category', $admin_categories_url ) );
-    $row.= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fa fa-trash-alt fa-trash\"></i></a>";
-    $row.= $managecaticon;
-    $row.= "</td>";
-    $row.= "</tr>";
+    $row .= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_name ($totaladsincat)</td>";
+    $row .= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_parent_name</td>";
+    $row .= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_order</td>";
+    $row .= "<td style=\"border-bottom:1px dotted #dddddd;font-size:smaller;font-weight:normal;\">";
+    $url  = esc_url( add_query_arg( 'awpcp-action', 'edit-category', $admin_categories_url ) );
+    $row .= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpeditcategoryword\"><i class=\"fa fa-pen fa-pencil\"></i></a>";
+    $url  = esc_url( add_query_arg( 'awpcp-action', 'delete-category', $admin_categories_url ) );
+    $row .= "<a class=\"awpcp-action-button button\" href=\"$url\" title=\"$awpcpdeletecategoryword\"><i class=\"fa fa-trash-alt fa-trash\"></i></a>";
+    $row .= $managecaticon;
+    $row .= "</td>";
+    $row .= "</tr>";
 
     return $row;
 }
@@ -815,7 +815,7 @@ function awpcp_pages() {
 
 function awpcp_subpages() {
     $pages = array(
-        'show-ads-page-name' => array(
+        'show-ads-page-name'    => array(
             _x( 'Show Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPSHOWAD]',
         ),
@@ -823,23 +823,23 @@ function awpcp_subpages() {
             __( 'Reply to Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPREPLYTOAD]',
         ),
-        'edit-ad-page-name' => array(
+        'edit-ad-page-name'     => array(
             _x( 'Edit Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPEDITAD]',
         ),
-        'place-ad-page-name' => array(
+        'place-ad-page-name'    => array(
             __( 'Place Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPPLACEAD]',
         ),
-        'renew-ad-page-name' => array(
+        'renew-ad-page-name'    => array(
             __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCP-RENEW-AD]',
         ),
-        'browse-ads-page-name' => array(
+        'browse-ads-page-name'  => array(
             __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPBROWSEADS]',
         ),
-        'search-ads-page-name' => array(
+        'search-ads-page-name'  => array(
             __( 'Search Ads', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPSEARCHADS]',
         ),
@@ -851,7 +851,7 @@ function awpcp_subpages() {
 }
 
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
-    $refname = 'main-page-name';
+    $refname   = 'main-page-name';
     $shortcode = '[AWPCPCLASSIFIEDSUI]';
 
     // create AWPCP main page if it does not exist
@@ -963,11 +963,11 @@ function awpcp_admin_sidebar_output($html, $float) {
 
     $modules = array(
         'premium' => array(
-            'installed' => array(),
+            'installed'     => array(),
             'not-installed' => array(),
         ),
-        'other' => array(
-            'installed' => array(),
+        'other'   => array(
+            'installed'     => array(),
             'not-installed' => array(),
         ),
     );
@@ -991,7 +991,7 @@ function awpcp_admin_sidebar_output($html, $float) {
 
     $apath = get_option('siteurl') . '/wp-admin/images';
     $float = '' == $float ? 'float:right !important' : $float;
-    $url = AWPCP_URL;
+    $url   = AWPCP_URL;
 
     ob_start();
         include(AWPCP_DIR . '/admin/templates/admin-sidebar.tpl.php');

@@ -65,7 +65,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
     protected function _dispatch($default=null) {
         $action = $this->get_current_action( $default );
-        $ad = $this->get_ad();
+        $ad     = $this->get_ad();
 
         if ( is_null( $ad ) ) {
             $content = do_shortcode( '[AWPCPUSERLISTINGS] ' );
@@ -86,8 +86,8 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('renew-ad-page-name');
-            $page_url = awpcp_get_renew_ad_url( $ad->ID );
-            $message = sprintf(
+            $page_url  = awpcp_get_renew_ad_url( $ad->ID );
+            $message   = sprintf(
                 // translators: %1$s is the page name, %2$s is the transaction ID
                 esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' ),
                 '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
@@ -172,7 +172,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         );
         $response .= ' ' . $this->get_return_link( $ad );
 
-        $params = compact('response');
+        $params   = compact('response');
         $template = AWPCP_DIR . '/frontend/templates/page-renew-ad-finish-step.tpl.php';
 
         return $this->render($template, $params);
@@ -192,7 +192,7 @@ class AWPCP_RenewAdPageImplementation {
     private $payments;
 
     public function __construct( $page ) {
-        $this->page = $page;
+        $this->page             = $page;
         $this->listing_renderer = awpcp_listing_renderer();
         $this->payments         = awpcp_payments_api();
     }
@@ -212,7 +212,7 @@ class AWPCP_RenewAdPageImplementation {
 
         $fee = $this->listing_renderer->get_payment_term( $ad );
 
-        $form_errors = array();
+        $form_errors        = array();
         $transaction_errors = array();
 
         // verify pre-conditions
@@ -225,7 +225,7 @@ class AWPCP_RenewAdPageImplementation {
 
         // validate submitted data and prepare transaction
 
-        $payment_terms = array( $fee->type => array( $fee ) );
+        $payment_terms      = array( $fee->type => array( $fee ) );
         $payment_terms_list = awpcp_payment_terms_list();
 
         if ( awpcp_current_user_is_admin() || ! $this->payments->payment_term_requires_payment( $fee ) ) {
@@ -302,16 +302,16 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         $params = array(
-            'payments' => $this->payments,
-            'transaction' => $transaction,
+            'payments'                   => $this->payments,
+            'transaction'                => $transaction,
             'payment_terms_list'         => $payment_terms_list,
             'payment_terms_list_options' => [
                 'payment_terms' => $payment_terms,
                 'transaction'   => $transaction,
             ],
 
-            'messages' => $messages,
-            'form_errors' => $form_errors,
+            'messages'                   => $messages,
+            'form_errors'                => $form_errors,
             'transaction_errors'         => $transaction_errors,
         );
 
@@ -366,9 +366,9 @@ class AWPCP_RenewAdPageImplementation {
         // automatically redirect the user to the payment gateway.
 
         $params = array(
-            'payments' => $this->payments,
+            'payments'    => $this->payments,
             'transaction' => $transaction,
-            'messages' => $this->messages,
+            'messages'    => $this->messages,
             'hidden'      => array( 'step' => 'checkout' ),
         );
 
@@ -386,10 +386,10 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         $params = array(
-            'payments' => $this->payments,
+            'payments'    => $this->payments,
             'transaction' => $transaction,
-            'messages' => $this->messages,
-            'url' => $this->page->url(),
+            'messages'    => $this->messages,
+            'url'         => $this->page->url(),
             'hidden'      => array( 'step' => 'finish' ),
         );
 

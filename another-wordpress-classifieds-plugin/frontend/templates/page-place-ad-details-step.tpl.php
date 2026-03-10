@@ -90,9 +90,9 @@ endif;
             <?php
                 awpcp_categories_selector()->show(
                     array(
-                        'name' => 'ad_category',
-                        'selected' => awpcp_array_data( 'ad_category', '', $form ),
-                        'hide_empty' => false,
+                        'name'          => 'ad_category',
+                        'selected'      => awpcp_array_data( 'ad_category', '', $form ),
+                        'hide_empty'    => false,
                         'payment_terms' => isset( $payment_terms ) ? $payment_terms : array(),
                     )
                 );

@@ -103,7 +103,7 @@ class AWPCP_ImportListingsAdminPage {
         $this->import_session = $import_session;
 
         $working_directory = $this->get_working_directory( $import_session->get_id() );
-        $images_directory = null;
+        $images_directory  = null;
 
         $form_data = array(
             'images_source' => awpcp_get_var( array( 'param' => 'images_source' ), 'post' ),
@@ -185,7 +185,7 @@ class AWPCP_ImportListingsAdminPage {
                     // extract file
                     if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], awpcp_get_file_chmod() ) ) {
                         // translators: %s is the file name
-                        $message = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
+                        $message                = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
                         $form_errors['unzip'][] = sprintf( $message, $path );
                     }
                 }
@@ -227,7 +227,7 @@ class AWPCP_ImportListingsAdminPage {
     private function get_working_directory( $session_id ) {
         $uploads_directories = awpcp_setup_uploads_dir();
 
-        $import_dir = str_replace( 'thumbs', 'import', $uploads_directories[1] );
+        $import_dir        = str_replace( 'thumbs', 'import', $uploads_directories[1] );
         $working_directory = $import_dir . $session_id;
 
         if ( $this->create_directory( $working_directory ) ) {
@@ -257,10 +257,10 @@ class AWPCP_ImportListingsAdminPage {
 
     private function show_upload_files_form( $form_data = array(), $form_errors = array() ) {
         $params = array(
-            'form_steps' => $this->form_steps->render( 'upload-files' ),
-            'form_data' => wp_parse_args( $form_data, array(
+            'form_steps'  => $this->form_steps->render( 'upload-files' ),
+            'form_data'   => wp_parse_args( $form_data, array(
                 'images_source' => 'none',
-                'local_path' => '',
+                'local_path'    => '',
             ) ),
             'form_errors' => $form_errors,
         );
@@ -298,16 +298,16 @@ class AWPCP_ImportListingsAdminPage {
         }
 
         $import_session->set_params( array(
-            'date_format'        => awpcp_get_var( array( 'param' => 'date_format' ), 'post' ),
-            'category_separator' => awpcp_get_var( array( 'param' => 'category_separator' ), 'post' ),
-            'time_separator'     => awpcp_get_var( array( 'param' => 'time_separator' ), 'post' ),
-            'images_separator'   => awpcp_get_var( array( 'param' => 'images_separator' ), 'post' ),
-            'listing_status'     => awpcp_get_var( array( 'param' => 'listing_status' ), 'post' ),
+            'date_format'               => awpcp_get_var( array( 'param' => 'date_format' ), 'post' ),
+            'category_separator'        => awpcp_get_var( array( 'param' => 'category_separator' ), 'post' ),
+            'time_separator'            => awpcp_get_var( array( 'param' => 'time_separator' ), 'post' ),
+            'images_separator'          => awpcp_get_var( array( 'param' => 'images_separator' ), 'post' ),
+            'listing_status'            => awpcp_get_var( array( 'param' => 'listing_status' ), 'post' ),
             'create_missing_categories' => awpcp_get_var( array( 'param' => 'create_missing_categories' ), 'post' ),
-            'assign_listings_to_user' => awpcp_get_var( array( 'param' => 'assign_listings_to_user' ), 'post' ),
-            'default_user'       => $default_user,
-            'default_start_date' => awpcp_get_var( array( 'param' => 'default_start_date' ), 'post' ),
-            'default_end_date'   => awpcp_get_var( array( 'param' => 'default_end_date' ), 'post' ),
+            'assign_listings_to_user'   => awpcp_get_var( array( 'param' => 'assign_listings_to_user' ), 'post' ),
+            'default_user'              => $default_user,
+            'default_start_date'        => awpcp_get_var( array( 'param' => 'default_start_date' ), 'post' ),
+            'default_end_date'          => awpcp_get_var( array( 'param' => 'default_end_date' ), 'post' ),
         ) );
 
         $import_session->set_status( 'ready' );
@@ -323,24 +323,24 @@ class AWPCP_ImportListingsAdminPage {
         $form_data = array_merge( $form_data, $import_session->get_params() );
 
         $define_default_dates = ! empty( $form_data['default_start_date'] ) || ! empty( $form_data['default_end_date'] );
-        $define_default_user = ! empty( $form_data['default_user'] );
+        $define_default_user  = ! empty( $form_data['default_user'] );
 
         $params = array(
             'form_steps'  => $this->form_steps->render( 'configuration' ),
-            'form_data' => wp_parse_args( $form_data, array(
-                'define_default_dates' => $define_default_dates,
-                'default_start_date' => '',
-                'default_end_date' => '',
-                'date_format'          => 'auto',
-                'listing_status' => 'default',
-                'time_separator' => ':',
-                'date_separator' => '/', // For reverse compatibility with custom template.
-                'category_separator' => ';',
-                'images_separator' => ';',
+            'form_data'   => wp_parse_args( $form_data, array(
+                'define_default_dates'      => $define_default_dates,
+                'default_start_date'        => '',
+                'default_end_date'          => '',
+                'date_format'               => 'auto',
+                'listing_status'            => 'default',
+                'time_separator'            => ':',
+                'date_separator'            => '/', // For reverse compatibility with custom template.
+                'category_separator'        => ';',
+                'images_separator'          => ';',
                 'create_missing_categories' => false,
-                'assign_listings_to_user' => true,
-                'define_default_user' => $define_default_user,
-                'default_user' => null,
+                'assign_listings_to_user'   => true,
+                'define_default_user'       => $define_default_user,
+                'default_user'              => null,
             ) ),
             'form_errors' => $form_errors,
         );
@@ -372,13 +372,13 @@ class AWPCP_ImportListingsAdminPage {
         $import_session = $this->get_import_session();
 
         $this->javascript->set( 'csv-import-session', array(
-            'numberOfRows' => $import_session->get_number_of_rows(),
+            'numberOfRows'         => $import_session->get_number_of_rows(),
             'numberOfRowsImported' => $import_session->get_number_of_rows_imported(),
             'numberOfRowsRejected' => $import_session->get_number_of_rows_rejected(),
         ) );
 
         $this->javascript->localize( 'csv-import-session', array(
-            'progress-report' => __( '(<percentage>) <number-of-rows-processed> of <number-of-rows> rows processed. <number-of-rows-imported> rows imported and <number-of-rows-rejected> rows rejected.', 'another-wordpress-classifieds-plugin' ),
+            'progress-report'     => __( '(<percentage>) <number-of-rows-processed> of <number-of-rows> rows processed. <number-of-rows-imported> rows imported and <number-of-rows-rejected> rows rejected.', 'another-wordpress-classifieds-plugin' ),
             'message-description' => _x( '<message-type> in line <message-line>', 'description for messages used to show feedback for the Import Listings operation', 'another-wordpress-classifieds-plugin' ),
         ) );
 

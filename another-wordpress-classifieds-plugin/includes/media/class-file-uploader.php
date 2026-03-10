@@ -114,12 +114,12 @@ class AWPCP_FileUploader {
     }
 
     private function get_temporary_file_path( $filename ) {
-        $uploads_dir        = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
-        $tempory_dir_path   = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'tmp' ) );
+        $uploads_dir      = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $tempory_dir_path = implode( DIRECTORY_SEPARATOR, array( $uploads_dir, 'tmp' ) );
 
         $pathinfo = awpcp_utf8_pathinfo( $filename );
 
-        $new_name       = wp_hash( $pathinfo['basename'] ) . '.' . $pathinfo['extension'];
+        $new_name        = wp_hash( $pathinfo['basename'] ) . '.' . $pathinfo['extension'];
         $unique_filename = wp_unique_filename( $tempory_dir_path, $new_name );
 
         return $tempory_dir_path . DIRECTORY_SEPARATOR . $unique_filename;
@@ -202,13 +202,13 @@ class AWPCP_FileUploader {
         $pathinfo  = awpcp_utf8_pathinfo( $file_path );
 
         return (object) array(
-            'path'       => $file_path,
-            'realname'   => strtolower( $realname ),
-            'name'       => $pathinfo['basename'],
-            'dirname'    => $pathinfo['dirname'],
-            'filename'   => $pathinfo['filename'],
-            'extension'  => $pathinfo['extension'],
-            'mime_type'  => $mime_type,
+            'path'        => $file_path,
+            'realname'    => strtolower( $realname ),
+            'name'        => $pathinfo['basename'],
+            'dirname'     => $pathinfo['dirname'],
+            'filename'    => $pathinfo['filename'],
+            'extension'   => $pathinfo['extension'],
+            'mime_type'   => $mime_type,
             'is_complete' => $progress === 'complete' ? true : false,
         );
     }

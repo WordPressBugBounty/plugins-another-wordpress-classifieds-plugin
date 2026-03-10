@@ -25,7 +25,7 @@ class AWPCP_RawShortcode {
 
         // known names for the formatter function
         $functions = array('my_formatter', 'theme_formatter', 'columns_formatter');
-        $function = false;
+        $function  = false;
 
         foreach ( $functions as $fn ) {
             if ( function_exists( $fn ) ) {
@@ -110,7 +110,7 @@ class AWPCP_RawShortcode {
      * is inserted again after when regultar shortcode step is executed.
      */
     public function raw_shortcode($attrs, $raw) {
-        $id = uniqid();
+        $id             = uniqid();
         $this->raw[$id] = $raw;
         return sprintf('[awpcp-raw-token id=%s]', $id);
     }
