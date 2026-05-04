@@ -134,7 +134,8 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 awpcp_roles_and_capabilities(),
                 $container['Settings'],
-                $container['Request']
+                $container['Request'],
+                $container['Payments']
             );
         } );
 

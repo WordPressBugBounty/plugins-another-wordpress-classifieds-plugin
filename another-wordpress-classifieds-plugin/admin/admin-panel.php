@@ -416,7 +416,7 @@ class AWPCP_AdminPanel {
          */
         $show_quick_start_quide_notice = apply_filters( 'awpcp-show-quick-start-guide-notice', $show_quick_start_quide_notice );
 
-        if ( $show_quick_start_quide_notice && is_awpcp_admin_page() && ! $show_drip_autoresponder ) {
+        if ( $show_quick_start_quide_notice && awpcp_is_admin_page() && ! $show_drip_autoresponder ) {
             wp_enqueue_style( 'awpcp-admin-style' );
 
             include AWPCP_DIR . '/admin/templates/admin-quick-start-guide-notice.tpl.php';
@@ -682,20 +682,26 @@ class AWPCP_AdminPanel {
 
 /**
  */
-function checkifclassifiedpage() {
+function awpcp_is_classifieds_page_present() {
     global $wpdb;
 
-    $id      = awpcp_get_page_id_by_ref( 'main-page-name' );
-    $page_id = intval(
-        $wpdb->get_var(
-            $wpdb->prepare(
-                'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d',
-                $id
-            )
-        )
-    );
+    $id = awpcp_get_page_id_by_ref( 'main-page-name' );
+
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- One-off existence check; the queried page ID is validated against AWPCP's internal page registry.
+    $page_id = intval( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE ID = %d", $id ) ) );
 
     return $page_id === $id;
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_is_classifieds_page_present()} instead.
+ *
+ * @return bool
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function checkifclassifiedpage() {
+    return awpcp_is_classifieds_page_present();
 }
 
 function awpcp_admin_categories_render_category_items($categories, &$children, $start, $per_page, &$count, $parent=0, $level=0) {
@@ -764,7 +770,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
         esc_html( stripslashes( $category->name ) )
     );
 
-    $totaladsincat = total_ads_in_cat( $category->term_id );
+    $totaladsincat = awpcp_total_ads_in_category( $category->term_id );
 
     $params               = array( 'cat_ID' => $category->term_id, 'offset' => $start, 'results' => $per_page );
     $admin_categories_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_categories_url() );
@@ -881,7 +887,7 @@ function awpcp_create_page( $title, $content, $parent_id = 0 ) {
         'post_date'             => $date,
         'post_date_gmt'         => $date_gmt,
         'post_content'          => $content,
-        'post_title'            => add_slashes_recursive( $title ),
+        'post_title'            => awpcp_add_slashes_recursive( $title ),
         'post_status'           => 'publish',
         'post_name'             => sanitize_title( $title ),
         'post_modified'         => $date,

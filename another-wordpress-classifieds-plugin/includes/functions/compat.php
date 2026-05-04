@@ -17,6 +17,7 @@ if ( ! function_exists( 'wp_get_attachment_image_url' ) ) {
      * @param bool         $icon          Optional. Whether the image should be treated as an icon. Default false.
      * @return string|false Attachment URL or false if no image is available.
      */
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Polyfill for WordPress core function on legacy installs.
     function wp_get_attachment_image_url( $attachment_id, $size = 'thumbnail', $icon = false ) {
         $image = wp_get_attachment_image_src( $attachment_id, $size, $icon );
         return isset( $image['0'] ) ? $image['0'] : false;

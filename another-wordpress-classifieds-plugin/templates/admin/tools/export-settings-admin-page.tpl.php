@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer).
 /**
  * @package AWPCP\Admin\Pages
  */

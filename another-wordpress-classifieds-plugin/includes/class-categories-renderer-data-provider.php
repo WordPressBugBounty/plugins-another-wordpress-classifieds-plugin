@@ -50,7 +50,7 @@ class AWPCP_Categories_Renderer_Data_Provider {
         $selected_categories = array();
 
         foreach ( $categories_found as $category ) {
-            $category->listings_count = total_ads_in_cat( $category->term_id );
+            $category->listings_count = awpcp_total_ads_in_category( $category->term_id );
             if ( $params['show_empty_categories'] || $category->listings_count > 0 ) {
                 $selected_categories[] = $category;
             }

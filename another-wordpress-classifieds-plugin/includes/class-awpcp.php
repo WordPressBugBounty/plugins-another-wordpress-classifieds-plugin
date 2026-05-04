@@ -332,7 +332,8 @@ class AWPCP {
 
     public function init() {
         global $wpdb;
-        $wpdb->query('SET SQL_BIG_SELECTS=1');
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Session-level MySQL setting; not a data query and not cacheable.
+        $wpdb->query( 'SET SQL_BIG_SELECTS=1' );
         $query_integration = $this->container['QueryIntegration'];
 
         // Execute later to allow Listing Table Views to add query parameters.
@@ -617,30 +618,43 @@ class AWPCP {
             add_action( "wp_ajax_$slug", array( $task_handler, 'ajax' ) );
         }
 
-        // load resources required to handle Ajax requests only.
+        $allow_anonymous = ! get_awpcp_option( 'requireuserregistration' );
+
         $handler = $this->container['CreateEmptyListingAjaxHandler'];
         add_action( 'wp_ajax_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_create_empty_listing', [ $handler, 'ajax' ] );
+        }
 
         $handler = $this->container['UpdateListingOrderAjaxHandler'];
         add_action( 'wp_ajax_awpcp_update_listing_order', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_update_listing_order', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_update_listing_order', [ $handler, 'ajax' ] );
+        }
 
         $handler = $this->container['UpdateSubmitListingSectionsAjaxHandler'];
         add_action( 'wp_ajax_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_update_submit_listing_sections', [ $handler, 'ajax' ] );
+        }
 
         $handler = $this->container['SaveListingInformationAjaxHandler'];
         add_action( 'wp_ajax_awpcp_save_listing_information', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_save_listing_information', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_save_listing_information', [ $handler, 'ajax' ] );
+        }
 
         $handler = $this->container['GenerateListingPreviewAjaxHandler'];
         add_action( 'wp_ajax_awpcp_generate_listing_preview', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_generate_listing_preview', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_generate_listing_preview', [ $handler, 'ajax' ] );
+        }
 
         $handler = $this->container['ExecuteListingActionAjaxHandler'];
         add_action( 'wp_ajax_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
-        add_action( 'wp_ajax_nopriv_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
+        if ( $allow_anonymous ) {
+            add_action( 'wp_ajax_nopriv_awpcp_execute_listing_action', [ $handler, 'ajax' ] );
+        }
 
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
@@ -770,7 +784,7 @@ class AWPCP {
         $this->setup_javascript_data();
 
         if ( (int) $this->settings->get_option( 'awpcppagefilterswitch' ) === 1 ) {
-            add_filter( 'wp_list_pages_excludes', 'exclude_awpcp_child_pages' );
+            add_filter( 'wp_list_pages_excludes', 'awpcp_exclude_child_pages' );
         }
     }
 
@@ -998,7 +1012,7 @@ class AWPCP {
             return;
         }
 
-        if ( ! string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
+        if ( ! awpcp_string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
             delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
             return;
         }
@@ -1425,7 +1439,7 @@ class AWPCP {
             wp_enqueue_style( 'awpcp-admin-menu' );
         }
 
-        if ( is_awpcp_admin_page() ) {
+        if ( awpcp_is_admin_page() ) {
             wp_enqueue_style( 'awpcp-admin-style' );
             wp_enqueue_script('awpcp-admin-general');
             wp_enqueue_script('awpcp-toggle-checkboxes');
@@ -1771,6 +1785,7 @@ class AWPCP {
             'buyer_email' => $email,
         );
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party integration hook fired for the WP Affiliate Platform plugin.
         do_action( 'wp_affiliate_process_cart_commission', $data );
     }
 

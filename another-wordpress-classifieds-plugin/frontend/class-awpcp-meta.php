@@ -288,7 +288,7 @@ class AWPCP_Meta {
         $title_format = awpcp_array_data( 'title_page', '', $settings );
         $seplocation  = 'right';
 
-        if ( string_starts_with( $title_format, '{blog}' ) ) {
+        if ( awpcp_string_starts_with( $title_format, '{blog}' ) ) {
             $seplocation = 'left';
         }
 
@@ -309,7 +309,7 @@ class AWPCP_Meta {
         $title_format = awpcp_array_data( 'aiosp_page_title_format', '', $aioseop_options );
         $seplocation  = 'left';
 
-        if ( string_starts_with( $title_format, '%page_title%' ) ) {
+        if ( awpcp_string_starts_with( $title_format, '%page_title%' ) ) {
             $seplocation = 'right';
         }
 

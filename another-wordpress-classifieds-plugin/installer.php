@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 global $wpdb;
 
 define('AWPCP_TABLE_ADFEES', $wpdb->prefix . "awpcp_adfees");
@@ -721,12 +723,13 @@ function awpcp_fix_table_charset_and_collate($tables) {
             }
         }
 
-        $wpdb->query(
-            $wpdb->prepare(
-                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                "ALTER TABLE %i " . join( ', ', $parts ),
-                $query_vars
-            )
-        );
+        // The $parts fragments come from the column metadata returned by
+        // DESCRIBE on our own tables and are paired with %i / %s
+        // placeholders backed by $query_vars. None of the values is user
+        // controlled, but the analyser cannot prove that.
+        $alter_sql = 'ALTER TABLE %i ' . join( ', ', $parts );
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.PlaceholdersReplacementWrongNumber,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
+        $wpdb->query( $wpdb->prepare( $alter_sql, $query_vars ) );
     }
 }

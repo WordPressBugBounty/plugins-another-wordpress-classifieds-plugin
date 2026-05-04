@@ -115,9 +115,9 @@ class AWPCP_Search_Widget extends WP_Widget {
         echo '<div class="awpcp-search-listings-widget">';
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $args['before_widget'] . $args['before_title'] . esc_html( $title ) . $args['after_title'];
-        echo '<form method="get" action="' . esc_url( url_searchads() ) . '">';
+        echo '<form method="get" action="' . esc_url( awpcp_url_search_ads() ) . '">';
 
-        $url_params = wp_parse_args( wp_parse_url( url_searchads(), PHP_URL_QUERY ) );
+        $url_params = wp_parse_args( wp_parse_url( awpcp_url_search_ads(), PHP_URL_QUERY ) );
         foreach ( $url_params as $param => $value ) {
             echo '<input type="hidden" name="' . esc_attr( $param ) . '" value="' . esc_attr( $value ) . '" />';
         }

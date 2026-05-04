@@ -139,6 +139,7 @@ class AWPCP_Router {
             $request_handler->on_load();
         }
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Hook name is statically prefixed with the plugin slug.
         do_action( "awpcp_admin_load_{$admin_page->slug}" );
     }
 

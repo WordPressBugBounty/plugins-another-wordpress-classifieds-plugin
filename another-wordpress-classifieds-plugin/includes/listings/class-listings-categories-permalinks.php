@@ -29,7 +29,7 @@ class AWPCP_ListingsCategoriesPermalinks {
      */
     public function filter_term_link( $link, $term, $taxonomy ) {
         if ( $taxonomy === $this->listing_category_taxonomy ) {
-            return url_browsecategory( $term );
+            return awpcp_url_browse_category( $term );
         }
 
         return $link;

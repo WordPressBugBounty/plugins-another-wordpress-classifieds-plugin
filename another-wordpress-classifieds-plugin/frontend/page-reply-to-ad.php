@@ -96,7 +96,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     protected function _dispatch() {
         $action = $this->get_current_action();
 
-        if (get_awpcp_option('reply-to-ad-requires-registration') && !is_user_logged_in()) {
+        if ( awpcp_get_option( 'reply-to-ad-requires-registration' ) && ! is_user_logged_in() ) {
             $message = __( 'Only registered users can reply to Ads. If you are already registered, please login below in order to reply to the Ad.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_login_form($message, awpcp_current_url()));
         }
@@ -156,11 +156,13 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     protected function validate_posted_data($data, &$errors=array()) {
         if (empty($data['awpcp_sender_name'])) {
             $errors['awpcp_sender_name'] = __( 'Please enter your name.', 'another-wordpress-classifieds-plugin');
+        } elseif ( $this->contains_email_header_injection( $data['awpcp_sender_name'] ) ) {
+            $errors['awpcp_sender_name'] = __( 'Please enter a valid name.', 'another-wordpress-classifieds-plugin' );
         }
 
         if (empty($data['awpcp_sender_email'])) {
             $errors['awpcp_sender_email'] = __( 'Please enter your email.', 'another-wordpress-classifieds-plugin');
-        } elseif ( ! awpcp_is_valid_email_address( $data['awpcp_sender_email'] ) ) {
+        } elseif ( ! awpcp_is_valid_email_address( $data['awpcp_sender_email'] ) || $this->contains_email_header_injection( $data['awpcp_sender_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
         }
 
@@ -168,7 +170,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             $errors['awpcp_contact_message'] = __( 'There was no text in your message. Please enter a message.', 'another-wordpress-classifieds-plugin');
         }
 
-        if ( get_awpcp_option( 'use-akismet-in-reply-to-listing-form' ) ) {
+        if ( awpcp_get_option( 'use-akismet-in-reply-to-listing-form' ) ) {
             $spam_filter = awpcp_listing_reply_spam_filter();
 
             if ( $spam_filter->is_spam( $data ) ) {
@@ -176,8 +178,8 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             }
         }
 
-        if ( get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ) ) {
-            $captcha = awpcp_create_captcha( get_awpcp_option( 'captcha-provider' ) );
+        if ( awpcp_get_option( 'captcha-enabled-in-reply-to-listing-form' ) ) {
+            $captcha = awpcp()->container['CAPTCHAProviderFactory']->get_captcha_provider();
 
             try {
                 $captcha->validate();
@@ -211,8 +213,8 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             'errors'   => $errors,
             'ad_link'  => $ad_link,
             'ui'       => array(
-                'disable-sender-fields' => get_awpcp_option( 'reply-to-ad-requires-registration' ),
-                'captcha'               => get_awpcp_option( 'captcha-enabled-in-reply-to-listing-form' ),
+                'disable-sender-fields' => awpcp_get_option( 'reply-to-ad-requires-registration' ),
+                'captcha'               => awpcp_get_option( 'captcha-enabled-in-reply-to-listing-form' ),
             ),
         );
 
@@ -231,6 +233,12 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             return $this->contact_form($form, $errors);
         }
 
+        if ( awpcp_throttle( 'reply_email', 15, HOUR_IN_SECONDS ) ) {
+            $errors['awpcp_contact_message'] = __( 'Your message was flagged as spam. Please contact the administrator of this site.', 'another-wordpress-classifieds-plugin' );
+
+            return $this->contact_form( $form, $errors );
+        }
+
         $ad_title = $this->listing_renderer->get_listing_title( $ad );
         $ad_url   = url_showad( $ad->ID );
 
@@ -238,8 +246,8 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         $sender_email = stripslashes($form['awpcp_sender_email']);
         $message      = awpcp_strip_html_tags(stripslashes($form['awpcp_contact_message']));
 
-        if (get_awpcp_option('usesenderemailinsteadofadmin')) {
-            $sender = awpcp_strip_html_tags($sender_name);
+        if ( $this->should_use_sender_email_as_from( $sender_email ) ) {
+            $sender = awpcp_strip_html_tags( $sender_name );
             $from   = $sender_email;
         } else {
             $sender = awpcp_admin_sender_name();
@@ -257,7 +265,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         ];
 
         /* send email to admin */
-        if (get_awpcp_option('notify-admin-about-contact-message')) {
+        if ( awpcp_get_option( 'notify-admin-about-contact-message' ) ) {
             $email = $this->email_helper->prepare_email_from_template_setting( 'contact-form-admin-notification-email-template-x', $replacement );
 
             $email->to                  = awpcp_admin_recipient_email_address();
@@ -278,7 +286,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             );
 
             $email->body                = awpcp_replace_placeholders( $placeholders, $ad, $email->body, 'reply-to-listing' );
-            $email->to                  = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
+            $email->to                  = awpcp_format_recipient_address( awpcp_listing_renderer()->get_contact_email( $ad ) );
             $email->from                = awpcp_format_email_address( $from, $sender );
             $email->headers['Reply-To'] = awpcp_format_email_address( $sender_email, $sender_name );
 
@@ -296,5 +304,64 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         $message = str_replace( '<view-listing-link>', '<strong>' . $view_listing_link . '</strong>', $message );
 
         return $this->render('content', awpcp_print_message($message));
+    }
+
+    /**
+     * Determines whether the visitor-supplied email address may be used as the
+     * From address for outgoing notifications.
+     *
+     * @since 4.4.6.1
+     *
+     * @param string $sender_email The email address submitted in the form.
+     *
+     * @return bool
+     */
+    private function should_use_sender_email_as_from( $sender_email ) {
+        if ( ! awpcp_get_option( 'usesenderemailinsteadofadmin' ) ) {
+            return false;
+        }
+
+        $sender_host = $this->extract_email_host( $sender_email );
+        $site_host   = strtolower( (string) wp_parse_url( home_url(), PHP_URL_HOST ) );
+
+        if ( '' === $sender_host || '' === $site_host ) {
+            return false;
+        }
+
+        return $sender_host === $site_host;
+    }
+
+    /**
+     * Extracts and normalises the host portion of an email address.
+     *
+     * @since 4.4.6.1
+     *
+     * @param string $email The email address to inspect.
+     *
+     * @return string Lower-cased host name, or an empty string when invalid.
+     */
+    private function extract_email_host( $email ) {
+        $at_position = strrpos( (string) $email, '@' );
+
+        if ( false === $at_position ) {
+            return '';
+        }
+
+        return strtolower( substr( $email, $at_position + 1 ) );
+    }
+
+    /**
+     * Detects characters commonly used to inject extra mail headers via the
+     * sender name or email address.
+     *
+     * @since 4.4.6.1
+     *
+     * @param string $value The value submitted by the visitor.
+     *
+     * @return bool True when the value contains characters that must not reach
+     *              the mail headers.
+     */
+    private function contains_email_header_injection( $value ) {
+        return (bool) preg_match( '/[\r\n\0]/', (string) $value );
     }
 }

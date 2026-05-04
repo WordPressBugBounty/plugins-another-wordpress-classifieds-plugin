@@ -139,7 +139,7 @@ function awpcp_setup_uploads_dir() {
     // Required to set permission on main upload directory
     require_once( AWPCP_DIR . '/includes/class-fileop.php' );
 
-    $fileop = new fileop();
+    $fileop = new AWPCP_FileOp();
 
     if (!$wp_filesystem->is_dir($upload_dir) && $wp_filesystem->is_writable(WP_CONTENT_DIR)) {
         umask(0);

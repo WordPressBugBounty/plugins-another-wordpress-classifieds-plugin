@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 /**
  * Upgrade routine to genrate thumbnails for migrated media.
  */
@@ -27,6 +29,7 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
     public function before_step() {
         // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
         if ( ! defined( 'WP_IMPORTING' ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Constant defined by WordPress core to short-circuit several import-time hooks.
             define( 'WP_IMPORTING', true );
         }
     }

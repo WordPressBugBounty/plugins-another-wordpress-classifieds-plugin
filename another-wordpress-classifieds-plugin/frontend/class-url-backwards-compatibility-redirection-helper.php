@@ -148,7 +148,7 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
 
         $category = $this->categories->get( $equivalent_category_id );
 
-        return $this->redirect( url_browsecategory( $category ) );
+        return $this->redirect( awpcp_url_browse_category( $category ) );
     }
 
     private function get_equivalent_category_id( $category_id ) {
@@ -169,6 +169,7 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         //
         // See https://github.com/WordPress/WordPress/blob/94b592ac684d7cc9a82b5ba42161d320a4c329f4/wp-includes/pluggable.php#L1334.
 
+        // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect -- Legacy fallback for WordPress < 5.1.0; wp_safe_redirect is used on the modern branch below.
         if ( version_compare( $wp_version, '5.1.0', '<' ) && wp_redirect( esc_url_raw( $redirect_url ), 301 ) ) {
             exit();
         }

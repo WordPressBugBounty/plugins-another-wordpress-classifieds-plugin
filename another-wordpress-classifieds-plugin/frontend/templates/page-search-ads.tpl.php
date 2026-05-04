@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer).
 /**
  * @package AWPCP\Templates
  */
@@ -49,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <option value=""><?php esc_html_e( 'All Users', 'another-wordpress-classifieds-plugin' ); ?></option>
             <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo create_ad_postedby_list( $form['name'] );
+            echo awpcp_create_ad_postedby_list( $form['name'] );
             ?>
         </select>
     </p>

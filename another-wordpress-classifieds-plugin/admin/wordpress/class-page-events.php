@@ -28,7 +28,7 @@ class AWPCP_WordPressPageEvents {
             return;
         }
 
-        if ( ! is_awpcp_page( $post_id ) ) {
+        if ( ! awpcp_is_page( $post_id ) ) {
             return;
         }
 

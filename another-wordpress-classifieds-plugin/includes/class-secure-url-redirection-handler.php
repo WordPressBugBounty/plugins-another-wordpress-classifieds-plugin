@@ -26,7 +26,7 @@ class AWPCP_SecureURLRedirectionHandler {
             return;
         }
 
-        if ( wp_redirect( set_url_scheme( awpcp_current_url(), 'https' ) ) ) {
+        if ( wp_safe_redirect( set_url_scheme( awpcp_current_url(), 'https' ) ) ) {
             exit();
         }
     }

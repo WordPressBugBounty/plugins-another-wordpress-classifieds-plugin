@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2026-03-10 07:58:32+00:00\n"
+"POT-Creation-Date: 2026-04-29 16:46:06+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:55+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/"
@@ -26,30 +26,30 @@ msgstr ""
 #: admin/admin-panel-credit-plans-table.php:82
 #: admin/admin-panel-fees-table.php:122
 #: admin/fees/class-fee-details-form.php:43
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:15
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:16
 #: includes/settings/class-payment-general-settings.php:65
-#: templates/admin/manage-categories-admin-page.tpl.php:36
+#: templates/admin/manage-categories-admin-page.tpl.php:37
 msgid "Name"
 msgstr "Nombre"
 
 #: admin/admin-panel-credit-plans-table.php:83
 #: admin/fees/class-fee-details-form.php:49
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
-#: templates/admin/manage-categories-admin-page.tpl.php:41
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:32
+#: templates/admin/manage-categories-admin-page.tpl.php:42
 msgid "Description"
 msgstr "Descripción"
 
 #: admin/admin-panel-credit-plans-table.php:84
 #: admin/admin-panel-fees-table.php:125
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:20
-#: includes/settings/class-payment-general-settings.php:278
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:21
+#: includes/settings/class-payment-general-settings.php:295
 msgid "Credits"
 msgstr "Créditos"
 
 #: admin/admin-panel-credit-plans-table.php:85
 #: admin/admin-panel-fees-table.php:124
 #: admin/fees/class-fee-details-form.php:226
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:26
 #: frontend/placeholders.php:518
 #: includes/settings/class-display-settings.php:491
 #: includes/settings/class-payment-general-settings.php:66
@@ -64,12 +64,12 @@ msgstr "Atributos"
 msgid "Categories"
 msgstr "Categorías"
 
-#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:852
+#: admin/admin-panel-fees-table.php:131 includes/class-awpcp.php:866
 msgid "Featured Ads"
 msgstr "Anuncios destacados"
 
 #: admin/admin-panel-fees-table.php:133
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:111
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
 msgid "Private"
 msgstr "Privado"
 
@@ -106,24 +106,24 @@ msgid "Chars in description: %s"
 msgstr "Caracteres en la descripción"
 
 #: admin/admin-panel-fees-table.php:276 admin/admin-panel-fees-table.php:280
-#: templates/admin/import/supported-csv-headers.tpl.php:35
+#: templates/admin/import/supported-csv-headers.tpl.php:36
 msgid "Yes"
 msgstr "Sí"
 
 #: admin/admin-panel-fees-table.php:276 admin/admin-panel-fees-table.php:280
-#: templates/admin/import/supported-csv-headers.tpl.php:35
+#: templates/admin/import/supported-csv-headers.tpl.php:36
 msgid "No"
 msgstr "No"
 
 #: admin/admin-panel-users.php:58
-#: admin/templates/admin-panel-users-balance-form.tpl.php:11
-#: admin/templates/page-account-balance-summary-step.tpl.php:14
-#: frontend/templates/page-buy-credits-final-step.tpl.php:16
+#: admin/templates/admin-panel-users-balance-form.tpl.php:12
+#: admin/templates/page-account-balance-summary-step.tpl.php:15
+#: frontend/templates/page-buy-credits-final-step.tpl.php:17
 msgid "Add Credit"
 msgstr "Créditos"
 
 #: admin/admin-panel-users.php:61
-#: admin/templates/admin-panel-users-balance-form.tpl.php:11
+#: admin/templates/admin-panel-users-balance-form.tpl.php:12
 msgid "Remove Credit"
 msgstr "Retirar crédito"
 
@@ -135,7 +135,7 @@ msgstr "El usuario especificado no existe."
 msgid "Manual Upgrade"
 msgstr "Actualización manual"
 
-#: admin/admin-panel.php:82 admin/admin-panel.php:140 admin/admin-panel.php:808
+#: admin/admin-panel.php:82 admin/admin-panel.php:140 admin/admin-panel.php:814
 #: includes/models/class-custom-post-types.php:101
 #: includes/models/class-custom-post-types.php:103
 #: includes/settings/class-listings-settings.php:34
@@ -156,8 +156,8 @@ msgid "Settings"
 msgstr "Configuración"
 
 #: admin/admin-panel.php:158
-#: templates/admin/main-classifieds-admin-page.tpl.php:92
-#: templates/admin/main-classifieds-admin-page.tpl.php:120
+#: templates/admin/main-classifieds-admin-page.tpl.php:93
+#: templates/admin/main-classifieds-admin-page.tpl.php:121
 msgid "Manage Categories"
 msgstr "Administrar Categorías"
 
@@ -181,7 +181,7 @@ msgid "Manage Credit"
 msgstr "Administrar Crédito"
 
 #: admin/admin-panel.php:236 admin/fees/class-fees-admin-page.php:30
-#: templates/admin/main-classifieds-admin-page.tpl.php:60
+#: templates/admin/main-classifieds-admin-page.tpl.php:61
 msgid "Fees"
 msgstr "Planes de Pago"
 
@@ -193,11 +193,11 @@ msgstr "Administrar planes de pago"
 msgid "Import & Export"
 msgstr "Importar y exportar"
 
-#: admin/admin-panel.php:328 admin/templates/admin-panel-debug.tpl.php:8
+#: admin/admin-panel.php:328 admin/templates/admin-panel-debug.tpl.php:9
 msgid "Debug"
 msgstr "Debug"
 
-#: admin/admin-panel.php:329 admin/templates/admin-panel-debug.tpl.php:43
+#: admin/admin-panel.php:329 admin/templates/admin-panel-debug.tpl.php:44
 msgid "Debug Information"
 msgstr "Información de Depuración"
 
@@ -206,7 +206,7 @@ msgid "Uninstall"
 msgstr "Desinstalar"
 
 #: admin/admin-panel.php:358 admin/admin-panel.php:359
-#: admin/admin-panel.php:835 frontend/templates/page-renew-ad.tpl.php:8
+#: admin/admin-panel.php:841 frontend/templates/page-renew-ad.tpl.php:9
 #: includes/admin/class-admin-container-configuration.php:183
 msgid "Renew Ad"
 msgstr "Renovar anuncio"
@@ -337,39 +337,39 @@ msgstr[1] ""
 "de AWPCP, puedes borrarlas y este error desaparecerá. En caso contrario, por "
 "favor modifica las páginas para que no tengan nombres duplicados."
 
-#: admin/admin-panel.php:774 admin/class-categories-admin-page.php:64
+#: admin/admin-panel.php:780 admin/class-categories-admin-page.php:64
 #: admin/class-categories-admin-page.php:68
 msgid "Manage Category Icon"
 msgstr "Configurar los íconos de la categoría"
 
-#: admin/admin-panel.php:779 admin/class-categories-admin-page.php:39
+#: admin/admin-panel.php:785 admin/class-categories-admin-page.php:39
 #: admin/class-categories-admin-page.php:43
 #: admin/class-categories-admin-page.php:137
 msgid "Edit Category"
 msgstr "Editar Categoría"
 
-#: admin/admin-panel.php:780 admin/class-categories-admin-page.php:50
+#: admin/admin-panel.php:786 admin/class-categories-admin-page.php:50
 #: admin/class-categories-admin-page.php:54
 msgid "Delete Category"
 msgstr "Eliminar Categoría"
 
-#: admin/admin-panel.php:785
+#: admin/admin-panel.php:791
 msgid "Select {category_name}"
 msgstr "Selecciona {category_name}"
 
-#: admin/admin-panel.php:823 frontend/page-reply-to-ad.php:15
+#: admin/admin-panel.php:829 frontend/page-reply-to-ad.php:15
 msgid "Reply to Ad"
 msgstr "Responder al anuncio"
 
-#: admin/admin-panel.php:831 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:837 admin/templates/admin-panel-listings.tpl.php:12
 msgid "Place Ad"
 msgstr "Publicar Anuncio"
 
-#: admin/admin-panel.php:839 frontend/page-browse-ads.php:13
+#: admin/admin-panel.php:845 frontend/page-browse-ads.php:13
 msgid "Browse Ads"
 msgstr "Explorar anuncios"
 
-#: admin/admin-panel.php:843 admin/templates/admin-panel-listings.tpl.php:26
+#: admin/admin-panel.php:849 admin/templates/admin-panel-listings.tpl.php:27
 #: frontend/page-search-ads.php:13
 msgid "Search Ads"
 msgstr "Buscar anuncios"
@@ -444,15 +444,15 @@ msgstr "Borrar categoría"
 
 #: admin/categories/class-delete-category-admin-page.php:124
 #: admin/fees/class-fee-details-form.php:84
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:37
-#: admin/templates/admin-panel-fees-delete-form.tpl.php:29
-#: admin/templates/admin-panel-users-balance-form.tpl.php:25
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:38
+#: admin/templates/admin-panel-fees-delete-form.tpl.php:30
+#: admin/templates/admin-panel-users-balance-form.tpl.php:26
 #: admin/templates/delete_form.tpl.php:20
-#: frontend/templates/payments-billing-form.tpl.php:128
+#: frontend/templates/payments-billing-form.tpl.php:129
 #: includes/listings/class-listing-action-with-confirmation.php:13
 #: includes/settings/renderers/class-button-settings-renderer.php:36
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:189
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:51
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:190
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:52
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -508,7 +508,7 @@ msgid "Add New Category"
 msgstr "Agregar nueva Categoría"
 
 #: admin/class-categories-admin-page.php:147
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:36
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:37
 msgid "Update"
 msgstr "Actualizar"
 
@@ -537,7 +537,7 @@ msgid "Apache Version"
 msgstr "Versión de Apache"
 
 #: admin/class-debug-admin-page.php:272
-#: admin/templates/admin-panel-debug.tpl.php:182
+#: admin/templates/admin-panel-debug.tpl.php:183
 msgid "PHP Version"
 msgstr "Versión PHP"
 
@@ -646,7 +646,7 @@ msgstr "Todo parece estar bien."
 #: admin/class-table-entry-action-ajax-handler.php:21
 #: admin/class-uninstall-admin-page.php:52
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:28
-#: functions.php:535
+#: functions.php:558
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:108
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:73
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:77
@@ -674,7 +674,7 @@ msgstr "Editar"
 
 #: admin/credit-plans/class-credit-plans-admin-page.php:28
 #: admin/fees/class-fees-admin-page.php:69
-#: admin/templates/admin-panel-fees-delete-form.tpl.php:30
+#: admin/templates/admin-panel-fees-delete-form.tpl.php:31
 #: admin/templates/delete_form.tpl.php:21
 msgid "Delete"
 msgstr "Eliminar"
@@ -774,7 +774,7 @@ msgstr ""
 "pagos e intente borrar este plan de nuevo. AWPCP le ayudará a mover los "
 "anuncios existentes al nuevo plan."
 
-#: admin/import/class-csv-importer-delegate.php:284
+#: admin/import/class-csv-importer-delegate.php:286
 msgid ""
 "No user could be assigned to this listing. Our attempt to create a new user "
 "failed with the following error: <error-message>."
@@ -782,11 +782,11 @@ msgstr ""
 "No se pudo asignar un usuario a este anuncio. Al intentar crear un nuevo "
 "usuario, encontramos el siguiente error: <error-message>."
 
-#: admin/import/class-csv-importer-delegate.php:488
+#: admin/import/class-csv-importer-delegate.php:490
 msgid "The payment term type must be 'fee' or 'subscription'."
 msgstr "El tipo de plan de pago debe ser 'fee' o 'subscription'."
 
-#: admin/import/class-csv-importer-delegate.php:494
+#: admin/import/class-csv-importer-delegate.php:496
 msgid ""
 "There is no payment term with type {payment_term_type} and ID "
 "{payment_term_id}."
@@ -794,7 +794,7 @@ msgstr ""
 "No encontramos un plan de pago con tipo {payment_term_type} y ID "
 "{payment_term_id}."
 
-#: admin/import/class-csv-importer-delegate.php:508
+#: admin/import/class-csv-importer-delegate.php:510
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
@@ -803,25 +803,25 @@ msgstr ""
 "ZIP o definió la ruta para un directorio local?"
 
 #. translators: %s is the extra field name
-#: admin/import/class-csv-importer-delegate.php:686
+#: admin/import/class-csv-importer-delegate.php:688
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr ""
 "El valor del Campo Extra %s no está permitido. Los valores permitidos son: %"
 "%s"
 
 #. translators: %s is the extra field name
-#: admin/import/class-csv-importer-delegate.php:697
+#: admin/import/class-csv-importer-delegate.php:699
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr ""
 "El valor del Campo Extra %s no está permitido. El valor permitido es uno de: "
 "%%s"
 
-#: admin/import/class-csv-reader.php:124
+#: admin/import/class-csv-reader.php:161
 msgid "The row was empty."
 msgstr "La fila está vacía."
 
-#: admin/import/class-csv-reader.php:126
+#: admin/import/class-csv-reader.php:163
 msgid ""
 "The number of values in the row (<number-of-values-in-row>) does not match "
 "the number of columns in the file's header (<number-of-columns>)."
@@ -873,32 +873,32 @@ msgstr ""
 msgid "Email Address"
 msgstr "Direcciones de Correo"
 
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:36
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:37
 msgid "Add"
 msgstr "Agregar"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:15
+#: admin/templates/admin-panel-credit-plans.tpl.php:16
 msgid "Credit System Settings"
 msgstr "Opciones del Sistema de Créditos"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:29
-#: templates/admin/settings-admin-page.tpl.php:55
-#: templates/admin/settings-admin-page.tpl.php:70
+#: admin/templates/admin-panel-credit-plans.tpl.php:30
+#: templates/admin/settings-admin-page.tpl.php:56
+#: templates/admin/settings-admin-page.tpl.php:71
 msgid "Save Changes"
 msgstr "Guardar cambios"
 
-#: admin/templates/admin-panel-credit-plans.tpl.php:42
+#: admin/templates/admin-panel-credit-plans.tpl.php:43
 msgid "Add Credit Plan"
 msgstr "Agregar Plan de Crédito"
 
-#: admin/templates/admin-panel-debug.tpl.php:16
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:12
+#: admin/templates/admin-panel-debug.tpl.php:17
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:13
 msgid "Are you seeing 404 Not Found errors?"
 msgstr "¿Su sitio está mostrando errores 404 Not Found?"
 
 #. translators: %1$s: Start link HTML, %2$s: end link HTML, %3$s: Start link
 #. HTML
-#: admin/templates/admin-panel-debug.tpl.php:26
+#: admin/templates/admin-panel-debug.tpl.php:27
 msgid ""
 "If you are seeing multiple 404 Not Found errors in your website, it is "
 "possible that some Rewrite Rules are missing or corrupted. Please click the "
@@ -917,90 +917,90 @@ msgstr ""
 "que esos errores 404 Not Found deberían desaparecer. Si no ocurre, por favor "
 "contacte %3$sservicio al cliente%1$s."
 
-#: admin/templates/admin-panel-debug.tpl.php:89
+#: admin/templates/admin-panel-debug.tpl.php:90
 msgid "Stored ID"
 msgstr "ID guardado"
 
-#: admin/templates/admin-panel-debug.tpl.php:90
+#: admin/templates/admin-panel-debug.tpl.php:91
 msgid "Reference"
 msgstr "Referencia"
 
-#: admin/templates/admin-panel-debug.tpl.php:91
+#: admin/templates/admin-panel-debug.tpl.php:92
 #: frontend/templates/widget-categories-form.tpl.php:7
 #: frontend/templates/widget-latest-ads-form.tpl.php:7
 #: templates/email/listing-is-about-to-expire-notification.plain.tpl.php:10
 msgid "Title"
 msgstr "Título"
 
-#: admin/templates/admin-panel-debug.tpl.php:100
+#: admin/templates/admin-panel-debug.tpl.php:101
 msgid "Page not found"
 msgstr "Página no encontrada"
 
-#: admin/templates/admin-panel-debug.tpl.php:122
+#: admin/templates/admin-panel-debug.tpl.php:123
 msgid "Option Name"
 msgstr "Nombre de opción"
 
-#: admin/templates/admin-panel-debug.tpl.php:123
+#: admin/templates/admin-panel-debug.tpl.php:124
 msgid "Option Value"
 msgstr "Valor de opción"
 
-#: admin/templates/admin-panel-debug.tpl.php:152
-#: templates/admin/debug/rewrite-rules-debug-section.tpl.php:13
+#: admin/templates/admin-panel-debug.tpl.php:153
+#: templates/admin/debug/rewrite-rules-debug-section.tpl.php:14
 msgid "Pattern"
 msgstr "Patrón"
 
-#: admin/templates/admin-panel-debug.tpl.php:153
-#: templates/admin/debug/rewrite-rules-debug-section.tpl.php:14
+#: admin/templates/admin-panel-debug.tpl.php:154
+#: templates/admin/debug/rewrite-rules-debug-section.tpl.php:15
 msgid "Replacement"
 msgstr "Reemplazo"
 
-#: admin/templates/admin-panel-debug.tpl.php:186
+#: admin/templates/admin-panel-debug.tpl.php:187
 #, fuzzy
 msgid "cURL"
 msgstr "cURL"
 
-#: admin/templates/admin-panel-debug.tpl.php:190
+#: admin/templates/admin-panel-debug.tpl.php:191
 #, fuzzy
 msgid "cURL's alternate CA info (cacert.pem)"
 msgstr "Certificados de Autoridad alternativos para cURL (cacert.pem)"
 
-#: admin/templates/admin-panel-debug.tpl.php:194
+#: admin/templates/admin-panel-debug.tpl.php:195
 #, fuzzy
 msgid "Exists"
 msgstr "Existe"
 
-#: admin/templates/admin-panel-debug.tpl.php:195
+#: admin/templates/admin-panel-debug.tpl.php:196
 #, fuzzy
 msgid "Missing"
 msgstr "No se encontró"
 
-#: admin/templates/admin-panel-debug.tpl.php:200
+#: admin/templates/admin-panel-debug.tpl.php:201
 #: includes/settings/class-payment-general-settings.php:139
 msgid "PayPal"
 msgstr "PayPal"
 
-#: admin/templates/admin-panel-debug.tpl.php:203
+#: admin/templates/admin-panel-debug.tpl.php:204
 #, fuzzy
 msgid "Working"
 msgstr "Trabajando"
 
-#: admin/templates/admin-panel-debug.tpl.php:206
+#: admin/templates/admin-panel-debug.tpl.php:207
 #, fuzzy
 msgid "Not Working"
 msgstr "No funciona"
 
-#: admin/templates/admin-panel-debug.tpl.php:221
-#: templates/admin/debug/debug-admin-page.tpl.php:46
+#: admin/templates/admin-panel-debug.tpl.php:222
+#: templates/admin/debug/debug-admin-page.tpl.php:47
 msgid "Debug & Development Tools"
 msgstr "Herramientas para desarrollo y depuración"
 
-#: admin/templates/admin-panel-fees-delete-form.tpl.php:13
+#: admin/templates/admin-panel-fees-delete-form.tpl.php:14
 #: admin/templates/delete_form.tpl.php:15
 msgid "Are you sure you want to delete this item?"
 msgstr "¿Está seguro que quiere eliminar este comentario?"
 
 #. translators: %1$s is a line break, %2$s is the payment settings page URL
-#: admin/templates/admin-panel-fees.tpl.php:13
+#: admin/templates/admin-panel-fees.tpl.php:14
 #, fuzzy
 msgid ""
 "Currently your classifieds are in Free mode. Fee plans are not available or "
@@ -1012,16 +1012,16 @@ msgstr ""
 "modo, visite <payment-settings-tab-link> y habilite la opción \"Cobrar por "
 "los anuncios?\"."
 
-#: admin/templates/admin-panel-fees.tpl.php:16
+#: admin/templates/admin-panel-fees.tpl.php:17
 msgid "Payment Settings page"
 msgstr "página de opciones de pago"
 
-#: admin/templates/admin-panel-fees.tpl.php:27
+#: admin/templates/admin-panel-fees.tpl.php:28
 msgid "Add Fee Plan"
 msgstr "Agregar Plan de Pago"
 
 #. translators: %s is the fee plan sort order and sort direction settings URL
-#: admin/templates/admin-panel-fees.tpl.php:32
+#: admin/templates/admin-panel-fees.tpl.php:33
 #, fuzzy
 msgid ""
 "If you wish to change the sorting of your fee plans, you can change the %s."
@@ -1029,15 +1029,15 @@ msgstr ""
 "Si desea cambiar el orden de los planes de pago, puede cambiar las <fee-"
 "settings-link>."
 
-#: admin/templates/admin-panel-fees.tpl.php:36
+#: admin/templates/admin-panel-fees.tpl.php:37
 msgid "Fee Plan sort order and sort direction Settings"
 msgstr "opciones de orden y criterio de ordenamiento para los planes de pago"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:21
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:22
 msgid "Facebook Integration"
 msgstr "Integración con Facebook"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:27
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:28
 msgid ""
 "We currently support two methods for posting new ads to Facebook: Facebook "
 "API and Zapier/IFTTT Webhooks."
@@ -1045,7 +1045,7 @@ msgstr ""
 "En este momento soportamos dos métodos para publicar nuevos anuncios en "
 "Facebook: La API de Facebook y Webhooks de Zapier/IFTTT."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:29
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:30
 msgid ""
 "Support for Facebook API will be removed in the future. Facebook "
 "significantly reduced access to their APIs across all apps on Apr, 2018. Now "
@@ -1065,14 +1065,14 @@ msgstr ""
 "nuestros usuarios empiecen a usar ese método gradualmente."
 
 #. translators: %s is the Facebook changes URL
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:35
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:36
 #, fuzzy
 msgid "You can read more about Facebook changes here: %s"
 msgstr ""
 "Puede leer más sobre los cambios que Facebook realizó aquí: "
 "{facebook_post_link}"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:43
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:44
 msgid ""
 "If you are currently using the Facebook API integration method and not "
 "having any issues, you don't have to do anything right now. If you are "
@@ -1083,14 +1083,14 @@ msgstr ""
 "embargo, si ha tenido algún problema, por favor lea la sección de "
 "Diagnósticos que está más bajo para intentar resolverlos."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:45
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:46
 #: includes/settings/class-general-settings.php:729
 msgid "Facebook API"
 msgstr "API de Facebook"
 
 #. translators: %1$s opening anchor link, %2$s closing anchor link, %3$s
 #. opening anchor link, %4$s closing anchor link
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:51
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:52
 #, fuzzy
 msgid ""
 "This integration method allows you to post ads to Facebook using a Facebook "
@@ -1104,8 +1104,8 @@ msgstr ""
 "{link_to_facebook_integration_documentation}estas instrucciones{/"
 "link_to_facebook_integration_documentation}."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:60
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:94
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:61
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:95
 msgid ""
 "Add the following URL to the list of Valid OAuth Redirect URIs for the "
 "configuration of the Facebook Application:"
@@ -1113,12 +1113,12 @@ msgstr ""
 "Agregar la siguiente URL a la lista Valid OAuth Redirect URIs en la "
 "configuración de la aplicación de Facebook:"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:64
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:65
 #: includes/settings/class-general-settings.php:730
 msgid "Zapier/IFTTT Webhooks"
 msgstr "Webhooks de Zapier/IFTTT"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:66
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:67
 msgid ""
 "Webhooks allow the plugin to send a request to one of the configured webhook "
 "URLs the first time an ad becomes publicly available on the website. That "
@@ -1136,7 +1136,7 @@ msgstr ""
 "en una página de Facebook que controle."
 
 #. translators: %1$s opening anchor link, %2$s closing anchor link
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:72
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:73
 #, fuzzy
 msgid ""
 "Follow the instructiones to create the tasks on %1$sZapier or IFTTT%2$s. "
@@ -1149,13 +1149,13 @@ msgstr ""
 "Luego actualice las opciones al final de esta página para ingresar las URLs "
 "asociadas con esas tareas."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:79
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:80
 msgid "Facebook Cache"
 msgstr "Caché de Facebook"
 
 #. translators: %1$s opening anchor link, %2$s closing anchor link, %3$s
 #. opening anchor link, %4$s closing anchor link
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:85
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:86
 #, fuzzy
 msgid ""
 "If you are using Webhooks to send ads to Facebook, a Facebook Application "
@@ -1176,19 +1176,19 @@ msgstr ""
 "{link_to_facebook_integration_documentation}estas instrucciones{/"
 "link_to_facebook_integration_documentation}."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:98
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:125
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:99
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:126
 msgid "Diagnostics"
 msgstr "Diagnósticos"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:100
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:101
 msgid ""
 "If you see the following error after trying to get a valid User Access Token:"
 msgstr ""
 "Si ve el siguiente error después de intentar obtener un Token de Acceso "
 "válido:"
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:104
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:105
 msgid ""
 "You have to submit your Facebook Application for Review and ask for those "
 "permissions or use the Webhooks integration method to send ads to Facebook "
@@ -1199,14 +1199,14 @@ msgstr ""
 "integración con Webhooks para publicar anuncios en Facebook a través de "
 "Zapier or IFTTT."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:106
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:107
 msgid "If you see the following error trying to send ads to a Facebook Group:"
 msgstr ""
 "Si ve el siguiente error intentando publicar anuncios en un grupo de "
 "Facebook:"
 
 #. translators: %1$s opening anchor link, %2$s closing anchor link
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:114
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:115
 #, fuzzy
 msgid ""
 "Please make sure the Facebook Application %1$swas added to the group%2$s."
@@ -1215,7 +1215,7 @@ msgstr ""
 "{link_to_how_to_add_apps_to_a_group}fue agregada al grupo{/"
 "link_to_how_to_add_apps_to_a_group}."
 
-#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:124
+#: admin/templates/admin-panel-settings-facebook-settings.tpl.php:125
 msgid ""
 "If you are having additional problems with Facebook API, click "
 "\"Diagnostics\" to check your settings."
@@ -1223,15 +1223,15 @@ msgstr ""
 "Si tiene problem adicionales con la API de Facebook, haga click en "
 "\"Diagnósticos\" para verificar su configuración."
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:9
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:10
 msgid "Restore AWPCP Pages"
 msgstr "Restaurar páginas AWPCP"
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:15
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:16
 msgid "The following pages were restored: <pages-list>."
 msgstr "Las siguientes páginas fueron restauradas: <pages-list>."
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:26
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:27
 msgid ""
 "The pages listed below are missing. The plugin is looking for a page with a "
 "particular ID but it seems that the page was permanently deleted. Please a "
@@ -1242,13 +1242,13 @@ msgstr ""
 "permanentemente. Por favor elija una nueva."
 
 #. translators: %1$s is the page label, %2$s is the default name
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:34
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:105
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:35
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:106
 #, fuzzy
 msgid "%1$s (Default name: %2$s)."
 msgstr "%s (nombre por defecto: %s)."
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:45
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:46
 msgid ""
 "The following pages are not published. Did you move them to the Trash by "
 "accident or saved them as Draft?"
@@ -1257,12 +1257,12 @@ msgstr ""
 "papelera por accidente? ¿o las guardaste como borrador?"
 
 #. translators: %1$s page label, %2$s link to the page, %3$s the page status.
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:63
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:64
 #, fuzzy
 msgid "%1$s Selected page: %2$s (%3$s)"
 msgstr "%s &mdash; página elegida: %s (%s)"
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:75
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:76
 msgid ""
 "The following pages are not currently assigned. Please select an existing "
 "page or create a new one to use as the following plugin pages:"
@@ -1273,7 +1273,7 @@ msgstr ""
 
 #. translators: %1$s is the page label, %2$s is the candidate pages, %3$s is
 #. the create new page URL, %4$s is the closing anchor link
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:92
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:93
 #, fuzzy
 msgid ""
 "%1$s You can select one of these pages that already include the necessary "
@@ -1282,7 +1282,7 @@ msgstr ""
 "<page-label> &mdash; Puedes elegir una de estas páginas que ya incluyen el "
 "shortcode necesario: <page-links> o <a>crear una página nueva</a>."
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:123
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:124
 msgid ""
 "Use the button below to have the plugin attempt to find the necessary pages. "
 "If you continue to have problems or seeing page related warnings above, you "
@@ -1295,7 +1295,7 @@ msgstr ""
 "afectadas y usar el botón Restaurar Páginas para hacer que el plugin las "
 "cree de nuevo."
 
-#: admin/templates/admin-panel-settings-pages-settings.tpl.php:124
+#: admin/templates/admin-panel-settings-pages-settings.tpl.php:125
 msgid "Restore Pages"
 msgstr "Restaurar Páginas"
 
@@ -1368,9 +1368,9 @@ msgstr "Casi listo… ¡solo un paso más!"
 msgid "Please click here to deactivate plugins."
 msgstr "Por favor, haga click aquí para completar el proceso de desinstalación"
 
-#: admin/templates/admin-panel-users-balance-form.tpl.php:18
-#: frontend/templates/payments-transaction-items-table.tpl.php:10
-#: frontend/templates/payments-transaction-items-table.tpl.php:22
+#: admin/templates/admin-panel-users-balance-form.tpl.php:19
+#: frontend/templates/payments-transaction-items-table.tpl.php:11
+#: frontend/templates/payments-transaction-items-table.tpl.php:23
 msgid "Amount"
 msgstr "Cantidad"
 
@@ -1382,7 +1382,7 @@ msgstr "Es necesario realizar una actualización manual"
 msgid "Upgrade"
 msgstr "Actualizar"
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:8
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:9
 #, fuzzy
 msgid ""
 "Hello and welcome to AWP Classifieds. This plugin is super easy to use AND "
@@ -1391,68 +1391,68 @@ msgstr ""
 "Hola y bienvenidos a <strong>AWPCP</strong>. Este plugin es super fácil de "
 "usar y altamente configurable."
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:9
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:10
 msgid "Would you like some help getting started?"
 msgstr "¿Le gustaría un poco de ayuda para empezar?"
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:18
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:19
 #, fuzzy
 msgid "I'll figure it out on my own."
 msgstr "Voy a averiguar por mi cuenta."
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:21
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:22
 msgid "Yes Please!"
 msgstr "¡Sí, por favor!"
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:26
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:27
 #, fuzzy
 msgid "Help me get my classifieds running quickly."
 msgstr "Ayúdame a poner los anuncios en funcionamiento rápidamente."
 
-#: admin/templates/admin-sidebar.tpl.php:19
+#: admin/templates/admin-sidebar.tpl.php:20
 msgid "Like this plugin?"
 msgstr "¿Te gusta este plugin?"
 
-#: admin/templates/admin-sidebar.tpl.php:28
+#: admin/templates/admin-sidebar.tpl.php:29
 msgid "Give a 5 star rating on WordPress.org."
 msgstr "Dar en calificación de 5 estrellas en WordPress.org."
 
-#: admin/templates/admin-sidebar.tpl.php:46
+#: admin/templates/admin-sidebar.tpl.php:47
 #, fuzzy
 msgid "Get more features!"
 msgstr "Un anuncio marcado como destacado."
 
-#: admin/templates/admin-sidebar.tpl.php:71
+#: admin/templates/admin-sidebar.tpl.php:72
 msgid "Found a bug?"
 msgstr "Encontró un bug?"
 
-#: admin/templates/admin-sidebar.tpl.php:72
+#: admin/templates/admin-sidebar.tpl.php:73
 msgid "Need Support?"
 msgstr "Necesita soporte?"
 
 #. translators: %1$s is the Quick Start Guide URL, %2$s is the closing anchor
 #. link
-#: admin/templates/admin-sidebar.tpl.php:85
+#: admin/templates/admin-sidebar.tpl.php:86
 #, fuzzy
 msgid "Browse the %1$sQuick Start Guide%2$s"
 msgstr "Guía de inicio rápido"
 
 #. translators: %1$s: open anchor link, %2$s close anchor link
-#: admin/templates/admin-sidebar.tpl.php:95
+#: admin/templates/admin-sidebar.tpl.php:96
 #, fuzzy
 msgid "Read the full %1$sDocumentation%2$s."
 msgstr "Lea la %s completa."
 
-#: admin/templates/admin-sidebar.tpl.php:103
+#: admin/templates/admin-sidebar.tpl.php:104
 msgid "Get Help"
 msgstr "Ayuda"
 
-#: admin/templates/admin-widget-modification-notice.tpl.php:8
+#: admin/templates/admin-widget-modification-notice.tpl.php:9
 #, fuzzy
 msgid "Thank you for using AWP Classifieds Plugin."
 msgstr "Gracias por usar Another WordPress Classifieds Plugin."
 
-#: admin/templates/admin-widget-modification-notice.tpl.php:9
+#: admin/templates/admin-widget-modification-notice.tpl.php:10
 #, fuzzy
 msgid ""
 "AWPCP 3.0 includes several modifications to the Search Ads, Featured Ads and "
@@ -1465,7 +1465,7 @@ msgstr ""
 "usado en varias barras laterales al mismo tiempo. Además, hay un nuevo "
 "Widget para mostrar Anuncios Aleatorios."
 
-#: admin/templates/admin-widget-modification-notice.tpl.php:10
+#: admin/templates/admin-widget-modification-notice.tpl.php:11
 msgid ""
 "Unfortunately, those changes could cause WordPress to recognize the new "
 "widgets as totally different ones, in which case, the old widgets would be "
@@ -1480,7 +1480,7 @@ msgstr ""
 "revise la configuración de sus barras laterales y asegurese de restaurar "
 "cualquier widget que no aparezca."
 
-#: admin/templates/page-account-balance-summary-step.tpl.php:12
+#: admin/templates/page-account-balance-summary-step.tpl.php:13
 msgid ""
 "The credit in your account can be used to pay for posting your Ads. You can "
 "add credit when posting a new Ad or using the \"Add Credit\" button below."
@@ -1569,18 +1569,18 @@ msgstr ""
 msgid "Account Balance"
 msgstr "Saldo de la Cuenta"
 
-#: awpcp.php:155
+#: awpcp.php:159
 msgid ""
 "The AWP Module Updater plugin is needed to for your premium modules to work "
 "properly. You can download it from the <a href=\"https://awpcp.com/account/"
 "downloads/\">downloads page</a>."
 msgstr ""
 
-#: awpcp.php:188
+#: awpcp.php:192
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
 msgstr "{product_name} fue desactivado porque require PHP 5.6 o más nuevo."
 
-#: awpcp.php:191
+#: awpcp.php:195
 msgid ""
 "Hi, we noticed that your site is running on an outdated version of PHP. New "
 "versions of PHP are faster, more secure and include the features our product "
@@ -1590,7 +1590,7 @@ msgstr ""
 "PHP. Las versiones más nuevas de PHP son más rápidas, más seguras e incluyen "
 "la funcionalidad que Another WordPress Classifieds Plugin necesita."
 
-#: awpcp.php:194
+#: awpcp.php:198
 msgid ""
 "You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to "
 "also be considerable faster and even more secure, we recommend going up to "
@@ -1600,7 +1600,7 @@ msgstr ""
 "strong>. Si además quieres que tu sitio sea considerablemente más rápido y "
 "más seguro, puedes actualizar a <strong>PHP 7.2</strong>."
 
-#: awpcp.php:197
+#: awpcp.php:201
 msgid ""
 "Please read <a href=\"https://wordpress.org/support/upgrade-php/\">Upgrading "
 "PHP</a> to understand more about PHP and how to upgrade."
@@ -1608,7 +1608,7 @@ msgstr ""
 "Por favor lee <a href=\"https://wordpress.org/support/upgrade-php/"
 "\">actualizando PHP</a> para entender más acerca de PHP y como actualizar."
 
-#: awpcp.php:239
+#: awpcp.php:243
 #, fuzzy
 msgid ""
 "AWP Classifieds Plugin installation is incomplete. Please {support_link}"
@@ -1617,7 +1617,7 @@ msgstr ""
 "La instalación de Another WordPress Classifieds Plugin está incomplete. Por "
 "favor {support_link}contact al equipo de soporte{/support_link}."
 
-#: frontend/ad-functions.php:74 frontend/page-place-ad.php:158
+#: frontend/ad-functions.php:73 frontend/page-place-ad.php:158
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
@@ -1625,11 +1625,11 @@ msgstr ""
 "No tiene los permisos necesarios para llevar a cabo esta acción. El acceso a "
 "esta página ha sido denegado"
 
-#: frontend/ad-functions.php:89
+#: frontend/ad-functions.php:87
 msgid "The Ad has been deleted"
 msgstr "El anuncio ha sido eliminado."
 
-#: frontend/ad-functions.php:92
+#: frontend/ad-functions.php:91
 msgid ""
 "Your Ad details and any photos you have uploaded have been deleted from the "
 "system"
@@ -1637,18 +1637,18 @@ msgstr ""
 "Los detalles de su anuncio y las imágenes que cargó serán eliminadas del "
 "sistema"
 
-#: frontend/ad-functions.php:96
+#: frontend/ad-functions.php:94
 #: includes/frontend/class-edit-listing-page.php:192
 msgid "The specified Ad doesn't exists."
 msgstr "El anuncio especificado no existe."
 
-#: frontend/ad-functions.php:98
+#: frontend/ad-functions.php:96
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 "Ocurrió un error tratando de eliminar su anuncio. El anuncio no fue "
 "eliminado."
 
-#: frontend/ad-functions.php:101
+#: frontend/ad-functions.php:99
 msgid "Problem encountered. Cannot complete  request"
 msgstr "Problema encontrado. No se pudo completar el proceso"
 
@@ -1808,7 +1808,7 @@ msgstr "Fecha de inicio y fecha de finalización"
 #: includes/admin/import/class-csv-importer-columns.php:189
 #: includes/admin/listings/class-listings-table-nav-handler.php:155
 #: includes/form-fields/class-listing-form-fields.php:131
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:35
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:36
 msgid "Start Date"
 msgstr "Fecha de inicio"
 
@@ -1816,7 +1816,7 @@ msgstr "Fecha de inicio"
 #: includes/admin/import/class-csv-importer-columns.php:200
 #: includes/admin/listings/class-listings-table-nav-handler.php:156
 #: includes/form-fields/class-listing-form-fields.php:135
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:45
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:46
 msgid "End Date"
 msgstr "Fecha de finalización"
 
@@ -1887,7 +1887,7 @@ msgstr ""
 "No ingresó su dirección de correo electrónico. La dirección de correo es "
 "necesaria."
 
-#: frontend/page-place-ad.php:1072 frontend/page-reply-to-ad.php:164
+#: frontend/page-place-ad.php:1072 frontend/page-reply-to-ad.php:166
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -2010,10 +2010,10 @@ msgstr ""
 "El anuncio fue publicado bajo un término de pago que ya no existe o está "
 "deshabilitado. El anuncio no puede ser renovado."
 
-#: frontend/page-renew-ad.php:160 includes/functions/deprecated.php:376
+#: frontend/page-renew-ad.php:160 includes/functions/deprecated.php:378
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:22
 #: templates/admin/listings-media-center.tpl.php:12
-#: templates/admin/view-listing-admin-page.tpl.php:18
+#: templates/admin/view-listing-admin-page.tpl.php:19
 msgid "Return to Listings"
 msgstr "Configuración de Registro"
 
@@ -2022,7 +2022,7 @@ msgid "You can see your Ad here"
 msgstr "Usted puede ver los anuncios aquí"
 
 #. translators: %s is the new expiration date
-#: frontend/page-renew-ad.php:170 includes/functions/deprecated.php:371
+#: frontend/page-renew-ad.php:170 includes/functions/deprecated.php:373
 msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr "Su anuncio fue renovado. La nueva fecha de caducidad es %s."
 
@@ -2062,15 +2062,20 @@ msgstr ""
 msgid "The specified Ad does not exist."
 msgstr "El anuncio especificado no existe."
 
-#: frontend/page-reply-to-ad.php:162
+#: frontend/page-reply-to-ad.php:160
+#, fuzzy
+msgid "Please enter a valid name."
+msgstr "Por favor, ingrese un número válido."
+
+#: frontend/page-reply-to-ad.php:164
 msgid "Please enter your email."
 msgstr "Por favor, ingrese su dirección de correo electrónico."
 
-#: frontend/page-reply-to-ad.php:168
+#: frontend/page-reply-to-ad.php:170
 msgid "There was no text in your message. Please enter a message."
 msgstr "No ingresó ningún mensaje. Por favor, ingrese un mensaje."
 
-#: frontend/page-reply-to-ad.php:175
+#: frontend/page-reply-to-ad.php:177 frontend/page-reply-to-ad.php:237
 msgid ""
 "Your message was flagged as spam. Please contact the administrator of this "
 "site."
@@ -2078,7 +2083,7 @@ msgstr ""
 "Su mensaje ha sido marcada como spam. Por favor, contacte al administrador "
 "del sitio."
 
-#: frontend/page-reply-to-ad.php:289
+#: frontend/page-reply-to-ad.php:297
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -2088,7 +2093,7 @@ msgstr ""
 "intente de nuevo y si el problema persiste, por favor contacte el "
 "administrador."
 
-#: frontend/page-reply-to-ad.php:295
+#: frontend/page-reply-to-ad.php:303
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr "Su mensaje ha sido enviado. Volver a <view-listing-link>."
 
@@ -2182,19 +2187,19 @@ msgstr "Compartir en Facebook"
 msgid "this shortcode only works with registered users."
 msgstr "Este shortcode solo funciona con usuarios registrados."
 
-#: frontend/shortcode.php:354
+#: frontend/shortcode.php:355
 msgid "Hi admin, you need to select the page for your classifieds."
 msgstr "Hola administrador, debe seleccionar la página para sus clasificados."
 
-#: frontend/shortcode.php:357
+#: frontend/shortcode.php:358
 msgid "Choose pages now"
 msgstr "Escoger páginas ahora"
 
-#: frontend/shortcode.php:361
+#: frontend/shortcode.php:362
 msgid "You currently have no classifieds"
 msgstr "No tenés ningún Anuncio Clasificado"
 
-#: frontend/templates/checkout-form-google-checkout.tpl.php:13
+#: frontend/templates/checkout-form-google-checkout.tpl.php:14
 msgid ""
 "Your listing has not been fully submitted yet. To complete the process you "
 "need to click the link below."
@@ -2202,7 +2207,7 @@ msgstr ""
 "Tu anuncio no se ha cargado aun. Para completar el proceso, haga clic en el "
 "link de abajo."
 
-#: frontend/templates/checkout-form-google-checkout.tpl.php:19
+#: frontend/templates/checkout-form-google-checkout.tpl.php:20
 msgid "Pay With Google Checkout"
 msgstr "Pagar con Google Checkout"
 
@@ -2273,7 +2278,7 @@ msgstr ""
 "Un anuncio fue renovado. A continuación puedes ver una copia de los detalles "
 "que le enviamos al cliente."
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:10
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:11
 #: frontend/templates/email-ad-updated-user.tpl.php:14
 #: frontend/templates/email-place-ad-success-user.tpl.php:8
 #: includes/admin/import/class-csv-importer-columns.php:58
@@ -2281,40 +2286,40 @@ msgstr ""
 msgid "Listing Title"
 msgstr "Título del Anuncio"
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:12
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:13
 #: frontend/templates/email-ad-updated-user.tpl.php:15
 #: frontend/templates/email-place-ad-success-user.tpl.php:10
 msgid "Listing URL"
 msgstr "URL del Anuncio"
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:14
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:15
 #: frontend/templates/email-ad-updated-user.tpl.php:16
 #: frontend/templates/email-place-ad-success-user.tpl.php:12
 msgid "Listing ID"
 msgstr "ID del Anuncio"
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:16
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:17
 #: frontend/templates/email-ad-updated-user.tpl.php:17
 #: frontend/templates/email-place-ad-success-user.tpl.php:14
 msgid "Listing Edit Email"
 msgstr "Email de Edición"
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:19
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:20
 #: frontend/templates/email-ad-updated-user.tpl.php:19
 #: frontend/templates/email-place-ad-success-user.tpl.php:17
 msgid "Listing Edit Key"
 msgstr "Clave de Acceso para editar el Anuncio Clasificado"
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:22
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:23
 msgid "Listing End Date"
 msgstr "Fecha de Expiración del Anuncio"
 
 #. translators: %s is the admin email
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:26
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:27
 msgid "If you have questions about your listing, please contact %s."
 msgstr "Si tiene alguna duda respecto a su Anuncio, por favor contacte %s."
 
-#: frontend/templates/email-ad-renewed-success-user.tpl.php:31
+#: frontend/templates/email-ad-renewed-success-user.tpl.php:32
 msgid "Thank you for your business"
 msgstr "Gracias por su operación"
 
@@ -2339,7 +2344,7 @@ msgstr ""
 "trabajar con nosotros."
 
 #. translators: %s is the URL to the classified ads section
-#: frontend/templates/email-place-ad-success-admin.tpl.php:7
+#: frontend/templates/email-place-ad-success-admin.tpl.php:8
 msgid ""
 "A new ad has been submitted. A copy of the details sent to the customer can "
 "be found below. You can follow this link %s to go to the Classified Ads "
@@ -2385,17 +2390,17 @@ msgstr ""
 "dirección de correco electrónico %s."
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:23
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:17
-#: templates/admin/view-listing-admin-page.tpl.php:15
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:18
+#: templates/admin/view-listing-admin-page.tpl.php:16
 msgid "Access Key"
 msgstr "Clave de acceso"
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:24
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:18
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:19
 msgid "Edit Link:"
 msgstr "Enlace para editar:"
 
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:13
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:14
 msgid "Total ads found sharing your email address"
 msgstr ""
 "Total de anuncios clasificados encontrados asociados a su dirección de "
@@ -2425,17 +2430,17 @@ msgstr "Contraseña perdida y encontrada"
 msgid "Lost your password?"
 msgstr "¿Perdió su contraseña?"
 
-#: frontend/templates/main-menu.tpl.php:8
+#: frontend/templates/main-menu.tpl.php:9
 msgid "Classifieds Menu"
 msgstr "Menú Clasificados"
 
-#: frontend/templates/page-buy-credits-checkout-step.tpl.php:6
-#: frontend/templates/page-place-ad-checkout-step.tpl.php:6
+#: frontend/templates/page-buy-credits-checkout-step.tpl.php:7
+#: frontend/templates/page-place-ad-checkout-step.tpl.php:7
 #, fuzzy
 msgid "Complete Payment"
 msgstr "Completar Pago"
 
-#: frontend/templates/page-buy-credits-final-step.tpl.php:12
+#: frontend/templates/page-buy-credits-final-step.tpl.php:13
 msgid ""
 "The credit in your account can be used to pay for posting your Ads. You can "
 "add more credit when posting a new Ad or using the \"Add Credit\" button "
@@ -2445,69 +2450,69 @@ msgstr ""
 "Usted puede agregar más crédito cuando esté publicando un nuevo anuncio o "
 "haciendo click en el botón \"Agregar Crédito\" que aparece abajo."
 
-#: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:16
+#: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:17
 msgid "Select a Credit Plan"
 msgstr "Selecciona un plan de crédito"
 
-#: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:23
-#: frontend/templates/page-renew-ad-order-step.tpl.php:31
-#: frontend/templates/page-reply-to-ad.tpl.php:55
-#: frontend/templates/payments-billing-form.tpl.php:129
-#: frontend/templates/payments-checkout-page.tpl.php:32
-#: frontend/templates/payments-payment-completed-page.tpl.php:23
+#: frontend/templates/page-buy-credits-select-credit-plan-step.tpl.php:24
+#: frontend/templates/page-renew-ad-order-step.tpl.php:32
+#: frontend/templates/page-reply-to-ad.tpl.php:56
+#: frontend/templates/payments-billing-form.tpl.php:130
+#: frontend/templates/payments-checkout-page.tpl.php:33
+#: frontend/templates/payments-payment-completed-page.tpl.php:24
 msgid "Continue"
 msgstr "Continuar"
 
-#: frontend/templates/page-edit-ad-email-key-step.tpl.php:26
+#: frontend/templates/page-edit-ad-email-key-step.tpl.php:27
 msgid "Ad email and access key"
 msgstr "Correo electrónico y clave de acceso"
 
-#: frontend/templates/page-edit-ad-email-key-step.tpl.php:29
-#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:29
+#: frontend/templates/page-edit-ad-email-key-step.tpl.php:30
+#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:30
 msgid "Enter your email address"
 msgstr "Ingrese su dirección de correo electrónico"
 
-#: frontend/templates/page-edit-ad-email-key-step.tpl.php:35
+#: frontend/templates/page-edit-ad-email-key-step.tpl.php:36
 msgid "Enter your Ad access key"
 msgstr "Ingrese su clave de acceso"
 
-#: frontend/templates/page-edit-ad-email-key-step.tpl.php:38
+#: frontend/templates/page-edit-ad-email-key-step.tpl.php:39
 msgid "Click here to have your Ad access keys sent to you."
 msgstr "Haga click aquí para enviarle las claves de acceso de sus anuncios."
 
-#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:26
+#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:27
 msgid "Resend Ad access key"
 msgstr "Reenviar clave de acceso"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:12
+#: frontend/templates/page-place-ad-details-step.tpl.php:13
 msgid "Enter Ad Details"
 msgstr "Ingrese los detalles de su Anuncio"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:41
+#: frontend/templates/page-place-ad-details-step.tpl.php:42
 #: includes/admin/import/class-csv-importer-columns.php:83
 #: includes/admin/listings/class-listing-owner-metabox.php:63
 msgid "Ad Owner"
 msgstr "Propietario"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:48
-#: frontend/templates/page-place-ad-order-step.tpl.php:65
+#: frontend/templates/page-place-ad-details-step.tpl.php:49
+#: frontend/templates/page-place-ad-order-step.tpl.php:66
 msgid "User"
 msgstr "Usuario"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:49
-#: frontend/templates/page-place-ad-order-step.tpl.php:66
+#: frontend/templates/page-place-ad-details-step.tpl.php:50
+#: frontend/templates/page-place-ad-order-step.tpl.php:67
 msgid "Select an User owner for this Ad"
 msgstr "Seleccione un autor para este anuncio"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:86
+#: frontend/templates/page-place-ad-details-step.tpl.php:87
 msgid "Add Details and Contact Information"
 msgstr "Detalles e Información de Contacto para el Anuncio"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:79
+#: frontend/templates/page-place-ad-order-step.tpl.php:80
 msgid "Please select a payment term for your Ad"
 msgstr "Seleccione un término de pago para su anuncio"
 
-#: frontend/templates/page-place-ad-preview-step.tpl.php:16
+#: frontend/templates/page-place-ad-preview-step.tpl.php:17
 msgid ""
 "This is a preview of your Ad. Use the buttons below to go back and edit your "
 "Ad, manage the uploaded images or finish the posting process."
@@ -2516,25 +2521,25 @@ msgstr ""
 "para regresar y editar el anuncio, administrar las imágenes o finalizar el "
 "proceso de publicación."
 
-#: frontend/templates/page-place-ad-preview-step.tpl.php:18
+#: frontend/templates/page-place-ad-preview-step.tpl.php:19
 msgid "Edit Details"
 msgstr "Editar detalles del Anuncio"
 
-#: frontend/templates/page-place-ad-preview-step.tpl.php:20
+#: frontend/templates/page-place-ad-preview-step.tpl.php:21
 msgid "Manage Images"
 msgstr "Administrar Imágenes"
 
-#: frontend/templates/page-place-ad-preview-step.tpl.php:22
+#: frontend/templates/page-place-ad-preview-step.tpl.php:23
 #: includes/frontend/class-submit-listing-form-steps.php:64
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:42
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:43
 msgid "Finish"
 msgstr "Finalizar"
 
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:6
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:7
 msgid "Upload Files"
 msgstr "Subir los archivos seleccionados"
 
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:16
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:17
 #: includes/frontend/class-upload-media-submit-listing-section.php:133
 msgid ""
 "Image approval is in effect so any new images you upload will not be visible "
@@ -2547,13 +2552,13 @@ msgstr ""
 msgid "Your Ad has been renewed"
 msgstr "Su anuncio ha sido renovado"
 
-#: frontend/templates/page-renew-ad-order-step.tpl.php:10
+#: frontend/templates/page-renew-ad-order-step.tpl.php:11
 #, fuzzy
 msgid "Select Payment Term"
 msgstr "Seleccione un término de pago"
 
 #. translators: %s is the amount
-#: frontend/templates/page-renew-ad.tpl.php:19
+#: frontend/templates/page-renew-ad.tpl.php:20
 msgid ""
 "Please click the payment button below to proceed with Payment for your Ad "
 "renewal. You will be asked to pay %s."
@@ -2562,39 +2567,39 @@ msgstr ""
 "la Renovación de su anuncio."
 
 #. translators: %s is the ad link
-#: frontend/templates/page-reply-to-ad.tpl.php:17
+#: frontend/templates/page-reply-to-ad.tpl.php:18
 msgid "You are responding to Ad: %s."
 msgstr "Usted está respondiendo al anuncio: %s."
 
-#: frontend/templates/page-reply-to-ad.tpl.php:31
+#: frontend/templates/page-reply-to-ad.tpl.php:32
 msgid "Your name"
 msgstr "Su nombre"
 
-#: frontend/templates/page-reply-to-ad.tpl.php:37
+#: frontend/templates/page-reply-to-ad.tpl.php:38
 msgid "Your email address"
 msgstr "Su dirección de correo electrónico"
 
-#: frontend/templates/page-reply-to-ad.tpl.php:43
+#: frontend/templates/page-reply-to-ad.tpl.php:44
 msgid "Your message"
 msgstr "Su mensaje"
 
-#: frontend/templates/page-search-ads.tpl.php:25
+#: frontend/templates/page-search-ads.tpl.php:26
 msgid "Search for ads containing this word or phrase"
 msgstr "Buscar anuncios que contienen esta palabra o frase"
 
-#: frontend/templates/page-search-ads.tpl.php:47
+#: frontend/templates/page-search-ads.tpl.php:48
 msgid "For ads posted by"
 msgstr "Publicados por"
 
-#: frontend/templates/page-search-ads.tpl.php:49
+#: frontend/templates/page-search-ads.tpl.php:50
 msgid "All Users"
 msgstr "Todos los usuarios"
 
-#: frontend/templates/page-search-ads.tpl.php:61
+#: frontend/templates/page-search-ads.tpl.php:62
 msgid "Min price"
 msgstr "Precio mínimo"
 
-#: frontend/templates/page-search-ads.tpl.php:65
+#: frontend/templates/page-search-ads.tpl.php:66
 msgid "Max price"
 msgstr "Precio máximo"
 
@@ -2602,7 +2607,7 @@ msgstr "Precio máximo"
 msgid "Pay With 2Checkout"
 msgstr "Pagar con 2Checkout"
 
-#: frontend/templates/payments-billing-form.tpl.php:6
+#: frontend/templates/payments-billing-form.tpl.php:7
 #, fuzzy
 msgid ""
 "Please fill in the billing information in the form below to place your "
@@ -2611,69 +2616,69 @@ msgstr ""
 "Por favor, ingrese la información de pago en el formulario que está a "
 "continuación para realziar su pago."
 
-#: frontend/templates/payments-billing-form.tpl.php:11 functions.php:797
+#: frontend/templates/payments-billing-form.tpl.php:12 functions.php:820
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:234
 msgid "Country"
 msgstr "País"
 
-#: frontend/templates/payments-billing-form.tpl.php:19
+#: frontend/templates/payments-billing-form.tpl.php:20
 msgid "Card Number"
 msgstr "Tarjeta de Crédito"
 
-#: frontend/templates/payments-billing-form.tpl.php:25
+#: frontend/templates/payments-billing-form.tpl.php:26
 msgid "Card Type"
 msgstr "Tipo de Tarjeta"
 
-#: frontend/templates/payments-billing-form.tpl.php:51
+#: frontend/templates/payments-billing-form.tpl.php:52
 msgid "Expiration Date"
 msgstr "Fecha de Expiración"
 
-#: frontend/templates/payments-billing-form.tpl.php:66
+#: frontend/templates/payments-billing-form.tpl.php:67
 msgid "CSC"
 msgstr "CSC"
 
-#: frontend/templates/payments-billing-form.tpl.php:74
+#: frontend/templates/payments-billing-form.tpl.php:75
 msgid "First Name"
 msgstr "Nombre"
 
-#: frontend/templates/payments-billing-form.tpl.php:80
+#: frontend/templates/payments-billing-form.tpl.php:81
 msgid "Last Name"
 msgstr "Apellido"
 
-#: frontend/templates/payments-billing-form.tpl.php:86
+#: frontend/templates/payments-billing-form.tpl.php:87
 msgid "Address Line 1"
 msgstr "Dirección Línea 1"
 
-#: frontend/templates/payments-billing-form.tpl.php:92
+#: frontend/templates/payments-billing-form.tpl.php:93
 msgid "Address Line 2"
 msgstr "Dirección Línea 2"
 
-#: frontend/templates/payments-billing-form.tpl.php:97
+#: frontend/templates/payments-billing-form.tpl.php:98
 #: includes/admin/class-listings-personal-data-provider.php:116
 #: includes/admin/class-listings-personal-data-provider.php:126
 #: includes/admin/import/class-csv-importer-columns.php:242
 msgid "State"
 msgstr "Estado"
 
-#: frontend/templates/payments-billing-form.tpl.php:106 functions.php:817
+#: frontend/templates/payments-billing-form.tpl.php:107 functions.php:840
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:264
 msgid "City"
 msgstr "Ciudad"
 
-#: frontend/templates/payments-billing-form.tpl.php:112
+#: frontend/templates/payments-billing-form.tpl.php:113
 msgid "Postal Code"
 msgstr "Código Postal"
 
-#: frontend/templates/payments-billing-form.tpl.php:118
+#: frontend/templates/payments-billing-form.tpl.php:119
 #: includes/settings/class-email-settings.php:33
 msgid "Email"
 msgstr "Email"
 
-#: frontend/templates/payments-credit-plans-table.tpl.php:11
+#: frontend/templates/payments-credit-plans-table.tpl.php:12
 #, fuzzy
 msgid ""
 "You can additionally purchase a Credit Plan to add credit to your account. "
@@ -2684,16 +2689,16 @@ msgstr ""
 "su cuenta. Si selecciona pagar con créditos, el precio del termino de pago "
 "seleccionado sera deducido del saldo de su cuenta cuando completa el pago."
 
-#: frontend/templates/payments-credit-plans-table.tpl.php:26
+#: frontend/templates/payments-credit-plans-table.tpl.php:27
 msgid "No credit plans available."
 msgstr "No hay planes de crédito disponibles."
 
-#: frontend/templates/payments-credit-plans-table.tpl.php:55
+#: frontend/templates/payments-credit-plans-table.tpl.php:56
 #, fuzzy
 msgid "clear selection"
 msgstr "borrar selección"
 
-#: frontend/templates/payments-payment-completed-page.tpl.php:7
+#: frontend/templates/payments-payment-completed-page.tpl.php:8
 #, fuzzy
 msgid "Transaction Details"
 msgstr "Detalles de la Transacción"
@@ -2708,17 +2713,17 @@ msgstr "Usted está a punto de pagar por los siguientes artículos."
 msgid "Payment Terms"
 msgstr "Términos de pago"
 
-#: frontend/templates/payments-paypal-payment-button.tpl.php:38
+#: frontend/templates/payments-paypal-payment-button.tpl.php:39
 msgid "Make payments with PayPal - it's fast, free and secure!"
 msgstr "Realizá tu pago con PayPal - ¡Es rápido, gratis y seguro!"
 
-#: frontend/templates/payments-transaction-items-table.tpl.php:9
-#: frontend/templates/payments-transaction-items-table.tpl.php:18
+#: frontend/templates/payments-transaction-items-table.tpl.php:10
+#: frontend/templates/payments-transaction-items-table.tpl.php:19
 #, fuzzy
 msgid "Item"
 msgstr "Artículo"
 
-#: frontend/templates/payments-transaction-items-table.tpl.php:39
+#: frontend/templates/payments-transaction-items-table.tpl.php:40
 #, fuzzy
 msgid "Total Amount (credit)"
 msgstr "Cantidad Total (crédito)"
@@ -2828,7 +2833,7 @@ msgstr "Últimos Anuncios"
 msgid "There are currently no ads to show."
 msgstr "Actualmente no hay ningún anuncio para mostrar."
 
-#: frontend/widget-latest-ads.php:146
+#: frontend/widget-latest-ads.php:153
 msgid "Read more"
 msgstr "Leer más"
 
@@ -2874,105 +2879,105 @@ msgstr "Buscar"
 
 #. translators: %s is the human-readable time difference (e.g., "2 hours", "3
 #. days")
-#: functions.php:429
+#: functions.php:452
 msgid "%s ago"
 msgstr "Hace %s"
 
-#: functions.php:609
+#: functions.php:632
 msgid "Ads per page:"
 msgstr "Anuncios por página:"
 
-#: functions.php:626
+#: functions.php:649
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr "Página {current_page_number} de {number_of_pages}"
 
-#: functions.php:737
+#: functions.php:760
 msgid "None"
 msgstr "Ninguna"
 
-#: functions.php:798
+#: functions.php:821
 msgid "separate countries by commas"
 msgstr "Separar países por comas"
 
-#: functions.php:807
+#: functions.php:830
 msgid "State/Province"
 msgstr "Estado/Provincia"
 
-#: functions.php:808
+#: functions.php:831
 msgid "separate states by commas"
 msgstr "Separar estados/provincias por comas"
 
-#: functions.php:818
+#: functions.php:841
 msgid "separate cities by commas"
 msgstr "Separar ciudades por comas"
 
-#: functions.php:827
+#: functions.php:850
 msgid "County/Village/Other"
 msgstr "Distrito/Otro"
 
-#: functions.php:828
+#: functions.php:851
 msgid "separate counties by commas"
 msgstr "Separar Distritos por comas"
 
-#: functions.php:1050
+#: functions.php:1073
 msgid "-- Choose a Country --"
 msgstr "Elija un país"
 
-#: functions.php:1521 templates/admin/main-classifieds-admin-page.tpl.php:62
+#: functions.php:1553 templates/admin/main-classifieds-admin-page.tpl.php:63
 msgid "Free"
 msgstr "Gratis"
 
-#: functions.php:2225
+#: functions.php:2259
 msgid "No errors."
 msgstr "Sin errores."
 
-#: functions.php:2226
+#: functions.php:2260
 msgid "The file is larger than upload_max_filesize."
 msgstr "El tamaño del archivo es mayor que upload_max_filesize."
 
-#: functions.php:2227
+#: functions.php:2261
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "El tamaño del archivo es mayor que MAX_FILE_SIZE."
 
-#: functions.php:2228
+#: functions.php:2262
 msgid "The file was only partially uploaded."
 msgstr "El archivo fue cargado parcialmente."
 
-#: functions.php:2229
+#: functions.php:2263
 msgid "No file was uploaded."
 msgstr "Ningún archivo fue cargado."
 
-#: functions.php:2230
+#: functions.php:2264
 msgid "Missing temporary directory."
 msgstr "El directorio temporal no existe."
 
-#: functions.php:2231
+#: functions.php:2265
 msgid "Can't write file to disk."
 msgstr "No se puede escribir el archivo en disco."
 
-#: functions.php:2232
+#: functions.php:2266
 msgid "The file upload was stopped by extension."
 msgstr "La carga del archivo fue detenida por una extensión."
 
 #. translators: %s is the listing title
-#: functions.php:2484
+#: functions.php:2520
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Su anuncio \"%s\" ha sido aprobado"
 
 #. translators: %s is the listing title
-#: functions.php:2508
+#: functions.php:2544
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Su anuncio \"%s\" ha sido actualizado exitosamente"
 
 #. translators: %s is the listing title
-#: functions.php:2533
+#: functions.php:2569
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Las imágenes en el anuncio \"%s\" están esperando aprobación"
 
 #. translators: %1$s is the listing title, %2$s is the URL to manage images
 #. translators: %1$s is the listing title. %2$s is the URL for managing listing
 #. images.
-#: functions.php:2537 includes/functions/notifications.php:154
+#: functions.php:2573 includes/functions/notifications.php:154
 msgid ""
 "Images on Ad \"%1$s\" are awaiting approval. You can approve the images "
 "going to the Manage Images section for that Ad and clicking the \"Enable\" "
@@ -2984,14 +2989,14 @@ msgstr ""
 "continuar: %2$s."
 
 #. translators: %s is the listing title
-#: functions.php:2543
+#: functions.php:2579
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "El anuncio \"%s\" está esperando aprobación"
 
 #. translators: %1$s is the listing title, %2$s is the URL for managing listing
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2546 includes/functions/notifications.php:161
+#: functions.php:2582 includes/functions/notifications.php:161
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -3003,7 +3008,7 @@ msgstr ""
 
 #. translators: %s is the URL to manage images
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2555 includes/functions/notifications.php:169
+#: functions.php:2591 includes/functions/notifications.php:169
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -3014,28 +3019,28 @@ msgstr ""
 "\"Aprobar\" debajo de cada imagen. Haga click aquí para continuar: %s."
 
 #. translators: %s is the formatted date and time
-#: functions.php:3012
+#: functions.php:3152
 msgid "Email sent %s."
 msgstr "Correo electrónico enviado %s."
 
 #. translators: %1$s is WordPress version, %2$s is plugin version
-#: functions.php:3144
+#: functions.php:3284
 msgid "Not Installed"
 msgstr "No instalado"
 
-#: functions.php:3148
+#: functions.php:3288
 msgid "Installed"
 msgstr "Instalado"
 
-#: functions.php:3156
+#: functions.php:3296
 msgid "SSL Support: Yes."
 msgstr "Soporta SSL: Sí."
 
-#: functions.php:3158
+#: functions.php:3298
 msgid "SSL Support: No."
 msgstr "Soporta SSL: No."
 
-#: functions.php:3161
+#: functions.php:3301
 msgid "OpenSSL version:"
 msgstr "Versión de OpenSSL:"
 
@@ -3184,7 +3189,7 @@ msgid "Ad post status."
 msgstr "Estado del Anuncio"
 
 #: includes/admin/import/class-csv-importer-columns.php:107
-#: templates/admin/view-listing-admin-page.tpl.php:24
+#: templates/admin/view-listing-admin-page.tpl.php:25
 msgid "Category"
 msgstr "Categoría"
 
@@ -3241,8 +3246,8 @@ msgstr ""
 "adjunto. Los nombres de archivo deben estar separados por punto y coma."
 
 #: includes/admin/import/class-importer-form-steps.php:20
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:18
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:86
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:19
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:87
 msgid "Upload Source Files"
 msgstr "Subir archivos fuente"
 
@@ -3251,12 +3256,12 @@ msgid "Configuration"
 msgstr "Configuración"
 
 #: includes/admin/import/class-importer-form-steps.php:33
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:181
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:182
 msgid "Import"
 msgstr "Importar"
 
 #: includes/admin/import/class-importer-form-steps.php:36
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:180
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:181
 msgid "Test Import"
 msgstr "Probar importación"
 
@@ -3303,7 +3308,7 @@ msgstr[0] "%d anuncio ya estaba activado."
 msgstr[1] "%d anuncios ya estaban activados."
 
 #: includes/admin/listings/class-listing-owner-metabox.php:66
-#: templates/frontend/order-submit-listing-section.tpl.php:46
+#: templates/frontend/order-submit-listing-section.tpl.php:47
 msgid "Please select a user"
 msgstr "Por favor elige un usuario"
 
@@ -3639,11 +3644,11 @@ msgstr ""
 "sitio."
 
 #: includes/admin/tools/class-tools-admin-page.php:49
-#: templates/admin/import/example-csv-file.tpl.php:22
-#: templates/admin/import/supported-csv-headers.tpl.php:45
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:12
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:11
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:12
+#: templates/admin/import/example-csv-file.tpl.php:23
+#: templates/admin/import/supported-csv-headers.tpl.php:46
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:13
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:12
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:13
 msgid "Import Listings"
 msgstr "Importar Anuncios"
 
@@ -3651,21 +3656,21 @@ msgstr "Importar Anuncios"
 msgid "Export Listings"
 msgstr "Exportar anuncios"
 
-#: includes/categories/class-categories-logic.php:46
+#: includes/categories/class-categories-logic.php:48
 msgid "There was an error trying to create a category: <error-message>"
 msgstr "Ocurrió un error creando la categoría: <error-message>"
 
-#: includes/categories/class-categories-logic.php:76
+#: includes/categories/class-categories-logic.php:78
 msgid "The name of the Category is required."
 msgstr "El nombre de la Categoría es necesario."
 
-#: includes/categories/class-categories-logic.php:84
+#: includes/categories/class-categories-logic.php:86
 msgid ""
 "The ID of the parent category and the ID of the category must be different."
 msgstr ""
 "El ID de la categoría padre y el ID de la categoría deben ser diferentes."
 
-#: includes/categories/class-categories-logic.php:100
+#: includes/categories/class-categories-logic.php:102
 msgid ""
 "There was an error trying to update a category. The ID of the category is "
 "required."
@@ -3673,18 +3678,18 @@ msgstr ""
 "Ocurrió un error actualizando la categoría. Es obligatorio incluir el ID de "
 "la categoría."
 
-#: includes/categories/class-categories-logic.php:107
+#: includes/categories/class-categories-logic.php:109
 msgid "There was an error trying to update a category: <error-message>."
 msgstr "Ocurrió un error actualizando la categoría: <error-message>."
 
-#: includes/categories/class-categories-logic.php:127
+#: includes/categories/class-categories-logic.php:129
 msgid "The category to be moved and the target category can not be the same."
 msgstr ""
 "La categoría que va a ser movida y la categoría destino no pueden ser la "
 "misma."
 
-#: includes/categories/class-categories-logic.php:138
-#: includes/categories/class-categories-logic.php:161
+#: includes/categories/class-categories-logic.php:140
+#: includes/categories/class-categories-logic.php:163
 msgid ""
 "The move-to category and the category that is going to be deleted must be "
 "different."
@@ -3692,7 +3697,7 @@ msgstr ""
 "La categoría destina y la categoría que va a ser borrada deben ser "
 "diferentes."
 
-#: includes/categories/class-categories-logic.php:182
+#: includes/categories/class-categories-logic.php:184
 msgid ""
 "The category couldn't be deleted because there was an error trying to delete "
 "one of the associated listings: <error-message>"
@@ -3700,7 +3705,7 @@ msgstr ""
 "La categoría no pudo ser borrada porque ocurrió un error borrando uno de los "
 "anuncios asociados: <error-message>"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:792
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3709,88 +3714,88 @@ msgstr ""
 "instalado. Comuníquese con su proveedor de alojamiento web para solucionar "
 "este problema."
 
-#: includes/class-awpcp.php:779
+#: includes/class-awpcp.php:793
 #: includes/placeholders/class-placeholders-installation-verifier.php:67
 msgid "Warning"
 msgstr "Advertencia"
 
-#: includes/class-awpcp.php:796
+#: includes/class-awpcp.php:810
 msgid "Attachments"
 msgstr "Adjuntos"
 
-#: includes/class-awpcp.php:803
+#: includes/class-awpcp.php:817
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:810
+#: includes/class-awpcp.php:824
 msgid "BuddyPress Listings"
 msgstr "BuddyPress Anuncios"
 
-#: includes/class-awpcp.php:817
+#: includes/class-awpcp.php:831
 msgid "Campaign Manager"
 msgstr "Administrador de Campañas"
 
-#: includes/class-awpcp.php:824
+#: includes/class-awpcp.php:838
 msgid "Category Icons"
 msgstr "Íconos para Categorías"
 
-#: includes/class-awpcp.php:831
+#: includes/class-awpcp.php:845
 msgid "Comments & Ratings"
 msgstr "Comentarios y Calificaciones"
 
-#: includes/class-awpcp.php:838
+#: includes/class-awpcp.php:852
 msgid "Coupons/Discount"
 msgstr "Cupones/Descuentos"
 
-#: includes/class-awpcp.php:845
+#: includes/class-awpcp.php:859
 msgid "Extra Fields"
 msgstr "Campos Extras"
 
-#: includes/class-awpcp.php:859
+#: includes/class-awpcp.php:873
 msgid "Fee per Category"
 msgstr "Precio por Categoría"
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:880
 msgid "Mark as Sold"
 msgstr "Marcar como Vendido"
 
-#: includes/class-awpcp.php:873
+#: includes/class-awpcp.php:887
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:880
+#: includes/class-awpcp.php:894
 msgid "Regions Control"
 msgstr "Control de Regiones"
 
-#: includes/class-awpcp.php:887
+#: includes/class-awpcp.php:901
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:894
+#: includes/class-awpcp.php:908
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:901
+#: includes/class-awpcp.php:915
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:908 templates/components/media-manager.tpl.php:54
+#: includes/class-awpcp.php:922 templates/components/media-manager.tpl.php:54
 msgid "Videos"
 msgstr "Videos"
 
-#: includes/class-awpcp.php:916
+#: includes/class-awpcp.php:930
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:924
+#: includes/class-awpcp.php:938
 msgid "ZIP Code Search Module"
 msgstr "Módulo de búsqueda por código postal"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1473
 msgid "This field is required."
 msgstr "Este campo es obligatorio."
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1474
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:277
 #: includes/frontend/class-edit-listing-page.php:354
@@ -3798,62 +3803,62 @@ msgstr "Este campo es obligatorio."
 msgid "Please enter a valid email address."
 msgstr "Por favor, ingrese una dirección de correo electrónico válida."
 
-#: includes/class-awpcp.php:1461 includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1475 includes/class-awpcp.php:1476
 msgid "Please enter a valid URL."
 msgstr "Por favor, ingrese una URL válida."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1477
 msgid "Please enter a valid number."
 msgstr "Por favor, ingrese un número válido."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1478
 msgid "Please enter a valid amount."
 msgstr "Por favor, ingrese una cantidad válida."
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1479
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 "Ha alcanzado las categorías máximas permitidas por el plan seleccionado."
 
-#: includes/class-awpcp.php:1484
+#: includes/class-awpcp.php:1498
 msgid "There are files currently being uploaded."
 msgstr "El sistema aún está cargando algunos archivos."
 
-#: includes/class-awpcp.php:1485
+#: includes/class-awpcp.php:1499
 msgid "There are files pending to be uploaded."
 msgstr "Algunos archivos están esperando para ser cargados."
 
-#: includes/class-awpcp.php:1486
+#: includes/class-awpcp.php:1500
 msgid "You haven't uploaded any images or files."
 msgstr "Aún no ha subido imágenes o archivos."
 
-#: includes/class-awpcp.php:1555 includes/class-awpcp.php:1563
-#: includes/class-awpcp.php:1571 includes/class-awpcp.php:1646
-#: includes/class-awpcp.php:1654 includes/class-awpcp.php:1662
-#: templates/admin/debug/plugin-info-debug-section.tpl.php:11
+#: includes/class-awpcp.php:1569 includes/class-awpcp.php:1577
+#: includes/class-awpcp.php:1585 includes/class-awpcp.php:1660
+#: includes/class-awpcp.php:1668 includes/class-awpcp.php:1676
+#: templates/admin/debug/plugin-info-debug-section.tpl.php:12
 #: templates/privacy-policy.tpl.php:12
 #, fuzzy
 msgid "AWP Classifieds Plugin"
 msgstr "Another WordPress Classifieds Plugin"
 
 #. translators: %d the category id
-#: includes/class-categories-collection.php:50
+#: includes/class-categories-collection.php:52
 msgid "No category was found with ID: %d"
 msgstr "No se encontró una categoría con ID: %d"
 
-#: includes/class-categories-collection.php:62
+#: includes/class-categories-collection.php:64
 msgid "The category ID must be a positive integer, {category_id} was given."
 msgstr ""
 "Recibimos {category_id}, pero el ID de la categoría debe ser un número "
 "entero positivo."
 
-#: includes/class-categories-collection.php:109
+#: includes/class-categories-collection.php:111
 msgid "No category was found with old ID: {old_category_id}."
 msgstr ""
 "No encontramos una categoría cuyo ID anterior es igual a {old_category_id}."
 
-#: includes/class-categories-collection.php:118
+#: includes/class-categories-collection.php:120
 msgid ""
 "No category was found with ID: {category_id}, the replacement for category "
 "with old ID: {old_category_id}."
@@ -3863,12 +3868,12 @@ msgstr ""
 "{old_category_id}."
 
 #. translators: %s the submitted value
-#: includes/class-categories-collection.php:131
+#: includes/class-categories-collection.php:133
 msgid "The category name must be a non empty string, %s was given."
 msgstr "El nombre de la categoría no pude ser una cadena vacía, %s fue dado."
 
 #. translators: %s is the category name
-#: includes/class-categories-collection.php:141
+#: includes/class-categories-collection.php:143
 msgid "No category was found with name: %s."
 msgstr "No encontramos una categoría cuyo nombre sea igual a: %s."
 
@@ -3917,19 +3922,19 @@ msgstr ""
 "que el Administrador las apruebe."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:72
+#: includes/class-listings-collection.php:74
 msgid "The listing ID must be a positive integer, %d was given."
 msgstr "Recibimos %d, pero el ID de un anuncio debe ser un entero positivo."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:80
-#: includes/class-listings-collection.php:86
+#: includes/class-listings-collection.php:82
+#: includes/class-listings-collection.php:88
 msgid "No Listing was found with id: %d."
 msgstr "No se encontró un anuncio con ID: %d."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:112
-#: includes/class-listings-collection.php:120
+#: includes/class-listings-collection.php:114
+#: includes/class-listings-collection.php:122
 msgid "No Listing was found with old id: %d."
 msgstr "No encontramos un anuncio con ID anterior igual a %d."
 
@@ -3957,19 +3962,19 @@ msgstr ""
 "formato JSON? Por favor intenta de nuevo o contacta al servicio de soporte "
 "al cliente y envía una copia del archivo."
 
-#: includes/credit-plan.php:119 includes/payment-term.php:137
+#: includes/credit-plan.php:121 includes/payment-term.php:137
 msgid "The name of the plan is required."
 msgstr "El nombre del plan es necesario."
 
-#: includes/credit-plan.php:122 includes/payment-term.php:155
+#: includes/credit-plan.php:124 includes/payment-term.php:155
 msgid "The number of credits must be greater than zero."
 msgstr "El número de créditos debe ser mayor que cero."
 
-#: includes/credit-plan.php:125
+#: includes/credit-plan.php:127
 msgid "The price must be greater or equal than zero."
 msgstr "El precio debe ser mayor o igual a cero."
 
-#: includes/credit-plan.php:163
+#: includes/credit-plan.php:165
 msgid "The Credit Plan doesn't exist."
 msgstr "El Plan de Crédito no existe."
 
@@ -4083,14 +4088,14 @@ msgstr ""
 "No estás autorizado para realizar esta acción. Solo los usuarios conectados "
 "tienen permitido publicar anuncios clasificados."
 
-#: includes/frontend/class-default-captcha-provider.php:80
+#: includes/frontend/class-default-captcha-provider.php:88
 msgid ""
 "You did not solve the math problem. Please solve the math problem to proceed."
 msgstr ""
 "No ingresó el resultado de la operación matemática. Por favor, hágalo para "
 "poder continuar."
 
-#: includes/frontend/class-default-captcha-provider.php:85
+#: includes/frontend/class-default-captcha-provider.php:92
 msgid "Your solution to the math problem was incorrect. Please try again."
 msgstr ""
 "La solución a la operación mátemática fue incorrecta. Por favor, intentalo "
@@ -4285,7 +4290,7 @@ msgstr "Iniciar Sesión/Registrarse"
 
 #: includes/frontend/class-submit-listing-form-steps.php:52
 #: includes/ui/class-category-selector.php:151
-#: templates/components/category-selector.tpl.php:19
+#: templates/components/category-selector.tpl.php:20
 msgid "Select a Category"
 msgstr "Seleccione una Categoría"
 
@@ -4371,13 +4376,13 @@ msgstr "La transacción especificada no existe."
 
 #. translators: %s is the listing title
 #. translators: %s is the title of the listing.
-#: includes/functions/deprecated.php:73
+#: includes/functions/deprecated.php:75
 #: includes/listings/class-listing-renewed-email-notifications.php:88
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr "El anuncio \"%s\" fue renovado satisfactoriamente."
 
-#: includes/functions/deprecated.php:458
-#: templates/components/media-center.tpl.php:18
+#: includes/functions/deprecated.php:460
+#: templates/components/media-center.tpl.php:19
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -4391,7 +4396,7 @@ msgstr ""
 
 #. translators: %1$s is the module name, %2$s is the current AWPCP version,
 #. %3$s is the required AWPCP version
-#: includes/functions/deprecated.php:477
+#: includes/functions/deprecated.php:479
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -4399,13 +4404,13 @@ msgstr ""
 "La versión del módulo %1$s no es compatible con la versión %2$s de AWPCP. "
 "Por favor, descargue AWPCP %1$s %3$s o posterior."
 
-#: includes/functions/deprecated.php:479
+#: includes/functions/deprecated.php:481
 msgid "Error"
 msgstr "Error"
 
 #. translators: %1$s is the file name, %2$s is the maximum allowed file size
 #. translators: %1$s the file name, %2$s the size limit
-#: includes/functions/deprecated.php:561 includes/functions/deprecated.php:601
+#: includes/functions/deprecated.php:563 includes/functions/deprecated.php:603
 #: includes/functions/file-upload.php:86
 #, fuzzy
 msgid ""
@@ -4418,7 +4423,7 @@ msgstr ""
 #. translators: %1$s is the file name, %2$s is the minimum width
 #. translators: %1$s the file name, %2$s the size limit
 #. translators: %1$s is the file name, %2$s is the minimum width
-#: includes/functions/deprecated.php:584 includes/functions/file-upload.php:95
+#: includes/functions/deprecated.php:586 includes/functions/file-upload.php:95
 #: includes/media/class-image-file-validator.php:33
 #, fuzzy
 msgid ""
@@ -4431,7 +4436,7 @@ msgstr ""
 #. translators: %1$s is the file name, %2$s is the minimum height
 #. translators: %1$s the file name, %2$s the size limit
 #. translators: %1$s is the file name, %2$s is the minimum height
-#: includes/functions/deprecated.php:595 includes/functions/file-upload.php:100
+#: includes/functions/deprecated.php:597 includes/functions/file-upload.php:100
 #: includes/media/class-image-file-validator.php:44
 #, fuzzy
 msgid ""
@@ -4546,7 +4551,7 @@ msgstr "Por favor ingresa un precio para tu anuncio."
 msgid "Please type in the details of your ad."
 msgstr "Por favor ingresa los detalles de tu anuncio."
 
-#: includes/functions/legacy.php:195
+#: includes/functions/legacy.php:348
 msgid "Top Level Category"
 msgstr "Categoría de Nivel Superior"
 
@@ -5098,7 +5103,7 @@ msgid "Destination directory doesn't exists and couldn't be created."
 msgstr "El directorio de destino no existe y no pudo ser creado."
 
 #: includes/models/class-custom-post-types.php:78
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:111
 msgid "Disabled"
 msgstr "Deshabilitar"
 
@@ -5152,16 +5157,16 @@ msgstr "Un anuncio clasificado."
 msgid "General"
 msgstr "General"
 
-#: includes/models/payment-transaction.php:239
+#: includes/models/payment-transaction.php:241
 msgid "The transaction must be assigned to a WordPress user."
 msgstr "La transacción debe estar asignada a un usuario WordPress."
 
-#: includes/models/payment-transaction.php:252
+#: includes/models/payment-transaction.php:254
 msgid "The transaction has no items."
 msgstr "La transacción no tiene artículos."
 
 #. translators: %d is the number of extra credits needed
-#: includes/models/payment-transaction.php:265
+#: includes/models/payment-transaction.php:267
 msgid ""
 "The amount of credit in your account is not enough to pay for the selected "
 "items. Please choose one of the available Credit Plans in addition to the "
@@ -5174,7 +5179,7 @@ msgstr ""
 ">Usted necesita %d en crédito extra."
 
 #. translators: %d is the number of extra credits needed
-#: includes/models/payment-transaction.php:268
+#: includes/models/payment-transaction.php:270
 msgid ""
 "The selected Credit Plan is not enough to pay for the selected items. Please "
 "choose a bigger Credit Plan or add credit to your account from your Profile "
@@ -5185,15 +5190,20 @@ msgstr ""
 "crédito a su cuenta desde su página de perfil.<br/>Usted necesita %d en "
 "crédito extra."
 
-#: includes/models/payment-transaction.php:298
+#: includes/models/payment-transaction.php:300
 msgid "You must select a payment method."
 msgstr "Usted debe seleccionar un método de pago."
 
-#: includes/models/payment-transaction.php:310
+#: includes/models/payment-transaction.php:312
 msgid "The payment status for this transaction hasn't been defined."
 msgstr "El estado de pago para esta transaccion no ha sido definido."
 
-#: includes/payment-gateway-2checkout.php:68
+#: includes/payment-gateway-2checkout.php:70
+msgid ""
+"2Checkout secret word is not configured. Payment verification cannot proceed."
+msgstr ""
+
+#: includes/payment-gateway-2checkout.php:78
 msgid ""
 "There appears to be a problem with your payment. Please contact the "
 "administrator if you are viewing this message after having made a payment "
@@ -5206,7 +5216,11 @@ msgstr ""
 "Administrador. Si por el contrario, no trató de hacer un pago y esta viendo "
 "este mensaje, significa que se está mostrando por error y puede descartarlo."
 
-#: includes/payment-gateway-2checkout.php:106
+#: includes/payment-gateway-2checkout.php:96
+msgid "Payment verification failed. The response signature does not match."
+msgstr ""
+
+#: includes/payment-gateway-2checkout.php:140
 #: includes/payment-gateway-paypal-standard.php:156
 msgid ""
 "The amount you have paid does not match the required amount for this "
@@ -5215,7 +5229,7 @@ msgstr ""
 "El monto que está abonando no coincide con el monto requerido para esta "
 "transacción. Por favor, contáctatenos para aclarar el problema."
 
-#: includes/payment-gateway-2checkout.php:114
+#: includes/payment-gateway-2checkout.php:148
 #: includes/payment-gateway-paypal-standard.php:164
 msgid ""
 "There was an error processing your transaction. If funds have been deducted "
@@ -5226,7 +5240,7 @@ msgstr ""
 "sido cargado a nuestra cuenta. Si el dinero fue deducido de su cuenta, por "
 "favor contacte al personal de PayPal para solucionar este problema."
 
-#: includes/payment-gateway-2checkout.php:124
+#: includes/payment-gateway-2checkout.php:158
 #: includes/payment-gateway-paypal-standard.php:174
 msgid ""
 "It appears this transaction has already been processed. If you do not see "
@@ -5330,11 +5344,11 @@ msgstr "El correo electrónico es obligatorio."
 msgid "Free Listing"
 msgstr "Anuncio Gratuito"
 
-#: includes/payment-term-fee.php:149
+#: includes/payment-term-fee.php:148
 msgid "The Fee doesn't exist."
 msgstr "El plan de pagos no existe."
 
-#: includes/payment-term-fee.php:169
+#: includes/payment-term-fee.php:168
 msgid ""
 "The Fee can't be deleted because there are active Ads in the system that are "
 "associated with the Fee ID."
@@ -5342,7 +5356,7 @@ msgstr ""
 "El plan de pago no puede ser eliminado porque hay anuncios actualmente "
 "activos asociados al ID de dicho Plan."
 
-#: includes/payment-term-fee.php:281
+#: includes/payment-term-fee.php:280
 msgid "The recipient Fee doesn't exists."
 msgstr "El plan de pago especificado no existe."
 
@@ -6080,7 +6094,7 @@ msgid "Form Fields Behavior"
 msgstr "Comportamiento de los campos de formulario"
 
 #: includes/settings/class-display-settings.php:469
-#: templates/admin/import/supported-csv-headers.tpl.php:22
+#: templates/admin/import/supported-csv-headers.tpl.php:23
 msgid "Field"
 msgstr "Campo"
 
@@ -6093,7 +6107,7 @@ msgid "Show field on search form"
 msgstr "Mostrar campo en el formulario de búsqueda"
 
 #: includes/settings/class-display-settings.php:472
-#: templates/admin/import/supported-csv-headers.tpl.php:23
+#: templates/admin/import/supported-csv-headers.tpl.php:24
 msgid "Required"
 msgstr "Requerido"
 
@@ -8705,24 +8719,36 @@ msgstr "Código de moneda para 2Checkout"
 msgid "The currency in which you would like to receive your 2Checkout payments"
 msgstr "La moneda en la cual quisiera recibir sus pagos a través de 2Checkout"
 
-#: includes/settings/class-payment-general-settings.php:269
+#: includes/settings/class-payment-general-settings.php:263
+#, fuzzy
+msgid "2Checkout Secret Word"
+msgstr "Código de moneda para 2Checkout"
+
 #: includes/settings/class-payment-general-settings.php:274
+msgid ""
+"The secret word configured in your 2Checkout account. Used to verify payment "
+"responses are authentic. You can find this in your 2Checkout dashboard under "
+"Account > Site Management."
+msgstr ""
+
+#: includes/settings/class-payment-general-settings.php:286
+#: includes/settings/class-payment-general-settings.php:291
 msgid "Credit System"
 msgstr "Sistema de Créditos"
 
-#: includes/settings/class-payment-general-settings.php:277
+#: includes/settings/class-payment-general-settings.php:294
 msgid "Currency"
 msgstr "Moneda"
 
-#: includes/settings/class-payment-general-settings.php:279
+#: includes/settings/class-payment-general-settings.php:296
 msgid "Currency & Credits"
 msgstr "Moneda y Crédito"
 
-#: includes/settings/class-payment-general-settings.php:282
+#: includes/settings/class-payment-general-settings.php:299
 msgid "Enable Credit System"
 msgstr "Habilitar el Sistema de Crédito"
 
-#: includes/settings/class-payment-general-settings.php:282
+#: includes/settings/class-payment-general-settings.php:299
 msgid ""
 "The Credit System allows users to purchase credit that can later be used to "
 "pay for placing Ads."
@@ -8730,15 +8756,15 @@ msgstr ""
 "El Sistema de Crédito permite a los usuarios comprar crédito que pueden usar "
 "más tarde para pagar por publicar anuncios."
 
-#: includes/settings/class-payment-general-settings.php:287
+#: includes/settings/class-payment-general-settings.php:304
 msgid "Accepted payment type"
 msgstr "Tipo de pago aceptado"
 
-#: includes/settings/class-payment-general-settings.php:290
+#: includes/settings/class-payment-general-settings.php:307
 msgid "Select the type of payment that can be used to purchase Ads."
 msgstr "Seleccione el tipo de pago que puede ser usado para publicar anuncios."
 
-#: includes/settings/class-payment-general-settings.php:302
+#: includes/settings/class-payment-general-settings.php:319
 msgid ""
 "You cannot configure Credits as the only accepted payment type unless you "
 "enable the Credit System as well. The setting was set to accept both "
@@ -8748,7 +8774,7 @@ msgstr ""
 "que también habilite el Sistema de Créditos. La opción fue configurada para "
 "aceptar Moneda y Créditos."
 
-#: includes/settings/class-payment-general-settings.php:319
+#: includes/settings/class-payment-general-settings.php:336
 msgid ""
 "There is a problem with the PayPal Currency Code you have entered. It does "
 "not match any of the codes in our list of curencies supported by PayPal."
@@ -8757,11 +8783,11 @@ msgstr ""
 "PayPal. No coincide con ninguno de los códigos en la lista de las monedas "
 "soportadas."
 
-#: includes/settings/class-payment-general-settings.php:320
+#: includes/settings/class-payment-general-settings.php:337
 msgid "The available currency codes are"
 msgstr "Los códigos de moneda que están disponibles son"
 
-#: includes/settings/class-payment-general-settings.php:329
+#: includes/settings/class-payment-general-settings.php:346
 msgid ""
 "Require Registration setting was enabled automatically because you activated "
 "the Credit System."
@@ -8769,7 +8795,7 @@ msgstr ""
 "La opción para requerir el registro de usuarios fue habilitado "
 "automáticamente porque usted activó el Sistema de Crédito."
 
-#: includes/settings/class-payment-general-settings.php:334
+#: includes/settings/class-payment-general-settings.php:351
 msgid ""
 "Charge Listing Fee setting was enabled automatically because you activated "
 "the Credit System."
@@ -8777,7 +8803,7 @@ msgstr ""
 "La opción para cobrar por los anuncios fue habilitada automáticamente porque "
 "usted activó el Sistema de Crédito."
 
-#: includes/settings/class-payment-general-settings.php:340
+#: includes/settings/class-payment-general-settings.php:357
 msgid ""
 "Credit System was disabled automatically because you disabled Charge Listing "
 "Fee."
@@ -8993,11 +9019,11 @@ msgstr ""
 "Ocurrió un error intentado hacer que el ID del siguiente anuncio sea mayor "
 "que {post_id}. {error_message}"
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:106
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:107
 msgid "The file {filepath} doesn't exist."
 msgstr "El archivo {filepath} no existe."
 
-#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:148
+#: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:149
 msgid "An attachment couldn't be created for media item with id {media_id}."
 msgstr ""
 "No pudimos crear un adjunto para la imagen o archivo con ID igual a "
@@ -9105,23 +9131,23 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr "La instancia de WP_Scripts no está lista!"
 
-#: installer.php:157
+#: installer.php:159
 msgid "30 Day Listing"
 msgstr "Listado de 30 días"
 
-#: installer.php:304
+#: installer.php:306
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Respuesta a su anuncio de prueba"
 
-#: installer.php:305
+#: installer.php:307
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Alguien ha respondido a su anuncio de prueba"
 
-#: installer.php:330
+#: installer.php:332
 msgid "Verify the email address used for Ad $title"
 msgstr "Verifique la dirección de correo usada para el anuncio $title"
 
-#: installer.php:331
+#: installer.php:333
 #, fuzzy
 msgid ""
 "Hello $author_name \n"
@@ -9162,7 +9188,7 @@ msgstr ""
 "\n"
 "$website_url"
 
-#: templates/admin/debug/environment-debug-section.tpl.php:23
+#: templates/admin/debug/environment-debug-section.tpl.php:24
 msgid ""
 "Click the button below to contact <howsmyssl-link> and get a report about "
 "you server's SSL/TSL features."
@@ -9170,20 +9196,20 @@ msgstr ""
 "Haz clic en el botón que está abajo para contactar <howsmyssl-link> y "
 "obtener un report sobre las capacidades SSL/TSL de tu servidor."
 
-#: templates/admin/debug/environment-debug-section.tpl.php:36
+#: templates/admin/debug/environment-debug-section.tpl.php:37
 msgid "Test your SSL Client"
 msgstr "Probar el cliente SSL"
 
-#: templates/admin/debug/environment-debug-section.tpl.php:43
+#: templates/admin/debug/environment-debug-section.tpl.php:44
 #, fuzzy
 msgid "Test SSL Client"
 msgstr "Probar el cliente SSL"
 
-#: templates/admin/debug/plugin-info-debug-section.tpl.php:28
+#: templates/admin/debug/plugin-info-debug-section.tpl.php:29
 msgid "Premium Modules"
 msgstr "Módulos Premium"
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:24
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:25
 msgid ""
 "If you are seeing multiple 404 Not Found errors in your website, it is "
 "possible that some Rewrite Rules are missing or corrupted. Please click the "
@@ -9195,7 +9221,7 @@ msgstr ""
 "presiona el botón que está abajo para navegar a la página de <permalinks-"
 "settings-link>opciones de enlaces permanentes</a>."
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:31
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:32
 msgid ""
 "Opening that page in your browser will flush the Rewrite Rules in your site. "
 "WordPress will then ask all installed and active plugins to register their "
@@ -9207,7 +9233,7 @@ msgstr ""
 "Found deberían desaparecer. Si los errores no desaparecen, por favor "
 "<support-link>contacte al servicio de soporte al cliente</a>."
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:44
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:45
 #, fuzzy
 msgid "Plugin Pages"
 msgstr "Páginas del plugin"
@@ -9284,12 +9310,12 @@ msgstr ""
 msgid "Selected Category"
 msgstr "Categoría elegida"
 
-#: templates/admin/export-listings-admin-page.tpl.php:143
+#: templates/admin/export-listings-admin-page.tpl.php:144
 #, fuzzy
 msgid "Export Complete"
 msgstr "Exportación completa"
 
-#: templates/admin/export-listings-admin-page.tpl.php:159
+#: templates/admin/export-listings-admin-page.tpl.php:160
 #, fuzzy
 msgid ""
 "Click \"Cleanup\" once the file has been downloaded in order to remove all "
@@ -9299,12 +9325,12 @@ msgstr ""
 "eliminar toda la información temporal creada por Another WordPress "
 "Classifieds Plugin durante el proceso de exportación."
 
-#: templates/admin/export-listings-admin-page.tpl.php:166
+#: templates/admin/export-listings-admin-page.tpl.php:167
 #, fuzzy
 msgid "Export Canceled"
 msgstr "Exportación cancelada"
 
-#: templates/admin/form-fields-admin-page.tpl.php:11
+#: templates/admin/form-fields-admin-page.tpl.php:12
 msgid ""
 "The table below shows all the form fields that users may need to fill to "
 "create a listing. Use the six-dots icons at the end of each row to drag the "
@@ -9318,7 +9344,7 @@ msgstr ""
 "anuncio."
 
 #. translators: %s is a link to the Form Fields settings page.
-#: templates/admin/form-fields-admin-page.tpl.php:17
+#: templates/admin/form-fields-admin-page.tpl.php:18
 #, fuzzy
 msgid ""
 "Go to the %s settings section to control which of the standard fields appear "
@@ -9332,24 +9358,24 @@ msgstr ""
 "de los campos pueden ser configurados desde la sección de administración de "
 "Campos Adicionales."
 
-#: templates/admin/form-fields-admin-page.tpl.php:18
+#: templates/admin/form-fields-admin-page.tpl.php:19
 msgid "Form"
 msgstr "Formulario"
 
-#: templates/admin/import/example-csv-file.tpl.php:12
+#: templates/admin/import/example-csv-file.tpl.php:13
 msgid "Import Listings: Example CSV File"
 msgstr "Importar anuncios: archivo CSV de ejemplo"
 
-#: templates/admin/import/example-csv-file.tpl.php:20
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:82
+#: templates/admin/import/example-csv-file.tpl.php:21
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:83
 msgid "See Supported CSV Headers"
 msgstr "Ver encabezados CSV permitidos"
 
-#: templates/admin/import/supported-csv-headers.tpl.php:12
+#: templates/admin/import/supported-csv-headers.tpl.php:13
 msgid "Import Listings: Supported CSV Headers"
 msgstr "Importar anuncios: nombres de columnas soportadas en el archivo CSV"
 
-#: templates/admin/import/supported-csv-headers.tpl.php:16
+#: templates/admin/import/supported-csv-headers.tpl.php:17
 msgid ""
 "The following are the valid header names that can be included in the CSV "
 "file used to import listings."
@@ -9357,26 +9383,26 @@ msgstr ""
 "Los siguientes son los nombres de cabeceras que puedes incluir en el archivo "
 "CSV usado para importar anuncios."
 
-#: templates/admin/import/supported-csv-headers.tpl.php:21
+#: templates/admin/import/supported-csv-headers.tpl.php:22
 msgid "Header"
 msgstr "Cabecera"
 
-#: templates/admin/import/supported-csv-headers.tpl.php:43
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:84
+#: templates/admin/import/supported-csv-headers.tpl.php:44
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:85
 msgid "See Example CSV File"
 msgstr "Ver archivo CSV de ejemplo"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:18
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:19
 msgid "Configure"
 msgstr "Configurar"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:25
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:26
 msgid "Define default values for the start date and end date columns?"
 msgstr ""
 "Definir valores por defecto para las columnas de fecha de inicio y "
 "finalización?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:30
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:31
 msgid ""
 "The default values will be used if the CSV does not contain a value for the "
 "start date or end date columns."
@@ -9384,77 +9410,77 @@ msgstr ""
 "Los valores por defecto serán usados si el archivo CSV no continue un valor "
 "para las columnas de fecha de inicio o finalización."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:55
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:56
 msgid "Date Format"
 msgstr "Formato de fecha"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:62
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:63
 msgid "Automatic"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:65
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:66
 #, fuzzy
 msgid "UK (dd/mm/year)"
 msgstr "Fecha de Reino Unido (dd/mm/año)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:68
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:69
 #, fuzzy
 msgid "EUR (year/mm/dd)"
 msgstr "Fecha de EUR (año/mm/dd)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:75
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:76
 msgid "Separators Used in CSV"
 msgstr "Separadores empleados en CSV"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:79
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:80
 msgid "Time Separator"
 msgstr "Separador de hora"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:87
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:88
 msgid "Category Separator"
 msgstr "Separador de categorías"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:94
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:95
 msgid "Image Separator"
 msgstr "Separador de imágenes"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:96
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:97
 msgid "(semi-colon)"
 msgstr "(punto y coma)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:103
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:104
 msgid "Post status of imported listings"
 msgstr "Estado de listados importados"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:107
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:108
 msgid "Leave current post status"
 msgstr "Dejar el estado actual de la publicación"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:108
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
 msgid "Pending Review"
 msgstr "Pendiente de revisión"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
 msgid "Draft"
 msgstr "Borrador"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:113
 msgid "Published"
 msgstr "Publicad@"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:118
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:119
 msgid "How to handle missing categories?"
 msgstr "¿Qué hacer si una categoría no existe?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:122
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:123
 msgid "Create missing categories"
 msgstr "Crear categorías no encontradas"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:123
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
 msgid "Generate an error"
 msgstr "Generar un error"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:126
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
 msgid ""
 "Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
@@ -9463,7 +9489,7 @@ msgstr ""
 "error cada vez que una categoría del archivo CSV no es encontrada en el "
 "sistema."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:137
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:138
 msgid ""
 "If checked, listings will be assigned to the user specified in the CSV file "
 "or a default user that can be defined below."
@@ -9472,12 +9498,12 @@ msgstr ""
 "especificado en el archivo CSV o el usuario por defecto que puede ser "
 "definido más abajo."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:154
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:155
 msgid "Default user"
 msgstr "Usuario por defecto"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:186
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:48
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:187
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:49
 msgid ""
 "Press the button below to cancel the current import operation and discard "
 "the uploaded CSV file and ZIP file (if any). If you manually uploaded images "
@@ -9489,7 +9515,7 @@ msgstr ""
 "servidor. Los archivos subidos manualmente al directorio especificado en el "
 "campo Directorio Local, no serán eliminados."
 
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:20
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:21
 msgid ""
 "You're currently testing the import operation. No listings will be created "
 "or modified in the database."
@@ -9497,7 +9523,7 @@ msgstr ""
 "Usted está realizando una prueba de importación. No se crearán ni "
 "modificarán anuncios en la base de datos."
 
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:34
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:35
 msgid ""
 "All rows were processed. You can change the Configuration & Restart the "
 "import operation, or click the Finish button to delete the source and "
@@ -9509,44 +9535,44 @@ msgstr ""
 "para eliminar los archivos temporales y los archivos fuentes creados para "
 "esta sesión (las imágenes y los anuncios importados serán preservados)."
 
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:37
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:38
 msgid "Change Configuration & Restart"
 msgstr "Cambiar la configuración y reiniciar"
 
-#: templates/admin/import-listings-admin-page-import-form.tpl.php:40
+#: templates/admin/import-listings-admin-page-import-form.tpl.php:41
 msgid "Pause"
 msgstr "Pausar"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:25
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:26
 msgid "CSV file"
 msgstr "Archivo CVS"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:35
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:36
 msgid "Images source"
 msgstr "Imágenes"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:38
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:39
 msgid "Don't import images"
 msgstr "No importar imágenes"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:40
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:41
 msgid "ZIP file"
 msgstr "Archivo ZIP"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:42
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:43
 msgid "Local directory"
 msgstr "Directorio local"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:47
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:48
 msgid "Zip file containing images"
 msgstr "El archivo ZIP contiene imágenes"
 
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:58
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:59
 msgid "Local directory path"
 msgstr "Ubicación del directorio local"
 
 #. translators: %s is the uploads directory path
-#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:69
+#: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:70
 #, fuzzy
 msgid "The relative path to a directory inside %s."
 msgstr "La ruta relativa a un directorio dentro de <uploads-directory-path>."
@@ -9567,7 +9593,7 @@ msgstr "Enlaces de Administración"
 msgid "View Listing"
 msgstr "Ver Anuncio"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:15
+#: templates/admin/main-classifieds-admin-page.tpl.php:16
 #, fuzzy
 msgid ""
 "The version of the extra fields module that you are using is not compatible "
@@ -9576,50 +9602,50 @@ msgstr ""
 "La versión del módulo de Extra Fields que está usando no es compatible con "
 "esta versión de Another WordPress Classifieds Plugin."
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:16
+#: templates/admin/main-classifieds-admin-page.tpl.php:17
 msgid "Please request updated Extra Fields module files"
 msgstr "Por favor, solicita los archivos actualizados del modelo Campos Extra"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:26
+#: templates/admin/main-classifieds-admin-page.tpl.php:27
 #, fuzzy
 msgid "AWP Classifieds Plugin Stats"
 msgstr "Estadísticas de Another Wordpress Classifieds Plugin"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:28
+#: templates/admin/main-classifieds-admin-page.tpl.php:29
 msgid "Go to AWPCP Settings"
 msgstr "Ir a Configuración AWPCP"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:33
+#: templates/admin/main-classifieds-admin-page.tpl.php:34
 msgid "AWPCP version"
 msgstr "Versión de AWPCP"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:38
+#: templates/admin/main-classifieds-admin-page.tpl.php:39
 msgid "Number of active listings currently in the system"
 msgstr "Número de entradas activas actualmente en el sistema"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:41
+#: templates/admin/main-classifieds-admin-page.tpl.php:42
 msgid "Number of expired/disabled listings currently in the system"
 msgstr "Número de anuncios que han caducado o están desactivados en el sistema"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:44
+#: templates/admin/main-classifieds-admin-page.tpl.php:45
 msgid "Number of invalid listings currently in the system"
 msgstr "Número de anuncios no válidos en el sistema"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:49
+#: templates/admin/main-classifieds-admin-page.tpl.php:50
 msgid "Payment Mode"
 msgstr "Modo de Pago"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:51
+#: templates/admin/main-classifieds-admin-page.tpl.php:52
 msgid "Paid"
 msgstr "Pagado"
 
 #. translators: %s is the link to the Fees admin page.
-#: templates/admin/main-classifieds-admin-page.tpl.php:54
+#: templates/admin/main-classifieds-admin-page.tpl.php:55
 msgid "To edit your fees go to %s."
 msgstr "Para editar los planes de pago vaya a %s."
 
 #. translators: %s is the link to the Fees admin page.
-#: templates/admin/main-classifieds-admin-page.tpl.php:57
+#: templates/admin/main-classifieds-admin-page.tpl.php:58
 msgid ""
 "You have not configured your Listing fees. Go to %s to set up your listing "
 "fees. Once completed, the options will appear on the new ads form."
@@ -9628,38 +9654,38 @@ msgstr ""
 "termine, las opciones aparecerán en el formulario para crear nuevos anuncios."
 
 #. translators: %s is the link to the Payment Options settigns page.
-#: templates/admin/main-classifieds-admin-page.tpl.php:76
+#: templates/admin/main-classifieds-admin-page.tpl.php:77
 msgid "To collect paid ads, go to %s and check the 'Charge Listing Fee?' box."
 msgstr ""
 "Para recibir anuncios pagos, vaya a %s y seleccione el campo '¿Cobrar por "
 "los anuncios?'."
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:77
+#: templates/admin/main-classifieds-admin-page.tpl.php:78
 msgid "Payment Options"
 msgstr "Configuración de Pagos"
 
 #. translators: %s is the link the Manage Categories admin page.
-#: templates/admin/main-classifieds-admin-page.tpl.php:91
+#: templates/admin/main-classifieds-admin-page.tpl.php:92
 msgid ""
 "Go to the %s section to edit/delete current categories or add new categories."
 msgstr ""
 "Vaya a la sección %s para editar/eliminar las categorías actuales o agregar "
 "nuevas categorías."
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:99
+#: templates/admin/main-classifieds-admin-page.tpl.php:100
 msgid "Total number of categories in the system"
 msgstr "Número total de categorías en el sistema"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:104
+#: templates/admin/main-classifieds-admin-page.tpl.php:105
 msgid "Number of Top Level parent categories"
 msgstr "Número de categorías principales"
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:109
+#: templates/admin/main-classifieds-admin-page.tpl.php:110
 msgid "Number of sub level children categories"
 msgstr "Número de sub-categorías"
 
 #. translators: %s is the link to the Manage Categories admin page.
-#: templates/admin/main-classifieds-admin-page.tpl.php:118
+#: templates/admin/main-classifieds-admin-page.tpl.php:119
 msgid ""
 "You have not categories defined. Go to the %s section to set up your "
 "categories."
@@ -9667,68 +9693,68 @@ msgstr ""
 "Usted no tiene categorías definidas. Vaya a la sección %s para configurar "
 "sus categorías."
 
-#: templates/admin/manage-categories-admin-page.tpl.php:48
+#: templates/admin/manage-categories-admin-page.tpl.php:49
 msgid "Parent Category"
 msgstr "Categoría Principal"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:57
+#: templates/admin/manage-categories-admin-page.tpl.php:58
 msgid "Category list order"
 msgstr "Orden en la lista de categorías"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:80
+#: templates/admin/manage-categories-admin-page.tpl.php:81
 msgid "Icon Meanings:"
 msgstr "Convenciones:"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:93
+#: templates/admin/manage-categories-admin-page.tpl.php:94
 msgid "Move categories or ads under:"
 msgstr "Mover las categorías o anuncios debajo de:"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:100
+#: templates/admin/manage-categories-admin-page.tpl.php:101
 msgid "Delete categories should do this with existing ads:"
 msgstr "Eliminar categorías debería que los anuncios existentes sean:"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:101
+#: templates/admin/manage-categories-admin-page.tpl.php:102
 msgid "Move ads to new category"
 msgstr "Asociados a una nueva categoría"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:102
+#: templates/admin/manage-categories-admin-page.tpl.php:103
 msgid "Delete ads too"
 msgstr "Borrados"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:112
+#: templates/admin/manage-categories-admin-page.tpl.php:113
 msgid "Move Selected Categories"
 msgstr "Mover las Categorías seleccionadas"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:113
+#: templates/admin/manage-categories-admin-page.tpl.php:114
 msgid "Delete Selected Categories"
 msgstr "Eliminar las Categorías seleccionadas"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:130
+#: templates/admin/manage-categories-admin-page.tpl.php:131
 msgid "Select all categories"
 msgstr "Elegir todas las categorías"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:133
-#: templates/admin/manage-categories-admin-page.tpl.php:149
+#: templates/admin/manage-categories-admin-page.tpl.php:134
+#: templates/admin/manage-categories-admin-page.tpl.php:150
 msgid "Category ID"
 msgstr "ID de Categoría"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:135
-#: templates/admin/manage-categories-admin-page.tpl.php:150
+#: templates/admin/manage-categories-admin-page.tpl.php:136
+#: templates/admin/manage-categories-admin-page.tpl.php:151
 msgid "Category Name (Total Ads)"
 msgstr "Nombre de la Categoría (Total de Anuncios)"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:137
-#: templates/admin/manage-categories-admin-page.tpl.php:151
+#: templates/admin/manage-categories-admin-page.tpl.php:138
+#: templates/admin/manage-categories-admin-page.tpl.php:152
 msgid "Parent"
 msgstr "Padre"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:138
-#: templates/admin/manage-categories-admin-page.tpl.php:152
+#: templates/admin/manage-categories-admin-page.tpl.php:139
+#: templates/admin/manage-categories-admin-page.tpl.php:153
 msgid "Order"
 msgstr "Orden"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:139
-#: templates/admin/manage-categories-admin-page.tpl.php:153
+#: templates/admin/manage-categories-admin-page.tpl.php:140
+#: templates/admin/manage-categories-admin-page.tpl.php:154
 msgid "Action"
 msgstr "Acción"
 
@@ -9758,7 +9784,7 @@ msgstr ""
 "página <payment-settings-link>Opciones de Pago</payment-settings-link> para "
 "ingresar el valor."
 
-#: templates/admin/onboarding-wizard/index.tpl.php:31
+#: templates/admin/onboarding-wizard/index.tpl.php:32
 msgid "Exit Onboarding"
 msgstr ""
 
@@ -9840,27 +9866,27 @@ msgstr "Anuncio clasificado nuevo"
 msgid "Go to Dashboard"
 msgstr "Tablero"
 
-#: templates/admin/profile/contact-information-fields.tpl.php:7
+#: templates/admin/profile/contact-information-fields.tpl.php:8
 msgid "Classifieds Contact Information"
 msgstr "Información de Contacto para los Clasificados"
 
-#: templates/admin/profile/contact-information-fields.tpl.php:13
+#: templates/admin/profile/contact-information-fields.tpl.php:14
 msgid "Phone Number"
 msgstr "Número de teléfono"
 
-#: templates/admin/profile/contact-information-fields.tpl.php:22
+#: templates/admin/profile/contact-information-fields.tpl.php:23
 msgid "Address"
 msgstr "Dirección"
 
-#: templates/admin/settings/email-template.tpl.php:12
+#: templates/admin/settings/email-template.tpl.php:13
 msgid "Subject"
 msgstr "Asunto"
 
-#: templates/admin/settings/email-template.tpl.php:17
+#: templates/admin/settings/email-template.tpl.php:18
 msgid "Body"
 msgstr "Cuerpo"
 
-#: templates/admin/settings/email-template.tpl.php:24
+#: templates/admin/settings/email-template.tpl.php:25
 msgid ""
 "The following is a list of placeholders you can use to personalise the "
 "message:"
@@ -9868,20 +9894,20 @@ msgstr ""
 "La siguiente es una lista de los marcadores que puedes usar para "
 "personalizar el mensaje:"
 
-#: templates/admin/tools/export-settings-admin-page.tpl.php:18
+#: templates/admin/tools/export-settings-admin-page.tpl.php:19
 msgid "Download a JSON file with the values for all settings."
 msgstr "Descarga un archivo JSON con los valores de todas las opciones."
 
-#: templates/admin/tools/export-settings-admin-page.tpl.php:21
+#: templates/admin/tools/export-settings-admin-page.tpl.php:22
 msgid "Download Settings"
 msgstr "Configuración de Descarga"
 
-#: templates/admin/tools/export-settings-admin-page.tpl.php:22
-#: templates/admin/tools/import-settings-admin-page.tpl.php:24
+#: templates/admin/tools/export-settings-admin-page.tpl.php:23
+#: templates/admin/tools/import-settings-admin-page.tpl.php:25
 msgid "Return to Tools"
 msgstr "Regresar a la lista de herramientas"
 
-#: templates/admin/tools/import-settings-admin-page.tpl.php:18
+#: templates/admin/tools/import-settings-admin-page.tpl.php:19
 msgid ""
 "If you have a file with plugin settings in a JSON format, you may import "
 "those settings uploading the file here."
@@ -9889,19 +9915,19 @@ msgstr ""
 "Si tienes un archivo con las opciones del plugin en formato JSON, puedes "
 "importar esas opciones cargando el archivo aquí."
 
-#: templates/admin/tools/import-settings-admin-page.tpl.php:21
+#: templates/admin/tools/import-settings-admin-page.tpl.php:22
 msgid "Settings JSON file"
 msgstr "Archivo de opciones en formato JSON"
 
-#: templates/admin/tools/import-settings-admin-page.tpl.php:23
+#: templates/admin/tools/import-settings-admin-page.tpl.php:24
 msgid "Import Now"
 msgstr "Importar ahora"
 
-#: templates/admin/tools/tools-admin-page.tpl.php:12
+#: templates/admin/tools/tools-admin-page.tpl.php:13
 msgid "Tools"
 msgstr "Herramientas"
 
-#: templates/admin/view-listing-admin-page.tpl.php:27
+#: templates/admin/view-listing-admin-page.tpl.php:28
 msgid "Manage Listing"
 msgstr "Administrar Anuncios"
 
@@ -10015,7 +10041,7 @@ msgstr "Arrastre los archivos hasta aquí para cargarlos"
 msgid "Select Files"
 msgstr "Selecciona archivos"
 
-#: templates/components/payment-methods-list.tpl.php:9
+#: templates/components/payment-methods-list.tpl.php:10
 msgid "No payment methods available."
 msgstr "No hay métodos de pago disponibles."
 
@@ -10037,17 +10063,17 @@ msgid "You can renew your Ad visiting this link: %s"
 msgstr "Renueva su Anuncio visitando: %s"
 
 #: templates/email/listing-media-awaiting-approval.plain.tpl.php:6
-#: templates/email/listing-was-flagged.plain.tpl.php:6
+#: templates/email/listing-was-flagged.plain.tpl.php:7
 msgid "Hello"
 msgstr "Hola"
 
-#: templates/email/listing-media-upload-notification.plain.tpl.php:7
+#: templates/email/listing-media-upload-notification.plain.tpl.php:8
 #, fuzzy
 msgid "Hello,"
 msgstr "Hola,"
 
 #. translators: %s is the listing title
-#: templates/email/listing-media-upload-notification.plain.tpl.php:15
+#: templates/email/listing-media-upload-notification.plain.tpl.php:16
 #, fuzzy
 msgid "The following media files were recently uploaded to listing \"%s\":"
 msgstr ""
@@ -10055,7 +10081,7 @@ msgstr ""
 "title>\":"
 
 #. translators: %s is the listing title
-#: templates/email/listing-media-upload-notification.plain.tpl.php:30
+#: templates/email/listing-media-upload-notification.plain.tpl.php:31
 #, fuzzy
 msgid ""
 "The following media files were recently uploaded to listing \"%s\" and are "
@@ -10065,7 +10091,7 @@ msgstr ""
 "title>\" y están pendientes de ser aprobados:"
 
 #. translators: %s is the manage listing media URL
-#: templates/email/listing-media-upload-notification.plain.tpl.php:44
+#: templates/email/listing-media-upload-notification.plain.tpl.php:45
 #, fuzzy
 msgid "Click here to manage media uploaded to the listing: %s."
 msgstr ""
@@ -10073,7 +10099,7 @@ msgstr ""
 "<manage-listing-media-url>."
 
 #. translators: %s is the view listing URL
-#: templates/email/listing-media-upload-notification.plain.tpl.php:53
+#: templates/email/listing-media-upload-notification.plain.tpl.php:54
 #, fuzzy
 msgid "Click here to view the listing: %s."
 msgstr "Haga click aquí para ver el anuncio: <view-listing-url>."
@@ -10091,7 +10117,7 @@ msgstr ""
 "link <manage-listing-link> para ir la sección de gestión de anuncios y "
 "aprobar, rechazar, marcar como spam o ver la versión completa del anuncio."
 
-#: templates/email/listing-was-flagged.plain.tpl.php:9
+#: templates/email/listing-was-flagged.plain.tpl.php:10
 msgid ""
 "You have pending flagged listings to review at <site-name>. Please check "
 "them out here <flagged-listings-url>."
@@ -10103,13 +10129,13 @@ msgstr ""
 msgid "There were no listings found."
 msgstr "No se encontraron anuncios."
 
-#: templates/frontend/order-submit-listing-section.tpl.php:45
+#: templates/frontend/order-submit-listing-section.tpl.php:46
 #, fuzzy
 msgid "Who is the owner of this ad?"
 msgstr "¿Quién es el propietario de este anuncio?"
 
 #. translators: %s is the list of selected categories
-#: templates/frontend/order-submit-listing-section.tpl.php:91
+#: templates/frontend/order-submit-listing-section.tpl.php:92
 #, fuzzy
 msgid "Your ad will be posted on the following categories: %s."
 msgstr "Tu anuncio será publicado en las siguientes categorías: %s."
@@ -10290,12 +10316,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Clasificados"
 
-#: admin/admin-panel.php:819 includes/settings/class-listings-settings.php:473
+#: admin/admin-panel.php:825 includes/settings/class-listings-settings.php:473
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Mostrar anuncio"
 
-#: admin/admin-panel.php:827
+#: admin/admin-panel.php:833
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editar Anuncio"
@@ -10347,7 +10373,7 @@ msgid "Environment"
 msgstr "Entorno"
 
 #: admin/class-debug-admin-page.php:145
-#: admin/templates/admin-panel-debug.tpl.php:64
+#: admin/templates/admin-panel-debug.tpl.php:65
 msgctxt "debug page"
 msgid "Rewrite Rules"
 msgstr "Reglas de re-escritura"
@@ -10377,15 +10403,15 @@ msgctxt "debug page"
 msgid "Not Working"
 msgstr "No funciona"
 
-#: admin/templates/admin-panel-debug.tpl.php:36
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:38
+#: admin/templates/admin-panel-debug.tpl.php:37
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:39
 msgctxt "debug page"
 msgid "Flush Rewrite Rules"
 msgstr "Limpiar Reglas de Reescritura"
 
 #. translators: %1$s opening anchor link, %2$s closing anchor link, %3$s Linked
 #. URL in anchor link
-#: admin/templates/admin-panel-debug.tpl.php:53
+#: admin/templates/admin-panel-debug.tpl.php:54
 #, fuzzy
 msgctxt "debug page"
 msgid ""
@@ -10401,23 +10427,23 @@ msgstr ""
 "continuación en <a href=\"http://fpaste.org\" target=\"_blank\">http://"
 "fpaste.org</a> y proporcione la URL resultante en su informe."
 
-#: admin/templates/admin-panel-debug.tpl.php:61
+#: admin/templates/admin-panel-debug.tpl.php:62
 msgctxt "debug page"
 msgid "AWPCP Pages"
 msgstr "Páginas AWPCP"
 
-#: admin/templates/admin-panel-debug.tpl.php:62
+#: admin/templates/admin-panel-debug.tpl.php:63
 msgctxt "debug page"
 msgid "PHP Info"
 msgstr "PHP Info"
 
-#: admin/templates/admin-panel-debug.tpl.php:63
+#: admin/templates/admin-panel-debug.tpl.php:64
 msgctxt "debug page"
 msgid "AWPCP Settings"
 msgstr "Configuración AWPCP"
 
 #. translators: %s is the URL to download the debug information
-#: templates/admin/debug/debug-admin-page.tpl.php:21
+#: templates/admin/debug/debug-admin-page.tpl.php:22
 msgctxt "debug page"
 msgid ""
 "This information can help AWPCP developers to debug possible problems. If "
@@ -10429,32 +10455,32 @@ msgstr ""
 "<strong><a href=\"%s\">descarga la información de depuración</a></strong> y "
 "agrégala como adjunto a tu mensaje."
 
-#: templates/admin/debug/plugin-info-debug-section.tpl.php:42
+#: templates/admin/debug/plugin-info-debug-section.tpl.php:43
 msgctxt "debug page"
 msgid "There are no premium modules activated right now."
 msgstr "No hay ningún modulo premium activado en este momento."
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:53
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:54
 msgctxt "debug page"
 msgid "Reference"
 msgstr "Referencia"
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:54
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:55
 msgctxt "debug page"
 msgid "Page Title"
 msgstr "Titulo de la página"
 
-#: templates/admin/debug/plugin-pages-debug-section.tpl.php:55
+#: templates/admin/debug/plugin-pages-debug-section.tpl.php:56
 msgctxt "debug page"
 msgid "Stored ID"
 msgstr "ID guardado"
 
-#: templates/admin/debug/plugin-settings-debug-section.tpl.php:13
+#: templates/admin/debug/plugin-settings-debug-section.tpl.php:14
 msgctxt "debug page"
 msgid "Setting Name"
 msgstr "Nombre de la opción"
 
-#: templates/admin/debug/plugin-settings-debug-section.tpl.php:14
+#: templates/admin/debug/plugin-settings-debug-section.tpl.php:15
 msgctxt "debug page"
 msgid "Setting Value"
 msgstr "Valor de la opción"
@@ -10521,12 +10547,12 @@ msgctxt "form field slug"
 msgid "Slug"
 msgstr "Slug"
 
-#: admin/import/class-csv-importer-delegate.php:105
+#: admin/import/class-csv-importer-delegate.php:107
 msgctxt "csv importer"
 msgid "Required value for column \"<column-name>\" is missing."
 msgstr "No encontramos un valor para la columna obligatoria \"<column-name>\"."
 
-#: admin/import/class-csv-importer-delegate.php:188
+#: admin/import/class-csv-importer-delegate.php:190
 #, fuzzy
 msgctxt "csv importer"
 msgid ""
@@ -10534,7 +10560,7 @@ msgid ""
 msgstr ""
 "Se creó un nuevo usuario '%s' con correo electrónico '%s' y contraseña '%s'."
 
-#: admin/import/class-csv-importer-delegate.php:265
+#: admin/import/class-csv-importer-delegate.php:267
 msgctxt "csv importer"
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
@@ -10547,7 +10573,7 @@ msgstr ""
 "incluidas. Por favor incluye un nombre de usuario y una dirección de correo "
 "electrónico de contacto o elige un usuario por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:267
+#: admin/import/class-csv-importer-delegate.php:269
 msgctxt "csv importer"
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
@@ -10558,7 +10584,7 @@ msgstr ""
 "creado porque la columna username está vacía o no fue incluida. Por favor "
 "incluye un nombre de usuario o elige un usuario por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:269
+#: admin/import/class-csv-importer-delegate.php:271
 msgctxt "csv importer"
 msgid ""
 "No user could be assigned to this listing. A new user couldn't be created "
@@ -10570,17 +10596,17 @@ msgstr ""
 "favor, incluya una dirección de correo electrónico de contacto o seleccione "
 "un usuario por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:328
+#: admin/import/class-csv-importer-delegate.php:330
 msgctxt "csv importer"
 msgid "No category with name \"<category-name>\" was found."
 msgstr "No encontramos una categoría con nombre \"<category-name>\"."
 
-#: admin/import/class-csv-importer-delegate.php:344
+#: admin/import/class-csv-importer-delegate.php:346
 msgctxt "csv importer"
 msgid "There was an error trying to create category \"<category-name>\"."
 msgstr "Ocurrió un error creando la categoría \"<category-name>\"."
 
-#: admin/import/class-csv-importer-delegate.php:354
+#: admin/import/class-csv-importer-delegate.php:356
 msgctxt "csv importer"
 msgid ""
 "A category with name \"<category-name>\" was created, but there was an error "
@@ -10589,50 +10615,50 @@ msgstr ""
 "La categoría con nombre \"<category-name>\" fue creada, pero ocurrió un "
 "error intentando cargar la información desde la base de datos."
 
-#: admin/import/class-csv-importer-delegate.php:367
+#: admin/import/class-csv-importer-delegate.php:369
 msgctxt "csv importer"
 msgid "Item price must be a number."
 msgstr "El precio del anuncio debe ser un número."
 
-#: admin/import/class-csv-importer-delegate.php:381
+#: admin/import/class-csv-importer-delegate.php:383
 msgctxt "csv importer"
 msgid "The start date is missing and no default value was defined."
 msgstr "La fecha de inicio no fue incluida y no elegiste un valor por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:382
+#: admin/import/class-csv-importer-delegate.php:384
 msgctxt "csv importer"
 msgid "The start date is invalid and no default value was defined."
 msgstr "La fecha de inicio no es válida y no elegiste un valor por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:383
+#: admin/import/class-csv-importer-delegate.php:385
 msgctxt "csv importer"
 msgid "Invalid default start date."
 msgstr "La fecha de inicio no es válida."
 
-#: admin/import/class-csv-importer-delegate.php:448
-#: admin/import/class-csv-importer-delegate.php:449
+#: admin/import/class-csv-importer-delegate.php:450
+#: admin/import/class-csv-importer-delegate.php:451
 msgctxt "csv importer"
 msgid "The end date is missing and no default value was defined."
 msgstr ""
 "La fecha de finalización no fue incluida y no elegiste un valor por defecto."
 
-#: admin/import/class-csv-importer-delegate.php:450
+#: admin/import/class-csv-importer-delegate.php:452
 msgctxt "csv importer"
 msgid "Invalid default end date."
 msgstr "La fecha de finalización no es válida."
 
-#: admin/import/class-csv-importer-delegate.php:517
+#: admin/import/class-csv-importer-delegate.php:519
 msgctxt "csv importer"
 msgid "Image file with name <image-name> not found."
 msgstr "No encontramos un archivo de imagen con nombre <image-name>."
 
-#: admin/import/class-csv-importer-delegate.php:588
+#: admin/import/class-csv-importer-delegate.php:590
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
 msgstr ""
 "Ocurrió un error almacenando la información importada en la base datos."
 
-#: admin/import/class-csv-importer-delegate.php:611
+#: admin/import/class-csv-importer-delegate.php:613
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
@@ -10665,22 +10691,22 @@ msgctxt "drip-autoresponder"
 msgid "No, thanks"
 msgstr "No, gracias"
 
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:12
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:13
 msgctxt "credit plans form"
 msgid "Edit Credit Plan Details"
 msgstr "Editar los detalles del Plan de Crédito"
 
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:12
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:13
 msgctxt "credit plans form"
 msgid "New Credit Plan Details"
 msgstr "Detalles del nuevo Plan de Crédito"
 
-#: admin/templates/admin-quick-start-guide-notice.tpl.php:13
+#: admin/templates/admin-quick-start-guide-notice.tpl.php:14
 msgctxt "Quick Start Guide"
 msgid "No Thanks"
 msgstr "No, gracias"
 
-#: admin/templates/admin-widget-modification-notice.tpl.php:13
+#: admin/templates/admin-widget-modification-notice.tpl.php:14
 msgctxt "widget modification notice"
 msgid "Close this, I'll check my Widget configuration."
 msgstr "Cerrar, revisaré la configuración de mis Widgets."
@@ -10833,7 +10859,7 @@ msgid "Unflag"
 msgstr "Quitar reporte"
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:26
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:22
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:23
 #: templates/email/listing-edit-link-with-access-token.tpl.php:14
 msgctxt "edit link email"
 msgid ""
@@ -10892,38 +10918,38 @@ msgctxt "loading region options"
 msgid "loading..."
 msgstr "cargando..."
 
-#: frontend/templates/page-edit-ad-email-key-step.tpl.php:41
+#: frontend/templates/page-edit-ad-email-key-step.tpl.php:42
 msgctxt "enter email and access key form"
 msgid "Continue"
 msgstr "Continuar"
 
-#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:35
+#: frontend/templates/page-edit-ad-send-access-key-step.tpl.php:36
 msgctxt "send ad access key form"
 msgid "Continue"
 msgstr "Continuar"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:68
+#: frontend/templates/page-place-ad-details-step.tpl.php:69
 msgctxt "ad details form"
 msgid "Start Date"
 msgstr "Fecha de inicio"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:78
+#: frontend/templates/page-place-ad-details-step.tpl.php:79
 msgctxt "ad details form"
 msgid "End Date"
 msgstr "Fecha de finalización"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:109
+#: frontend/templates/page-place-ad-details-step.tpl.php:110
 #: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:13
 msgctxt "ad details form"
 msgid "Read our Terms of Service"
 msgstr "Lea nuestros Términos de Servicio"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:111
+#: frontend/templates/page-place-ad-details-step.tpl.php:112
 msgctxt "ad details form"
 msgid "Terms of service:"
 msgstr "Términos de servicio:"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:116
+#: frontend/templates/page-place-ad-details-step.tpl.php:117
 #: templates/frontend/form-fields/terms-of-service-form-field.tpl.php:21
 msgctxt "ad details form"
 msgid "I agree to the terms of service"
@@ -10990,12 +11016,12 @@ msgctxt "ad details form"
 msgid "Terms of Service"
 msgstr "Términos de servicio"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:131
+#: frontend/templates/page-place-ad-details-step.tpl.php:132
 msgctxt "listing details form"
 msgid "Preview Ad"
 msgstr "Ver vista previa"
 
-#: frontend/templates/page-place-ad-details-step.tpl.php:133
+#: frontend/templates/page-place-ad-details-step.tpl.php:134
 msgctxt "listing details form"
 msgid "Continue"
 msgstr "Continuar"
@@ -11005,43 +11031,43 @@ msgctxt "place ad login step"
 msgid "Login/Registration"
 msgstr "Iniciar Sesión/Registrarse"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:11
+#: frontend/templates/page-place-ad-order-step.tpl.php:12
 msgctxt "place ad order step"
 msgid "Select Category and Payment Term"
 msgstr "Selección Categoría y Plan de Pago"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:13
+#: frontend/templates/page-place-ad-order-step.tpl.php:14
 msgctxt "place ad order step"
 msgid "Select Category"
 msgstr "Seleccionar Categoría"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:37
+#: frontend/templates/page-place-ad-order-step.tpl.php:38
 msgctxt "place ad order step"
 msgid "Please select a Category for your Ad"
 msgstr "Por favor, seleccione una categoría para el anuncio"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:58
+#: frontend/templates/page-place-ad-order-step.tpl.php:59
 msgctxt "place ad order step"
 msgid "Please select the owner for this Ad"
 msgstr "Seleccione un autor para este anuncio"
 
-#: frontend/templates/page-place-ad-order-step.tpl.php:88
+#: frontend/templates/page-place-ad-order-step.tpl.php:89
 msgctxt "listing order form"
 msgid "Continue"
 msgstr "Continuar"
 
-#: frontend/templates/page-place-ad-upload-images-step.tpl.php:20
+#: frontend/templates/page-place-ad-upload-images-step.tpl.php:21
 #: includes/frontend/class-upload-media-submit-listing-section.php:137
 msgctxt "images upload step"
 msgid "Thumbnails of already uploaded images are shown below."
 msgstr "Las miniaturas de imágenes ya cargadas se muestra a continuación."
 
-#: frontend/templates/page-search-ads.tpl.php:101
+#: frontend/templates/page-search-ads.tpl.php:102
 msgctxt "ad search form"
 msgid "Find Ads"
 msgstr "Buscar anuncios"
 
-#: frontend/templates/payments-checkout-page.tpl.php:17
+#: frontend/templates/payments-checkout-page.tpl.php:18
 msgctxt "checkout step"
 msgid ""
 "You are about to pay for the following items. Please review the order and "
@@ -11050,12 +11076,12 @@ msgstr ""
 "Usted está a punto de pagar por los siguientes artículos. Por favor, revise "
 "la orden y elija un método de pago."
 
-#: frontend/templates/payments-checkout-page.tpl.php:21
+#: frontend/templates/payments-checkout-page.tpl.php:22
 msgctxt "checkout step"
 msgid "Payment Terms"
 msgstr "Términos de pago"
 
-#: frontend/templates/payments-checkout-page.tpl.php:27
+#: frontend/templates/payments-checkout-page.tpl.php:28
 msgctxt "checkout step"
 msgid "Payment Method"
 msgstr "Método de pago"
@@ -11076,25 +11102,25 @@ msgid "Please use the button below to complete your payment."
 msgstr "Por favor, utilice el botón que aparece debajo para completar su pago."
 
 #. translators: %s is the blog name
-#: frontend/templates/payments-paypal-payment-button.tpl.php:34
+#: frontend/templates/payments-paypal-payment-button.tpl.php:35
 msgctxt "paypal-checkout-form"
 msgid "Return to %s"
 msgstr "Regresar a %s"
 
-#: frontend/templates/payments-transaction-items-table.tpl.php:45
+#: frontend/templates/payments-transaction-items-table.tpl.php:46
 msgctxt "transaction items"
 msgid "Total Amount"
 msgstr "Cantidad Total"
 
 #. translators: %1$s is a comma-separated list of items, %2$d is the number of
 #. additional items
-#: functions.php:749
+#: functions.php:772
 #, fuzzy
 msgctxt "comma separated list of things"
 msgid "%1$s and %2$d more."
 msgstr "%s y %d más."
 
-#: functions.php:1223
+#: functions.php:1246
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Página de Clasificados"
@@ -11361,17 +11387,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Vista rápida"
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1486
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Anterior"
 
-#: includes/class-awpcp.php:1473
+#: includes/class-awpcp.php:1487
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Siguiente&#x3e;"
 
-#: includes/class-awpcp.php:1479
+#: includes/class-awpcp.php:1493
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "1"
@@ -11449,12 +11475,12 @@ msgctxt "order submit listing section"
 msgid "Category selection"
 msgstr "Selección de categoría"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:23
+#: templates/frontend/order-submit-listing-section.tpl.php:24
 msgctxt "order submit listing section"
 msgid "Please select a category for your ad"
 msgstr "Por favor elige una categoría para tu anuncio"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:61
+#: templates/frontend/order-submit-listing-section.tpl.php:62
 msgctxt "order submit listing section"
 msgid ""
 "Please select the duration and features that will be available for this ad"
@@ -11462,27 +11488,27 @@ msgstr ""
 "Por elige la duración y las características que estarán disponibles para "
 "este anuncio"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:81
+#: templates/frontend/order-submit-listing-section.tpl.php:82
 msgctxt "order submit listing section"
 msgid "Continue"
 msgstr "Continuar"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:103
+#: templates/frontend/order-submit-listing-section.tpl.php:104
 msgctxt "order submit listing section"
 msgid "Credit Plan:"
 msgstr "Plan de crédito:"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:104
+#: templates/frontend/order-submit-listing-section.tpl.php:105
 msgctxt "order submit listing section"
 msgid "Owner:"
 msgstr "Propietario:"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:107
+#: templates/frontend/order-submit-listing-section.tpl.php:108
 msgctxt "order submit listing section"
 msgid "Loading ad fields"
 msgstr "Cargando los campos del anuncio"
 
-#: templates/frontend/order-submit-listing-section.tpl.php:108
+#: templates/frontend/order-submit-listing-section.tpl.php:109
 msgctxt "order submit listing section"
 msgid "Change selection"
 msgstr "Cambiar selección"
@@ -11555,31 +11581,31 @@ msgid "Clear form"
 msgstr "Limpiar formulario"
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:528
+#: includes/functions/deprecated.php:530
 msgctxt "upload files"
 msgid "The type of the uploaded file %s is not allowed."
 msgstr "El tipo del archivo cargado %s no está permitido."
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:538
+#: includes/functions/deprecated.php:540
 msgctxt "upload files"
 msgid "The specified file does not exists: %s."
 msgstr "El archivo especificado no existe: %s."
 
-#: includes/functions/deprecated.php:544
+#: includes/functions/deprecated.php:546
 msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr "Ocurrió un error desconocido mientras se intentaba subir la imagen."
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:553
+#: includes/functions/deprecated.php:555
 msgctxt "upload files"
 msgid "There was an error trying to find out the file size of the image %s."
 msgstr ""
 "Ocurrió un error tratando de averiguar el tamaño de archivo de la imagen %s."
 
 #. translators: %1$s is the file name, %2$d is the minimum allowed file size
-#: includes/functions/deprecated.php:568
+#: includes/functions/deprecated.php:570
 msgctxt "upload files"
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
@@ -11589,27 +11615,27 @@ msgstr ""
 "del archivo debe ser mayor que %2$d bytes."
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:577
+#: includes/functions/deprecated.php:579
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
 msgstr "El archivo %s no parece ser un archivo de imagen válido."
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:611
+#: includes/functions/deprecated.php:613
 msgctxt "upload files"
 msgid "The file %s could not be moved to the destination directory."
 msgstr "El archivo %s no se pudo mover al directorio de destino."
 
 #. translators: %s is the file name
 #. translators: %s is the name of the uploaded file.
-#: includes/functions/deprecated.php:616
+#: includes/functions/deprecated.php:618
 #: includes/media/class-uploads-manager.php:48
 msgctxt "upload files"
 msgid "The file %s could not be copied to the destination directory."
 msgstr "El archivo %s no se pudo copiar al directorio de destino."
 
 #. translators: %s is the file name
-#: includes/functions/deprecated.php:624
+#: includes/functions/deprecated.php:626
 msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr "No se pudo crear una versión redimensionada de la imagen %s."
@@ -11855,12 +11881,12 @@ msgstr ""
 "{website_title}\n"
 "{website_url}"
 
-#: installer.php:315
+#: installer.php:317
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr "{__previous_subject__} sobre el anuncio: {listing_title}"
 
-#: installer.php:316
+#: installer.php:318
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
@@ -12035,7 +12061,7 @@ msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%1$s and %2$s."
 msgstr "%s y %s."
 
-#: templates/admin/export-listings-admin-page.tpl.php:18
+#: templates/admin/export-listings-admin-page.tpl.php:19
 msgctxt "listings-csv-export"
 msgid ""
 "An unknown error occurred during the export. Please make sure you have "
@@ -12048,7 +12074,7 @@ msgstr ""
 "más detalles."
 
 #. translators: %1$s: memory_limit link, %2$s: max_execution_time link
-#: templates/admin/export-listings-admin-page.tpl.php:33
+#: templates/admin/export-listings-admin-page.tpl.php:34
 #, fuzzy
 msgctxt "listings-csv-export"
 msgid ""
@@ -12063,47 +12089,47 @@ msgstr ""
 "directivas 'memory_limit' y 'max_execution_time' en el archivo de "
 "configuración php.ini de tu servidor."
 
-#: templates/admin/export-listings-admin-page.tpl.php:45
+#: templates/admin/export-listings-admin-page.tpl.php:46
 msgctxt "listings-csv-export"
 msgid "Export Configuration"
 msgstr "Configuración de exportación"
 
-#: templates/admin/export-listings-admin-page.tpl.php:48
+#: templates/admin/export-listings-admin-page.tpl.php:49
 msgctxt "listings-csv-export"
 msgid "Export settings"
 msgstr "Exportar ajustes"
 
-#: templates/admin/export-listings-admin-page.tpl.php:52
+#: templates/admin/export-listings-admin-page.tpl.php:53
 msgctxt "listings-csv-export"
 msgid "Which listings to export?"
 msgstr "¿Cuáles anuncios deseas exportar?"
 
-#: templates/admin/export-listings-admin-page.tpl.php:56
+#: templates/admin/export-listings-admin-page.tpl.php:57
 msgctxt "listings-csv-export"
 msgid "All"
 msgstr "Todos"
 
-#: templates/admin/export-listings-admin-page.tpl.php:57
+#: templates/admin/export-listings-admin-page.tpl.php:58
 msgctxt "listings-csv-export"
 msgid "Active Only"
 msgstr "Anuncios activos"
 
-#: templates/admin/export-listings-admin-page.tpl.php:58
+#: templates/admin/export-listings-admin-page.tpl.php:59
 msgctxt "listings-csv-export"
 msgid "Active + Pending Renewal"
 msgstr "Anuncios activos y pendientes por renovar"
 
-#: templates/admin/export-listings-admin-page.tpl.php:64
+#: templates/admin/export-listings-admin-page.tpl.php:65
 msgctxt "listings-csv-export"
 msgid "Export images?"
 msgstr "¿Deseas exportar imágenes?"
 
-#: templates/admin/export-listings-admin-page.tpl.php:69
+#: templates/admin/export-listings-admin-page.tpl.php:70
 msgctxt "listings-csv-export"
 msgid "Export images"
 msgstr "Exportar imágenes"
 
-#: templates/admin/export-listings-admin-page.tpl.php:72
+#: templates/admin/export-listings-admin-page.tpl.php:73
 msgctxt "listings-csv-export"
 msgid ""
 "When checked, instead of just a CSV file a ZIP file will be generated with "
@@ -12113,17 +12139,17 @@ msgstr ""
 "archivo ZIP que contiene un archivo CSV con la información de los anuncios y "
 "los archivos de imagen asociado a esos anuncios."
 
-#: templates/admin/export-listings-admin-page.tpl.php:78
+#: templates/admin/export-listings-admin-page.tpl.php:79
 msgctxt "listings-csv-export"
 msgid "Additional metadata to export:"
 msgstr "Exportar los siguientes metadatos adicionales:"
 
-#: templates/admin/export-listings-admin-page.tpl.php:83
+#: templates/admin/export-listings-admin-page.tpl.php:84
 msgctxt "listings-csv-export"
 msgid "Include unique IDs for each listing (sequence_id column)."
 msgstr "Incluir un ID único para cada anuncio (columna sequence_id)."
 
-#: templates/admin/export-listings-admin-page.tpl.php:86
+#: templates/admin/export-listings-admin-page.tpl.php:87
 msgctxt "listings-csv-export"
 msgid ""
 "If you plan to re-import the listings into AWPCP and don't want new ones "
@@ -12133,42 +12159,42 @@ msgstr ""
 "fueron exportados y no quieres crear anuncios nuevos con información "
 "duplicada."
 
-#: templates/admin/export-listings-admin-page.tpl.php:91
+#: templates/admin/export-listings-admin-page.tpl.php:92
 msgctxt "listings-csv-export"
 msgid "Author information (username)"
 msgstr "Información del autor (nombre de usuario)"
 
-#: templates/admin/export-listings-admin-page.tpl.php:97
+#: templates/admin/export-listings-admin-page.tpl.php:98
 msgctxt "listings-csv-export"
 msgid "CSV File Settings"
 msgstr "Opciones del archivo CSV"
 
-#: templates/admin/export-listings-admin-page.tpl.php:101
+#: templates/admin/export-listings-admin-page.tpl.php:102
 msgctxt "listings-csv-export"
 msgid "Image Separator"
 msgstr "Separador de imágenes"
 
-#: templates/admin/export-listings-admin-page.tpl.php:110
+#: templates/admin/export-listings-admin-page.tpl.php:111
 msgctxt "listings-csv-export"
 msgid "Category Separator"
 msgstr "Separador de categorías"
 
-#: templates/admin/export-listings-admin-page.tpl.php:110
+#: templates/admin/export-listings-admin-page.tpl.php:111
 msgctxt "listings-csv-export"
 msgid "required"
 msgstr "requerido"
 
-#: templates/admin/export-listings-admin-page.tpl.php:119
+#: templates/admin/export-listings-admin-page.tpl.php:120
 msgctxt "listings-csv-export"
 msgid "Export Listings"
 msgstr "Exportar anuncios"
 
-#: templates/admin/export-listings-admin-page.tpl.php:125
+#: templates/admin/export-listings-admin-page.tpl.php:126
 msgctxt "listings-csv-export"
 msgid "Export in Progress..."
 msgstr "Exportación en progreso..."
 
-#: templates/admin/export-listings-admin-page.tpl.php:126
+#: templates/admin/export-listings-admin-page.tpl.php:127
 msgctxt "listings-csv-export"
 msgid ""
 "Your export file is being prepared. Please do not leave this page until the "
@@ -12177,22 +12203,22 @@ msgstr ""
 "Tu información está siendo preparada. Por favor no abandones la página hasta "
 "que la exportación termine."
 
-#: templates/admin/export-listings-admin-page.tpl.php:129
+#: templates/admin/export-listings-admin-page.tpl.php:130
 msgctxt "listings-csv-export"
 msgid "No. of listings:"
 msgstr "Número de anuncios:"
 
-#: templates/admin/export-listings-admin-page.tpl.php:131
+#: templates/admin/export-listings-admin-page.tpl.php:132
 msgctxt "listings-csv-export"
 msgid "Approximate export file size:"
 msgstr "Tamaño aproximado del archivo generado:"
 
-#: templates/admin/export-listings-admin-page.tpl.php:138
+#: templates/admin/export-listings-admin-page.tpl.php:139
 msgctxt "listings-csv-export"
 msgid "Cancel Export"
 msgstr "Cancelar exportación"
 
-#: templates/admin/export-listings-admin-page.tpl.php:144
+#: templates/admin/export-listings-admin-page.tpl.php:145
 msgctxt "listings-csv-export"
 msgid ""
 "Your export file has been successfully created and it is now ready for "
@@ -12202,47 +12228,47 @@ msgstr ""
 "para ser descargada."
 
 #. translators: %1$s filename %2$s filesize.
-#: templates/admin/export-listings-admin-page.tpl.php:150
+#: templates/admin/export-listings-admin-page.tpl.php:151
 msgctxt "listings-csv-export"
 msgid "Download %1$s (%2$s)"
 msgstr "Descargar %1$s (%2$s)"
 
-#: templates/admin/export-listings-admin-page.tpl.php:161
+#: templates/admin/export-listings-admin-page.tpl.php:162
 msgctxt "listings-csv-export"
 msgid "Cleanup"
 msgstr "Limpiar"
 
-#: templates/admin/export-listings-admin-page.tpl.php:167
+#: templates/admin/export-listings-admin-page.tpl.php:168
 msgctxt "listings-csv-export"
 msgid "The export has been canceled."
 msgstr "La exportación ha sido cancelada."
 
-#: templates/admin/export-listings-admin-page.tpl.php:168
+#: templates/admin/export-listings-admin-page.tpl.php:169
 msgctxt "listings-csv-export"
 msgid "← Return to CSV Export"
 msgstr "← Regresar a exportar anuncios"
 
-#: templates/admin/export-listings-admin-page.tpl.php:102
+#: templates/admin/export-listings-admin-page.tpl.php:103
 msgctxt "admin forms"
 msgid "required"
 msgstr "requerido"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:131
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:132
 msgctxt "csv-importer"
 msgid "Assign listings to a user?"
 msgstr "¿Asignar los anuncios a un usuario?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:136
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:137
 msgctxt "csv-importer"
 msgid "Assign listings to a user"
 msgstr "Asignar los anuncios a un usuario"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:143
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:144
 msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr "¿Definir un usuario por defecto?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:148
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:149
 msgctxt "csv-importer"
 msgid ""
 "The default user will be used when the username column is not present in the "
@@ -12254,17 +12280,17 @@ msgstr ""
 "especificado y no sea posible encontrar un usuario asociado a la dirección "
 "de correo electrónico de contacto especificada en el archivo CSV. "
 
-#: templates/admin/listings/listing-fields-metabox.tpl.php:14
+#: templates/admin/listings/listing-fields-metabox.tpl.php:15
 msgctxt "listing fields metabox"
 msgid "Form Fields"
 msgstr "Campos del Formulario"
 
-#: templates/admin/listings/listing-fields-metabox.tpl.php:17
+#: templates/admin/listings/listing-fields-metabox.tpl.php:18
 msgctxt "listing fields metabox"
 msgid "Start/End Date"
 msgstr "Fecha de inicio/finalización"
 
-#: templates/admin/listings/listing-fields-metabox.tpl.php:20
+#: templates/admin/listings/listing-fields-metabox.tpl.php:21
 msgctxt "listing fields metabox"
 msgid "Images"
 msgstr "Imágenes"
@@ -12299,12 +12325,12 @@ msgctxt "listing fields submit listing section"
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: templates/frontend/upload-media-submit-listing-section.tpl.php:11
+#: templates/frontend/upload-media-submit-listing-section.tpl.php:12
 msgctxt "upload media submit listing section"
 msgid "Images and attachments"
 msgstr "Imágenes y archivos adjuntos"
 
-#: templates/frontend/upload-media-submit-listing-section.tpl.php:15
+#: templates/frontend/upload-media-submit-listing-section.tpl.php:16
 msgctxt "upload media submit listing section"
 msgid "Loading..."
 msgstr "Cargando..."

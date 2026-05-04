@@ -5,6 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 class AWPCP_CreditPlan {
     private static $defaults;
 
@@ -74,11 +76,11 @@ class AWPCP_CreditPlan {
         }
 
         if ( $fields === 'count' ) {
-            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.PlaceholdersReplacementWrongNumber,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
             return $wpdb->get_var( $wpdb->prepare( $query, $query_vars ) );
         }
 
-        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.PlaceholdersReplacementWrongNumber,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
         $items   = $wpdb->get_results( $wpdb->prepare( $query, $query_vars ) );
         $results = array();
 

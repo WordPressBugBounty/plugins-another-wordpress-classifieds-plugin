@@ -33,16 +33,25 @@ class AWPCP_ListingAuthorization {
     private $request;
 
     /**
-     * @param object $listing_renderer  An instance of Listing Renderer.
-     * @param object $roles             An instance of Roles And Capabilities.
-     * @param object $settings          An instance of SettingsAPI.
-     * @param object $request           An instance of Request.
+     * @var AWPCP_PaymentsAPI|null
      */
-    public function __construct( $listing_renderer, $roles, $settings, $request ) {
+    private $payments;
+
+    /**
+     * @param object            $listing_renderer An instance of Listing Renderer.
+     * @param object            $roles            An instance of Roles And Capabilities.
+     * @param object            $settings         An instance of SettingsAPI.
+     * @param object            $request          An instance of Request.
+     * @param AWPCP_PaymentsAPI|null $payments     An instance of PaymentsAPI.
+     *
+     * @since 4.4.6 Added $payments parameter.
+     */
+    public function __construct( $listing_renderer, $roles, $settings, $request, $payments = null ) {
         $this->listing_renderer = $listing_renderer;
         $this->roles            = $roles;
         $this->settings         = $settings;
         $this->request          = $request;
+        $this->payments         = $payments;
     }
 
     /**
@@ -83,8 +92,9 @@ class AWPCP_ListingAuthorization {
      * Checks whether the current user is allowed to manage a listing.
      *
      * Logged-in users must be the listing owner or a moderator.
-     * Non-logged-in users can manage listings while creating one (auto-draft)
-     * or while editing one using a valid edit nonce.
+     * Non-logged-in users can manage auto-draft listings only when the request
+     * includes a valid transaction ID linked to the listing, or they must
+     * provide a valid edit nonce for published listings.
      *
      * @since 4.4.5
      *
@@ -98,10 +108,34 @@ class AWPCP_ListingAuthorization {
         }
 
         if ( 'auto-draft' === $listing->post_status ) {
-            return true;
+            return $this->request_includes_valid_transaction_for_listing( $listing );
         }
 
         return $this->request_includes_valid_edit_nonce( $listing );
+    }
+
+    /**
+     * Checks whether the request includes a transaction ID that is associated
+     * with the given listing.
+     *
+     * @since 4.4.6
+     *
+     * @param object $listing An instance of WP_Post.
+     *
+     * @return bool
+     */
+    private function request_includes_valid_transaction_for_listing( $listing ) {
+        if ( ! $this->payments ) {
+            return false;
+        }
+
+        $transaction = $this->payments->get_transaction();
+
+        if ( ! $transaction ) {
+            return false;
+        }
+
+        return absint( $transaction->get( 'ad-id' ) ) === absint( $listing->ID );
     }
 
     /**

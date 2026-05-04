@@ -5,7 +5,7 @@
  * Plugin Name: AWP Classifieds
  * Plugin URI: https://awpcp.com/
  * Description: Run a free or paid classified ads service on your WordPress site.
- * Version: 4.4.5
+ * Version: 4.4.6.1
  * Author: AWP Classifieds Team
  * Author URI: https://awpcp.com/
  * License: GPLv2 or later
@@ -55,17 +55,19 @@ if ( ! defined( 'AWPCP_URL' ) ) {
 
 // TODO: Replace usage of this variable with the AWPCP_VERSION constant.
 global $awpcp_db_version;
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Pre-existing globals preserved for backwards compatibility with legacy add-on modules.
 global $awpcp_imagesurl;
 global $hascaticonsmodule;
 global $hasregionsmodule;
 global $hasextrafieldsmodule;
 
-$awpcp_db_version = '4.4.5';
+$awpcp_db_version = '4.4.6.1';
 
 $awpcp_imagesurl      = AWPCP_URL . '/resources/images';
 $hascaticonsmodule    = 0;
 $hasextrafieldsmodule = $hasextrafieldsmodule ? true : false;
 $hasregionsmodule     = $hasregionsmodule ? true : false;
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 define( 'AWPCP_VERSION', $awpcp_db_version );
 define( 'AWPCP_LISTING_POST_TYPE', 'awpcp_listing' );
@@ -89,6 +91,7 @@ if ( ! is_readable( $awpcp_autoload_file ) ) {
 /**
  * Legacy code that needs to be properly cleaned.
  */
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Pre-existing globals preserved for backwards compatibility with legacy add-on modules.
 if ( ! defined( 'AWPCP_REGION_CONTROL_MODULE' ) && file_exists( AWPCP_DIR . '/awpcp_region_control_module.php' ) ) {
     require_once AWPCP_DIR . '/awpcp_region_control_module.php';
     $hasregionsmodule = true;
@@ -103,6 +106,7 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
     require_once AWPCP_DIR . '/awpcp_category_icons_module.php';
     $hascaticonsmodule = 1;
 }
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 /* End of legacy code. */
 
 /**

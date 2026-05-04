@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 /**
  * Imports the values from the category_order column in the awpcp_categories table
  * and stores them as term meta associaded with new categpry terms.

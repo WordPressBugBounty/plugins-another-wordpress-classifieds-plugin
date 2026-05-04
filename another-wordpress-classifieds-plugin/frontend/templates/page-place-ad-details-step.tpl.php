@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer).
 /**
  * @package AWPCP\Frontend
  */
@@ -105,7 +106,7 @@ endif;
         <p class="awpcp-form-spacer">
         <?php $text = get_awpcp_option('tos') ?>
 
-        <?php if (string_starts_with($text, 'http://', false) || string_starts_with($text, 'https://', false)): ?>
+        <?php if ( awpcp_string_starts_with( $text, 'http://', false ) || awpcp_string_starts_with( $text, 'https://', false ) ) : ?>
             <a href="<?php echo esc_attr( $text ); ?>" target="_blank"><?php echo esc_html( _x( "Read our Terms of Service", 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?></a>
         <?php else: ?>
             <label><?php echo esc_html( _x( 'Terms of service:', 'ad details form', 'another-wordpress-classifieds-plugin' ) ); ?><?php echo $required['terms-of-service'] ? '*' : ''; ?></label>

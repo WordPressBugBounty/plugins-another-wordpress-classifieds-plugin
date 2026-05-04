@@ -122,11 +122,11 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * @since 4.0.2
      */
     private function should_show_link( $text ) {
-        if ( string_starts_with( $text, 'http://', false ) ) {
+        if ( awpcp_string_starts_with( $text, 'http://', false ) ) {
             return true;
         }
 
-        if ( string_starts_with( $text, 'https://', false ) ) {
+        if ( awpcp_string_starts_with( $text, 'https://', false ) ) {
             return true;
         }
 

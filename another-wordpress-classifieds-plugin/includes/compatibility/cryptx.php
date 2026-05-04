@@ -13,6 +13,7 @@ if ( defined( 'CRYPTX_BASENAME' ) ) {
         global $cryptX_var;
         $excluded                  = explode( ',', $cryptX_var['excludedIDs'] );
         $excluded                  = array_unique( array_merge( $excluded, $posts ) );
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- $cryptX_var is owned by the CryptX plugin we're integrating with.
         $cryptX_var['excludedIDs'] = join( ',', array_filter( $excluded ) );
     }
 

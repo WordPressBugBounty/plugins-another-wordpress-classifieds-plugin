@@ -35,6 +35,7 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
      */
     private function get_items() {
         if ( is_null( $this->items ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Filter names are provided by AWPCP callers and are always prefixed with "awpcp_".
             $this->items = apply_filters( $this->filter_name, array() );
         }
 

@@ -1,3 +1,4 @@
+<?php // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer). ?>
 <!-- XXX: Recurring Payments are not supported, the following form sends information for an Add to Cart operation -->
 <form action="<?php
 if ( ! defined( 'ABSPATH' ) ) {

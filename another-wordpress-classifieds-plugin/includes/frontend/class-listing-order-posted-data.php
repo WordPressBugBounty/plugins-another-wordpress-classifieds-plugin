@@ -52,7 +52,7 @@ class AWPCP_ListingOrderPostedData {
         $payment_term_type         = $this->request->post( 'payment_term_type' );
         $payment_term_payment_type = $this->request->post( 'payment_term_payment_type' );
         $user_id                   = null;
-        $current_url               = $this->request->post( 'current_url' );
+        $current_url               = awpcp_validate_internal_redirect_url( $this->request->post( 'current_url' ) );
 
         if ( $this->roles->current_user_is_moderator() ) {
             $user_id = intval( $this->request->post( 'user_id' ) );

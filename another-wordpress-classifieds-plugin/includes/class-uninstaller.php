@@ -140,7 +140,7 @@ class AWPCP_Uninstaller {
         if ( file_exists( $uploads_dir ) ) {
             require_once AWPCP_DIR . '/includes/class-fileop.php';
 
-            $fileop = new fileop();
+            $fileop = new AWPCP_FileOp();
             $fileop->delete( $uploads_dir );
         }
     }

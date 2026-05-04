@@ -44,7 +44,7 @@ class AWPCP_ListTableActionsHandler {
         There is no WordPress hook to do this cleanly so we have to do a little hack and add it with javascript #2788.
         */
         if ( ! awpcp_current_user_is_moderator() ) {
-            $placead          = esc_url( url_placead() );
+            $placead          = esc_url( awpcp_url_place_ad() );
             $post_type_object = get_post_type_object( AWPCP_LISTING_POST_TYPE );
             $add_new_label    = esc_html( $post_type_object->labels->add_new );
             $script           = "

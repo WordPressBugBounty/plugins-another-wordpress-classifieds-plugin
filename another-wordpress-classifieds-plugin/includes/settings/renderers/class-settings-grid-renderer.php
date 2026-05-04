@@ -72,7 +72,7 @@ class AWPCP_SettingsGridRenderer {
         echo '<td colspan="2">';
         $this->template_renderer->render_template( $template, $params );
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped,WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Hook name is statically prefixed with the plugin slug; output escaping is the responsibility of filter implementers.
         echo apply_filters( "awpcp_after_settings_grid_{$setting['id']}", '', $setting );
     }
 

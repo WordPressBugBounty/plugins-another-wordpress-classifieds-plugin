@@ -11,7 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-class fileop {
+/**
+ * Disk / FTP file operations helper used by the legacy uploader pipeline.
+ *
+ * @since 4.4.6
+ */
+class AWPCP_FileOp {
 
     public $op_mode = 'disk'; // 'disk' or 'ftp'
 
@@ -135,3 +140,6 @@ class fileop {
         return $myreturn;
     }
 }
+
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- Deprecated alias kept for backwards compatibility.
+class_alias( 'AWPCP_FileOp', 'fileop' );

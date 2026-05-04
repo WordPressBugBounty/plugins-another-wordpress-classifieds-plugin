@@ -1,3 +1,4 @@
+<?php // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer). ?>
 <table class="awpcp-table awpcp-transaction-items-table">
     <thead>
         <tr>

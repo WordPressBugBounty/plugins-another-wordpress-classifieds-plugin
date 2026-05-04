@@ -51,24 +51,58 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
     }
 
     /**
-     * TODO: validate md5 hash
+     * Verifies that the payment response is authentic by validating the MD5 hash
+     * sent by 2Checkout against the configured secret word.
+     *
+     * Hash = MD5( secret_word + seller_id + order_number + total )
+     * In demo/test mode, order_number is always "1".
+     *
+     * @since 4.4.6
+     *
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     *
+     * @return bool
      */
-    public function verify_transaction($transaction) {
+    public function verify_transaction( $transaction ) {
+        $secret_word = get_awpcp_option( '2checkout_secret_word' );
+
+        if ( empty( $secret_word ) ) {
+            $transaction->errors['verification'][] = __( '2Checkout secret word is not configured. Payment verification cannot proceed.', 'another-wordpress-classifieds-plugin' );
+            return false;
+        }
+
         $x_response_code = awpcp_get_var( array( 'param' => 'x_response_code' ) );
         $x_twocorec      = awpcp_get_var( array( 'param' => 'x_twocorec' ) );
+
+        if ( $x_response_code !== '1' && $x_twocorec !== '1' ) {
+            $transaction->errors['verification'][] = __( 'There appears to be a problem with your payment. Please contact the administrator if you are viewing this message after having made a payment via 2Checkout. If you have not tried to make a payment and you are viewing this message, it means this message has been sent in error and can be disregarded.', 'another-wordpress-classifieds-plugin' );
+            return false;
+        }
+
+        $x_md5_hash   = awpcp_get_var( array( 'param' => 'x_MD5_Hash' ) );
+        $seller_id    = get_awpcp_option( '2checkout' );
+        $order_number = awpcp_get_var( array( 'param' => 'order_number' ) );
+        $x_amount     = awpcp_get_var( array( 'param' => 'x_amount' ) );
+
+        $is_test_mode = (int) get_awpcp_option( 'paylivetestmode' ) === 1;
+
+        if ( $is_test_mode ) {
+            $order_number = '1';
+        }
+
+        $expected_hash = strtoupper( md5( $secret_word . $seller_id . $order_number . $x_amount ) );
+
+        if ( ! hash_equals( $expected_hash, strtoupper( (string) $x_md5_hash ) ) ) {
+            $transaction->errors['verification'][] = __( 'Payment verification failed. The response signature does not match.', 'another-wordpress-classifieds-plugin' );
+            return false;
+        }
 
         $txn_id = awpcp_get_var( array( 'param' => 'x_trans_id' ) );
         $transaction->set( 'txn-id', $txn_id );
 
-        if ($x_response_code == 1 || $x_twocorec == 1) {
-            $transaction->errors['verification'] = array();
-            return true;
+        $transaction->errors['verification'] = array();
 
-        } else {
-            $msg                                   =__( 'There appears to be a problem with your payment. Please contact the administrator if you are viewing this message after having made a payment via 2Checkout. If you have not tried to make a payment and you are viewing this message, it means this message has been sent in error and can be disregarded.', 'another-wordpress-classifieds-plugin' );
-            $transaction->errors['verification'][] = $msg;
-            return false;
-        }
+        return true;
     }
 
     private function validate_transaction($transaction) {

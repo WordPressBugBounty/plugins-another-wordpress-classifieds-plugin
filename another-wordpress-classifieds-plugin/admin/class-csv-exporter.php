@@ -230,6 +230,7 @@ class AWPCP_CSVExporter {
 
     protected function get_pclzip_instance( $path ) {
         if ( ! class_exists( 'PclZip' ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Constant defined by the bundled PclZip library to choose its temp directory.
             define( 'PCLZIP_TEMPORARY_DIR', $this->workingdir );
             require_once ABSPATH . 'wp-admin/includes/class-pclzip.php';
         }

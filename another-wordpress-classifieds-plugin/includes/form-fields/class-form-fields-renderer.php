@@ -34,6 +34,7 @@ class AWPCP_FormFieldsRenderer {
      */
     public function get_fields( $listing, $context ) {
         if ( is_null( $this->fields ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Filter names are provided by AWPCP callers and are always prefixed with "awpcp_".
             $this->fields = apply_filters( $this->filter, [], $listing, $context );
         }
 

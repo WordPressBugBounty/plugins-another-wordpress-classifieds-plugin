@@ -879,13 +879,21 @@ class AWPCP_QueryIntegration {
      * @since 4.0.0
      */
     private function add_regions_clauses( $clauses, $query ) {
+        $allowed_fields     = array( 'country', 'county', 'state', 'city' );
         $regions_conditions = array();
 
         foreach ( $query->query_vars['classifieds_query']['regions'] as $region ) {
+            if ( ! is_array( $region ) ) {
+                continue;
+            }
+
             $region_conditions = array();
 
             foreach ( $region as $field => $search ) {
-                // add support for exact search, passing a search values defined as array( '=', <region-name> ).
+                if ( ! is_string( $field ) || ! in_array( $field, $allowed_fields, true ) ) {
+                    continue;
+                }
+
                 if ( is_array( $search ) && count( $search ) === 2 && '=' === $search[0] ) {
                     $region_conditions[] = $this->db->prepare( "listing_regions.`{$field}` = %s", trim( $search[1] ) );
                 } elseif ( ! is_array( $search ) ) {
@@ -896,7 +904,15 @@ class AWPCP_QueryIntegration {
                 }
             }
 
+            if ( empty( $region_conditions ) ) {
+                continue;
+            }
+
             $regions_conditions[] = '( ' . implode( ' AND ', $region_conditions ) . ' )';
+        }
+
+        if ( empty( $regions_conditions ) ) {
+            return $clauses;
         }
 
         $clauses['join']  .= ' INNER JOIN ' . AWPCP_TABLE_AD_REGIONS . ' AS listing_regions ON (listing_regions.ad_id = ' . $this->db->posts . '.ID)';

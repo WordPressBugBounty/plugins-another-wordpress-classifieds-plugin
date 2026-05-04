@@ -65,6 +65,7 @@ class AWPCP_DeleteListingEventListener {
             return;
         }
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- $action is always one of awpcp_before_delete_listing / awpcp_before_trash_listing (set by the caller), the prefix is statically present.
         do_action( $action, $post );
     }
 

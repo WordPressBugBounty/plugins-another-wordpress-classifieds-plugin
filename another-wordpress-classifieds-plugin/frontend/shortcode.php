@@ -324,9 +324,10 @@ class AWPCP_Pages {
 function awpcpui_homescreen() {
     global $classicontent;
 
-    $awpcppagename = sanitize_title( get_currentpagename() );
+    $awpcppagename = sanitize_title( awpcp_get_current_page_name() );
 
     if ( ! isset( $classicontent ) || empty( $classicontent ) ) {
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Pre-existing global preserved for backwards compatibility with third-party themes that read the rendered shortcode HTML.
         $classicontent = awpcpui_process( $awpcppagename );
     }
     return $classicontent;
@@ -337,7 +338,7 @@ function awpcpui_process( $awpcppagename ) {
 
     $output = '';
 
-    $awpcppage = get_currentpagename();
+    $awpcppage = awpcp_get_current_page_name();
     if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
         $awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
     }
@@ -348,7 +349,7 @@ function awpcpui_process( $awpcppagename ) {
 
     awpcp_enqueue_main_script();
 
-    $isclassifiedpage = checkifclassifiedpage();
+    $isclassifiedpage = awpcp_is_classifieds_page_present();
 
     if ( ! $isclassifiedpage && $isadmin ) {
         $output       .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
@@ -405,7 +406,7 @@ function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
     $output = '';
 
     if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
-        $awpcppage     = get_currentpagename();
+        $awpcppage     = awpcp_get_current_page_name();
         $awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
     }
 
@@ -491,7 +492,7 @@ function awpcp_get_menu_items( $params ) {
     }
 
     if ( $show_browse_ads_item ) {
-        if ( is_awpcp_browse_listings_page() || is_awpcp_browse_categories_page() ) {
+        if ( awpcp_is_browse_listings_page() || awpcp_is_browse_categories_page() ) {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {

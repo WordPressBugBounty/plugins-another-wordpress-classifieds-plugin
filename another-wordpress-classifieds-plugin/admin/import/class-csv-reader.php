@@ -45,15 +45,14 @@ class AWPCP_CSV_Reader {
     }
 
     private function get_number_of_lines() {
-        $auto_detect_line_endings = ini_get( 'auto_detect_line_endings' );
-        ini_set( 'auto_detect_line_endings', true );
+        $auto_detect = $this->enable_auto_detect_line_endings();
 
         $file = $this->get_file_object();
         $file->seek( PHP_INT_MAX );
         $last_line_number = absint( $file->key() );
         $file             = null;
 
-        ini_set( 'auto_detect_line_endings', $auto_detect_line_endings );
+        $this->restore_auto_detect_line_endings( $auto_detect );
 
         return $last_line_number;
     }
@@ -71,8 +70,7 @@ class AWPCP_CSV_Reader {
     }
 
     private function get_row_data( $line_number ) {
-        $auto_detect_line_endings = ini_get( 'auto_detect_line_endings' );
-        ini_set( 'auto_detect_line_endings', true );
+        $auto_detect = $this->enable_auto_detect_line_endings();
 
         $file = $this->get_file_object();
 
@@ -99,7 +97,7 @@ class AWPCP_CSV_Reader {
 
         $file = null;
 
-        ini_set( 'auto_detect_line_endings', $auto_detect_line_endings );
+        $this->restore_auto_detect_line_endings( $auto_detect );
 
         return $row_data;
     }
@@ -107,12 +105,51 @@ class AWPCP_CSV_Reader {
     private function get_file_object() {
         if ( is_null( $this->file ) ) {
             $this->file = new SplFileObject( $this->path );
-            $this->file->setFlags( SplFileObject::READ_CSV );
+            $this->file->setFlags( SplFileObject::READ_CSV | SplFileObject::DROP_NEW_LINE | SplFileObject::READ_AHEAD | SplFileObject::SKIP_EMPTY );
 
             $this->current_line = 0;
         }
 
         return $this->file;
+    }
+
+    /**
+     * Toggle auto_detect_line_endings only on PHP versions that still
+     * support the option. PHP 8.1+ deprecated it (and removed it in 9.0)
+     * because the SplFileObject CSV flags handle CR-only line endings on
+     * their own once they are paired with READ_CSV / DROP_NEW_LINE /
+     * READ_AHEAD / SKIP_EMPTY.
+     *
+     * @since 4.4.6
+     *
+     * @return string|null Previous value to pass back to restore(), or null when no change was made.
+     */
+    private function enable_auto_detect_line_endings() {
+        if ( PHP_VERSION_ID >= 80100 ) {
+            return null;
+        }
+
+        $previous = ini_get( 'auto_detect_line_endings' );
+        // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- Required to read legacy CR-only CSV files on PHP < 8.1.
+        ini_set( 'auto_detect_line_endings', true );
+
+        return $previous;
+    }
+
+    /**
+     * Restore the previous auto_detect_line_endings ini value.
+     *
+     * @since 4.4.6
+     *
+     * @param string|null $previous Value returned by enable_auto_detect_line_endings().
+     */
+    private function restore_auto_detect_line_endings( $previous ) {
+        if ( null === $previous ) {
+            return;
+        }
+
+        // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged -- Restoring the previous ini value set above on PHP < 8.1.
+        ini_set( 'auto_detect_line_endings', $previous );
     }
 
     public function get_row( $row_number = null ) {

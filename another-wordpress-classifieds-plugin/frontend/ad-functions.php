@@ -63,54 +63,72 @@ function awpcp_send_ad_renewed_email($ad) {
     }
 }
 
-function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
-    $output        = '';
-    $awpcppage     = get_currentpagename();
-    $awpcppagename = sanitize_title($awpcppage, $post_ID='');
+function awpcp_delete_ad( $adid, $adkey, $editemail, $force = false, &$errors = array() ) {
+    $output  = '';
+    $message = '';
 
-    $isadmin = checkifisadmin() || $force;
+    $isadmin = awpcp_current_user_is_admin() || $force;
 
-    if (get_awpcp_option('onlyadmincanplaceads') && ( $isadmin != 1 )) {
-        $message  = __("You do not have permission to perform the function you are trying to perform. Access to this page has been denied",'another-wordpress-classifieds-plugin');
+    if ( awpcp_get_option( 'onlyadmincanplaceads' ) && ( 1 != $isadmin ) ) {
+        $message  = __( 'You do not have permission to perform the function you are trying to perform. Access to this page has been denied', 'another-wordpress-classifieds-plugin' );
         $errors[] = $message;
-
     } else {
-        $savedemail =get_adposteremail($adid);
+        try {
+            $ad = awpcp_listings_collection()->get( $adid );
+        } catch ( AWPCP_Exception $e ) {
+            $ad = null;
+        }
 
-        if ( $isadmin == 1 || strcasecmp( $editemail, $savedemail ) == 0 ) {
-            try {
-                $ad = awpcp_listings_collection()->get( $adid );
-            } catch ( AWPCP_Exception $e ) {
-                $ad = null;
-            }
+        $savedemail = $ad ? awpcp_listing_renderer()->get_contact_email( $ad ) : '';
 
+        if ( 1 == $isadmin || ( $ad && strcasecmp( $editemail, $savedemail ) === 0 ) ) {
             if ( $ad && awpcp_listings_api()->delete_listing( $ad ) ) {
-                if (( $isadmin == 1 ) && is_admin()) {
-                    $message =__("The Ad has been deleted",'another-wordpress-classifieds-plugin');
+                if ( ( 1 == $isadmin ) && is_admin() ) {
+                    $message = __( 'The Ad has been deleted', 'another-wordpress-classifieds-plugin' );
                     return $message;
-                } else {
-                    $message  =__("Your Ad details and any photos you have uploaded have been deleted from the system",'another-wordpress-classifieds-plugin');
-                    $errors[] = $message;
                 }
-            } elseif ( $ad === null ) {
+
+                $message  = __( 'Your Ad details and any photos you have uploaded have been deleted from the system', 'another-wordpress-classifieds-plugin' );
+                $errors[] = $message;
+            } elseif ( null === $ad ) {
                 $errors[] = __( "The specified Ad doesn't exists.", 'another-wordpress-classifieds-plugin' );
             } else {
-                $errors[] = __( "There was an error trying to delete the Ad. The Ad was not deleted.", 'another-wordpress-classifieds-plugin' );
+                $errors[] = __( 'There was an error trying to delete the Ad. The Ad was not deleted.', 'another-wordpress-classifieds-plugin' );
             }
         } else {
-            $message  =__("Problem encountered. Cannot complete  request",'another-wordpress-classifieds-plugin');
+            $message  = __( 'Problem encountered. Cannot complete  request', 'another-wordpress-classifieds-plugin' );
             $errors[] = $message;
         }
     }
 
-    $output .= "<div id=\"classiwrapper\">";
+    $output .= '<div id="classiwrapper">';
     $output .= awpcp_menu_items();
-    $output .= "<p>";
+    $output .= '<p>';
     $output .= $message;
-    $output .= "</p>";
-    $output .= "</div>";
+    $output .= '</p>';
+    $output .= '</div>';
 
     return $output;
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_delete_ad()} instead.
+ *
+ * TODO: Re-enable _deprecated_function() once first-party add-ons stop
+ *       calling this wrapper directly. The runtime notice was suppressed
+ *       to avoid flooding debug logs in production.
+ *
+ * @param int    $adid       Listing identifier.
+ * @param string $adkey      Legacy access key.
+ * @param string $editemail  Owner email used to authorize the deletion.
+ * @param bool   $force      Skip the email check when true.
+ * @param array  $errors     Receives any error messages produced during the deletion.
+ * @return string
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function deletead( $adid, $adkey, $editemail, $force = false, &$errors = array() ) {
+    return awpcp_delete_ad( $adid, $adkey, $editemail, $force, $errors );
 }
 
 /**

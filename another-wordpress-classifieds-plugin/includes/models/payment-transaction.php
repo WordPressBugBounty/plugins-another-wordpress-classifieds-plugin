@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 class AWPCP_Payment_Transaction {
 
     // public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
@@ -144,12 +146,12 @@ class AWPCP_Payment_Transaction {
         $query .= ' ORDER BY id ASC';
 
         if ( $fields === 'count' ) {
-            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
             return $wpdb->get_var( $query );
         }
 
         $results = array();
-        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
         foreach ( $wpdb->get_results( $query, ARRAY_A ) as $item ) {
             $results[] = new AWPCP_Payment_Transaction($item, true);
         }

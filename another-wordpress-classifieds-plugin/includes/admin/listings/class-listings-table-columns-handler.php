@@ -242,6 +242,7 @@ class AWPCP_ListingsTableColumnsHandler {
      * @since 4.0.0
      */
     private function render_actions_column( $post ) {
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Hook name is statically prefixed with the plugin's listing post type.
         $actions = apply_filters( "{$this->listing_post_type}_row_actions", [], $post );
 
         echo wp_kses_post( implode( '', $actions ) );

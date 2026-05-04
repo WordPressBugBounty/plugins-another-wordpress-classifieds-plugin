@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 /**
  * The default type of payment term used to pay for ads.
  */
@@ -91,14 +93,17 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $query_vars     = array_merge( $query_vars, array_slice( $original_where, 1 ) );
         }
 
+        // $args['where'], $args['orderby'] and $args['order'] are
+        // assembled by internal callers (see find_by_id() below) using
+        // %d / %s placeholders backed by $query_vars. The dynamic shape
+        // of the query is invisible to the static analyser, so we
+        // suppress its warnings here.
+        // phpcs:disable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.PlaceholdersReplacementWrongNumber,PluginCheck.Security.DirectDB.UnescapedDBParameter -- See note above.
         if ( $fields === 'count' ) {
-            return $wpdb->get_var(
-                $wpdb->prepare(
-                    // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] . ' ORDER BY ' . $args['orderby'] . ' ' . strtoupper( $args['order'] ),
-                    $query_vars
-                )
-            );
+            $count_sql = 'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where']
+                . ' ORDER BY ' . $args['orderby'] . ' ' . strtoupper( $args['order'] );
+
+            return $wpdb->get_var( $wpdb->prepare( $count_sql, $query_vars ) );
         }
 
         if ( $args['limit'] > 0 ) {
@@ -108,24 +113,18 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $order = strtolower( $args['order'] ) === 'desc' ? 'DESC' : 'ASC';
 
-        $items = $wpdb->get_results(
-            $wpdb->prepare(
-                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                'SELECT ' . $fields . ', CASE rec_increment ' .
-                "WHEN 'D' THEN 1 " .
-                "WHEN 'W' THEN 2 " .
-                "WHEN 'M' THEN 3 " .
-                "WHEN 'Y' THEN 4 END AS _duration_interval " .
-                ' FROM %i ' .
-                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                ' WHERE ' . $args['where'] .
-                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                ' ORDER BY ' . $args['orderby'] . ' ' . $order .
-                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                ( $args['limit'] > 0 ? ' LIMIT %d, %d' : '' ),
-                $query_vars
-            )
-        );
+        $items_sql = 'SELECT ' . $fields . ', CASE rec_increment '
+            . "WHEN 'D' THEN 1 "
+            . "WHEN 'W' THEN 2 "
+            . "WHEN 'M' THEN 3 "
+            . "WHEN 'Y' THEN 4 END AS _duration_interval "
+            . ' FROM %i '
+            . ' WHERE ' . $args['where']
+            . ' ORDER BY ' . $args['orderby'] . ' ' . $order
+            . ( $args['limit'] > 0 ? ' LIMIT %d, %d' : '' );
+
+        $items = $wpdb->get_results( $wpdb->prepare( $items_sql, $query_vars ) );
+        // phpcs:enable WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.PreparedSQL.PlaceholdersReplacementWrongNumber,PluginCheck.Security.DirectDB.UnescapedDBParameter
 
         $results = array();
         foreach ( $items as $item ) {

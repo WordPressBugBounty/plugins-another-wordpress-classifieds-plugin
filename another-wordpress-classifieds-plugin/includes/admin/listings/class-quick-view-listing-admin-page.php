@@ -96,6 +96,7 @@ class AWPCP_QuickViewListingAdminPage {
             'listings_url'           => add_query_arg( array( 'post_type' => awpcp()->container['listing_post_type'] ), admin_url( 'edit.php' ) ),
             'content'                => $this->content_renderer->render_content_with_notices(
                 // TODO: Is it a good idea to call `the_content` on the admin?
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter applied so other plugins/themes can format the listing body.
                 apply_filters( 'the_content', $post->post_content ),
                 $post
             ),

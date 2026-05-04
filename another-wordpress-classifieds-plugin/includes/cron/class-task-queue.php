@@ -131,8 +131,9 @@ class AWPCP_TaskQueue {
             $this->process_task( $this->tasks->get_next_active_task() );
         } catch ( AWPCP_Exception $e ) {
             // TODO: Throw different exceptions so that we can handle them differently.
-            if ( $e->getMessage() !== 'There are no more tasks.' ) {
-                trigger_error( esc_html( $e->format_errors() ) );
+            if ( $e->getMessage() !== 'There are no more tasks.' && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+                // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- Surface task-queue failures only when WP_DEBUG is enabled so the plugin can be diagnosed without spamming production logs.
+                error_log( '[AWPCP] Task queue error: ' . $e->format_errors() );
             }
             return;
         }
@@ -152,6 +153,7 @@ class AWPCP_TaskQueue {
 
     private function run_task( $task ) {
         try {
+            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores,WordPress.NamingConventions.PrefixAllGlobals.DynamicHooknameFound -- Hook name is statically prefixed with the plugin slug.
             $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task );
         } catch ( AWPCP_Exception $e ) {
             $exit_code = false;

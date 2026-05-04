@@ -256,6 +256,23 @@ class AWPCP_PaymentSettings {
             ],
             'description' => __( 'The currency in which you would like to receive your 2Checkout payments', 'another-wordpress-classifieds-plugin' ),
         ] );
+
+        $settings_manager->add_setting( [
+            'section'     => $key,
+            'id'          => '2checkout_secret_word',
+            'name'        => __( '2Checkout Secret Word', 'another-wordpress-classifieds-plugin' ),
+            'type'        => 'password',
+            'default'     => '',
+            'validation'  => [
+                'required' => [
+                    'depends' => 'activate2checkout',
+                ],
+            ],
+            'behavior'    => [
+                'enabledIf' => 'activate2checkout',
+            ],
+            'description' => __( 'The secret word configured in your 2Checkout account. Used to verify payment responses are authentic. You can find this in your 2Checkout dashboard under Account > Site Management.', 'another-wordpress-classifieds-plugin' ),
+        ] );
     }
 
     /**

@@ -77,6 +77,7 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter applied so other plugins/themes can format the listing body.
         $content = apply_filters( 'the_content', $listing->post_content );
         $preview = $this->listings_content_renderer->render_content_without_notices( $content, $listing );
 

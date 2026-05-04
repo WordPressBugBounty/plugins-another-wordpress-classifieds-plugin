@@ -158,7 +158,7 @@ class AWPCP_CategoriesListWalker extends Walker {
 
         $element = str_replace( '[category-icon]', $this->render_category_icon( $category ), $element );
         $element = str_replace( '[category-class]', $depth === 0 ? 'toplevelitem' : '', $element );
-        $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category ) ), $element );
+        $element = str_replace( '[category-url]', esc_attr( awpcp_url_browse_category( $category ) ), $element );
         $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
         $element = str_replace( '[category-description]', esc_html( $category->description ), $element );
         $element = str_replace( '[listings-count]', esc_html( $this->render_listings_count( $category ) ), $element );

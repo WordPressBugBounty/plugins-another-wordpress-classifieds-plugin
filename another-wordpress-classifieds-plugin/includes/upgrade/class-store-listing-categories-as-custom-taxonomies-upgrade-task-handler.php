@@ -33,6 +33,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
     public function before_step() {
         // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
         if ( ! defined( 'WP_IMPORTING' ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Constant defined by WordPress core to short-circuit several import-time hooks.
             define( 'WP_IMPORTING', true );
         }
     }

@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     $cron_jobs = array(
@@ -24,10 +26,10 @@ function awpcp_schedule_activation() {
         }
     }
 
-    add_action('doadexpirations_hook', 'doadexpirations');
-    add_action('doadcleanup_hook', 'doadcleanup');
-    add_action('awpcp_ad_renewal_email_hook', 'awpcp_ad_renewal_email');
-    add_action('awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions');
+    add_action( 'doadexpirations_hook', 'awpcp_cron_expire_listings' );
+    add_action( 'doadcleanup_hook', 'awpcp_cron_cleanup_listings' );
+    add_action( 'awpcp_ad_renewal_email_hook', 'awpcp_ad_renewal_email' );
+    add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions' );
     add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads_handler' );
 }
 
@@ -39,7 +41,7 @@ function awpcp_schedule_activation() {
  *
  * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
-function doadexpirations() {
+function awpcp_cron_expire_listings() {
     $listings_logic = awpcp_listings_api();
 
     $ads = awpcp_listings_collection()->find_valid_listings(array(
@@ -63,8 +65,10 @@ function doadexpirations() {
 
 /**
  * Function run once per month to cleanup incomplete and expired ads.
+ *
+ * @since 4.4.6
  */
-function doadcleanup() {
+function awpcp_cron_cleanup_listings() {
     $listings_logic = awpcp_listings_api();
     $listings       = awpcp_listings_collection();
 
@@ -74,6 +78,24 @@ function doadcleanup() {
     }
 
     awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $listings );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_cron_expire_listings()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function doadexpirations() {
+    awpcp_cron_expire_listings();
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_cron_cleanup_listings()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function doadcleanup() {
+    awpcp_cron_cleanup_listings();
 }
 
 /**

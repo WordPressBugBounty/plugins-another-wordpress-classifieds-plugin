@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
@@ -734,7 +736,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
                 break;
 
             case 'url':
-                if ( ! isValidURL( $item ) ) {
+                if ( ! awpcp_is_valid_url( $item ) ) {
                     $validation_errors[] = "The value for Extra Field $name must be a valid URL.";
                 }
                 break;

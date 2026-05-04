@@ -1,3 +1,4 @@
+<?php // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer). ?>
 <form id="awpcp-payment-completed-form" method="post" action=<?php
 if ( ! defined( 'ABSPATH' ) ) {
     exit;

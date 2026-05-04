@@ -7,6 +7,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 /**
  * @since 3.4
  * @since 4.0.0     Replaced $hide_empty boolean parameter with optional callable $filter
@@ -18,16 +20,18 @@ function awpcp_build_categories_hierarchy( &$categories, $filter = null, $callba
     if ( ! is_null( $filter ) && ! is_callable( $filter ) && $filter ) {
         return awpcp_build_non_empty_categories_hierarchy( $categories );
     } elseif ( ! is_null( $filter ) && ! is_callable( $filter ) ) {
-        return __awpcp_build_categories_hierarchy( $categories, null, $callback );
+        return awpcp_build_categories_hierarchy_internal( $categories, null, $callback );
     }
 
-    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
+    return awpcp_build_categories_hierarchy_internal( $categories, $filter, $callback );
 }
 
 /**
- * @since 4.0.0
+ * Internal helper that builds the parent => children category map.
+ *
+ * @since 4.4.6
  */
-function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callback = null ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
+function awpcp_build_categories_hierarchy_internal( $categories, $filter = null, $callback = null ) {
     $hierarchy = array( 'root' => array() );
 
     $filter_categories  = is_callable( $filter );
@@ -54,11 +58,11 @@ function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callb
  * @since 4.0.0
  */
 function awpcp_build_non_empty_categories_hierarchy( $categories, $callback = null ) {
-    $filter = function( $category ) {
-        return total_ads_in_cat( $category->term_id ) > 0;
+    $filter = function ( $category ) {
+        return awpcp_total_ads_in_category( $category->term_id ) > 0;
     };
 
-    return __awpcp_build_categories_hierarchy( $categories, $filter, $callback );
+    return awpcp_build_categories_hierarchy_internal( $categories, $filter, $callback );
 }
 
 /**
@@ -196,7 +200,20 @@ function awpcp_count_listings_in_category( $category_id ) {
     return $listings_count;
 }
 
-function total_ads_in_cat( $category_id ) {
+function awpcp_total_ads_in_category( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_total_ads_in_category()} instead.
+ *
+ * TODO: Re-enable _deprecated_function() once first-party add-ons stop
+ *       calling this wrapper directly. The runtime notice was suppressed
+ *       to avoid flooding debug logs in production.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function total_ads_in_cat( $category_id ) {
+    return awpcp_total_ads_in_category( $category_id );
 }

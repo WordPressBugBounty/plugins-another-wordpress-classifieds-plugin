@@ -10,15 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
  */
-function exclude_awpcp_child_pages($excluded=array()) {
+function awpcp_exclude_child_pages( $excluded = array() ) {
     global $wpdb, $table_prefix;
 
-    $awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
+    $awpcp_page_id = awpcp_get_page_id_by_ref( 'main-page-name' );
 
-    if (empty($awpcp_page_id)) {
+    if ( empty( $awpcp_page_id ) ) {
         return array();
     }
 
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Bootstraps the AWPCP page tree before WP_Query is available; results vary on each request and are not worth caching.
     $child_pages = $wpdb->get_col(
         $wpdb->prepare(
             "SELECT ID FROM %i WHERE post_parent=%d AND post_content LIKE %s",
@@ -32,6 +33,15 @@ function exclude_awpcp_child_pages($excluded=array()) {
         return array_merge( $child_pages, $excluded );
     }
     return $excluded;
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_exclude_child_pages()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function exclude_awpcp_child_pages( $excluded = array() ) {
+    return awpcp_exclude_child_pages( $excluded );
 }
 
 // PROGRAM FUNCTIONS
@@ -317,7 +327,7 @@ function awpcp_time_formats() {
  * @since 3.0
  */
 function awpcp_datepicker_format($format) {
-    return _awpcp_replace_format($format, awpcp_date_formats());
+    return awpcp_replace_format_translations( $format, awpcp_date_formats() );
 }
 
 /**
@@ -325,13 +335,17 @@ function awpcp_datepicker_format($format) {
  * @since 3.0
  */
 function awpcp_timepicker_format($format) {
-    return _awpcp_replace_format($format, awpcp_time_formats());
+    return awpcp_replace_format_translations( $format, awpcp_time_formats() );
 }
 
 /**
- * @since 3.0
+ * @since 4.4.6
+ *
+ * @param string $format       Format string with placeholders.
+ * @param array  $translations Map of placeholder to replacement.
+ * @return string
  */
-function _awpcp_replace_format($format, $translations) {
+function awpcp_replace_format_translations( $format, $translations ) {
     $pattern = join( '|', array_map( 'preg_quote', array_keys( $translations ) ) );
 
     preg_match_all( "/$pattern/s", $format, $matches );
@@ -345,6 +359,15 @@ function _awpcp_replace_format($format, $translations) {
     }
 
     return $format;
+}
+
+/**
+ * @since 3.0
+ * @deprecated 4.4.6 Use {@see awpcp_replace_format_translations()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function _awpcp_replace_format( $format, $translations ) {
+    return awpcp_replace_format_translations( $format, $translations );
 }
 
 /**
@@ -1438,7 +1461,7 @@ function awpcp_get_object_property_from_alternatives( $object, $alternatives, $d
 function awpcp_flatten_array($array) {
     if ( is_array( $array ) ) {
         $flat = array();
-        _awpcp_flatten_array( $array, array(), $flat );
+        awpcp_flatten_array_recursive( $array, array(), $flat );
         return $flat;
     } else {
         return $array;
@@ -1448,19 +1471,28 @@ function awpcp_flatten_array($array) {
 /**
  * @since 3.0.2
  */
-function _awpcp_flatten_array($array, $path=array(), &$return=array()) {
+function awpcp_flatten_array_recursive( $array, $path = array(), &$return = array() ) {
     if ( is_array( $array ) ) {
-        foreach ( $array as $key => $value) {
-            _awpcp_flatten_array( $value, array_merge( $path, array( $key ) ), $return );
+        foreach ( $array as $key => $value ) {
+            awpcp_flatten_array_recursive( $value, array_merge( $path, array( $key ) ), $return );
         }
-    } elseif ( count( $path ) > 0 ){
+    } elseif ( count( $path ) > 0 ) {
         $first = $path[0];
         if ( count( $path ) > 1 ) {
-            $return[ $first . '[' . join('][', array_slice( $path, 1 ) ) . ']'] = $array;
+            $return[ $first . '[' . join( '][', array_slice( $path, 1 ) ) . ']' ] = $array;
         } else {
             $return[ $first ] = $array;
         }
     }
+}
+
+/**
+ * @since 3.0.2
+ * @deprecated 4.4.6 Use {@see awpcp_flatten_array_recursive()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function _awpcp_flatten_array( $array, $path = array(), &$return = array() ) {
+    awpcp_flatten_array_recursive( $array, $path, $return );
 }
 
 /**
@@ -1684,6 +1716,7 @@ function awpcp_update_flash_messages($messages) {
         return update_user_option(get_current_user_id(), 'awpcp-messages', $messages);
     } else {
         global $awp_messages;
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Pre-existing global preserved for backwards compatibility with legacy templates that read it directly.
         $awp_messages = $messages;
         return true;
     }
@@ -1695,6 +1728,7 @@ function awpcp_update_flash_messages($messages) {
 function awpcp_clear_flash_messages() {
     if ( ! is_user_logged_in() ) {
         global $awp_messages;
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Pre-existing global preserved for backwards compatibility with legacy templates that read it directly.
         $awp_messages = array();
         return true;
     }
@@ -2280,6 +2314,7 @@ function awpcp_directory_permissions() {
  */
 function awpcp_table_exists($table) {
     global $wpdb;
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema introspection helper; no caching benefit because callers act on the result immediately.
     $result = $wpdb->get_var(
         $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table ) )
     );
@@ -2308,6 +2343,7 @@ function awpcp_check_if_column_exists( $table, $column ) {
     global $wpdb;
 
     $suppress_errors = $wpdb->suppress_errors();
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Schema introspection helper; result is memoized in awpcp_column_exists() above.
     $result          = $wpdb->query(
         $wpdb->prepare( "SELECT %i FROM %i", $column, $table )
     );
@@ -2356,7 +2392,7 @@ function awpcp_phpmailer() {
         $phpmailer = new PHPMailer( true );
     }
 
-    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName,WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- wp_mail_charset is a WordPress core filter we mirror here for the AWPCP-specific PHPMailer instance.
     $phpmailer->CharSet = apply_filters( 'wp_mail_charset', get_bloginfo( 'charset' ) );
 
     return $phpmailer;
@@ -2850,52 +2886,144 @@ function awpcp_are_images_allowed() {
     return count( $allowed_image_extensions ) > 0;
 }
 
-function add_slashes_recursive( $variable ) {
-    if (is_string($variable)) {
-        return addslashes($variable);
-    } elseif (is_array($variable)) {
-        foreach($variable as $i => $value) {
-            $variable[$i] = add_slashes_recursive($value);
+/**
+ * @since 4.4.6
+ *
+ * @param mixed $variable Value to escape.
+ * @return mixed
+ */
+function awpcp_add_slashes_recursive( $variable ) {
+    if ( is_string( $variable ) ) {
+        return addslashes( $variable );
+    } elseif ( is_array( $variable ) ) {
+        foreach ( $variable as $i => $value ) {
+            $variable[ $i ] = awpcp_add_slashes_recursive( $value );
         }
     }
 
     return $variable;
 }
 
-function string_contains_string_at_position($haystack, $needle, $pos = 0, $case=true) {
-    if ($case) {
-        $result = (strpos($haystack, $needle, 0) === $pos);
-    } else {
-        $result = (stripos($haystack, $needle, 0) === $pos);
-    }
-    return $result;
-}
-
-function string_starts_with($haystack, $needle, $case=true) {
-    return string_contains_string_at_position($haystack, $needle, 0, $case);
-}
-
-function string_ends_with($haystack, $needle, $case=true) {
-    return string_contains_string_at_position($haystack, $needle, (strlen($haystack) - strlen($needle)), $case);
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_add_slashes_recursive()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function add_slashes_recursive( $variable ) {
+    return awpcp_add_slashes_recursive( $variable );
 }
 
 /**
- * @since new-release
+ * @since 4.4.6
  */
-function awpcp_get_option( $option, $default = '', $reload = false ) {
-    return get_awpcp_option( $option, $default, $reload );
+function awpcp_string_contains_at_position( $haystack, $needle, $pos = 0, $case = true ) {
+    if ( $case ) {
+        return strpos( $haystack, $needle, 0 ) === $pos;
+    }
+
+    return stripos( $haystack, $needle, 0 ) === $pos;
 }
 
-function get_awpcp_option($option, $default='', $reload=false) {
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_string_contains_at_position()} instead.
+ *
+ * TODO: Re-enable _deprecated_function() once first-party add-ons stop
+ *       calling this wrapper directly. The runtime notice was suppressed
+ *       to avoid flooding debug logs in production.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function string_contains_string_at_position( $haystack, $needle, $pos = 0, $case = true ) {
+    return awpcp_string_contains_at_position( $haystack, $needle, $pos, $case );
+}
+
+/**
+ * @since 4.4.6
+ */
+function awpcp_string_starts_with( $haystack, $needle, $case = true ) {
+    return awpcp_string_contains_at_position( $haystack, $needle, 0, $case );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_string_starts_with()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function string_starts_with( $haystack, $needle, $case = true ) {
+    return awpcp_string_starts_with( $haystack, $needle, $case );
+}
+
+/**
+ * @since 4.4.6
+ */
+function awpcp_string_ends_with( $haystack, $needle, $case = true ) {
+    return awpcp_string_contains_at_position( $haystack, $needle, ( strlen( $haystack ) - strlen( $needle ) ), $case );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_string_ends_with()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function string_ends_with( $haystack, $needle, $case = true ) {
+    return awpcp_string_ends_with( $haystack, $needle, $case );
+}
+
+/**
+ * Read a plugin setting. Wraps the Settings API access for callers that
+ * predate dependency injection.
+ *
+ * @since 4.0.0
+ */
+function awpcp_get_option( $option, $default = '', $reload = false ) {
     return awpcp()->settings->get_option( $option, $default, $reload );
 }
 
-function clean_field($foo) {
-    return add_slashes_recursive($foo);
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_get_option()} instead.
+ *
+ * Note: deprecation notice intentionally omitted because this helper is
+ * invoked hundreds of times per request from legacy code paths and
+ * triggering _deprecated_function() on each call would flood the debug
+ * log without offering actionable information until the legacy callers
+ * are removed.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function get_awpcp_option( $option, $default = '', $reload = false ) {
+    return awpcp_get_option( $option, $default, $reload );
 }
 
-function isValidURL($url) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
-    return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
+/**
+ * @since 4.4.6
+ */
+function awpcp_clean_field( $foo ) {
+    return awpcp_add_slashes_recursive( $foo );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_clean_field()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function clean_field( $foo ) {
+    return awpcp_clean_field( $foo );
+}
+
+/**
+ * @since 4.4.6
+ */
+function awpcp_is_valid_url( $url ) {
+    return preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_is_valid_url()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound,WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid -- Deprecated alias kept for backwards compatibility.
+function isValidURL( $url ) {
+    return awpcp_is_valid_url( $url );
 }
 
 /**
@@ -2934,9 +3062,21 @@ function awpcp_is_email_address_allowed( $email_address ) {
     return false;
 }
 
-function create_ad_postedby_list($name) {
+/**
+ * @since 4.4.6
+ */
+function awpcp_create_ad_postedby_list( $name ) {
     $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
     return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
+}
+
+/**
+ * @since 1.0
+ * @deprecated 4.4.6 Use {@see awpcp_create_ad_postedby_list()} instead.
+ */
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
+function create_ad_postedby_list( $name ) {
+    return awpcp_create_ad_postedby_list( $name );
 }
 
 function awpcp_strip_html_tags( $text ) {

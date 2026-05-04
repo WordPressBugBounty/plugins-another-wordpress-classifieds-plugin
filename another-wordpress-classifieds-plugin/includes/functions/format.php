@@ -14,7 +14,7 @@ function awpcp_maybe_add_http_to_url( $url ) {
 
     $new_url = sprintf( 'http://%s', $url );
 
-    if ( isValidURL( $new_url ) ) {
+    if ( awpcp_is_valid_url( $new_url ) ) {
         return $new_url;
     } else {
         return $url;

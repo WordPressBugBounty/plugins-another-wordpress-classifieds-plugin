@@ -97,7 +97,7 @@ class AWPCP_ListingPostedData {
     private function get_common_posted_data( $listing ) {
         $post_data   = $this->form_fields_data->get_posted_data( $listing );
         $user_id     = $this->request->post( 'user_id' );
-        $current_url = $this->request->post( 'current_url' );
+        $current_url = awpcp_validate_internal_redirect_url( $this->request->post( 'current_url' ) );
 
         if ( ! $this->roles->current_user_is_moderator() ) {
             $user_id = $this->request->get_current_user_id();

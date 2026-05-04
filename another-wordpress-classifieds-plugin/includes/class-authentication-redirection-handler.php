@@ -50,7 +50,7 @@ class AWPCP_Authentication_Redirection_Handler {
     }
 
     private function redirect_to_login_page( $login_url ) {
-        wp_redirect( add_query_arg( 'redirect_to', urlencode( awpcp_current_url() ), $login_url ) );
+        wp_safe_redirect( add_query_arg( 'redirect_to', urlencode( awpcp_current_url() ), $login_url ) );
         exit();
     }
 }

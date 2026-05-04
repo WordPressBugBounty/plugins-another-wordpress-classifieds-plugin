@@ -1,4 +1,5 @@
 <?php
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- Variables are extracted from template params (see AWPCP_Template_Renderer).
 /**
  * @package AWPCP\Templates
  */
@@ -18,6 +19,7 @@ endforeach;
 
 // TODO: ContentRenderer or the rendered content itself should be available as a parameter for this view.
 awpcp()->container['ListingsContentRenderer']->show_content_without_notices(
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter applied so other plugins/themes can format the listing body.
     apply_filters( 'the_content', $ad->post_content ),
     $ad
 );

@@ -46,6 +46,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
     public function before_step() {
         // See https://10up.github.io/Engineering-Best-Practices/migrations/#requirements-for-a-successful-migration.
         if ( ! defined( 'WP_IMPORTING' ) ) {
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Constant defined by WordPress core to short-circuit several import-time hooks.
             define( 'WP_IMPORTING', true );
         }
     }

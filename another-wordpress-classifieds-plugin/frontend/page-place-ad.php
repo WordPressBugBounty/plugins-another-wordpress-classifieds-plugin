@@ -1053,7 +1053,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         //If they have submitted a website address make sure it is correctly formatted
-        if (!empty($data['websiteurl']) && !isValidURL($data['websiteurl'])) {
+        if ( ! empty( $data['websiteurl'] ) && ! awpcp_is_valid_url( $data['websiteurl'] ) ) {
             $errors['websiteurl'] = __("Your website address is not properly formatted. Please make sure you have included the http:// part of your website address",'another-wordpress-classifieds-plugin');
         }
 

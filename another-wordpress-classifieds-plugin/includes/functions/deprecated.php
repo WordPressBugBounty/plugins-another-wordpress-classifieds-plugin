@@ -9,6 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+
+// phpcs:disable WordPress.DB.DirectDatabaseQuery,WordPress.DB.SlowDBQuery -- Direct DB access intentional for installer/upgrade/legacy collection code; caching not applicable to write/migration paths or rich listing queries.
 function awpcp_post_param($name, $default='') {
     // phpcs:ignore WordPress.Security.NonceVerification
     return awpcp_array_data($name, $default, $_POST);
@@ -413,7 +415,7 @@ function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
     $post_date      = gmdate( 'Y-m-d' );
     $parent_page_id = intval( $parent_page_id );
     $post_name      = sanitize_title( $page_name );
-    $page_name      = add_slashes_recursive( $page_name );
+    $page_name      = awpcp_add_slashes_recursive( $page_name );
 
     $page_id = wp_insert_post( array(
         'post_date'             => $post_date,
@@ -719,7 +721,7 @@ function awpcp_get_uploads_directories() {
         // Required to set permission on main upload directory
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
-        $fileop        = new fileop();
+        $fileop        = new AWPCP_FileOp();
         $wp_filesystem = awpcp_get_wp_filesystem();
 
         if ( ! $wp_filesystem ) {

@@ -89,7 +89,7 @@ class AWPCP_FormFieldsValidator {
             }
         }
 
-        if ( ! empty( $data['metadata']['_awpcp_website_url'] ) && ! isValidURL( $data['metadata']['_awpcp_website_url'] ) ) {
+        if ( ! empty( $data['metadata']['_awpcp_website_url'] ) && ! awpcp_is_valid_url( $data['metadata']['_awpcp_website_url'] ) ) {
             $errors['websiteurl'] = __( 'Please enter a valid website address.', 'another-wordpress-classifieds-plugin' );
         }
 

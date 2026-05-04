@@ -571,7 +571,7 @@ class AWPCP_PaymentsAPI {
             $url = $transaction->get('redirect', $transaction->get('success-redirect'));
             $url = add_query_arg('step', 'payment-completed', $url);
             $url = add_query_arg('transaction_id', $transaction->id, $url);
-            wp_redirect( esc_url_raw( $url ) );
+            wp_safe_redirect( esc_url_raw( $url ) );
         }
 
         exit();

@@ -82,13 +82,13 @@ class AWPCP_ListingsAPI {
         }
 
         if ( is_null( $ad ) || ! awpcp_verify_email_verification_hash( $ad_id, $hash ) ) {
-            wp_redirect( awpcp_get_main_page_url() );
+            wp_safe_redirect( awpcp_get_main_page_url() );
             return;
         }
 
         $this->verify_ad( $ad );
 
-        wp_redirect( esc_url_raw( add_query_arg( 'verified', true, url_showad( $ad->ID ) ) ) );
+        wp_safe_redirect( esc_url_raw( add_query_arg( 'verified', true, url_showad( $ad->ID ) ) ) );
         return;
     }
 

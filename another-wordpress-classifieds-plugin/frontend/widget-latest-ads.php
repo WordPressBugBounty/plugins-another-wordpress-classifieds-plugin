@@ -130,8 +130,12 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     private function render_item( $item, $instance, $html_class ) {
         $listing_title = $this->listing_renderer->get_listing_title( $item );
-        $item_url      = $this->listing_renderer->get_view_listing_url( $item );
-        $item_title    = sprintf( '<a href="%s">%s</a>', $item_url, stripslashes( $listing_title ) );
+        $item_url      = esc_url( $this->listing_renderer->get_view_listing_url( $item ) );
+        $item_title    = sprintf(
+            '<a href="%s">%s</a>',
+            $item_url,
+            esc_html( stripslashes( $listing_title ) )
+        );
 
         $html_title   = '';
         $html_excerpt = '';
@@ -143,7 +147,11 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
         if ($instance['show-excerpt']) {
             $excerpt      = awpcp_do_placeholder_excerpt( $item, 'excerpt' );
-            $read_more    = sprintf( '<p class="awpcp-widget-read-more-container"><a class="awpcp-widget-read-more" href="%s">[%s]</a></p>', $item_url, __( 'Read more', 'another-wordpress-classifieds-plugin' ) );
+            $read_more    = sprintf(
+                '<p class="awpcp-widget-read-more-container"><a class="awpcp-widget-read-more" href="%s">[%s]</a></p>',
+                $item_url,
+                esc_html__( 'Read more', 'another-wordpress-classifieds-plugin' )
+            );
             $html_excerpt = sprintf( '<div class="awpcp-listings-widget-item-excerpt">%s</div>', $excerpt );
         }
 
@@ -170,6 +178,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         $image_url     = '';
         $html_image    = '';
         $listing_title = esc_attr( $this->listing_renderer->get_listing_title( $item ) );
+        $listing_url   = esc_url( $this->listing_renderer->get_view_listing_url( $item ) );
 
         if ( ! is_null( $image ) && $show_images ) {
             $image_attributes = array(
@@ -178,7 +187,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
             $html_image = sprintf(
                 '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
-                $this->listing_renderer->get_view_listing_url( $item ),
+                $listing_url,
                 $this->attachment_properties->get_image( $image, 'featured', false, $image_attributes )
             );
         } elseif ( $instance['show-blank'] && $show_images ) {
@@ -189,9 +198,10 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             }
 
             $html_image = sprintf(
-                '<a class="awpcp-listings-widget-item-listing-link self" href="%s">%s</a>',
-                $this->listing_renderer->get_view_listing_url( $item ),
-                "<img src='{$image_url}' alt='{$listing_title}' />"
+                '<a class="awpcp-listings-widget-item-listing-link self" href="%s"><img src="%s" alt="%s" /></a>',
+                $listing_url,
+                esc_url( $image_url ),
+                $listing_title
             );
         }
 
