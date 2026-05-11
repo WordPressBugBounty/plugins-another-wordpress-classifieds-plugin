@@ -79,7 +79,9 @@ class AWPCP_Attachment_Action_Ajax_Handler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( esc_html__( 'You are not allowed to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
+        $nonce_sufficient = 'auto-draft' === $listing->post_status && ! is_user_logged_in();
+
+        if ( ! $nonce_sufficient && ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
             throw new AWPCP_Exception( esc_html__( 'You are not allowed to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 

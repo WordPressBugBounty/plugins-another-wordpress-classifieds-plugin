@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-echo wp_kses_post( $introduction );
+echo awpcp_esc_plaintext( $introduction );
 ?>:
 
 <?php esc_html_e( 'Total ads found sharing your email address', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( count( $ads ) ); ?>

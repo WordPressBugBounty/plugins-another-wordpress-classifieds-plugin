@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
+echo awpcp_esc_plaintext( awpcp_get_option( 'listingaddedbody' ) ); ?>
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
 
@@ -45,7 +45,8 @@ echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
 <?php if (!empty($message)): ?>
 <?php esc_html_e( 'Additional Details', 'another-wordpress-classifieds-plugin' ); ?>
 
-<?php echo wp_kses_post( $message ); ?>
+<?php
+echo awpcp_esc_plaintext( $message ); ?>
 
 <?php endif ?>
 <?php

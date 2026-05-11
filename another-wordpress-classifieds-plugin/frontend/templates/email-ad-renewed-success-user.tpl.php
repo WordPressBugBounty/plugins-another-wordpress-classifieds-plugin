@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // emails are sent in plain text, blank lines in templates are required ?>
-<?php echo wp_kses_post( $introduction ); ?>
+<?php echo awpcp_esc_plaintext( $introduction ); ?>
 
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php esc_html_e( 'Listing Edit Email', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $contact_email ); ?>
 
-<?php if ( get_awpcp_option( 'include-ad-access-key' ) ): ?>
+<?php if ( awpcp_get_option( 'include-ad-access-key' ) ): ?>
 <?php esc_html_e( 'Listing Edit Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $access_key ); ?>
 <?php endif; ?>
 

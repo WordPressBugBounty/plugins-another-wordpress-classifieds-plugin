@@ -205,6 +205,18 @@ function awpcp_esc_textarea($text) {
 }
 
 /**
+ * Escape a string for use in plain text email output.
+ *
+ * @since 4.4.7
+ *
+ * @param string $text Text to escape.
+ * @return string
+ */
+function awpcp_esc_plaintext( $text ) {
+    return wp_strip_all_tags( (string) $text );
+}
+
+/**
  * @since 3.3
  */
 function awpcp_apply_function_deep( $function, $value ) {

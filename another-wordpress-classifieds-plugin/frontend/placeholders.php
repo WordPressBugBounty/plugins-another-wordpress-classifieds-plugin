@@ -829,12 +829,16 @@ function awpcp_do_placeholder_flag_link( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_twitter_button( $ad, $placeholder ) {
-    $title = __( 'Tweet This', 'another-wordpress-classifieds-plugin' );
+    $title = __( 'Post on X', 'another-wordpress-classifieds-plugin' );
     $url   = awpcp_do_placeholder_twitter_button_url( $ad, 'twitter_button_url' );
+
+    $x_icon  = '<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-0.125em">';
+    $x_icon .= '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>';
+    $x_icon .= '</svg>';
 
     $button  = '<a class="awpcp-social-button tw_button awpcp_tweet_button_div" href="' . esc_url( $url ) . '" title="' . esc_attr( $title ) . '" target="_blank" rel="nofollow noopener">';
     $button .= '<span class="twitter-share-button">';
-    $button .= '<i class="' . awpcp_add_font_awesome_style_class_for_brands( 'fa-twitter-square' ) . '"></i>';
+    $button .= $x_icon;
     $button .= '</span>';
     $button .= '</a>';
 
@@ -855,7 +859,7 @@ function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
             'url'  => rawurlencode( $url ),
             'text' => rawurlencode( $title ),
         ),
-        'https://twitter.com/share'
+        'https://x.com/intent/post'
     );
 }
 

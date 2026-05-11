@@ -9,4 +9,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php printf( esc_html( $message ), esc_url_raw( $url ) ); ?>
 
 <?php
-echo wp_kses_post( $content );
+echo awpcp_esc_plaintext( $content );

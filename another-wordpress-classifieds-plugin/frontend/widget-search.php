@@ -109,7 +109,7 @@ class AWPCP_Search_Widget extends WP_Widget {
         if ( !empty( $instance['subtitle'] ) ) {
             $title = $instance['title'] . '<br/><span class="widgetstitle">' . esc_html( $instance['subtitle'] ) . '</span>';
         } else {
-            $title = $instance['title'] . '</span>';
+            $title = $instance['title'];
         }
 
         echo '<div class="awpcp-search-listings-widget">';

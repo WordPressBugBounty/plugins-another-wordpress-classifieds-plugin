@@ -80,6 +80,10 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
+        if ( 'auto-draft' === $listing->post_status && ! is_user_logged_in() ) {
+            return true;
+        }
+
         return $this->authorization->is_current_user_allowed_to_manage_listing( $listing );
     }
 

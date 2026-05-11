@@ -5,7 +5,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 foreach ($messages as $message): ?>
-<?php echo wp_kses_post( $message ); ?>
+<?php
+echo awpcp_esc_plaintext( $message ); ?>
 
 <?php endforeach; ?>
 

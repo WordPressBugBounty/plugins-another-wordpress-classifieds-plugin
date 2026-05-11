@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php
 echo "\t";
-echo wp_kses_post( $message );
+echo awpcp_esc_plaintext( $message );
 ?>
 
 <?php if ($user): ?>

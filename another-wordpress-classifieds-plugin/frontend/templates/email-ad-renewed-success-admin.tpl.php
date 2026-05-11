@@ -9,4 +9,4 @@ esc_html_e( 'An ad has been renewed. A copy of the details sent to the customer 
 ?>
 
 <?php
-echo wp_kses_post( $body );
+echo awpcp_esc_plaintext( $body );
