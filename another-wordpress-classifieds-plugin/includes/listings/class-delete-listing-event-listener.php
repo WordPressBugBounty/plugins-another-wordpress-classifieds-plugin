@@ -41,7 +41,7 @@ class AWPCP_DeleteListingEventListener {
         add_action( 'untrashed_post', [ $this, 'after_untrash_post' ] );
 
         add_action( 'before_delete_post', [ $this, 'before_delete_post' ] );
-        add_action( 'after_delete_post', [ $this, 'after_delete_post' ] );
+        add_action( 'after_delete_post', [ $this, 'after_delete_post' ], 10, 2 );
     }
 
     /**
@@ -98,9 +98,27 @@ class AWPCP_DeleteListingEventListener {
     }
 
     /**
+     * Fires after a post is permanently deleted.
+     *
+     * Uses the WP_Post object passed by WordPress because get_post() returns
+     * null after the post row has been removed.
+     *
      * @since 4.0.0
+     * @since 4.4.8 Accepts the deleted WP_Post from after_delete_post.
+     *
+     * @param int          $post_id Post ID.
+     * @param WP_Post|null $post    Deleted post object (available since WP 5.5).
      */
-    public function after_delete_post( $post_id ) {
+    public function after_delete_post( $post_id, $post = null ) {
+        if ( $post instanceof WP_Post ) {
+            if ( $this->listing_post_type !== $post->post_type ) {
+                return;
+            }
+
+            do_action( 'awpcp_delete_ad', $post );
+            return;
+        }
+
         $this->maybe_do_action( 'awpcp_delete_ad', $post_id );
     }
 }

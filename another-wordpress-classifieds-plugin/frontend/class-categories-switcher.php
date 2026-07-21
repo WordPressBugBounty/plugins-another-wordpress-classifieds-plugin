@@ -38,7 +38,7 @@ class AWPCP_Categories_Switcher {
      * @param array $params     An array of parameters for the Categories Switcher component.
      */
     public function render( $params = array() ) {
-        if ( $this->query->is_browse_listings_page() || $this->query->is_browse_categories_page() ) {
+        if ( $this->query->is_browse_listings_page() ) {
             $action_url = awpcp_current_url();
         } else {
             $action_url = awpcp_get_browse_categories_page_url();

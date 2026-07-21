@@ -737,7 +737,15 @@ class AWPCP_ListingsAPI {
         }
 
         if ( get_awpcp_option( 'imagesapprove' ) == 1 ) {
-            $alerts[] = __( 'If you have uploaded images your images will not show up until an admin has approved them.', 'another-wordpress-classifieds-plugin' );
+            $payment_term = $this->listing_renderer->get_payment_term( $ad );
+
+            if (
+                awpcp_are_images_allowed()
+                && is_object( $payment_term )
+                && (int) $payment_term->images > 0
+            ) {
+                $alerts[] = __( 'If you have uploaded images your images will not show up until an admin has approved them.', 'another-wordpress-classifieds-plugin' );
+            }
         }
 
         return $alerts;

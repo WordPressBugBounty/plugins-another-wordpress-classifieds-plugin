@@ -47,20 +47,67 @@ class AWPCP_BasicRegionsAPI {
         return $this->db->get_col( $this->db->prepare( $sql, $parent_name ) );
     }
 
-    public function save($region) {
-        if ( ! isset( $region['ad_id'] ) || empty( $region['ad_id'] ) ) {
+    public function save( $region ) {
+        $region = $this->filter_region_columns( stripslashes_deep( $region ) );
+
+        $region['ad_id'] = absint( isset( $region['ad_id'] ) ? $region['ad_id'] : 0 );
+
+        if ( empty( $region['ad_id'] ) ) {
             return false;
         }
 
-        $region = stripslashes_deep( $region );
+        $region_id = intval( awpcp_array_data( 'id', 0, $region ) );
 
-        if ( intval( awpcp_array_data( 'id', null, $region ) ) > 0 ) {
-            $result = $this->db->update( AWPCP_TABLE_AD_REGIONS, $region, array( 'id' => $region['id'] ) );
+        unset( $region['id'] );
+
+        if ( $region_id > 0 ) {
+            $result = $this->db->update( AWPCP_TABLE_AD_REGIONS, $region, array( 'id' => $region_id ) );
         } else {
             $result = $this->db->insert( AWPCP_TABLE_AD_REGIONS, $region );
         }
 
         return $result !== false;
+    }
+
+    /**
+     * Allowlist region array keys to valid DB columns only.
+     *
+     * @since 4.4.8
+     *
+     * @param mixed $region Region data.
+     *
+     * @return array
+     */
+    private function filter_region_columns( $region ) {
+        if ( ! is_array( $region ) ) {
+            return array();
+        }
+
+        $allowed = array( 'id', 'ad_id', 'country', 'county', 'state', 'city', 'region_id' );
+
+        return array_intersect_key( $region, array_flip( $allowed ) );
+    }
+
+    /**
+     * Sanitise a user-submitted region to editable fields only.
+     *
+     * @since 4.4.8
+     *
+     * @param mixed $region Region data.
+     *
+     * @return array
+     */
+    private function prepare_submitted_region( $region ) {
+        if ( ! is_array( $region ) ) {
+            return array();
+        }
+
+        $allowed = array( 'country', 'county', 'state', 'city', 'region_id' );
+        $region  = array_intersect_key( $region, array_flip( $allowed ) );
+
+        $region = array_filter( $region, 'is_scalar' );
+
+        return array_map( 'trim', $region );
     }
 
     public function delete_by_ad_id($ad_id) {
@@ -79,18 +126,21 @@ class AWPCP_BasicRegionsAPI {
     }
 
     public function update_ad_regions( $ad, $regions, $max_regions = 1 ) {
-        // remove existing regions before adding the new ones
         $this->delete_by_ad_id( $ad->ID );
 
         $count = 0;
-        foreach ($regions as $region) {
-            if ( empty( implode( $region ) ) ) {
+
+        foreach ( $regions as $region ) {
+            $data = $this->prepare_submitted_region( $region );
+
+            if ( empty( implode( $data ) ) ) {
                 continue;
             }
-            if ($count < $max_regions) {
-                $data = array_map( 'trim', $region );
-                $this->save( array_merge( array( 'ad_id' => $ad->ID ), $data ) );
+
+            if ( $count < $max_regions ) {
+                $this->save( array_merge( $data, array( 'ad_id' => $ad->ID ) ) );
             }
+
             ++$count;
         }
     }

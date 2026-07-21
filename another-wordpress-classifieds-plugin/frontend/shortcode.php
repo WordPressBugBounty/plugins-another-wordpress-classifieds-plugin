@@ -64,7 +64,7 @@ class AWPCP_Pages {
         add_shortcode( 'AWPCPPAYMENTTHANKYOU', array( $this, 'noop' ) );
         add_shortcode( 'AWPCPCANCELPAYMENT', array( $this, 'noop' ) );
 
-        add_shortcode( 'AWPCPBROWSECATS', array( $this->browse_ads, 'dispatch' ) );
+        add_shortcode( 'AWPCPBROWSECATS', array( $this, 'browse_categories' ) );
         add_shortcode( 'AWPCPBROWSEADS', array( $this->browse_ads, 'dispatch' ) );
 
         add_shortcode( 'AWPCPSHOWAD', array( $this, 'show_ad' ) );
@@ -139,6 +139,25 @@ class AWPCP_Pages {
         }
 
         return $this->output['search-ads'];
+    }
+
+    /**
+     * Renders the View Categories list (same UI as main-page layout=2).
+     *
+     * Previously aliased to Browse Ads for backwards compatibility.
+     *
+     * @since 4.4.8
+     *
+     * @return string
+     */
+    public function browse_categories() {
+        if ( ! isset( $this->output['browse-categories'] ) ) {
+            awpcp_enqueue_main_script();
+
+            $this->output['browse-categories'] = awpcp_display_the_classifieds_page_body( '' );
+        }
+
+        return $this->output['browse-categories'];
     }
 
     public function reply_to_ad() {
@@ -492,7 +511,7 @@ function awpcp_get_menu_items( $params ) {
     }
 
     if ( $show_browse_ads_item ) {
-        if ( awpcp_is_browse_listings_page() || awpcp_is_browse_categories_page() ) {
+        if ( awpcp_is_browse_listings_page() ) {
             if ( get_awpcp_option( 'main_page_display' ) ) {
                 $browse_cats_url = awpcp_get_view_categories_url();
             } else {

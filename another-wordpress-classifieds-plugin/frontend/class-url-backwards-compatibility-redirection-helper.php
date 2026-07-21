@@ -122,7 +122,7 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
             return;
         }
 
-        if ( $this->query->is_browse_listings_page() || $this->query->is_browse_categories_page() ) {
+        if ( $this->query->is_browse_listings_page() ) {
             $this->maybe_redirect_browse_listings_request();
             return;
         }

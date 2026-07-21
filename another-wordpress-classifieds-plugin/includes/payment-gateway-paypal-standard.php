@@ -69,10 +69,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
                 $transaction->errors['verification-get'] = $errors;
             } elseif ( 'INVALID' === $response ) {
-                // INVALID on user return is likely a timing issue. Show pending message.
-                $transaction->set( 'pending_verification', true );
-
-                // Don't set errors - we'll show a pending notice instead.
+                // The caller determines whether this is a return or an IPN.
                 unset( $transaction->errors['verification-get'] );
                 unset( $transaction->errors['verification-post'] );
             } elseif ( 'ERROR' === $response ) {
@@ -118,6 +115,15 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $txn_type      = awpcp_get_var( array( 'param' => 'txn_type' ), 'post' );
         $custom        = awpcp_get_var( array( 'param' => 'custom' ), 'post' );
         $payer_email   = awpcp_get_var( array( 'param' => 'payer_email' ), 'post' );
+
+        if ( strcasecmp( (string) $custom, (string) $transaction->id ) !== 0 ) {
+            $message                           = __( 'The payment transaction could not be verified. Please contact customer service for assistance.', 'another-wordpress-classifieds-plugin' );
+            $transaction->errors['validation'] = $message;
+            $transaction->payment_status       = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
+            $transaction->set( 'verified', false );
+            awpcp_payment_failed_email( $transaction, $message );
+            return false;
+        }
 
         // this variables are not used for verification purposes.
         $item_name            = awpcp_get_var( array( 'param' => 'item_name' ), 'post' );
@@ -296,6 +302,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
      */
     private function do_process_payment( $transaction, $is_ipn ) {
         if ( $transaction->get( 'verified', false ) ) {
+            $transaction->set( 'pending_verification', false );
             return;
         }
 
@@ -316,9 +323,10 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             if ( $is_ipn ) {
                 // IPN returning INVALID is a real failure from PayPal.
                 $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
+                $transaction->set( 'pending_verification', false );
             } else {
-                // User return with INVALID is likely a timing issue. Set to PENDING and wait for IPN.
-                $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+                // Wait for an IPN instead of treating an unverified return as payment pending.
+                $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_VERIFIED;
                 $transaction->set( 'pending_verification', true );
             }
         } elseif ( 'ERROR' === $response ) {

@@ -305,11 +305,21 @@ class AWPCP_Payment_Transaction {
     }
 
     /**
+     * Verify that the payment can be marked as completed.
+     *
+     * @since 4.4.8
+     *
      * @param array &$errors
+     * @return bool
      */
     public function verify_payment_completed_conditions(&$errors) {
         if (empty($this->payment_status)) {
             $errors[] = __( 'The payment status for this transaction hasn\'t been defined.', 'another-wordpress-classifieds-plugin');
+            return false;
+        }
+
+        if ( $this->payment_is_not_verified() ) {
+            $errors[] = __( 'The payment for this transaction has not been verified yet.', 'another-wordpress-classifieds-plugin' );
             return false;
         }
 

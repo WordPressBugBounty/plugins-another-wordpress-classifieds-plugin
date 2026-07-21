@@ -540,7 +540,8 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment_completed($transaction, $redirect=true) {
-        $errors = array();
+        $errors               = array();
+        $pending_verification = $transaction->get( 'pending_verification', false );
 
         /**
          * Only attempt to complete the payment if we are in a previous state.
@@ -548,7 +549,7 @@ class AWPCP_PaymentsAPI {
          * IPN notifications are likely to be associated to transactions that
          * are already completed.
          */
-        if (!$transaction->is_payment_completed() && !$transaction->is_completed()) {
+        if ( ! $pending_verification && ! $transaction->is_payment_completed() && ! $transaction->is_completed() ) {
             $this->set_transaction_status_to_payment_completed($transaction, $errors);
 
             if (!empty($errors)) {
@@ -558,11 +559,13 @@ class AWPCP_PaymentsAPI {
             }
         }
 
-        try {
-            $this->process_transaction( $transaction );
-        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-            // We simply ignore exceptions here because we are currently using them
-            // in the Coupons module only for transactions that are doing checkout.
+        if ( ! $pending_verification ) {
+            try {
+                $this->process_transaction( $transaction );
+            } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+                // We simply ignore exceptions here because we are currently using them
+                // in the Coupons module only for transactions that are doing checkout.
+            }
         }
 
         $transaction->save();
@@ -931,7 +934,7 @@ class AWPCP_PaymentsAPI {
         $text                 = '';
         $pending_verification = $transaction->get( 'pending_verification', false );
 
-        if ( $pending_verification && $transaction->payment_is_pending() ) {
+        if ( $pending_verification && $transaction->payment_is_not_verified() ) {
             // Payment verification returned INVALID on user return - likely a timing issue.
             // Show a friendly pending message and auto-refresh to wait for IPN.
             $title   = __( 'Verifying Your Payment', 'another-wordpress-classifieds-plugin' );
@@ -1009,7 +1012,7 @@ class AWPCP_PaymentsAPI {
     public function render_payment_completed_page_title($transaction) {
         $pending_verification = $transaction->get( 'pending_verification', false );
 
-        if ( $pending_verification && $transaction->payment_is_pending() ) {
+        if ( $pending_verification && $transaction->payment_is_not_verified() ) {
             return __( 'Verifying Your Payment', 'another-wordpress-classifieds-plugin' );
         } elseif ($transaction->was_payment_successful()) {
             return __( 'Payment Completed', 'another-wordpress-classifieds-plugin');

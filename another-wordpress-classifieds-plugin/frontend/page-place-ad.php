@@ -889,7 +889,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $ui['allow-regions-modification']   = $is_moderator || !$edit || get_awpcp_option( 'allow-regions-modification' );
         $ui['price-field']                  = get_awpcp_option('displaypricefield') == 1;
         $ui['extra-fields']                 = $hasextrafieldsmodule && function_exists( 'awpcp_extra_fields_module' );
-        $ui['terms-of-service']             = !$edit && !$is_moderator && get_awpcp_option('requiredtos');
+        $ui['terms-of-service']             = ! $edit && get_awpcp_option( 'requiredtos' );
         $ui['captcha']                      = !$edit && !is_admin() && ( get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) == 1 );
 
         $hidden['step']        = 'save-details';
@@ -1159,8 +1159,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         // Terms of service required and accepted?
-        if (!$edit && !$is_moderator && get_awpcp_option('requiredtos') && empty($data['terms-of-service'])) {
-            $errors['terms-of-service'] = __("You did not accept the terms of service", 'another-wordpress-classifieds-plugin');
+        if ( ! $edit && get_awpcp_option( 'requiredtos' ) && empty( $data['terms-of-service'] ) ) {
+            $errors['terms-of-service'] = __( 'You did not accept the terms of service', 'another-wordpress-classifieds-plugin' );
         }
 
         if ( !$edit && !is_admin() && get_awpcp_option( 'captcha-enabled-in-place-listing-form' ) ) {

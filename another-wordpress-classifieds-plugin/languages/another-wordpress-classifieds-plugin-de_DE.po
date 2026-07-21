@@ -2229,6 +2229,8 @@ msgid ""
 "Your Ad \"%1$s\" was recently approved by the admin. You should be able to "
 "see the Ad published here: %2$s."
 msgstr ""
+"Deine Anzeige \"%1$s\" wurde kürzlich vom Administrator angenommen. Du "
+"solltest die veröffentlichte Anzeige hier sehen können: %2$s."
 
 #: frontend/templates/email-ad-renewed-success-admin.tpl.php:8
 msgid ""

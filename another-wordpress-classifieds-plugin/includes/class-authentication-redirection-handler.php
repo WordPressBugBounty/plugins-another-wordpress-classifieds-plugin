@@ -32,6 +32,8 @@ class AWPCP_Authentication_Redirection_Handler {
             $page_requires_authentication = $this->post_listing_page_requires_authentication();
         } elseif ( $this->query->is_reply_to_listing_page() ) {
             $page_requires_authentication = $this->reply_to_listing_page_requires_autentication();
+        } elseif ( $this->query->is_user_listings_page() ) {
+            $page_requires_authentication = $this->user_listings_page_requires_authentication();
         } else {
             $page_requires_authentication = false;
         }
@@ -47,6 +49,13 @@ class AWPCP_Authentication_Redirection_Handler {
 
     private function reply_to_listing_page_requires_autentication() {
         return $this->settings->get_option( 'reply-to-ad-requires-registration' );
+    }
+
+    /**
+     * @since 4.4.8
+     */
+    private function user_listings_page_requires_authentication() {
+        return $this->settings->get_option( 'requireuserregistration' );
     }
 
     private function redirect_to_login_page( $login_url ) {

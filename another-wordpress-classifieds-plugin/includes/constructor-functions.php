@@ -194,7 +194,6 @@ function awpcp_terms_of_service_form_field( $slug ) {
 
     return new AWPCP_TermsOfServiceFormField(
         $slug,
-        $container['RolesAndCapabilities'],
         $container['Settings'],
         $container['TemplateRenderer']
     );

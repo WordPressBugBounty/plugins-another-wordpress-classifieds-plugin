@@ -50,6 +50,13 @@ class AWPCP_Query {
         return $this->is_page_that_has_shortcode( 'AWPCPREPLYTOAD' );
     }
 
+    /**
+     * @since 4.4.8
+     */
+    public function is_user_listings_page() {
+        return $this->is_page_that_has_shortcode( 'AWPCPUSERLISTINGS' );
+    }
+
     public function is_browse_listings_page() {
         return $this->is_page_that_has_shortcode( 'AWPCPBROWSEADS' );
     }
@@ -71,7 +78,7 @@ class AWPCP_Query {
     }
 
     public function is_browse_categories_page() {
-        return $this->is_browse_listings_page();
+        return $this->is_page_that_has_shortcode( 'AWPCPBROWSECATS' );
     }
 
     public function is_renew_listing_page() {
