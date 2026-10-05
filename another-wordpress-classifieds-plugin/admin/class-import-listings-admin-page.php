@@ -162,31 +162,15 @@ class AWPCP_ImportListingsAdminPage {
                     $form_errors['zip_file'] = __( 'Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin' );
                 } elseif ( 0 === count( $zip_contents ) ) {
                     $form_errors['zip_file'] = __( 'Empty ZIP Archive', 'another-wordpress-classifieds-plugin' );
-                }
+                } elseif ( ! $images_directory ) {
+                    $form_errors['zip_file'] = __( 'There was an error creating the images directory.', 'another-wordpress-classifieds-plugin' );
+                } else {
+                    foreach ( $zip_contents as $item ) {
+                        $error = $this->extract_zip_entry( $item, $images_directory );
 
-                foreach ( $zip_contents as $item ) {
-                    // ignore folder and don't extract the OS X-created __MACOSX directory files
-                    if ( $item['folder'] || '__MACOSX/' === substr( $item['filename'], 0, 9 ) ) {
-                        continue;
-                    }
-
-                    // don't extract files with a filename starting with . (like .DS_Store)
-                    if ( '.' === substr( basename( $item['filename'] ), 0, 1 ) ) {
-                        continue;
-                    }
-
-                    $path = $images_directory . DIRECTORY_SEPARATOR . $item['filename'];
-
-                    // if file is inside a directory, create it first
-                    if ( dirname( $item['filename'] ) !== '.' ) {
-                        $this->wp_filesystem->mkdir( dirname( $path ), awpcp_get_dir_chmod(), true );
-                    }
-
-                    // extract file
-                    if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], awpcp_get_file_chmod() ) ) {
-                        // translators: %s is the file name
-                        $message                = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
-                        $form_errors['unzip'][] = sprintf( $message, $path );
+                        if ( null !== $error ) {
+                            $form_errors['unzip'][] = $error;
+                        }
                     }
                 }
             }
@@ -224,11 +208,172 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_upload_files_form( $form_data, $form_errors );
     }
 
-    private function get_working_directory( $session_id ) {
-        $uploads_directories = awpcp_setup_uploads_dir();
+    /**
+     * Writes one archive entry when its type is allowed and its path stays inside the images directory.
+     *
+     * @since 4.4.9
+     *
+     * @param array  $item             Archive entry returned by PclZip.
+     * @param string $images_directory Destination directory.
+     * @return string|null Error message when the entry is rejected or cannot be written.
+     */
+    private function extract_zip_entry( $item, $images_directory ) {
+        $filename = isset( $item['filename'] ) ? (string) $item['filename'] : '';
 
-        $import_dir        = str_replace( 'thumbs', 'import', $uploads_directories[1] );
-        $working_directory = $import_dir . $session_id;
+        if ( ! empty( $item['folder'] ) || '__MACOSX/' === substr( $filename, 0, 9 ) ) {
+            return null;
+        }
+
+        $basename = basename( $filename );
+
+        if ( '' === $basename || '.' === substr( $basename, 0, 1 ) ) {
+            return null;
+        }
+
+        if ( ! $this->is_allowed_import_filename( $basename ) ) {
+            return sprintf(
+                /* translators: %s is the file name. */
+                __( 'The file %s is not an allowed file type and was not imported.', 'another-wordpress-classifieds-plugin' ),
+                $basename
+            );
+        }
+
+        if ( ! $this->is_zip_entry_name_safe( $filename ) ) {
+            return sprintf(
+                /* translators: %s is the file name. */
+                __( 'The file %s could not be imported because its path is not valid.', 'another-wordpress-classifieds-plugin' ),
+                $basename
+            );
+        }
+
+        $path = $images_directory . DIRECTORY_SEPARATOR . $filename;
+
+        if ( dirname( $filename ) !== '.' ) {
+            wp_mkdir_p( dirname( $path ) );
+        }
+
+        if ( ! $this->is_zip_entry_inside_directory( $filename, $images_directory ) ) {
+            return sprintf(
+                /* translators: %s is the file name. */
+                __( 'The file %s could not be imported because its path is not valid.', 'another-wordpress-classifieds-plugin' ),
+                $basename
+            );
+        }
+
+        if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], awpcp_get_file_chmod() ) ) {
+            return sprintf(
+                /* translators: %s is the file name. */
+                __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' ),
+                $basename
+            );
+        }
+
+        return null;
+    }
+
+    /**
+     * Whether the file extension is one the site already allows for uploads.
+     *
+     * @since 4.4.9
+     *
+     * @param string $filename File name from the archive.
+     * @return bool
+     */
+    private function is_allowed_import_filename( $filename ) {
+        $plugin = awpcp();
+
+        if ( ! is_object( $plugin ) || ! isset( $plugin->container['FileTypes'] ) ) {
+            return false;
+        }
+
+        $extensions = $plugin->container['FileTypes']->get_allowed_file_extensions();
+
+        return in_array( awpcp_get_file_extension( $filename ), $extensions, true );
+    }
+
+    /**
+     * Whether an archive entry name has no absolute or parent-directory segments.
+     *
+     * @since 4.4.9
+     *
+     * @param string $filename Entry name from the archive.
+     * @return bool
+     */
+    private function is_zip_entry_name_safe( $filename ) {
+        $filename = str_replace( '\\', '/', $filename );
+
+        if ( '' === $filename || '/' === substr( $filename, 0, 1 ) || false !== strpos( $filename, "\0" ) ) {
+            return false;
+        }
+
+        foreach ( explode( '/', $filename ) as $segment ) {
+            if ( '' === $segment || '.' === $segment || '..' === $segment || false !== strpos( $segment, ':' ) ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Whether the entry's parent directory resolves inside the images directory.
+     *
+     * Call this after the parent directory has been created.
+     *
+     * @since 4.4.9
+     *
+     * @param string $filename         Entry name from the archive.
+     * @param string $images_directory Destination directory.
+     * @return bool
+     */
+    private function is_zip_entry_inside_directory( $filename, $images_directory ) {
+        $parent = realpath( dirname( $images_directory . DIRECTORY_SEPARATOR . $filename ) );
+        $root   = realpath( $images_directory );
+
+        if ( false === $parent || false === $root ) {
+            return false;
+        }
+
+        return $this->path_is_inside_directory( $parent, $root );
+    }
+
+    /**
+     * Whether a path is the directory itself or a descendant of it.
+     *
+     * @since 4.4.9
+     *
+     * @param string $path      Path to test.
+     * @param string $directory Directory that must contain the path.
+     * @return bool
+     */
+    private function path_is_inside_directory( $path, $directory ) {
+        $path      = rtrim( str_replace( '\\', '/', $path ), '/' );
+        $directory = rtrim( str_replace( '\\', '/', $directory ), '/' );
+
+        if ( '' === $path || '' === $directory ) {
+            return false;
+        }
+
+        return $path === $directory || 0 === strpos( $path . '/', $directory . '/' );
+    }
+
+    /**
+     * @since 4.4.9 Import files are stored under the current site's uploads directory.
+     */
+    private function get_working_directory( $session_id ) {
+        $uploads = wp_upload_dir();
+
+        if ( ! empty( $uploads['error'] ) ) {
+            return false;
+        }
+
+        $session_id = (string) preg_replace( '/[^A-Za-z0-9]/', '', (string) $session_id );
+
+        if ( '' === $session_id ) {
+            return false;
+        }
+
+        $working_directory = trailingslashit( $uploads['basedir'] ) . 'awpcp/import/' . $session_id;
 
         if ( $this->create_directory( $working_directory ) ) {
             return $working_directory;

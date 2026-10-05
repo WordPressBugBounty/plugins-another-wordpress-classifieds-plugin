@@ -160,7 +160,9 @@ function( $, settings) {
                 titles = [],
                 replacements = {},
                 files_left = 0,
-                max_file_size = 0;
+                max_file_size = 0,
+                min_image_width = 0,
+                min_image_height = 0;
 
             settings.l10n( 'media-uploader-strings', 'upload-restrictions' );
 
@@ -175,10 +177,24 @@ function( $, settings) {
 
                     replacements['<' + title + '-left>'] = '<strong>' + files_left + '</strong>';
                     replacements['<' + title + '-max-file-size>'] = '<strong>' + max_file_size + ' MB</strong>';
+
+                    if ( title === 'images' ) {
+                        min_image_width = parseInt( group.min_image_width, 10 ) || 0;
+                        min_image_height = parseInt( group.min_image_height, 10 ) || 0;
+
+                        if ( min_image_width > 0 || min_image_height > 0 ) {
+                            replacements['<min-image-width>'] = '<strong>' + min_image_width + '</strong>';
+                            replacements['<min-image-height>'] = '<strong>' + min_image_height + '</strong>';
+                        }
+                    }
                 }
             } );
 
             message = settings.l10n( 'media-uploader-strings', 'upload-restrictions-' + titles.sort().join( '-' ) );
+
+            if ( replacements['<min-image-width>'] ) {
+                message = message + ' ' + settings.l10n( 'media-uploader-strings', 'upload-restrictions-image-dimensions' );
+            }
 
             $.each( replacements, function( search, replacement ) {
                 message = message.replace( search, replacement );

@@ -67,14 +67,53 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
             $output  = awpcp_print_message( $message );
             $output .= $this->render_listings_in_page( $query );
         } else {
-            $output = $this->render_listings_in_page( $query );
+            $output = $this->render_listings_in_page(
+                $query,
+                [
+                    'before_pagination' => [
+                        10 => [ 'category-title' => $this->render_category_title( $category_id ) ],
+                    ],
+                ]
+            );
         }
 
         return $output;
     }
 
-    protected function render_listings_in_page( $query ) {
-        $options = array( 'page' => $this->page );
+    /**
+     * Renders the heading with the name of the category being browsed.
+     *
+     * @since 4.4.9
+     *
+     * @param int $category_id The ID of the category being browsed.
+     *
+     * @return string
+     */
+    private function render_category_title( $category_id ) {
+        try {
+            $category = awpcp_categories_collection()->get( $category_id );
+        } catch ( AWPCP_Exception $e ) {
+            return '';
+        }
+
+        return '<h2 class="awpcp-category-title">' . esc_html( $category->name ) . '</h2>';
+    }
+
+    /**
+     * Renders the listings page for the given query.
+     *
+     * @since 4.4.9
+     *
+     * @param array $query   Query arguments used to load listings.
+     * @param array $options Display options merged with the page identifier.
+     *
+     * @return string
+     */
+    protected function render_listings_in_page( $query, $options = [] ) {
+        $options = array_merge(
+            [ 'page' => $this->page ],
+            $options
+        );
 
         return awpcp_display_listings_in_page( $query, 'browse-listings', $options );
     }

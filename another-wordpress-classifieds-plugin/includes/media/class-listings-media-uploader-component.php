@@ -64,6 +64,7 @@ class AWPCP_Listings_Media_Uploader_Component {
             'upload-restrictions-images'               => __( 'You can upload <images-left> images of up to <images-max-file-size> each.', 'another-wordpress-classifieds-plugin' ),
             'upload-restrictions-others'               => __( 'You can upload <others-left> files (no videos or images) of up to <others-max-file-size> each.', 'another-wordpress-classifieds-plugin' ),
             'upload-restrictions-videos'               => __( 'You can upload <videos-left> videos of up to <videos-max-file-size> each.', 'another-wordpress-classifieds-plugin' ),
+            'upload-restrictions-image-dimensions'     => __( 'Images must be at least <min-image-width> x <min-image-height> pixels.', 'another-wordpress-classifieds-plugin' ),
             'cannot-add-more-files'                    => $this->validation_errors->get_cannot_add_more_files_of_type_error_message(),
             'file-is-too-large'                        => $this->validation_errors->get_file_is_too_large_error_message(),
         ];

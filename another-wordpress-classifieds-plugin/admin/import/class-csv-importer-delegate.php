@@ -625,8 +625,10 @@ class AWPCP_CSV_Importer_Delegate {
      * @since 4.0.0
      */
     private function find_or_create_listing( $listing_data ) {
+        $post_title = isset( $listing_data['post_fields']['post_title'] ) ? $listing_data['post_fields']['post_title'] : '';
+
         if ( empty( $listing_data['metadata']['_awpcp_sequence_id'] ) ) {
-            return $this->create_empty_listing();
+            return $this->create_empty_listing( $post_title );
         }
 
         $listings = $this->listings->find_listings( [
@@ -635,7 +637,7 @@ class AWPCP_CSV_Importer_Delegate {
         ] );
 
         if ( empty( $listings ) ) {
-            return $this->create_empty_listing();
+            return $this->create_empty_listing( $post_title );
         }
 
         return $listings[0];
@@ -643,10 +645,12 @@ class AWPCP_CSV_Importer_Delegate {
 
     /**
      * @since 4.0.0
+     *
+     * @param string $post_title Title from the imported row.
      */
-    private function create_empty_listing() {
+    private function create_empty_listing( $post_title ) {
         $listing_data = [
-            'post_fields' => [ 'post_title' => 'Imported Listing Draft' ],
+            'post_fields' => [ 'post_title' => $post_title ? $post_title : 'Imported Listing Draft' ],
             'metadata'    => [],
         ];
 

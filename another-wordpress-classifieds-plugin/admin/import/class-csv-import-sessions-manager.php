@@ -55,6 +55,12 @@ class AWPCP_CSV_Import_Sessions_Manager {
     }
 
     private function get_uploads_dir_path() {
+        $uploads = wp_upload_dir();
+
+        if ( empty( $uploads['error'] ) && ! empty( $uploads['basedir'] ) ) {
+            return $uploads['basedir'];
+        }
+
         return $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
     }
 

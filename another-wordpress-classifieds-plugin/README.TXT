@@ -4,8 +4,8 @@ Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 6.2
 Requires PHP: 5.6
-Tested up to: 7.0
-Stable tag: 4.4.8
+Tested up to: 7.1
+Stable tag: 4.4.9
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,12 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.9 =
+* Enhancement: Category pages now display the category name heading above listings.
+* Enhancement: Image uploader displays minimum required image dimensions before upload.
+* Fix: Listing export now works for users with the manage_awpcp capability.
+* Fix: CSV import now preserves imported titles for correct slug generation.
+
 = 4.4.8 =
 * Fix: Category counts not updating after deleting a listing from the front end.
 * Fix: User Listings page not redirecting guests to the custom login URL.
@@ -262,14 +268,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 = 4.3.6 =
 * Fix: Minor security vulnerability
-
-= 4.3.5 =
-* New: Added an onboarding wizard
-* Fix: Updated one of the dependencies to fix an NPM vulnerability
-* Fix: Made the 'Test SSL Client' string translatable
-* Fix: Bug with listing import when images are imported
-* Fix: Improved the way we load translations
-* Fix: Bug with broken thumbnail images after WordPress 6.7
-* Fix: PHP warning when OpenGraph metadata is loaded
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

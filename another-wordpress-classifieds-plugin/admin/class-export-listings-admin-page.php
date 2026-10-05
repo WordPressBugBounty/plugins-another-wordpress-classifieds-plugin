@@ -24,8 +24,12 @@ class AWPCP_ExportListingsAdminPage {
 
     public function ajax() {
         check_ajax_referer( 'awpcp-export-csv' );
-        if ( ! current_user_can( 'administrator' ) ) {
-            wp_send_json_error();
+        if ( ! awpcp_current_user_is_admin() ) {
+            wp_send_json(
+                array(
+                    'error' => __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ),
+                )
+            );
         }
 
         $error = '';
