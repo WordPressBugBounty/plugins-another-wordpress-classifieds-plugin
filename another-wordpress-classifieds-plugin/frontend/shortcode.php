@@ -258,9 +258,14 @@ class AWPCP_Pages {
             $featured_on_top = false;
         }
 
+        // Lets the Featured Ads module skip its featured-first sorting
+        // unless sortfeatured is enabled.
         $query = array(
-            'context' => 'public-listings',
-            'limit'   => $limit,
+            'classifieds_query' => array(
+                'context'         => array( 'public-listings', 'latest-listings-shortcode' ),
+                'featured_on_top' => $featured_on_top,
+            ),
+            'limit'             => $limit,
         );
 
         $options = array(

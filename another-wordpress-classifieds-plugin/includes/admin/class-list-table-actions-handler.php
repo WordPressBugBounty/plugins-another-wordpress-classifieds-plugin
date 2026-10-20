@@ -98,7 +98,7 @@ class AWPCP_ListTableActionsHandler {
      * @since 4.0.0
      */
     private function row_actions( $actions, $post, $create_element ) {
-        $current_url = add_query_arg( array() );
+        $current_url = $this->get_current_url();
 
         foreach ( $this->actions as $name => $action ) {
             if ( ! $action->should_show_action_for( $post ) ) {
@@ -109,6 +109,30 @@ class AWPCP_ListTableActionsHandler {
         }
 
         return $actions;
+    }
+
+    /**
+     * Get the listings table URL that action links should be built from.
+     *
+     * During AJAX requests, like Quick Edit, the current URL is admin-ajax.php,
+     * so the referring listings table URL is used instead.
+     *
+     * @since 4.4.10
+     *
+     * @return string
+     */
+    private function get_current_url() {
+        if ( ! wp_doing_ajax() ) {
+            return add_query_arg( array() );
+        }
+
+        $referer = wp_get_referer();
+
+        if ( ! $referer ) {
+            return admin_url( 'edit.php?post_type=' . AWPCP_LISTING_POST_TYPE );
+        }
+
+        return remove_query_arg( array( 'awpcp-action', 'awpcp-result' ), $referer );
     }
 
     /**

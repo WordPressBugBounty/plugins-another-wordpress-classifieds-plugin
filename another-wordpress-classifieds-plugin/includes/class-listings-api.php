@@ -630,9 +630,13 @@ class AWPCP_ListingsAPI {
             }
         }
 
+        $is_pending_approval = $this->listing_renderer->is_pending_approval( $listing );
+
         // Make sure the duration of the ad is modified to account for the
         // number of days it remained disabled waiting for admin approval.
-        if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
+        // Listings that were already published and are only waiting for an
+        // edit to be approved keep their dates, unless they expired meanwhile.
+        if ( $is_pending_approval && ! $this->is_edited_listing_awaiting_approval( $listing ) ) {
             $post_data['metadata'] = $this->calculate_start_and_end_dates_using_payment_term(
                 $this->listing_renderer->get_payment_term( $listing )
             );
@@ -641,11 +645,33 @@ class AWPCP_ListingsAPI {
         $this->update_listing( $listing, $post_data );
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_disabled_date' );
 
+        if ( $is_pending_approval ) {
+            $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_edited_awaiting_approval' );
+        }
+
         // Allow other parts of the code to access the latest post status
         // without reloading the instance from the database.
         $listing->post_status = $post_data['post_fields']['post_status'];
 
         return true;
+    }
+
+    /**
+     * Whether the listing was already published and is only waiting for
+     * an administrator to approve the changes made by its owner.
+     *
+     * @since 4.4.10
+     *
+     * @param WP_Post $listing The listing.
+     *
+     * @return bool
+     */
+    private function is_edited_listing_awaiting_approval( $listing ) {
+        if ( ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_edited_awaiting_approval', true ) ) {
+            return false;
+        }
+
+        return ! $this->listing_renderer->has_expired( $listing );
     }
 
     public function disable_listing( $listing ) {
@@ -661,6 +687,7 @@ class AWPCP_ListingsAPI {
 
         $this->wordpress->update_post( array( 'ID' => $listing->ID, 'post_status' => $listing->post_status ) );
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_disabled_date', current_time( 'mysql' ) );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_edited_awaiting_approval' );
     }
 
     /**
@@ -825,11 +852,14 @@ class AWPCP_ListingsAPI {
     public function flag_listing( $listing ) {
         $meta_updated = (bool) $this->wordpress->update_post_meta( $listing->ID, '_awpcp_flagged', true );
 
-        if ( $meta_updated ) {
-            awpcp_send_listing_was_flagged_notification( $listing );
+        if ( ! $meta_updated ) {
+            // update_post_meta() returns false when the listing is already flagged.
+            return $this->listing_renderer->is_flagged( $listing );
         }
 
-        return $meta_updated;
+        awpcp_send_listing_was_flagged_notification( $listing );
+
+        return true;
     }
 
     /**

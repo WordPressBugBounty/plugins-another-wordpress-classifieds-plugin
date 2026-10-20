@@ -19,7 +19,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
     }
 
     public function get_transaction( $create = true ) {
-        if ( $this->transaction !== null ) {
+        if ( $this->transaction === null ) {
             $id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
 
             if ( $create === true  ) {

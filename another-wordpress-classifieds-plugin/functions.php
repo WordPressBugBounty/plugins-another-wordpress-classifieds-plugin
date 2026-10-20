@@ -3026,7 +3026,15 @@ function clean_field( $foo ) {
  * @since 4.4.6
  */
 function awpcp_is_valid_url( $url ) {
-    return preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url );
+    // Allow letters, digits and marks from any script, so IDN hosts like http://例子.测试 are valid.
+    $is_valid = preg_match( '|^http(s)?://[\p{L}\p{N}\p{M}-]+(.[\p{L}\p{N}\p{M}-]+)*(:[0-9]+)?(/.*)?$|iu', $url );
+
+    if ( false === $is_valid && PREG_BAD_UTF8_ERROR === preg_last_error() ) {
+        // The URL is not valid UTF-8. Use the previous ASCII-only check.
+        $is_valid = preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url );
+    }
+
+    return $is_valid;
 }
 
 /**

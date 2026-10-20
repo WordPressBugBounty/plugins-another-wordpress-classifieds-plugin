@@ -52,6 +52,9 @@ class AWPCP_Compatibility {
         $integration = new AWPCP_SEOFrameworkIntegration();
         $integration->setup();
 
+        $integration = new AWPCP_SEOPressPluginIntegration();
+        $integration->setup();
+
         $integration = awpcp_navxt_plugin_integration();
         $integration->setup();
 

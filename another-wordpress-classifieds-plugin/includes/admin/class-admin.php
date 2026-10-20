@@ -102,7 +102,6 @@ class AWPCP_Admin {
             add_filter( 'views_edit-' . $this->post_type, array( $this->table_views, 'views' ) );
 
             add_action( 'admin_head-edit.php', array( $this->table_actions, 'admin_head' ), 10, 2 );
-            add_filter( "{$this->post_type}_row_actions", [ $this->table_actions, 'row_actions_buttons' ], 10, 2 );
             add_filter( "bulk_actions-edit-{$this->post_type}", [ $this->table_actions, 'get_bulk_actions' ] );
             add_filter( 'handle_bulk_actions-edit-' . $this->post_type, array( $this->table_actions, 'handle_action' ), 10, 3 );
 
@@ -117,20 +116,69 @@ class AWPCP_Admin {
 
             add_action( 'pre_get_posts', array( $this->table_columns, 'pre_get_posts' ) );
             add_action( 'posts_orderby', array( $this->table_columns, 'posts_orderby' ), 10, 2 );
-            add_filter( "manage_{$this->post_type}_posts_columns", array( $this->table_columns, 'manage_posts_columns' ) );
             add_filter( "manage_edit-{$this->post_type}_sortable_columns", array( $this->table_columns, 'manage_sortable_columns' ) );
-            add_action( "manage_{$this->post_type}_posts_custom_column", array( $this->table_columns, 'manage_posts_custom_column' ), 10, 2 );
+
+            $this->add_list_table_rows_hooks();
         }
 
         add_filter( 'awpcp_list_table_views_listings', array( $this, 'register_listings_table_views' ) );
-        add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
-        add_filter( 'awpcp_list_table_actions_listings', [ $this, 'filter_listings_table_actions' ], 99, 1 );
+        $this->add_list_table_actions_filters();
         add_filter( 'awpcp_list_table_search_listings', array( $this, 'register_listings_table_search_modes' ) );
 
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
         add_action( 'admin_enqueue_scripts', [ $this, 'maybe_enqueue_meta_boxes_scripts' ] );
         add_action( 'add_meta_boxes_' . $this->post_type, array( $this, 'add_classifieds_meta_boxes' ) );
         add_action( 'save_post_' . $this->post_type, [ $this, 'save_classifieds_meta_boxes' ], 10, 2 );
+    }
+
+    /**
+     * Runs on admin_init during AJAX requests only, where admin_init() is not used.
+     *
+     * Quick Edit saves through the inline-save AJAX action and re-renders the
+     * listing row, so the row needs the same columns and actions as the table.
+     *
+     * @since 4.4.10
+     */
+    public function ajax_admin_init() {
+        if ( ! $this->is_inline_save_request() ) {
+            return;
+        }
+
+        $this->add_list_table_rows_hooks();
+        $this->add_list_table_actions_filters();
+    }
+
+    /**
+     * Registers the filters that build the list of listings table actions.
+     *
+     * @since 4.4.10
+     */
+    private function add_list_table_actions_filters() {
+        add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
+        add_filter( 'awpcp_list_table_actions_listings', [ $this, 'filter_listings_table_actions' ], 99, 1 );
+    }
+
+    /**
+     * Registers the hooks used to render the rows of the listings table.
+     *
+     * @since 4.4.10
+     */
+    private function add_list_table_rows_hooks() {
+        add_filter( "{$this->post_type}_row_actions", [ $this->table_actions, 'row_actions_buttons' ], 10, 2 );
+        add_filter( "manage_{$this->post_type}_posts_columns", array( $this->table_columns, 'manage_posts_columns' ) );
+        add_action( "manage_{$this->post_type}_posts_custom_column", array( $this->table_columns, 'manage_posts_custom_column' ), 10, 2 );
+    }
+
+    /**
+     * Whether the current request is a Quick Edit save for this post type.
+     *
+     * @since 4.4.10
+     *
+     * @return bool
+     */
+    private function is_inline_save_request() {
+        return 'inline-save' === awpcp_get_var( array( 'param' => 'action' ), 'post' )
+            && $this->post_type === awpcp_get_var( array( 'param' => 'post_type' ), 'post' );
     }
 
     /**

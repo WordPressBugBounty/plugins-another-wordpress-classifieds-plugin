@@ -602,6 +602,10 @@ class AWPCP {
         add_action( 'admin_init', [ $this, 'register_ajax_handlers' ] );
         add_action( 'admin_init', [ $this, 'register_listing_actions_handlers' ] );
         add_action( 'admin_init', [ $this, 'register_categories_actions_handlers' ] );
+
+        if ( 'inline-save' === awpcp_get_var( array( 'param' => 'action' ), 'post' ) ) {
+            add_action( 'admin_init', [ $this->container['Admin'], 'ajax_admin_init' ] );
+        }
     }
 
     /**

@@ -124,6 +124,12 @@ class AWPCP_ListingPostedData {
             ]
         );
 
+        // Published listings that need their changes approved keep their dates
+        // when the administrator approves them.
+        if ( 'publish' === $listing->post_status && 'pending' === $post_status ) {
+            $post_data['metadata']['_awpcp_edited_awaiting_approval'] = true;
+        }
+
         // TODO: Make sure users are allowed to change the start/end date fields when authorized.
         /** @phpstan-ignore-next-line */
         if ( empty( $post_data['metadata']['_awpcp_start_date'] ) ) {

@@ -222,10 +222,30 @@ class AWPCP_Meta {
         }
 
         if ( empty( $this->properties['images'] ) ) {
-            $metadata['http://ogp.me/ns#image'] = AWPCP_URL . '/resources/images/adhasnoimage.png';
+            $metadata['http://ogp.me/ns#image'] = $this->get_noimage_placeholder_url();
         }
 
         return $metadata;
+    }
+
+    /**
+     * Get the URL of the image used when a listing has no images,
+     * respecting the No Image placeholder settings.
+     *
+     * @since 4.4.10
+     *
+     * @return string
+     */
+    private function get_noimage_placeholder_url() {
+        $default_url = AWPCP_URL . '/resources/images/adhasnoimage.png';
+
+        if ( get_awpcp_option( 'hide-noimage-placeholder', 0 ) || ! get_awpcp_option( 'override-noimage-placeholder', 0 ) ) {
+            return $default_url;
+        }
+
+        $placeholder_url = trim( (string) get_awpcp_option( 'noimage-placeholder-url' ) );
+
+        return $placeholder_url ? $placeholder_url : $default_url;
     }
 
     public function get_listing_metadata_property( $property, $default = '' ) {

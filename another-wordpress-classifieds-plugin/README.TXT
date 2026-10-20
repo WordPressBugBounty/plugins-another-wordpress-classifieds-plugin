@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 7.1
-Stable tag: 4.4.9
+Stable tag: 4.4.10
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,16 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.10 =
+* Enhancement: Latest listings shortcode now supports the sortfeatured parameter.
+* Enhancement: Listings without images now use the custom placeholder setting for og:image instead of the bundled default.
+* Fix: Listing dates now remain preserved when approving edited listings.
+* Fix: Listing columns and row actions now remain after Quick Edit.
+* Fix: Fatal error when loading buy credits transaction no longer occurs after selecting a credit plan.
+* Fix: Website URL hosts now allow Unicode characters.
+* Fix: Canonical tag no longer duplicates when SEOPress is active.
+* Fix: Already flagged listings can now be flagged again without error, and repeat flags no longer resend the admin notification.
+
 = 4.4.9 =
 * Enhancement: Category pages now display the category name heading above listings.
 * Enhancement: Image uploader displays minimum required image dimensions before upload.
@@ -265,8 +275,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Enhancement: Refactored old default PHP functions to newer WordPress alternatives
 * Enhancement: Moved add-on licensing and update management to AWP Module Updater
 * Fix: PHP 8.2 notices
-
-= 4.3.6 =
-* Fix: Minor security vulnerability
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
