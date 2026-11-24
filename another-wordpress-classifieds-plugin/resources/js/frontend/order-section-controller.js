@@ -248,7 +248,7 @@ AWPCP.define( 'awpcp/frontend/order-section-controller', [
             }
 
             if ( self.store.getSelectedUserId() ) {
-                self.$listingOwner.find( 'span' ).html( self.store.getSelectedUserName() );
+                self.$listingOwner.find( 'span' ).text( self.store.getSelectedUserName() );
                 self.$listingOwner.show();
             }
 

@@ -194,6 +194,34 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 }
 
 /**
+ * Returns the layout used to render each listing in lists of listings.
+ *
+ * A saved layout identical to the default shipped before the
+ * $most_recent_start_date placeholder was added is treated as the default,
+ * so listings show the same date the date-based orders use.
+ *
+ * @since 4.4.11
+ *
+ * @return string
+ */
+function awpcp_get_listings_layout() {
+    $layout         = get_awpcp_option( 'displayadlayoutcode' );
+    $default_layout = (string) awpcp()->settings->get_option_default_value( 'displayadlayoutcode' );
+
+    if ( empty( $layout ) ) {
+        return $default_layout;
+    }
+
+    $previous_default_layout = str_replace( '$most_recent_start_date<br/>', '$awpcpadpostdate', $default_layout );
+
+    if ( preg_replace( '/\s+/', '', $layout ) === preg_replace( '/\s+/', '', $previous_default_layout ) ) {
+        return $default_layout;
+    }
+
+    return $layout;
+}
+
+/**
  * Renders each listing using the layout configured in the plugin
  * settings.
  *
@@ -206,11 +234,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
  */
 function awpcp_render_listings_items( $listings, $context, $options = array() ) {
     $parity = array( 'displayaditemseven', 'displayaditemsodd' );
-    $layout = get_awpcp_option('displayadlayoutcode');
-
-    if ( empty( $layout ) ) {
-        $layout = awpcp()->settings->get_option_default_value( 'displayadlayoutcode' );
-    }
+    $layout = awpcp_get_listings_layout();
 
     $listing_renderer = awpcp_listing_renderer();
 

@@ -830,8 +830,7 @@ function awpcp_resizer($filename, $dir) {
             break;
     }
 
-    imagedestroy($src);
-    imagedestroy($tmp);
+    unset( $src, $tmp );
 
     return true;
 }

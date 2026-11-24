@@ -1191,6 +1191,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected function prepare_ad_title($title, $characters) {
         $$title = $title;
 
+        // Strip shortcodes so they are not executed when the title is rendered in listing layouts.
+        $title = strip_shortcodes( $title );
+
         if ( $characters > 0 && awpcp_utf8_strlen( $title ) > $characters ) {
             $title = awpcp_utf8_substr( $title, 0, $characters );
         }

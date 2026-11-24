@@ -38,7 +38,7 @@ class AWPCP_EditListingLinkPlaceholder {
         $template = '<a href="<edit-listing-url>" title="<link-title>"><link-text></a>';
 
         $template = str_replace( '<edit-listing-url>', esc_url( awpcp_get_edit_listing_url( $listing ) ), $template );
-        $template = str_replace( '<link-title>', esc_attr( $this->generate_link_title( $listing ) ), $template );
+        $template = str_replace( '<link-title>', awpcp_neutralize_shortcodes( esc_attr( $this->generate_link_title( $listing ) ) ), $template );
         $template = str_replace( '<link-text>', esc_html( _x( 'Edit Ad', 'text for edit listing link', 'another-wordpress-classifieds-plugin' ) ), $template );
 
         return $template;

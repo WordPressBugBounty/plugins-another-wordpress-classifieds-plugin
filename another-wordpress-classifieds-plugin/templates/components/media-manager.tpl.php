@@ -75,10 +75,10 @@ from Paul Irish. See https://github.com/drodenbaugh/awpcp/issues/979. -->
                         </a>
                     </li>
                     <li class="awpcp-uploaded-file-action awpcp-uploaded-file-delete-action"><a title="<?php echo esc_attr( __( 'Click to delete this video', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.deleteFile"><span class="fa fa-trash-alt"></span></a></li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: isApproved()">
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-reject-action" data-bind="visible: $root.showAdminActions() && isApproved()">
                         <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Video currently approved &mdash; click to reject it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.rejectFile, css: { 'awpcp-toggle-on': !isApproved(), 'awpcp-toggle-off': isApproved() }"><span class="fa fa-thumbs-down"></span></a>
                     </li>
-                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: !isApproved()">
+                    <li class="awpcp-uploaded-file-action awpcp-uploaded-file-approve-action" data-bind="visible: $root.showAdminActions() && !isApproved()">
                             <a class="awpcp-toggle-button" title="<?php echo esc_attr( __( 'Video currently rejected &mdash; click to approve it', 'another-wordpress-classifieds-plugin' ) ); ?>" data-bind="click: $root.approveFile, css: { 'awpcp-toggle-on': isApproved(), 'awpcp-toggle-off': !isApproved() }"><span class="fa fa-thumbs-up"></span></a>
                     </li>
                 </ul>

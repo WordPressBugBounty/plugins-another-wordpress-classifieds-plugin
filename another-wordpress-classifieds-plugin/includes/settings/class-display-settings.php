@@ -99,7 +99,7 @@ class AWPCP_DisplaySettings {
         <div class="awpcp-listing-excerpt-content">$excerpt</div>
     </div>
     <div class="awpcp-listing-excerpt-extra">
-        $awpcpadpostdate
+        $most_recent_start_date<br/>
         $awpcp_city_display
         $awpcp_state_display
         $awpcp_display_adviews

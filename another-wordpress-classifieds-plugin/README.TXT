@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 7.1
-Stable tag: 4.4.10
+Stable tag: 4.4.11
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,14 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.11 =
+* Enhancement: Show the date listings are sorted by in the default listings layout
+* Fix: Show step errors on GET requests instead of a fatal error
+* Fix: Place Ad and Edit Ad forms no longer break when Jetpack Boost's deferral is active
+* Fix: Canonical tag no longer duplicates when Yoast SEO is active
+* Fix: Free Listing term is only allowed when payments are disabled
+* Fix: File approval and rejection actions are now limited to moderators
+
 = 4.4.10 =
 * Enhancement: Latest listings shortcode now supports the sortfeatured parameter.
 * Enhancement: Listings without images now use the custom placeholder setting for og:image instead of the bundled default.
@@ -268,12 +276,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 = 4.4.1 =
 * Fix: Activation issue
-
-= 4.4 =
-* Enhancement: Improved security
-* Enhancement: Changed some external assets to local files
-* Enhancement: Refactored old default PHP functions to newer WordPress alternatives
-* Enhancement: Moved add-on licensing and update management to AWP Module Updater
-* Fix: PHP 8.2 notices
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

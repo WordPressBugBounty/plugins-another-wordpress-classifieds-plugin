@@ -178,7 +178,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             'mode'     => 'edit',
         ];
 
-        return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageData = ' . wp_json_encode( $page_data ) . ';</script>' );
+        return $this->render( 'content', '<form class="awpcp-submit-listing-page-form"></form><script type="text/javascript">var AWPCPSubmitListingPageData = ' . wp_json_encode( $page_data, JSON_HEX_TAG ) . ';</script>' );
     }
 
     /**

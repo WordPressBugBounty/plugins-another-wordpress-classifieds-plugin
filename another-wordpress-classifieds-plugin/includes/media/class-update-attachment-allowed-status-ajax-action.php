@@ -34,8 +34,15 @@ class AWPCP_Update_Attachment_Allowed_Status_Ajax_Action implements AWPCP_Attach
     /**
      * @since 4.0.0     Attemtps to remove _awpcp_has_images_awaiting_approval if
      *                  there are no other attachments awaiting approval.
+     * @since 4.4.11       Only moderators are allowed to approve or reject attachments.
+     *
+     * @throws AWPCP_Exception If the current user is not a moderator.
      */
     public function do_action( $ajax_handler, $attachment, $listing ) {
+        if ( ! awpcp_current_user_is_moderator() ) {
+            throw new AWPCP_Exception( esc_html__( 'You are not allowed to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $current_action = awpcp_get_var( array( 'param' => 'action' ) );
         $status_updated = false;
 

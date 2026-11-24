@@ -139,7 +139,8 @@ class AWPCP_BasePage extends AWPCP_Page {
             $step->get( $this );
         } else {
             $message = __( 'Your request cannot be processed at this time. Please try again or contact the administrator about the incident.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( esc_html( $message ), esc_html( $exception->get_errors() ) );
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Errors are sanitized on output by awpcp_print_error() (wp_kses_post).
+            throw new AWPCP_Exception( esc_html( $message ), $exception->get_errors() );
         }
     }
 

@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <?php foreach ( $users as $k => $user ) : ?>
 
         <?php if ( $include_full_user_information ) : ?>
-    <option value="<?php echo esc_attr( $user->ID ); ?>" data-user-information='<?php echo wp_json_encode( $user ); ?>'<?php echo $selected && $selected['id'] === $user->ID ? ' selected="selected"' : ''; ?>>
+    <option value="<?php echo esc_attr( $user->ID ); ?>" data-user-information="<?php echo esc_attr( wp_json_encode( $user, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP ) ); ?>"<?php echo $selected && $selected['id'] === $user->ID ? ' selected="selected"' : ''; ?>>
         <?php else : ?>
     <option value="<?php echo esc_attr( $user->ID ); ?>"<?php echo $selected && $selected['id'] === $user->ID ? ' selected="selected"' : ''; ?>>
         <?php endif; ?>

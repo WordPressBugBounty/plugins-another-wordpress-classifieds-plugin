@@ -39,7 +39,7 @@ class AWPCP_MimeTypes {
         $fileinfo        = finfo_open( defined( 'FILEINFO_MIME_TYPE' ) ? FILEINFO_MIME_TYPE : FILEINFO_MIME );
         $mime_type       = finfo_file( $fileinfo, $filepath );
         $mime_type_parts = explode( ';', $mime_type );
-        finfo_close( $fileinfo );
+        unset( $fileinfo );
 
         return array_shift( $mime_type_parts );
     }

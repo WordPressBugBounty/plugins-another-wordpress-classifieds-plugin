@@ -203,6 +203,31 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * Returns the date used by the date-based listing orders: the renewed
+     * date if the listing was renewed after it started, or its start date.
+     *
+     * @since 4.4.11
+     */
+    public function get_most_recent_start_date_formatted( $listing ) {
+        $date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_most_recent_start_date', true );
+
+        if ( empty( $date ) ) {
+            $date         = $this->get_plain_start_date( $listing );
+            $renewed_date = $this->get_renewed_date( $listing );
+
+            if ( $renewed_date && strtotime( $renewed_date ) > strtotime( (string) $date ) ) {
+                $date = $renewed_date;
+            }
+        }
+
+        if ( empty( $date ) ) {
+            $date = $listing->post_date;
+        }
+
+        return $this->get_formatted_date( $date );
+    }
+
+    /**
      * @since 4.0.0
      */
     public function get_posted_date_and_time_formatted( $listing ) {

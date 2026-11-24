@@ -73,13 +73,33 @@ class AWPCP_PaymentInformationValidator {
 
         $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
 
-        if ( is_null( $payment_term ) ) {
+        if ( is_null( $payment_term ) || $this->is_unavailable_free_payment_term( $payment_term ) ) {
             $errors['payment-term'] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin' );
         } elseif ( ! $this->roles->current_user_is_administrator() && $payment_term->private ) {
             $errors['payment-term'] = __( 'The Payment Term you selected is not available for non-administrator users.', 'another-wordpress-classifieds-plugin' );
         }
 
         return $errors;
+    }
+
+    /**
+     * The Free Listing payment term (fee with ID 0) is only offered when
+     * payments are disabled. It can still be found by ID so that existing
+     * listings keep working, but non-administrator users must not be able to
+     * select it on paid boards. Administrators skip payment steps anyway.
+     *
+     * @since 4.4.11
+     *
+     * @param object $payment_term The selected payment term.
+     *
+     * @return bool
+     */
+    private function is_unavailable_free_payment_term( $payment_term ) {
+        if ( AWPCP_FeeType::TYPE !== $payment_term->type || 0 !== absint( $payment_term->id ) ) {
+            return false;
+        }
+
+        return $this->payments->payments_enabled() && ! $this->roles->current_user_is_administrator();
     }
 
     /**

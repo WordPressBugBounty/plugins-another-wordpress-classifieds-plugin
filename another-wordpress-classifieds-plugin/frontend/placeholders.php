@@ -209,6 +209,9 @@ function awpcp_content_placeholders() {
         'renewed_date'         => array(
             'callback' => 'awpcp_do_placeholder_dates',
         ),
+        'most_recent_start_date' => array(
+            'callback' => 'awpcp_do_placeholder_dates',
+        ),
 
         'featured_image'       => array(
             'callback' => 'awpcp_do_placeholder_images',
@@ -264,8 +267,6 @@ function awpcp_do_placeholders( $ad, $content, $context ) {
  * @since 3.6.4
  */
 function awpcp_replace_placeholders( $placeholders, $listing, $content, $context ) {
-    $original_content = $content;
-
     // Remove old $quers/ placeholders.
     $content = str_replace( '$quers/', '', $content );
 
@@ -274,11 +275,11 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
     preg_match_all( "/$pattern/s", $content, $matches );
 
     $available_placeholders = awpcp_content_placeholders();
-    $processed_placeholders = array();
+    $replacements           = array();
     rsort( $matches[0] );
 
     foreach ( $matches[0] as $match ) {
-        if ( isset( $processed_placeholders[ $match ] ) ) {
+        if ( isset( $replacements[ $match ] ) ) {
             continue;
         }
 
@@ -291,12 +292,28 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
                 $replacement = '';
             }
 
-            $content                          = str_replace( $match, $replacement, $content );
-            $processed_placeholders[ $match ] = true;
+            $replacements[ $match ] = (string) $replacement;
         }
     }
 
-    return $content;
+    // Replace all placeholders in a single pass, so content inserted by one
+    // placeholder (which may include user input) is never parsed for more placeholders.
+    return strtr( $content, $replacements );
+}
+
+/**
+ * Turns square brackets into HTML entities so user-supplied values printed in a
+ * listing layout can't be parsed as shortcodes when the layout goes through
+ * `do_shortcode()`. Browsers render the entities as brackets.
+ *
+ * @since 4.4.11
+ *
+ * @param string $text Text that has already been escaped for output.
+ *
+ * @return string
+ */
+function awpcp_neutralize_shortcodes( $text ) {
+    return str_replace( array( '[', ']' ), array( '&#91;', '&#93;' ), (string) $text );
 }
 
 /**
@@ -317,8 +334,9 @@ function awpcp_do_placeholder_title( $ad, $placeholder ) {
 
     $title_link = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $title ) );
     $title_link = apply_filters( 'awpcp_title_link_placeholder', $title_link, $ad, $title, $url );
+    $title_link = awpcp_neutralize_shortcodes( $title_link );
 
-    $replacements['title']      = esc_html( $title );
+    $replacements['title']      = awpcp_neutralize_shortcodes( esc_html( $title ) );
     $replacements['ad_title']   = $title_link;
     $replacements['title_link'] = $title_link;
 
@@ -456,14 +474,14 @@ function awpcp_do_placeholder_contact_name( $ad, $placeholder ) {
         $contact_name = awpcp_listing_renderer()->get_contact_name( $ad );
     }
 
-    return esc_html( stripslashes( $contact_name ) );
+    return awpcp_neutralize_shortcodes( esc_html( stripslashes( $contact_name ) ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_website_url( $ad, $placeholder ) {
-    return awpcp_listing_renderer()->get_website_url( $ad );
+    return awpcp_neutralize_shortcodes( esc_url( awpcp_listing_renderer()->get_website_url( $ad ) ) );
 }
 
 /**
@@ -478,7 +496,7 @@ function awpcp_do_placeholder_website_link( $ad, $placeholder ) {
     if ( ( ! $login_required || is_user_logged_in() ) && ! empty( $website_url ) ) {
         $nofollow      = get_awpcp_option( 'visitwebsitelinknofollow' ) ? 'rel="nofollow"' : '';
         $escaped_label = esc_html( __( 'Visit Website', 'another-wordpress-classifieds-plugin' ) );
-        $escaped_url   = awpcp_esc_attr( $website_url );
+        $escaped_url   = awpcp_neutralize_shortcodes( esc_url( $website_url ) );
 
         $content                           = '<br/><a %s href="%s" target="_blank">%s</a>';
         $content                           = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
@@ -542,6 +560,8 @@ function awpcp_do_placeholder_dates( $ad, $placeholder ) {
     $replacements['posted_date']       = $listing_renderer->get_posted_date_formatted( $ad );
     $replacements['posted_date_time']  = $listing_renderer->get_posted_date_and_time_formatted( $ad );
     $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
+
+    $replacements['most_recent_start_date'] = $listing_renderer->get_most_recent_start_date_formatted( $ad );
 
     $verification_date = $listing_renderer->get_verification_date( $ad );
 
@@ -683,7 +703,7 @@ function awpcp_do_placeholder_location( $ad, $placeholder ) {
         $replacements['awpcp_country_display'] = '';
     }
 
-    return $replacements[ $placeholder ];
+    return awpcp_neutralize_shortcodes( $replacements[ $placeholder ] );
 }
 
 /**
@@ -750,6 +770,8 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
             $phone   = substr( $phone, 0, $allowed ) . str_repeat( 'X', strlen( $phone ) - $allowed );
         }
 
+        $phone = esc_html( $phone );
+
         $content = sprintf(
             '<br/><label>%s:</label> %s',
             __( 'Phone', 'another-wordpress-classifieds-plugin' ),
@@ -763,14 +785,14 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
         $replacements['contact_phone']  = '';
     }
 
-    return $replacements[ $placeholder ];
+    return awpcp_neutralize_shortcodes( $replacements[ $placeholder ] );
 }
 
 /**
  * @since 4.0.11
  */
 function awpcp_do_placeholder_contact_email( $ad, $placeholder ) {
-    return esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) );
+    return awpcp_neutralize_shortcodes( esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) ) );
 }
 
 /**

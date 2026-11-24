@@ -104,7 +104,7 @@ class AWPCP_Image_Placeholders {
 
                 $image_attributes = array(
                     'class' => 'awpcp-listing-primary-image-thumbnail',
-                    'alt'   => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
+                    'alt'   => awpcp_neutralize_shortcodes( awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ) ),
                     // This was added after WordPress 6.7
                     // See: https://github.com/Strategy11/awpcp/issues/3178
                     'style' => 'width: ' . $thumbnail_width . 'px;',
@@ -191,7 +191,7 @@ class AWPCP_Image_Placeholders {
             $image_attributes = array(
                 'attributes' => array(
                     'class' => 'awpcp-listing-primary-image-thumbnail awpcp-noimage-placeholder',
-                    'alt'   => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
+                    'alt'   => awpcp_neutralize_shortcodes( awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ) ),
                     'src'   => esc_attr( $thumbnail ),
                     'width' => esc_attr( $thumbnail_width ),
                 ),

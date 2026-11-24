@@ -171,6 +171,9 @@ class AWPCP_ListingPostedData {
      * @since 4.0.0
      */
     private function prepare_title( $title, $characters_allowed ) {
+        // Strip shortcodes so they are not executed when the title is rendered in listing layouts.
+        $title = strip_shortcodes( $title );
+
         if ( $characters_allowed > 0 && awpcp_utf8_strlen( $title ) > $characters_allowed ) {
             $title = awpcp_utf8_substr( $title, 0, $characters_allowed );
         }
